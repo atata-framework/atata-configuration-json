@@ -1,0 +1,15 @@
+﻿{
+  "driver": "Chrome",
+  "chrome": {
+    "arguments": [ "disable-extensions", "no-sandbox", "start-maximized" ]
+  },
+  "useNUnitTestName": true,
+  "logNUnitError": true,
+  "logConsumers": [
+    {
+      "type": "Atata.NUnitTestContextLogConsumer, Atata",
+      "minLevel": "Info",
+      "sectionFinish": true
+    }
+  ]
+}

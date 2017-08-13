@@ -70,6 +70,7 @@
     <Compile Include="JsonSection.cs" />
     <Compile Include="LogConsumerJsonSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebDriverJsonSection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

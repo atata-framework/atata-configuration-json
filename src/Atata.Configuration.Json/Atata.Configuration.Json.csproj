@@ -65,6 +65,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AtataContextBuilderExtensions.cs" />
+    <Compile Include="DesiredCapabilitiesKind.cs" />
+    <Compile Include="DriverOptionsJsonSection.cs" />
     <Compile Include="JsonConfig.cs" />
     <Compile Include="JsonConfig`1.cs" />
     <Compile Include="JsonSection.cs" />

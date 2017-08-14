@@ -1,0 +1,12 @@
+﻿{
+  "driver": {
+    "remoteAddress": "http://127.0.0.1:8888/wd/hub",
+    "desiredCapabilities": "Firefox",
+    "capabilities": {
+      "cap1": "some-val",
+      "cap2": 5,
+      "cap3": true
+    },
+    "commandTimeout": 60
+  }
+}

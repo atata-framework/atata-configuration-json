@@ -1,22 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Atata
 {
     public class WebDriverJsonSection : JsonSection
     {
+        public string Alias { get; set; }
+
         [JsonProperty("type")]
         public string TypeName { get; set; }
 
-        public Dictionary<string, object> Capabilities { get; set; }
+        public string RemoteAddress { get; set; }
 
-        public string[] Arguments { get; set; }
+        public DriverOptionsJsonSection Options { get; set; }
+
+        public DesiredCapabilitiesKind DesiredCapabilities { get; set; }
+
+        public JsonSection Capabilities { get; set; }
 
         public string DriverPath { get; set; }
 
         public string DriverExecutableFileName { get; set; }
 
-        public TimeSpan CommandTimeout { get; set; }
+        /// <summary>
+        /// Gets or sets the command timeout in seconds.
+        /// </summary>
+        public double? CommandTimeout { get; set; }
     }
 }

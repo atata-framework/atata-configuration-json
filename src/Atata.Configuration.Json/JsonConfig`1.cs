@@ -20,9 +20,9 @@ namespace Atata
             set { current = value; }
         }
 
-        public WebDriverJsonSection[] Drivers { get; set; }
+        public DriverJsonSection[] Drivers { get; set; }
 
-        public WebDriverJsonSection Driver
+        public DriverJsonSection Driver
         {
             get { return Drivers?.SingleOrDefault(); }
             set { Drivers = new[] { value }; }

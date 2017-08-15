@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace Atata
 {
@@ -40,5 +41,11 @@ namespace Atata
 
         // Firefox specific.
         public ObjectDictionaryJsonSection Preferences { get; set; }
+
+        // Chrome specific.
+        public string MobileEmulationDeviceName { get; set; }
+
+        // Chrome specific.
+        public ChromeMobileEmulationDeviceSettings MobileEmulationDeviceSettings { get; set; }
     }
 }

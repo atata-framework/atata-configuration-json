@@ -70,13 +70,14 @@
     <Compile Include="DesiredCapabilitiesKind.cs" />
     <Compile Include="DriverOptionsJsonSection.cs" />
     <Compile Include="DriverProfileJsonSection.cs" />
+    <Compile Include="DriverServiceJsonSection.cs" />
     <Compile Include="JsonConfig.cs" />
     <Compile Include="JsonConfig`1.cs" />
     <Compile Include="JsonSection.cs" />
     <Compile Include="LogConsumerJsonSection.cs" />
     <Compile Include="ObjectDictionaryJsonSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebDriverJsonSection.cs" />
+    <Compile Include="DriverJsonSection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

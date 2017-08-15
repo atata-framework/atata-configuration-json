@@ -2,7 +2,7 @@
 
 namespace Atata
 {
-    public class WebDriverJsonSection : JsonSection
+    public class DriverJsonSection : JsonSection
     {
         public string Alias { get; set; }
 
@@ -13,13 +13,11 @@ namespace Atata
 
         public DriverOptionsJsonSection Options { get; set; }
 
+        public DriverServiceJsonSection Service { get; set; }
+
         public DesiredCapabilitiesKind DesiredCapabilities { get; set; }
 
         public DesiredCapabilitiesJsonSection Capabilities { get; set; }
-
-        public string DriverPath { get; set; }
-
-        public string DriverExecutableFileName { get; set; }
 
         /// <summary>
         /// Gets or sets the command timeout in seconds.

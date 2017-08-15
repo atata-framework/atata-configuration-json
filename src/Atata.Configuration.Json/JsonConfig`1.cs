@@ -30,6 +30,8 @@ namespace Atata
 
         public LogConsumerJsonSection[] LogConsumers { get; set; }
 
+        public string BaseUrl { get; set; }
+
         /// <summary>
         /// Gets or sets the retry timeout in seconds.
         /// </summary>

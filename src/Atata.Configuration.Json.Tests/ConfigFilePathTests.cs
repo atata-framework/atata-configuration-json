@@ -14,11 +14,55 @@ namespace Atata.Configuration.Json.Tests
             AtataContextBuilder builder = AtataContext.Build().
                 ApplyJsonConfig();
 
-            builder.BuildingContext.BaseUrl.Should().EndWith("default");
+            builder.BuildingContext.BaseUrl.Should().EndWith("atata");
         }
 
         [Test]
-        public void ConfigFilePath_FullPath()
+        public void ConfigFilePath_FileName()
+        {
+            string filePath = "Simple.json";
+
+            AtataContextBuilder builder = AtataContext.Build().
+                ApplyJsonConfig(filePath);
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("simple");
+        }
+
+        [Test]
+        public void ConfigFilePath_FileName_WithAlias()
+        {
+            string filePath = "Simple.json";
+
+            AtataContextBuilder builder = AtataContext.Build().
+                ApplyJsonConfig(filePath, "QA");
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("simple.qa");
+        }
+
+        [Test]
+        public void ConfigFilePath_FileName_WithoutExtension()
+        {
+            string filePath = "Simple";
+
+            AtataContextBuilder builder = AtataContext.Build().
+                ApplyJsonConfig(filePath);
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("simple");
+        }
+
+        [Test]
+        public void ConfigFilePath_FileName_WithAlias_WithoutExtension()
+        {
+            string filePath = "Simple";
+
+            AtataContextBuilder builder = AtataContext.Build().
+                ApplyJsonConfig(filePath, "QA");
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("simple.qa");
+        }
+
+        [Test]
+        public void ConfigFilePath_AbsolutePath()
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Simple.json");
 
@@ -29,7 +73,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FullPathWthAlias()
+        public void ConfigFilePath_AbsolutePath_WithAlias()
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Simple.json");
 
@@ -37,6 +81,28 @@ namespace Atata.Configuration.Json.Tests
                 ApplyJsonConfig(filePath, "QA");
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple.qa");
+        }
+
+        [Test]
+        public void ConfigFilePath_FolderPath()
+        {
+            string filePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            AtataContextBuilder builder = AtataContext.Build().
+                ApplyJsonConfig(filePath);
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("atata");
+        }
+
+        [Test]
+        public void ConfigFilePath_FolderPath_WithAlias()
+        {
+            string filePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            AtataContextBuilder builder = AtataContext.Build().
+                ApplyJsonConfig(filePath, "QA");
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("atata.qa");
         }
     }
 }

@@ -86,6 +86,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Atata.QA.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Atata.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

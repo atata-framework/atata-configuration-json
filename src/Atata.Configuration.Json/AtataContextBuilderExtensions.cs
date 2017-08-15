@@ -48,9 +48,6 @@ namespace Atata
             }
             else
             {
-                bool isFilePathToFolder = filePath.EndsWith(Path.DirectorySeparatorChar.ToString());
-                bool hasExtension = Path.HasExtension(filePath);
-
                 if (filePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
                 {
                     completeFilePath = $"{filePath}{DefaultConfigFileName}{environmentAliasInsertion}{DefaultConfigFileExtension}";

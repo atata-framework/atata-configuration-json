@@ -2,5 +2,5 @@
   "driver": {
     "type": "Chrome"
   },
-  "baseUrl": "http://localhost:7575/atata"
+  "baseUrl": "http://localhost:7575/atata.qa"
 }

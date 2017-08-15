@@ -15,7 +15,7 @@ namespace Atata
 
         public DesiredCapabilitiesKind DesiredCapabilities { get; set; }
 
-        public JsonSection Capabilities { get; set; }
+        public DesiredCapabilitiesJsonSection Capabilities { get; set; }
 
         public string DriverPath { get; set; }
 

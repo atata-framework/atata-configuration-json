@@ -4,8 +4,12 @@
     "desiredCapabilities": "Firefox",
     "capabilities": {
       "cap1": "some-val",
-      "cap2": 5,
-      "cap3": true
+      "cap2": 5.1,
+      "cap3": true,
+      "loggingPreferences": {
+        "browser": "Info",
+        "driver": "Warning"
+      }
     },
     "commandTimeout": 60
   }

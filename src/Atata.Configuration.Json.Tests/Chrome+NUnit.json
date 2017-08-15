@@ -3,7 +3,14 @@
     "type": "Chrome",
     "options": {
       "arguments": [ "disable-extensions", "no-sandbox", "start-maximized" ],
-      "additionalCapabilities": []
+      "additionalCapabilities": {
+      },
+      "globalAdditionalCapabilities": {
+      },
+      "loggingPreferences": {
+        "browser": "Info",
+        "driver": "Warning"
+      }
     }
   },
   "useNUnitTestName": true,

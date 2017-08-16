@@ -72,6 +72,7 @@
     <Compile Include="DriverProfileJsonSection.cs" />
     <Compile Include="DriverServiceJsonSection.cs" />
     <Compile Include="JsonConfig.cs" />
+    <Compile Include="JsonConfigMapper.cs" />
     <Compile Include="JsonConfig`1.cs" />
     <Compile Include="JsonSection.cs" />
     <Compile Include="LogConsumerJsonSection.cs" />

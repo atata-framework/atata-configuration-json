@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Atata
 {
@@ -42,8 +43,15 @@ namespace Atata
         /// </summary>
         public double? RetryInterval { get; set; }
 
+        [JsonProperty("assertionExceptionType")]
+        public string AssertionExceptionTypeName { get; set; }
+
         public bool UseNUnitTestName { get; set; }
 
         public bool LogNUnitError { get; set; }
+
+        public bool TakeScreenshotOnNUnitError { get; set; }
+
+        public string TakeScreenshotOnNUnitErrorTitle { get; set; }
     }
 }

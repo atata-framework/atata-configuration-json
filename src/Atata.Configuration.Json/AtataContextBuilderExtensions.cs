@@ -24,17 +24,7 @@ namespace Atata
 
             TConfig config = JsonConvert.DeserializeObject<TConfig>(jsonContent);
 
-            // TODO: Apply configuration properties.
-            return builder.ApplyJsonConfig(config);
-        }
-
-        private static AtataContextBuilder ApplyJsonConfig<TConfig>(this AtataContextBuilder builder, TConfig config)
-            where TConfig : JsonConfig<TConfig>
-        {
-            if (config.BaseUrl != null)
-                builder.UseBaseUrl(config.BaseUrl);
-
-            return builder;
+            return JsonConfigMapper.Map(config, builder);
         }
 
         private static string BuildCompleteFilePath(string filePath, string environmentAlias)

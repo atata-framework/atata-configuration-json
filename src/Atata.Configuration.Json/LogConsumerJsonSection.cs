@@ -7,8 +7,8 @@ namespace Atata
         [JsonProperty("type")]
         public string TypeName { get; set; }
 
-        public LogLevel MinLevel { get; set; }
+        public LogLevel? MinLevel { get; set; }
 
-        public bool SectionFinish { get; set; }
+        public bool? SectionFinish { get; set; }
     }
 }

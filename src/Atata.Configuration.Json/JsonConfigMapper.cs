@@ -33,7 +33,33 @@ namespace Atata
                     builder.TakeScreenshotOnNUnitError();
             }
 
+            if (config.LogConsumers != null)
+            {
+                foreach (var item in config.LogConsumers)
+                    MapLogConsumer(item, builder);
+            }
+
             return builder;
+        }
+
+        private static void MapLogConsumer(LogConsumerJsonSection logConsumerSection, AtataContextBuilder builder)
+        {
+            Type type = ResolveLogConsumerType(logConsumerSection.TypeName);
+
+            ILogConsumer logConsumer = (ILogConsumer)Activator.CreateInstance(type);
+
+            if (logConsumerSection.MinLevel != null)
+                ;
+
+            if (logConsumerSection.SectionFinish == false)
+                ;
+        }
+
+        private static Type ResolveLogConsumerType(string typeName)
+        {
+            //// Check log consumer aliases.
+
+            return Type.GetType(typeName);
         }
     }
 }

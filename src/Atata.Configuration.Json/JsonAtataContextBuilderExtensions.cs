@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Atata
 {
-    public static class AtataContextBuilderJsonExtensions
+    public static class JsonAtataContextBuilderExtensions
     {
         private const string DefaultConfigFileName = "Atata";
 

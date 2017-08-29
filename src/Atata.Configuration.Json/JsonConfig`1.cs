@@ -31,6 +31,8 @@ namespace Atata
 
         public LogConsumerJsonSection[] LogConsumers { get; set; }
 
+        public ScreenshotConsumerJsonSection[] ScreenshotConsumers { get; set; }
+
         public string BaseUrl { get; set; }
 
         /// <summary>

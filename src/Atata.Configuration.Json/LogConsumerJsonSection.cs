@@ -4,8 +4,7 @@ namespace Atata
 {
     public class LogConsumerJsonSection : JsonSection
     {
-        [JsonProperty("type")]
-        public string TypeName { get; set; }
+        public string Type { get; set; }
 
         public LogLevel? MinLevel { get; set; }
 

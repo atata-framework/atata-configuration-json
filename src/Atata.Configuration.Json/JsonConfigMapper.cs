@@ -39,12 +39,18 @@ namespace Atata
                     MapLogConsumer(item, builder);
             }
 
+            if (config.ScreenshotConsumers != null)
+            {
+                foreach (var item in config.ScreenshotConsumers)
+                    MapScreenshotConsumer(item, builder);
+            }
+
             return builder;
         }
 
         private static void MapLogConsumer(LogConsumerJsonSection logConsumerSection, AtataContextBuilder builder)
         {
-            var consumerBuilder = builder.AddLogConsumer(logConsumerSection.TypeName);
+            var consumerBuilder = builder.AddLogConsumer(logConsumerSection.Type);
 
             if (logConsumerSection.MinLevel != null)
                 consumerBuilder.WithMinLevel(logConsumerSection.MinLevel.Value);
@@ -53,6 +59,10 @@ namespace Atata
                 consumerBuilder.WithoutSectionFinish();
 
             consumerBuilder.WithProperties(logConsumerSection.ExtraPropertiesMap);
+        }
+
+        private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection screenshotConsumerSection, AtataContextBuilder builder)
+        {
         }
     }
 }

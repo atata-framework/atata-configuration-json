@@ -31,16 +31,16 @@ namespace Atata
         public string[] WindowTypes { get; set; }
 
         // Chrome and Opera specific.
-        public ObjectDictionaryJsonSection UserProfilePreferences { get; set; }
+        public JsonSection UserProfilePreferences { get; set; }
 
         // Chrome and Opera specific.
-        public ObjectDictionaryJsonSection LocalStatePreferences { get; set; }
+        public JsonSection LocalStatePreferences { get; set; }
 
         // Firefox specific.
         public DriverProfileJsonSection Profile { get; set; }
 
         // Firefox specific.
-        public ObjectDictionaryJsonSection Preferences { get; set; }
+        public JsonSection Preferences { get; set; }
 
         // Chrome specific.
         public string MobileEmulationDeviceName { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Atata
 {
-    public class CapabilitiesJsonSection : ObjectDictionaryJsonSection
+    public class CapabilitiesJsonSection : JsonSection
     {
         public PlatformType? Platform { get; set; }
     }

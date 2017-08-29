@@ -44,22 +44,15 @@ namespace Atata
 
         private static void MapLogConsumer(LogConsumerJsonSection logConsumerSection, AtataContextBuilder builder)
         {
-            Type type = ResolveLogConsumerType(logConsumerSection.TypeName);
-
-            ILogConsumer logConsumer = (ILogConsumer)Activator.CreateInstance(type);
+            var consumerBuilder = builder.AddLogConsumer(logConsumerSection.TypeName);
 
             if (logConsumerSection.MinLevel != null)
-                ;
+                consumerBuilder.WithMinLevel(logConsumerSection.MinLevel.Value);
 
             if (logConsumerSection.SectionFinish == false)
-                ;
-        }
+                consumerBuilder.WithoutSectionFinish();
 
-        private static Type ResolveLogConsumerType(string typeName)
-        {
-            //// Check log consumer aliases.
-
-            return Type.GetType(typeName);
+            consumerBuilder.WithProperties(logConsumerSection.ExtraPropertiesMap);
         }
     }
 }

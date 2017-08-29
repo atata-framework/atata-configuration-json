@@ -1,0 +1,29 @@
+﻿{
+  "logConsumers": [
+    {
+      "type": "debug",
+      "separator": " - "
+    },
+    {
+      "type": "trace",
+      "minLevel": "Trace",
+      "sectionFinish": true
+    },
+    {
+      "type": "nunit",
+      "minLevel": "info",
+      "sectionFinish": false
+    },
+    {
+      "type": "nlog",
+      "minLevel": "warn",
+      "sectionFinish": false,
+      "loggerName": "somelogger"
+    },
+    {
+      "type": "Atata.Configuration.Json.Tests.LogConsumerTests+CustomLogConsumer, Atata.Configuration.Json.Tests",
+      "minLevel": "error",
+      "intProperty": 15
+    }
+  ]
+}

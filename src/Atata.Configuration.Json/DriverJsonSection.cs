@@ -6,8 +6,7 @@ namespace Atata
     {
         public string Alias { get; set; }
 
-        [JsonProperty("type")]
-        public string TypeName { get; set; }
+        public string Type { get; set; }
 
         public string RemoteAddress { get; set; }
 

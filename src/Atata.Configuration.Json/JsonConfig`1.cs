@@ -45,8 +45,7 @@ namespace Atata
         /// </summary>
         public double? RetryInterval { get; set; }
 
-        [JsonProperty("assertionExceptionType")]
-        public string AssertionExceptionTypeName { get; set; }
+        public string AssertionExceptionType { get; set; }
 
         public bool UseNUnitTestName { get; set; }
 

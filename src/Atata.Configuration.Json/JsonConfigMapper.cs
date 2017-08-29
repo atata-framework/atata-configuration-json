@@ -16,8 +16,8 @@ namespace Atata
             if (config.RetryInterval != null)
                 builder.UseRetryInterval(TimeSpan.FromSeconds(config.RetryInterval.Value));
 
-            if (config.AssertionExceptionTypeName != null)
-                builder.UseAssertionExceptionType(Type.GetType(config.AssertionExceptionTypeName, true));
+            if (config.AssertionExceptionType != null)
+                builder.UseAssertionExceptionType(Type.GetType(config.AssertionExceptionType, true));
 
             if (config.UseNUnitTestName)
                 builder.UseNUnitTestName();

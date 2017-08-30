@@ -10,19 +10,19 @@ namespace Atata.Configuration.Json.Tests
     public class ScreenshotConsumerTests
     {
         [Test]
-        public void LogConsumer_AllKinds()
+        public void ScreenshotConsumer_AllKinds()
         {
             AtataContextBuilder builder = AtataContext.Build().
                 ApplyJsonConfig("ScreenshotConsumers");
 
             IScreenshotConsumer[] expected =
             {
-                new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Png },
+                new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Png, FilePath = "/logs/{test-name}.txt" },
                 new CustomScreenshotConsumer { IntProperty = 15 },
-                new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Jpeg },
+                new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Jpeg, FolderPath = "/logs", FileName = "{test-name}" }
             };
 
-            builder.BuildingContext.ScreenshotConsumers.Should().BeEquivalentTo(expected.Select(x => x.GetType()));
+            builder.BuildingContext.ScreenshotConsumers.Select(x => x.GetType()).Should().BeEquivalentTo(expected.Select(x => x.GetType()));
 
             builder.BuildingContext.ScreenshotConsumers.ShouldAllBeEquivalentTo(
                 expected,

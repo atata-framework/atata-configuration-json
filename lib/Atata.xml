@@ -497,6 +497,13 @@
             <param name="consumer">The screenshot consumer.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
+        <member name="M:Atata.AtataContextBuilder.AddScreenshotConsumer(System.String)">
+            <summary>
+            Adds the screenshot consumer.
+            </summary>
+            <param name="typeNameOrAlias">The type name or alias of the log consumer.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilder.UseTestName(System.String)">
             <summary>
             Sets the name of the test.
@@ -748,42 +755,67 @@
         </member>
         <member name="M:Atata.AtataContextBuilderExtensions.With(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Drawing.Imaging.ImageFormat)">
             <summary>
-            Specifies the image format of the log consumer.
+            Specifies the image format of the file screenshot consumer.
             </summary>
             <param name="builder">The builder.</param>
             <param name="imageFormat">The image format.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.With(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},OpenQA.Selenium.ScreenshotImageFormat)">
+        <member name="M:Atata.AtataContextBuilderExtensions.With``1(Atata.AtataContextBuilder{``0},OpenQA.Selenium.ScreenshotImageFormat)">
             <summary>
-            Specifies the image format of the log consumer.
+            Specifies the image format of the file screenshot consumer.
             </summary>
+            <typeparam name="TConsumer">The type of the file screenshot consumer.</typeparam>
             <param name="builder">The builder.</param>
             <param name="imageFormat">The image format.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilderExtensions.WithFolderPath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{System.String})">
             <summary>
-            Specifies the folder path builder of the log consumer.
+            Specifies the folder path builder of the file screenshot consumer.
             </summary>
             <param name="builder">The builder.</param>
             <param name="folderPathBuilder">The folder path builder function.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
+        <member name="M:Atata.AtataContextBuilderExtensions.WithFolderPath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
+            <summary>
+            Specifies the folder path of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="folderPath">The folder path.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilderExtensions.WithFileName(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{Atata.ScreenshotInfo,System.String})">
             <summary>
-            Specifies the file name builder of the log consumer.
+            Specifies the file name builder of the file screenshot consumer.
             </summary>
             <param name="builder">The builder.</param>
             <param name="fileNameBuilder">The file name builder function that takes an instance of <see cref="T:Atata.ScreenshotInfo"/>.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
+        <member name="M:Atata.AtataContextBuilderExtensions.WithFileName(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
+            <summary>
+            Specifies the file name of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="fileName">The file name.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilderExtensions.WithFilePath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{Atata.ScreenshotInfo,System.String})">
             <summary>
-            Specifies the file path builder of the log consumer.
+            Specifies the file path builder of the file screenshot consumer.
             </summary>
             <param name="builder">The builder.</param>
             <param name="filePathBuilder">The file path builder function that takes an instance of <see cref="T:Atata.ScreenshotInfo"/>.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilderExtensions.WithFilePath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
+            <summary>
+            Specifies the file path of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="filePath">The file path.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilderExtensions.WithoutSectionFinish``1(Atata.AtataContextBuilder{``0})">

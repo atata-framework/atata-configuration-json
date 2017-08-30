@@ -48,21 +48,24 @@ namespace Atata
             return builder;
         }
 
-        private static void MapLogConsumer(LogConsumerJsonSection logConsumerSection, AtataContextBuilder builder)
+        private static void MapLogConsumer(LogConsumerJsonSection consumerSection, AtataContextBuilder builder)
         {
-            var consumerBuilder = builder.AddLogConsumer(logConsumerSection.Type);
+            var consumerBuilder = builder.AddLogConsumer(consumerSection.Type);
 
-            if (logConsumerSection.MinLevel != null)
-                consumerBuilder.WithMinLevel(logConsumerSection.MinLevel.Value);
+            if (consumerSection.MinLevel != null)
+                consumerBuilder.WithMinLevel(consumerSection.MinLevel.Value);
 
-            if (logConsumerSection.SectionFinish == false)
+            if (consumerSection.SectionFinish == false)
                 consumerBuilder.WithoutSectionFinish();
 
-            consumerBuilder.WithProperties(logConsumerSection.ExtraPropertiesMap);
+            consumerBuilder.WithProperties(consumerSection.ExtraPropertiesMap);
         }
 
-        private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection screenshotConsumerSection, AtataContextBuilder builder)
+        private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection consumerSection, AtataContextBuilder builder)
         {
+            var consumerBuilder = builder.AddScreenshotConsumer(consumerSection.Type);
+
+            consumerBuilder.WithProperties(consumerSection.ExtraPropertiesMap);
         }
     }
 }

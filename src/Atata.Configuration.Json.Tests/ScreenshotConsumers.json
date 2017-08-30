@@ -12,7 +12,7 @@
     {
       "type": "file",
       "folderPath": "/logs",
-      "fileName": "{test-name}.txt",
+      "fileName": "{test-name}",
       "imageFormat": "jpeg"
     }
   ]

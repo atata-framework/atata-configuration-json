@@ -13,6 +13,7 @@ namespace Atata
 
         public CapabilitiesJsonSection AdditionalCapabilities { get; set; }
 
+        // Chrome, Firefox, ...
         public CapabilitiesJsonSection GlobalAdditionalCapabilities { get; set; }
 
         // Chrome, Firefox and Opera specific.

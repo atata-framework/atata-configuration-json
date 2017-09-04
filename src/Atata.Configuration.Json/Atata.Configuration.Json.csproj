@@ -64,6 +64,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Mapping\ChromeDriverMapper.cs" />
+    <Compile Include="Mapping\DriverMapper`3.cs" />
     <Compile Include="JsonAtataContextBuilderExtensions.cs" />
     <Compile Include="CapabilitiesJsonSection.cs" />
     <Compile Include="DesiredCapabilitiesJsonSection.cs" />
@@ -72,7 +74,8 @@
     <Compile Include="DriverProfileJsonSection.cs" />
     <Compile Include="DriverServiceJsonSection.cs" />
     <Compile Include="JsonConfig.cs" />
-    <Compile Include="JsonConfigMapper.cs" />
+    <Compile Include="Mapping\FirefoxDriverMapper.cs" />
+    <Compile Include="Mapping\JsonConfigMapper.cs" />
     <Compile Include="JsonConfig`1.cs" />
     <Compile Include="JsonSection.cs" />
     <Compile Include="LogConsumerJsonSection.cs" />
@@ -89,6 +92,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

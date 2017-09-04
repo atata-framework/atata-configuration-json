@@ -342,6 +342,86 @@
             </summary>
             <typeparam name="TOwner">The type of the owner page object.</typeparam>
         </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.CreateDriver(`1,`2,System.TimeSpan)">
+            <summary>
+            Creates the driver instance.
+            </summary>
+            <param name="service">The driver service.</param>
+            <param name="options">The driver options.</param>
+            <param name="commandTimeout">The command timeout.</param>
+            <returns>The driver instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithOptions(System.Func{`2})">
+            <summary>
+            Specifies the driver options factory method.
+            </summary>
+            <param name="optionsFactory">The factory method of the driver options.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithOptions(System.Action{`2})">
+            <summary>
+            Specifies the driver options initialization method.
+            </summary>
+            <param name="optionsInitializer">The initialization method of the driver options.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithOptions(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Specifies the properties map for the driver options.
+            </summary>
+            <param name="optionsPropertiesMap">The properties map.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithCapability(System.String,System.Object)">
+            <summary>
+            Adds additional capability to the driver options.
+            </summary>
+            <param name="capabilityName">The name of the capability to add.</param>
+            <param name="capabilityValue">The value of the capability to add</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithDriverService(System.Func{`1})">
+            <summary>
+            Specifies the driver service factory method.
+            </summary>
+            <param name="serviceFactory">The factory method of the driver service.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithDriverService(System.Action{`1})">
+            <summary>
+            Specifies the driver service initialization method.
+            </summary>
+            <param name="serviceInitializer">The initialization method of the driver service.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithDriverService(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Specifies the properties map for the driver service.
+            </summary>
+            <param name="servicePropertiesMap">The properties map.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithDriverPath(System.String)">
+            <summary>
+            Specifies the directory containing the driver executable file.
+            </summary>
+            <param name="driverPath">The directory containing the driver executable file.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithDriverExecutableFileName(System.String)">
+            <summary>
+            Specifies the name of the driver executable file.
+            </summary>
+            <param name="driverExecutableFileName">The name of the driver executable file.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithCommandTimeout(System.TimeSpan)">
+            <summary>
+            Specifies the command timeout (the maximum amount of time to wait for each command).
+            </summary>
+            <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
+            <returns>The same builder instance.</returns>
+        </member>
         <member name="P:Atata.FileScreenshotConsumerBase.ImageFormat">
             <summary>
             Gets or sets the image format. The default format is Png.
@@ -663,22 +743,6 @@
             <param name="builder">The builder.</param>
             <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
         </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithArguments(Atata.ChromeAtataContextBuilder,System.String[])">
-            <summary>
-            Adds arguments to be appended to the Chrome.exe command line.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="arguments">The arguments.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithArguments(Atata.OperaAtataContextBuilder,System.String[])">
-            <summary>
-            Adds arguments to be appended to the Opera.exe command line.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="arguments">The arguments.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
         <member name="M:Atata.AtataContextBuilderExtensions.UseNUnitTestName(Atata.AtataContextBuilder)">
             <summary>
             Defines that the name of the test should be taken from the NUnit test.
@@ -835,355 +899,38 @@
             <param name="level">The level.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.Chrome.ChromeOptions})">
+        <member name="P:Atata.AtataContextBuilder`1.Context">
             <summary>
-            Specifies the driver options.
+            Gets the context.
             </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
         </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.Chrome.ChromeOptions})">
+        <member name="M:Atata.AtataContextBuilder`1.WithProperties(System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
-            Specifies the driver options.
+            Specifies the properties map for the context.
             </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
+            <param name="propertiesMap">The properties map.</param>
+            <returns>The same builder instance.</returns>
         </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithCapability(System.String,System.Object)">
+        <member name="M:Atata.ChromeAtataContextBuilder.WithArguments(System.String[])">
             <summary>
-            Adds additional capability to the driver options.
+            Adds arguments to be appended to the Chrome.exe command line.
             </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
+            <param name="arguments">The arguments.</param>
+            <returns>The same builder instance.</returns>
         </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.Chrome.ChromeDriverService})">
+        <member name="M:Atata.FirefoxAtataContextBuilder.WithArguments(System.String[])">
             <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/>.
+            Adds arguments to be used in launching the Firefox browser.
             </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
+            <param name="arguments">The arguments.</param>
+            <returns>The same builder instance.</returns>
         </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithDriverPath(System.String)">
+        <member name="M:Atata.OperaAtataContextBuilder.WithArguments(System.String[])">
             <summary>
-            Specifies the directory containing the driver executable file.
+            Adds arguments to be appended to the Opera.exe command line.
             </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.ChromeAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.Edge.EdgeOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.Edge.EdgeOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithCapability(System.String,System.Object)">
-            <summary>
-            Adds additional capability to the driver options.
-            </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.Edge.EdgeDriverService})">
-            <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.Edge.EdgeDriverService"/>.
-            </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithDriverPath(System.String)">
-            <summary>
-            Specifies the directory containing the driver executable file.
-            </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.EdgeAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.Firefox.FirefoxOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.Firefox.FirefoxOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithCapability(System.String,System.Object)">
-            <summary>
-            Adds additional capability to the driver options.
-            </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.Firefox.FirefoxDriverService})">
-            <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.Firefox.FirefoxDriverService"/>.
-            </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithDriverPath(System.String)">
-            <summary>
-            Specifies the directory containing the driver executable file.
-            </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.FirefoxAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.IE.InternetExplorerOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.IE.InternetExplorerOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithCapability(System.String,System.Object)">
-            <summary>
-            Adds additional capability to the driver options.
-            </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.IE.InternetExplorerDriverService})">
-            <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriverService"/>.
-            </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithDriverPath(System.String)">
-            <summary>
-            Specifies the directory containing the driver executable file.
-            </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.InternetExplorerAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.Opera.OperaOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.Opera.OperaOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithCapability(System.String,System.Object)">
-            <summary>
-            Adds additional capability to the driver options.
-            </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.Opera.OperaDriverService})">
-            <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.Opera.OperaDriverService"/>.
-            </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithDriverPath(System.String)">
-            <summary>
-            Specifies the directory containing the driver executable file.
-            </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.OperaAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.PhantomJS.PhantomJSOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.PhantomJS.PhantomJSOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithCapability(System.String,System.Object)">
-            <summary>
-            Adds additional capability to the driver options.
-            </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.PhantomJS.PhantomJSDriverService})">
-            <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.PhantomJS.PhantomJSDriverService"/>.
-            </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithDriverPath(System.String)">
-            <summary>
-            Specifies the directory containing the driver executable file.
-            </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.PhantomJSAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.Safari.SafariOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsCreator">The options creator.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithOptions(System.Action{OpenQA.Selenium.Safari.SafariOptions})">
-            <summary>
-            Specifies the driver options.
-            </summary>
-            <param name="optionsInitializer">The options initializer.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithCapability(System.String,System.Object)">
-            <summary>
-            Adds additional capability to the driver options.
-            </summary>
-            <param name="capabilityName">The name of the capability to add.</param>
-            <param name="capabilityValue">The value of the capability to add</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithDriverService(System.Func{OpenQA.Selenium.Safari.SafariDriverService})">
-            <summary>
-            Specifies the creator function of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverService"/>.
-            </summary>
-            <param name="driverServiceCreator">The driver service creator function.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithDriverPath(System.String)">
-            <summary>
-            Specifies the directory containing the driver executable file.
-            </summary>
-            <param name="driverPath">The driver path.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithDriverExecutableFileName(System.String)">
-            <summary>
-            Specifies the name of the driver executable file.
-            </summary>
-            <param name="driverExecutableFileName">The driver executable file name.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.SafariAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
-            <summary>
-            Specifies the command timeout (the maximum amount of time to wait for each command).
-            </summary>
-            <param name="commandTimeout">The command timeout.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
+            <param name="arguments">The arguments.</param>
+            <returns>The same builder instance.</returns>
         </member>
         <member name="M:Atata.EditableFieldExtensions.SetRandom``1(Atata.EditableField{System.Nullable{System.Decimal},``0},System.Nullable{System.Int32}@)">
             <summary>

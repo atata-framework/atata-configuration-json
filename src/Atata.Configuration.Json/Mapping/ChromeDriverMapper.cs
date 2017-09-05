@@ -20,6 +20,9 @@ namespace Atata
                     options.AddAdditionalCapability(item.Key, item.Value, true);
             }
 
+            if (section.Proxy != null)
+                options.Proxy = CreateProxy(section.Proxy);
+
             if (section.Arguments?.Any() ?? false)
                 options.AddArguments(section.Arguments);
 

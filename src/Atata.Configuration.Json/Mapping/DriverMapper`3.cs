@@ -74,7 +74,26 @@ namespace Atata
             if (!string.IsNullOrWhiteSpace(section.HttpProxy))
                 proxy.HttpProxy = section.HttpProxy;
 
-            // TODO: Continue...
+            if (!string.IsNullOrWhiteSpace(section.FtpProxy))
+                proxy.FtpProxy = section.FtpProxy;
+
+            if (!string.IsNullOrWhiteSpace(section.SslProxy))
+                proxy.SslProxy = section.SslProxy;
+
+            if (!string.IsNullOrWhiteSpace(section.SocksProxy))
+                proxy.SocksProxy = section.SocksProxy;
+
+            if (!string.IsNullOrWhiteSpace(section.SocksUserName))
+                proxy.SocksUserName = section.SocksUserName;
+
+            if (!string.IsNullOrWhiteSpace(section.SocksPassword))
+                proxy.SocksPassword = section.SocksPassword;
+
+            if (!string.IsNullOrWhiteSpace(section.ProxyAutoConfigUrl))
+                proxy.ProxyAutoConfigUrl = section.ProxyAutoConfigUrl;
+
+            if (section.BypassAddresses?.Any() ?? false)
+                proxy.AddBypassAddresses(section.BypassAddresses);
 
             return proxy;
         }

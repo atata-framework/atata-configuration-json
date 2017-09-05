@@ -8,13 +8,13 @@ namespace Atata
     {
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 
-        // TODO: Chrome, Firefox, Opera and Internet Explorer specific.
-        public ProxyJsonSection Proxy { get; set; }
-
         public CapabilitiesJsonSection AdditionalCapabilities { get; set; }
 
         // Chrome, Firefox, ...
         public CapabilitiesJsonSection GlobalAdditionalCapabilities { get; set; }
+
+        // TODO: Chrome, Firefox, Opera and Internet Explorer specific.
+        public ProxyJsonSection Proxy { get; set; }
 
         // Chrome, Firefox and Opera specific.
         public string[] Arguments { get; set; }

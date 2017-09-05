@@ -63,5 +63,20 @@ namespace Atata
             if (properties?.Any() ?? false)
                 AtataMapper.Map(properties, service);
         }
+
+        protected Proxy CreateProxy(ProxyJsonSection section)
+        {
+            Proxy proxy = new Proxy();
+
+            if (section.Kind != null)
+                proxy.Kind = section.Kind.Value;
+
+            if (!string.IsNullOrWhiteSpace(section.HttpProxy))
+                proxy.HttpProxy = section.HttpProxy;
+
+            // TODO: Continue...
+
+            return proxy;
+        }
     }
 }

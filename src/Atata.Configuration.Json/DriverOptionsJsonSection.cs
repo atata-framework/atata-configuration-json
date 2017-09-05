@@ -8,8 +8,8 @@ namespace Atata
     {
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 
-        // TODO: Remove.
-        public Proxy Proxy { get; set; }
+        // TODO: Chrome, Firefox, Opera and Internet Explorer specific.
+        public ProxyJsonSection Proxy { get; set; }
 
         public CapabilitiesJsonSection AdditionalCapabilities { get; set; }
 

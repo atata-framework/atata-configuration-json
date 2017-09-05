@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using OpenQA.Selenium.Firefox;
 
 namespace Atata
@@ -25,21 +26,89 @@ namespace Atata
 
             if (section.Profile != null)
             {
-                options.Profile = options.Profile ?? new FirefoxProfile();
+                if (options.Profile == null || !string.IsNullOrWhiteSpace(section.Profile.ProfileDirectory) || section.Profile.DeleteSourceOnClean != null)
+                    options.Profile = CreateProfile(section.Profile);
 
-                AtataMapper.Map(section.Profile.ExtraPropertiesMap, options.Profile);
+                MapProfile(section.Profile, options.Profile);
+            }
 
-                if (section.Profile.Extensions != null)
-                {
-                    foreach (var item in section.Profile.Extensions)
-                        options.Profile.AddExtension(item);
-                }
+            if (section.Preferences != null)
+            {
+                foreach (var item in section.Preferences.ExtraPropertiesMap)
+                    SetOptionsPreference(item.Key, item.Value, options);
+            }
+        }
 
-                if (section.Profile.Preferences != null)
-                {
-                    foreach (var item in section.Profile.Preferences.ExtraPropertiesMap)
-                        ; // TODO: Implement.
-                }
+        private void SetOptionsPreference(string name, object value, FirefoxOptions options)
+        {
+            switch (value)
+            {
+                case bool castedValue:
+                    options.SetPreference(name, castedValue);
+                    break;
+                case int castedValue:
+                    options.SetPreference(name, castedValue);
+                    break;
+                case long castedValue:
+                    options.SetPreference(name, castedValue);
+                    break;
+                case double castedValue:
+                    options.SetPreference(name, castedValue);
+                    break;
+                case string castedValue:
+                    options.SetPreference(name, castedValue);
+                    break;
+                case null:
+                    options.SetPreference(name, null as string);
+                    break;
+                default:
+                    throw new ArgumentException($"Unsupported {nameof(FirefoxOptions)} preference value type: {value.GetType().FullName}. Supports: bool, int, long, double, string.", nameof(value));
+            }
+        }
+
+        private FirefoxProfile CreateProfile(DriverProfileJsonSection section)
+        {
+            string profileDirectory = string.IsNullOrWhiteSpace(section.ProfileDirectory)
+                ? null
+                : section.ProfileDirectory;
+
+            return new FirefoxProfile(profileDirectory, section.DeleteSourceOnClean ?? false);
+        }
+
+        private void MapProfile(DriverProfileJsonSection section, FirefoxProfile profile)
+        {
+            AtataMapper.Map(section.ExtraPropertiesMap, profile);
+
+            if (section.Extensions != null)
+            {
+                foreach (var item in section.Extensions)
+                    profile.AddExtension(item);
+            }
+
+            if (section.Preferences != null)
+            {
+                foreach (var item in section.Preferences.ExtraPropertiesMap)
+                    SetProfilePreference(item.Key, item.Value, profile);
+            }
+        }
+
+        private void SetProfilePreference(string name, object value, FirefoxProfile profile)
+        {
+            switch (value)
+            {
+                case bool castedValue:
+                    profile.SetPreference(name, castedValue);
+                    break;
+                case int castedValue:
+                    profile.SetPreference(name, castedValue);
+                    break;
+                case string castedValue:
+                    profile.SetPreference(name, castedValue);
+                    break;
+                case null:
+                    throw new ArgumentNullException(nameof(value), $"Unsupported {nameof(FirefoxProfile)} preference value: null. Supports: string, int, bool.");
+                default:
+                    throw new ArgumentException($"Unsupported FirefoxProfile preference value type: {value.GetType().FullName}. Supports: bool, int, string.", nameof(value));
             }
         }
     }

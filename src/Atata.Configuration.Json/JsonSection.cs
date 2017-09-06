@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -26,6 +27,8 @@ namespace Atata
                     return (double)token;
                 case JTokenType.Boolean:
                     return (bool)token;
+                case JTokenType.TimeSpan:
+                    return (TimeSpan)token;
                 default:
                     return (string)token;
             }

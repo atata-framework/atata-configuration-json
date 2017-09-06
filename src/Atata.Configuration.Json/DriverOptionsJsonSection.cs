@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace Atata
@@ -30,6 +29,9 @@ namespace Atata
 
         // Chrome specific.
         public string[] WindowTypes { get; set; }
+
+        // Chrome specific.
+        public DriverPerformanceLoggingPreferencesJsonSection PerformanceLoggingPreferences { get; set; }
 
         // Chrome and Opera specific.
         public JsonSection UserProfilePreferences { get; set; }

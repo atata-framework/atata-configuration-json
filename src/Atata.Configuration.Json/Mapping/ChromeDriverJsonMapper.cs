@@ -38,6 +38,12 @@ namespace Atata
             if (section.WindowTypes?.Any() ?? false)
                 options.AddWindowTypes(section.WindowTypes);
 
+            if (section.PerformanceLoggingPreferences != null)
+            {
+                options.PerformanceLoggingPreferences = new ChromePerformanceLoggingPreferences();
+                MapPerformanceLoggingPreferences(section.PerformanceLoggingPreferences, options.PerformanceLoggingPreferences);
+            }
+
             if (section.UserProfilePreferences != null)
             {
                 foreach (var item in section.UserProfilePreferences.ExtraPropertiesMap)
@@ -55,6 +61,14 @@ namespace Atata
 
             if (section.MobileEmulationDeviceSettings != null)
                 options.EnableMobileEmulation(section.MobileEmulationDeviceSettings);
+        }
+
+        private void MapPerformanceLoggingPreferences(DriverPerformanceLoggingPreferencesJsonSection section, ChromePerformanceLoggingPreferences preferences)
+        {
+            AtataMapper.Map(section.ExtraPropertiesMap, preferences);
+
+            if (section.TracingCategories?.Any() ?? false)
+                preferences.AddTracingCategories(section.TracingCategories);
         }
     }
 }

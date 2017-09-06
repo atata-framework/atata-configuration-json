@@ -62,7 +62,27 @@ namespace Atata.Configuration.Json.Tests
             context.Options.PerformanceLoggingPreferences.BufferUsageReportingInterval.Should().Be(TimeSpan.FromSeconds(70));
             context.Options.PerformanceLoggingPreferences.TracingCategories.Should().Be("cat1,cat2");
 
-            context.Options.LeaveBrowserRunning.Should().Be(true);
+            ((Dictionary<string, object>)chromeCapabilities["prefs"]).Should().Equal(new Dictionary<string, object>
+            {
+                ["pref1"] = 7,
+                ["pref2"] = false,
+                ["pref3"] = "str"
+            });
+
+            ((Dictionary<string, object>)chromeCapabilities["localState"]).Should().Equal(new Dictionary<string, object>
+            {
+                ["pref1"] = 2.7,
+                ["pref2"] = true,
+                ["pref3"] = string.Empty
+            });
+
+            ((Dictionary<string, object>)chromeCapabilities["mobileEmulation"]).Should().Equal(new Dictionary<string, object>
+            {
+                ["deviceName"] = "emul"
+            });
+
+            context.Options.LeaveBrowserRunning.Should().BeTrue();
+            context.Options.MinidumpPath.Should().Be("mdp");
         }
     }
 }

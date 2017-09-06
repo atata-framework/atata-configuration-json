@@ -24,13 +24,25 @@
       "excludedArguments": [ "exc-arg" ],
       "encodedExtensions": [ "ZW5jLWV4dDE=", "ZW5jLWV4dDI=" ],
       "windowTypes": [ "win1", "win2" ],
-      "LeaveBrowserRunning": true,
       "performanceLoggingPreferences": {
         "IsCollectingPageEvents": false,
         "isCollectingTimelineEvents": false,
         "bufferUsageReportingInterval": "00:01:10",
         "tracingCategories": [ "cat1", "cat2" ]
-      }
+      },
+      "userProfilePreferences": {
+        "pref1": 7,
+        "pref2": false,
+        "pref3": "str"
+      },
+      "localStatePreferences": {
+        "pref1": 2.7,
+        "pref2": true,
+        "pref3": ""
+      },
+      "mobileEmulationDeviceName": "emul",
+      "LeaveBrowserRunning": true,
+      "minidumpPath": "mdp"
     }
   }
 }

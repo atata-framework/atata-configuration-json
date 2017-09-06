@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Atata
 {
-    public class ChromeDriverMapper : DriverMapper<ChromeAtataContextBuilder, ChromeDriverService, ChromeOptions>
+    public class ChromeDriverJsonMapper : DriverJsonMapper<ChromeAtataContextBuilder, ChromeDriverService, ChromeOptions>
     {
         protected override ChromeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {

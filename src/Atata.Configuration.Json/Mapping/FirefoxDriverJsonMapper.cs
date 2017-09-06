@@ -4,7 +4,7 @@ using OpenQA.Selenium.Firefox;
 
 namespace Atata
 {
-    public class FirefoxDriverMapper : DriverMapper<FirefoxAtataContextBuilder, FirefoxDriverService, FirefoxOptions>
+    public class FirefoxDriverJsonMapper : DriverJsonMapper<FirefoxAtataContextBuilder, FirefoxDriverService, FirefoxOptions>
     {
         protected override FirefoxAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {

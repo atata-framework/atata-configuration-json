@@ -4,36 +4,36 @@ using OpenQA.Selenium;
 
 namespace Atata
 {
-    public abstract class DriverMapper<TBuilder, TService, TOptions>
+    public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJsonMapper
             where TBuilder : DriverAtataContextBuilder<TBuilder, TService, TOptions>
             where TService : DriverService
             where TOptions : DriverOptions, new()
     {
         protected abstract TBuilder CreateDriverBuilder(AtataContextBuilder builder);
 
-        public void Map(DriverJsonSection config, AtataContextBuilder builder)
+        public void Map(DriverJsonSection section, AtataContextBuilder builder)
         {
             TBuilder driverBuilder = CreateDriverBuilder(builder);
 
-            Map(config, driverBuilder);
+            Map(section, driverBuilder);
         }
 
-        protected virtual void Map(DriverJsonSection config, TBuilder builder)
+        protected virtual void Map(DriverJsonSection section, TBuilder builder)
         {
-            if (config.CommandTimeout != null)
-                builder.WithCommandTimeout(TimeSpan.FromSeconds(config.CommandTimeout.Value));
+            if (section.CommandTimeout != null)
+                builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 
-            if (!string.IsNullOrWhiteSpace(config.Service?.DriverPath))
-                builder.WithDriverPath(config.Service.DriverPath);
+            if (!string.IsNullOrWhiteSpace(section.Service?.DriverPath))
+                builder.WithDriverPath(section.Service.DriverPath);
 
-            if (!string.IsNullOrWhiteSpace(config.Service?.DriverExecutableFileName))
-                builder.WithDriverExecutableFileName(config.Service.DriverExecutableFileName);
+            if (!string.IsNullOrWhiteSpace(section.Service?.DriverExecutableFileName))
+                builder.WithDriverExecutableFileName(section.Service.DriverExecutableFileName);
 
-            if (config.Options != null)
-                builder.WithOptions(opt => MapOptions(config.Options, opt));
+            if (section.Options != null)
+                builder.WithOptions(opt => MapOptions(section.Options, opt));
 
-            if (config.Service != null)
-                builder.WithDriverService(srv => MapService(config.Service, srv));
+            if (section.Service != null)
+                builder.WithDriverService(srv => MapService(section.Service, srv));
         }
 
         protected virtual void MapOptions(DriverOptionsJsonSection section, TOptions options)

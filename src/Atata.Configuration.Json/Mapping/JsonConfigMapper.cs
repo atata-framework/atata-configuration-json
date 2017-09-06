@@ -45,27 +45,39 @@ namespace Atata
                     MapScreenshotConsumer(item, builder);
             }
 
+            if (config.Drivers != null)
+            {
+                foreach (var item in config.Drivers)
+                    MapDriver(item, builder);
+            }
+
             return builder;
         }
 
-        private static void MapLogConsumer(LogConsumerJsonSection consumerSection, AtataContextBuilder builder)
+        private static void MapLogConsumer(LogConsumerJsonSection section, AtataContextBuilder builder)
         {
-            var consumerBuilder = builder.AddLogConsumer(consumerSection.Type);
+            var consumerBuilder = builder.AddLogConsumer(section.Type);
 
-            if (consumerSection.MinLevel != null)
-                consumerBuilder.WithMinLevel(consumerSection.MinLevel.Value);
+            if (section.MinLevel != null)
+                consumerBuilder.WithMinLevel(section.MinLevel.Value);
 
-            if (consumerSection.SectionFinish == false)
+            if (section.SectionFinish == false)
                 consumerBuilder.WithoutSectionFinish();
 
-            consumerBuilder.WithProperties(consumerSection.ExtraPropertiesMap);
+            consumerBuilder.WithProperties(section.ExtraPropertiesMap);
         }
 
-        private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection consumerSection, AtataContextBuilder builder)
+        private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection section, AtataContextBuilder builder)
         {
-            var consumerBuilder = builder.AddScreenshotConsumer(consumerSection.Type);
+            var consumerBuilder = builder.AddScreenshotConsumer(section.Type);
 
-            consumerBuilder.WithProperties(consumerSection.ExtraPropertiesMap);
+            consumerBuilder.WithProperties(section.ExtraPropertiesMap);
+        }
+
+        private static void MapDriver(DriverJsonSection section, AtataContextBuilder builder)
+        {
+            IDriverJsonMapper mapper = DriverJsonMapperAliases.Resolve(section.Type);
+            mapper.Map(section, builder);
         }
     }
 }

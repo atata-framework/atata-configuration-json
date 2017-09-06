@@ -77,10 +77,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ChromeDriverTests.cs" />
+    <Compile Include="DriverTests.cs" />
     <Compile Include="ConfigFilePathTests.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="LogConsumerTests.cs" />
+    <Compile Include="Overrides\FirefoxDriverJsonMapperOverride.cs" />
+    <Compile Include="Overrides\FirefoxAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\ChromeAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\ChromeDriverJsonMapperOverride.cs" />
     <Compile Include="Overrides\DriverContext`2.cs" />
@@ -99,6 +101,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Atata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\Firefox.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Configs\Chrome.json">

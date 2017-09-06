@@ -9,7 +9,7 @@ using OpenQA.Selenium.Remote;
 namespace Atata.Configuration.Json.Tests
 {
     [TestFixture]
-    public class ChromeDriverTests
+    public class DriverTests
     {
         [Test]
         public void Driver_Chrome()
@@ -83,6 +83,22 @@ namespace Atata.Configuration.Json.Tests
 
             context.Options.LeaveBrowserRunning.Should().BeTrue();
             context.Options.MinidumpPath.Should().Be("mdp");
+        }
+
+        [Test]
+        public void Driver_Firefox()
+        {
+            var context = FirefoxAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Build().
+                    ApplyJsonConfig(@"Configs\Firefox.json");
+
+                builder.BuildingContext.DriverCreator();
+            }
+
+            var capabilities = context.Options.ToCapabilities();
         }
     }
 }

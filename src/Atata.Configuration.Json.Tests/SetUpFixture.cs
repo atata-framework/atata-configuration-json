@@ -9,6 +9,7 @@ namespace Atata.Configuration.Json.Tests
         public void SetUp()
         {
             DriverJsonMapperAliases.Register<ChromeDriverJsonMapperOverride>(DriverJsonMapperAliases.Chrome);
+            DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverJsonMapperAliases.Firefox);
         }
     }
 }

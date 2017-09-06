@@ -1,18 +1,18 @@
 ﻿using System;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 
 namespace Atata.Configuration.Json.Tests
 {
-    using TOptions = ChromeOptions;
-    using TService = ChromeDriverService;
+    using TOptions = FirefoxOptions;
+    using TService = FirefoxDriverService;
 
-    public class ChromeAtataContextBuilderOverride : ChromeAtataContextBuilder
+    public class FirefoxAtataContextBuilderOverride : FirefoxAtataContextBuilder
     {
         [ThreadStatic]
         private static DriverContext<TService, TOptions> context;
 
-        public ChromeAtataContextBuilderOverride(AtataBuildingContext buildingContext)
+        public FirefoxAtataContextBuilderOverride(AtataBuildingContext buildingContext)
             : base(buildingContext)
         {
         }

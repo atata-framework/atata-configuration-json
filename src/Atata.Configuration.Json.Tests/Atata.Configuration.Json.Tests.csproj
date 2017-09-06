@@ -77,11 +77,16 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ChromeDriverTests.cs" />
     <Compile Include="ConfigFilePathTests.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="LogConsumerTests.cs" />
+    <Compile Include="Overrides\ChromeAtataContextBuilderOverride.cs" />
+    <Compile Include="Overrides\ChromeDriverJsonMapperOverride.cs" />
+    <Compile Include="Overrides\DriverContext`2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenshotConsumerTests.cs" />
+    <Compile Include="SetUpFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atata.Configuration.Json\Atata.Configuration.Json.csproj">
@@ -94,6 +99,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Atata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\Chrome.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="ScreenshotConsumers.json">
@@ -124,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.32.0.0\content\chromedriver.exe">
+      <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

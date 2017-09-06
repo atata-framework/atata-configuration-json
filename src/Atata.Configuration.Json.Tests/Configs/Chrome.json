@@ -1,0 +1,36 @@
+﻿{
+  "driver": {
+    "type": "chrome",
+    "options": {
+      "loggingPreferences": {
+        "browser": "Info",
+        "driver": "Warning"
+      },
+      "additionalCapabilities": {
+        "cap1": true,
+        "cap2": 5,
+        "cap3": "str"
+      },
+      "globalAdditionalCapabilities": {
+        "globalcap1": true,
+        "globalcap2": 5,
+        "globalcap3": "str"
+      },
+      "proxy": {
+        "httpProxy": "http",
+        "ftpProxy": "ftp"
+      },
+      "arguments": [ "disable-extensions", "no-sandbox", "start-maximized" ],
+      "excludedArguments": [ "exc-arg" ],
+      "encodedExtensions": [ "ZW5jLWV4dDE=", "ZW5jLWV4dDI=" ],
+      "windowTypes": [ "win1", "win2" ],
+      "LeaveBrowserRunning": true,
+      "performanceLoggingPreferences": {
+        "IsCollectingPageEvents": false,
+        "isCollectingTimelineEvents": false,
+        "bufferUsageReportingInterval": "00:01:10",
+        "tracingCategories": [ "cat1", "cat2" ]
+      }
+    }
+  }
+}

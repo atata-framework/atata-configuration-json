@@ -2,10 +2,6 @@
   "driver": {
     "type": "firefox",
     "options": {
-      "loggingPreferences": {
-        "browser": "Info",
-        "driver": "Warning"
-      },
       "additionalCapabilities": {
         "cap1": true,
         "cap2": 5,
@@ -17,29 +13,25 @@
         "globalcap3": "str"
       },
       "proxy": {
-        "httpProxy": "http",
-        "ftpProxy": "ftp"
+        "kind": "ProxyAutoConfigure"
       },
-      "arguments": [ "disable-extensions", "no-sandbox", "start-maximized" ],
-      "excludedArguments": [ "exc-arg" ],
-      "encodedExtensions": [ "ZW5jLWV4dDE=", "ZW5jLWV4dDI=" ],
-      "windowTypes": [ "win1", "win2" ],
-      "performanceLoggingPreferences": {
-        "IsCollectingPageEvents": false,
-        "isCollectingTimelineEvents": false,
-        "bufferUsageReportingInterval": "00:01:10",
-        "tracingCategories": [ "cat1", "cat2" ]
+      "arguments": [ "--start-maximized" ],
+      "profile": {
+        "profileDirectory": "dir",
+        "deleteSourceOnClean": true,
+        "enableNativeEvents": true,
+        "preferences": {
+          "pref1": true,
+          "pref2": 5,
+          "pref3": "str"
+        }
       },
-      "userProfilePreferences": {
-        "pref1": 7,
-        "pref2": false,
+      "preferences": {
+        "pref1": true,
+        "pref2": 5,
         "pref3": "str"
       },
-      "localStatePreferences": {
-        "pref1": 2.7,
-        "pref2": true,
-        "pref3": ""
-      }
+      "logLevel": "warn"
     }
   }
 }

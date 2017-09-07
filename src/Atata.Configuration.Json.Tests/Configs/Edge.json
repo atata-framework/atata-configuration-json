@@ -1,0 +1,16 @@
+﻿{
+  "driver": {
+    "type": "edge",
+    "options": {
+      "additionalCapabilities": {
+        "cap1": true,
+        "cap2": 5,
+        "cap3": "str"
+      },
+      "pageLoadStrategy": "eager"
+    },
+    "service": {
+      "package": "pack"
+    }
+  }
+}

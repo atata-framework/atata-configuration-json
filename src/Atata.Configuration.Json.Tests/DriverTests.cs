@@ -5,6 +5,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
@@ -185,6 +186,30 @@ namespace Atata.Configuration.Json.Tests
             context.Service.LoggingLevel.Should().Be(InternetExplorerDriverLogLevel.Debug);
 
             context.CommandTimeout.Should().Be(TimeSpan.FromSeconds(45));
+        }
+
+        [Test]
+        public void Driver_Edge()
+        {
+            var context = EdgeAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Build().
+                    ApplyJsonConfig(@"Configs/Edge.json");
+
+                builder.BuildingContext.DriverCreator();
+            }
+
+            var capabilities = context.Options.ToCapabilities();
+
+            capabilities.GetCapability("cap1").Should().Be(true);
+            capabilities.GetCapability("cap2").Should().Be(5);
+            capabilities.GetCapability("cap3").Should().Be("str");
+
+            context.Options.PageLoadStrategy.Should().Be(EdgePageLoadStrategy.Eager);
+
+            context.Service.Package.Should().Be("pack");
         }
     }
 }

@@ -77,6 +77,7 @@
     <Compile Include="JsonConfig.cs" />
     <Compile Include="Mapping\FirefoxDriverJsonMapper.cs" />
     <Compile Include="Mapping\IDriverJsonMapper.cs" />
+    <Compile Include="Mapping\InternetExplorerDriverJsonMapper.cs" />
     <Compile Include="Mapping\JsonConfigMapper.cs" />
     <Compile Include="JsonConfig`1.cs" />
     <Compile Include="JsonSection.cs" />

@@ -18,6 +18,15 @@ namespace Atata
             Map(section, driverBuilder);
         }
 
+        public DriverOptions CreateOptions(DriverOptionsJsonSection section)
+        {
+            TOptions options = new TOptions();
+
+            MapOptions(section, options);
+
+            return options;
+        }
+
         protected virtual void Map(DriverJsonSection section, TBuilder builder)
         {
             if (section.CommandTimeout != null)

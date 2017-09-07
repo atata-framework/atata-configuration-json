@@ -33,17 +33,5 @@ namespace Atata
                     return (string)token;
             }
         }
-
-        public T Get<T>(string propertyName)
-        {
-            string normalizedPropertyName = propertyName.ToString(TermCase.Camel);
-
-            JToken token;
-
-            return AdditionalProperties.TryGetValue(normalizedPropertyName, out token)
-                || AdditionalProperties.TryGetValue(propertyName, out token)
-                ? token.ToObject<T>()
-                : default(T);
-        }
     }
 }

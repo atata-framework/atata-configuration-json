@@ -5,14 +5,15 @@ namespace Atata
 {
     public class DriverOptionsJsonSection : JsonSection
     {
+        // Common, but actually used only by Chrome.
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 
         public CapabilitiesJsonSection AdditionalCapabilities { get; set; }
 
-        // Chrome, Firefox, ...
+        // Chrome, Firefox, InternetExplorer and Opera specific.
         public CapabilitiesJsonSection GlobalAdditionalCapabilities { get; set; }
 
-        // TODO: Chrome, Firefox, Opera and Internet Explorer specific.
+        // Chrome, Firefox, Opera and Internet Explorer specific.
         public ProxyJsonSection Proxy { get; set; }
 
         // Chrome, Firefox and Opera specific.

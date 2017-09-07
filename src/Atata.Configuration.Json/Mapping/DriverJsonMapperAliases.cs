@@ -12,6 +12,7 @@ namespace Atata
             Register<ChromeDriverJsonMapper>(Chrome);
             Register<FirefoxDriverJsonMapper>(Firefox);
             Register<InternetExplorerDriverJsonMapper>(InternetExplorer);
+            Register<SafariDriverJsonMapper>(Safari);
         }
 
         public static string Chrome => nameof(Chrome);
@@ -19,6 +20,8 @@ namespace Atata
         public static string Firefox => nameof(Firefox);
 
         public static string InternetExplorer => nameof(InternetExplorer);
+
+        public static string Safari => nameof(Safari);
 
         public static void Register<T>(string alias)
             where T : IDriverJsonMapper, new()

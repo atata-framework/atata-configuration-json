@@ -32,6 +32,10 @@
         "pref3": "str"
       },
       "logLevel": "warn"
-    }
+    },
+    "service": {
+      "host": "127.0.0.5"
+    },
+    "commandTimeout": 0.95
   }
 }

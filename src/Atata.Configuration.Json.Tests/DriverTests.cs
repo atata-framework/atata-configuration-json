@@ -85,6 +85,11 @@ namespace Atata.Configuration.Json.Tests
 
             context.Options.LeaveBrowserRunning.Should().BeTrue();
             context.Options.MinidumpPath.Should().Be("mdp");
+
+            context.Service.Port.Should().Be(555);
+            context.Service.WhitelistedIPAddresses.Should().Be("5.5.5.5,7.7.7.7");
+
+            context.CommandTimeout.Should().Be(TimeSpan.FromMinutes(1));
         }
 
         [Test]
@@ -134,6 +139,10 @@ namespace Atata.Configuration.Json.Tests
             });
 
             context.Options.LogLevel.Should().Be(FirefoxDriverLogLevel.Warn);
+
+            context.Service.Host.Should().Be("127.0.0.5");
+
+            context.CommandTimeout.Should().Be(TimeSpan.FromSeconds(0.95));
         }
 
         [Test]

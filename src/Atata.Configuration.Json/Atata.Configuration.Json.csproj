@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="DriverPerformanceLoggingPreferencesJsonSection.cs" />
     <Compile Include="Extensions\CheckExtensions.cs" />
+    <Compile Include="Mapping\OperaDriverJsonMapper.cs" />
     <Compile Include="Mapping\SafariDriverJsonMapper.cs" />
     <Compile Include="Mapping\ChromeDriverJsonMapper.cs" />
     <Compile Include="Mapping\DriverJsonMapperAliases.cs" />

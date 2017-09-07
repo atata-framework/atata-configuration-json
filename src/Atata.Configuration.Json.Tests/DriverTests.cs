@@ -211,5 +211,30 @@ namespace Atata.Configuration.Json.Tests
 
             context.Service.Package.Should().Be("pack");
         }
+
+        [Test]
+        public void Driver_PhantomJS()
+        {
+            var context = PhantomJSAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Build().
+                    ApplyJsonConfig(@"Configs/PhantomJS.json");
+
+                builder.BuildingContext.DriverCreator();
+            }
+
+            var capabilities = context.Options.ToCapabilities();
+
+            capabilities.GetCapability("cap1").Should().Be(true);
+            capabilities.GetCapability("cap2").Should().Be(5);
+            capabilities.GetCapability("cap3").Should().Be("str");
+
+            context.Service.DiskCache.Should().BeTrue();
+            context.Service.MaxDiskCacheSize.Should().Be(1010);
+
+            context.Service.AdditionalArguments.Should().Equal("arg1", "arg2");
+        }
     }
 }

@@ -81,6 +81,8 @@
     <Compile Include="ConfigFilePathTests.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="LogConsumerTests.cs" />
+    <Compile Include="Overrides\PhantomJSDriverJsonMapperOverride.cs" />
+    <Compile Include="Overrides\PhantomJSAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\EdgeDriverJsonMapperOverride.cs" />
     <Compile Include="Overrides\EdgeAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\InternetExplorerDriverJsonMapperOverride.cs" />
@@ -105,6 +107,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Atata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\PhantomJS.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Configs\Edge.json">
@@ -162,6 +167,7 @@
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.MicrosoftDriver.15.15063.0\build\Selenium.WebDriver.MicrosoftDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.MicrosoftDriver.15.15063.0\build\Selenium.WebDriver.MicrosoftDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.PhantomJS.WebDriver.2.1.1\build\Selenium.PhantomJS.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.PhantomJS.WebDriver.2.1.1\build\Selenium.PhantomJS.WebDriver.targets'))" />
   </Target>
   <Import Project="..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets')" />
   <ItemGroup>
@@ -171,6 +177,7 @@
     </Content>
   </ItemGroup>
   <Import Project="..\packages\Selenium.WebDriver.MicrosoftDriver.15.15063.0\build\Selenium.WebDriver.MicrosoftDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.MicrosoftDriver.15.15063.0\build\Selenium.WebDriver.MicrosoftDriver.targets')" />
+  <Import Project="..\packages\Selenium.PhantomJS.WebDriver.2.1.1\build\Selenium.PhantomJS.WebDriver.targets" Condition="Exists('..\packages\Selenium.PhantomJS.WebDriver.2.1.1\build\Selenium.PhantomJS.WebDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

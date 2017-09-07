@@ -81,6 +81,8 @@
     <Compile Include="ConfigFilePathTests.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="LogConsumerTests.cs" />
+    <Compile Include="Overrides\InternetExplorerDriverJsonMapperOverride.cs" />
+    <Compile Include="Overrides\InternetExplorerAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\FirefoxDriverJsonMapperOverride.cs" />
     <Compile Include="Overrides\FirefoxAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\ChromeAtataContextBuilderOverride.cs" />
@@ -101,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Atata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\InternetExplorer.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Configs\Firefox.json">
@@ -153,6 +158,12 @@
     <Error Condition="!Exists('..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets'))" />
   </Target>
   <Import Project="..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('..\packages\Selenium.Firefox.WebDriver.0.18.0\build\Selenium.Firefox.WebDriver.targets')" />
+  <ItemGroup>
+    <Content Include="..\packages\WebDriver.IEDriverServer.win32.3.5.1\content\IEDriverServer.exe">
+      <Link>IEDriverServer.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

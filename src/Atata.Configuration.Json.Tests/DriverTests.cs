@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 
 namespace Atata.Configuration.Json.Tests
@@ -133,6 +134,48 @@ namespace Atata.Configuration.Json.Tests
             });
 
             context.Options.LogLevel.Should().Be(FirefoxDriverLogLevel.Warn);
+        }
+
+        [Test]
+        public void Driver_InternetExplorer()
+        {
+            var context = InternetExplorerAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Build().
+                    ApplyJsonConfig(@"Configs/InternetExplorer.json");
+
+                builder.BuildingContext.DriverCreator();
+            }
+
+            var capabilities = context.Options.ToCapabilities();
+            var optionsCapabilities = (Dictionary<string, object>)capabilities.GetCapability(InternetExplorerOptions.Capability);
+
+            optionsCapabilities.Should().Contain(new Dictionary<string, object>
+            {
+                ["cap1"] = true,
+                ["cap2"] = 5,
+                ["cap3"] = "str"
+            });
+
+            capabilities.GetCapability("globalcap1").Should().Be(true);
+            capabilities.GetCapability("globalcap2").Should().Be(5);
+            capabilities.GetCapability("globalcap3").Should().Be("str");
+
+            context.Options.Proxy.Kind.Should().Be(ProxyKind.Manual);
+            context.Options.Proxy.SocksProxy.Should().Be("socks");
+            context.Options.Proxy.SocksUserName.Should().Be("name");
+            context.Options.Proxy.SocksPassword.Should().Be("pass");
+
+            context.Options.EnableNativeEvents.Should().BeFalse();
+            context.Options.RequireWindowFocus.Should().BeTrue();
+            context.Options.BrowserAttachTimeout.Should().Be(TimeSpan.FromSeconds(2));
+            context.Options.UnexpectedAlertBehavior.Should().Be(InternetExplorerUnexpectedAlertBehavior.Dismiss);
+
+            context.Service.LoggingLevel.Should().Be(InternetExplorerDriverLogLevel.Debug);
+
+            context.CommandTimeout.Should().Be(TimeSpan.FromSeconds(45));
         }
     }
 }

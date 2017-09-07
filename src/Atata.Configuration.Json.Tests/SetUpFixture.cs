@@ -10,6 +10,7 @@ namespace Atata.Configuration.Json.Tests
         {
             DriverJsonMapperAliases.Register<ChromeDriverJsonMapperOverride>(DriverJsonMapperAliases.Chrome);
             DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverJsonMapperAliases.Firefox);
+            DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverJsonMapperAliases.InternetExplorer);
         }
     }
 }

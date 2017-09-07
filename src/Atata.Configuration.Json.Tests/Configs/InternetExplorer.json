@@ -1,0 +1,30 @@
+﻿{
+  "driver": {
+    "type": "internetexplorer",
+    "options": {
+      "additionalCapabilities": {
+        "cap1": true,
+        "cap2": 5,
+        "cap3": "str"
+      },
+      "globalAdditionalCapabilities": {
+        "globalcap1": true,
+        "globalcap2": 5,
+        "globalcap3": "str"
+      },
+      "proxy": {
+        "socksProxy": "socks",
+        "socksUserName": "name",
+        "socksPassword": "pass"
+      },
+      "enableNativeEvents": false,
+      "requireWindowFocus": true,
+      "browserAttachTimeout": 2,
+      "unexpectedAlertBehavior": "Dismiss"
+    },
+    "service": {
+      "loggingLevel": "Debug"
+    },
+    "commandTimeout": 45
+  }
+}

@@ -1,9 +1,7 @@
-﻿using OpenQA.Selenium;
-
-namespace Atata
+﻿namespace Atata
 {
     public class CapabilitiesJsonSection : JsonSection
     {
-        public PlatformType? Platform { get; set; }
+        ////public PlatformType? Platform { get; set; }
     }
 }

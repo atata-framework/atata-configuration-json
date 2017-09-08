@@ -422,6 +422,75 @@
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
             <returns>The same builder instance.</returns>
         </member>
+        <member name="F:Atata.RemoteDriverAtataContextBuilder.DefaultCommandTimeout">
+            <summary>
+            The default command timeout is 60 seconds.
+            </summary>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithRemoteAddress(System.Uri)">
+            <summary>
+            Specifies the remote address URI.
+            </summary>
+            <param name="remoteAddress">URI containing the address of the WebDriver remote server (e.g. http://127.0.0.1:4444/wd/hub).</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithRemoteAddress(System.String)">
+            <summary>
+            Specifies the remote address URI.
+            </summary>
+            <param name="remoteAddress">URI string containing the address of the WebDriver remote server (e.g. http://127.0.0.1:4444/wd/hub).</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithOptions(OpenQA.Selenium.DriverOptions)">
+            <summary>
+            Specifies the driver options.
+            </summary>
+            <param name="options">The driver options.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithOptions(System.Func{OpenQA.Selenium.DriverOptions})">
+            <summary>
+            Specifies the driver options factory method.
+            </summary>
+            <param name="optionsFactory">The factory method of the driver options.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithCapabilities(OpenQA.Selenium.ICapabilities)">
+            <summary>
+            Specifies the capabilities.
+            </summary>
+            <param name="capabilities">The driver capabilities.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithCapabilities(System.Func{OpenQA.Selenium.ICapabilities})">
+            <summary>
+            Specifies the capabilities factory method.
+            </summary>
+            <param name="capabilitiesFactory">The factory method of the driver capabilities.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithCapabilities(System.Action{OpenQA.Selenium.Remote.DesiredCapabilities})">
+            <summary>
+            Specifies the capabilities initialization method.
+            </summary>
+            <param name="capabilitiesInitializer">The initialization method of the driver capabilities.</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithCapability(System.String,System.Object)">
+            <summary>
+            Adds the capability.
+            </summary>
+            <param name="capabilityName">The name of the capability to add.</param>
+            <param name="capabilityValue">The value of the capability to add</param>
+            <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithCommandTimeout(System.TimeSpan)">
+            <summary>
+            Specifies the command timeout (the maximum amount of time to wait for each command).
+            </summary>
+            <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
+            <returns>The same builder instance.</returns>
+        </member>
         <member name="P:Atata.FileScreenshotConsumerBase.ImageFormat">
             <summary>
             Gets or sets the image format. The default format is Png.
@@ -553,6 +622,12 @@
             </summary>
             <param name="driverCreator">The builder.</param>
             <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseRemoteDriver">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.RemoteDriverAtataContextBuilder"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilder.AddLogConsumer``1(``0)">
             <summary>

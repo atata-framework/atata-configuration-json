@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using OpenQA.Selenium;
-
-namespace Atata
+﻿namespace Atata
 {
     public class DesiredCapabilitiesJsonSection : CapabilitiesJsonSection
     {
-        // TODO: Remove.
-        public Proxy Proxy { get; set; }
+        public string Type { get; set; }
 
-        public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
+        public ProxyJsonSection Proxy { get; set; }
     }
 }

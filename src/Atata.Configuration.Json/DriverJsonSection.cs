@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Atata
+﻿namespace Atata
 {
     public class DriverJsonSection : JsonSection
     {
@@ -13,8 +11,6 @@ namespace Atata
         public DriverOptionsJsonSection Options { get; set; }
 
         public DriverServiceJsonSection Service { get; set; }
-
-        public DesiredCapabilitiesKind DesiredCapabilities { get; set; }
 
         public DesiredCapabilitiesJsonSection Capabilities { get; set; }
 

@@ -9,6 +9,7 @@ namespace Atata
 
         static DriverJsonMapperAliases()
         {
+            Register<RemoteDriverJsonMapper>(Remote);
             Register<ChromeDriverJsonMapper>(Chrome);
             Register<FirefoxDriverJsonMapper>(Firefox);
             Register<InternetExplorerDriverJsonMapper>(InternetExplorer);
@@ -17,6 +18,8 @@ namespace Atata
             Register<EdgeDriverJsonMapper>(Edge);
             Register<PhantomJSDriverJsonMapper>(PhantomJS);
         }
+
+        public static string Remote => nameof(Remote);
 
         public static string Chrome => nameof(Chrome);
 
@@ -48,11 +51,9 @@ namespace Atata
 
         public static IDriverJsonMapper Resolve(string alias)
         {
-            alias.CheckNotNullOrWhitespace(nameof(alias));
-
-            return AliasMapperMap.TryGetValue(alias, out IDriverJsonMapper mapper)
+            return AliasMapperMap.TryGetValue(alias ?? Remote, out IDriverJsonMapper mapper)
                 ? mapper
-                : throw new ArgumentException($"There is no JSON mapper defined for \"{alias}\" driver alias. Use {nameof(DriverJsonMapperAliases)}.{nameof(Register)} method to register custom driver JSON mapper.", nameof(alias));
+                : throw new ArgumentException($"There is no JSON mapper defined for \"{alias}\" driver alias. Use one of predefined mappers or {nameof(DriverJsonMapperAliases)}.{nameof(Register)} method to register custom driver JSON mapper.", nameof(alias));
         }
     }
 }

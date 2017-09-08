@@ -5,6 +5,8 @@ namespace Atata
 {
     public class DriverOptionsJsonSection : JsonSection
     {
+        public string Type { get; set; }
+
         // Common, but actually used only by Chrome.
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 

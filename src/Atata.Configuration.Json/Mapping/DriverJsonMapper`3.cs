@@ -9,8 +9,6 @@ namespace Atata
             where TService : DriverService
             where TOptions : DriverOptions, new()
     {
-        protected abstract TBuilder CreateDriverBuilder(AtataContextBuilder builder);
-
         public void Map(DriverJsonSection section, AtataContextBuilder builder)
         {
             TBuilder driverBuilder = CreateDriverBuilder(builder);
@@ -26,6 +24,8 @@ namespace Atata
 
             return options;
         }
+
+        protected abstract TBuilder CreateDriverBuilder(AtataContextBuilder builder);
 
         protected virtual void Map(DriverJsonSection section, TBuilder builder)
         {
@@ -71,40 +71,6 @@ namespace Atata
 
             if (properties?.Any() ?? false)
                 AtataMapper.Map(properties, service);
-        }
-
-        protected Proxy CreateProxy(ProxyJsonSection section)
-        {
-            Proxy proxy = new Proxy();
-
-            if (section.Kind != null)
-                proxy.Kind = section.Kind.Value;
-
-            if (!string.IsNullOrWhiteSpace(section.HttpProxy))
-                proxy.HttpProxy = section.HttpProxy;
-
-            if (!string.IsNullOrWhiteSpace(section.FtpProxy))
-                proxy.FtpProxy = section.FtpProxy;
-
-            if (!string.IsNullOrWhiteSpace(section.SslProxy))
-                proxy.SslProxy = section.SslProxy;
-
-            if (!string.IsNullOrWhiteSpace(section.SocksProxy))
-                proxy.SocksProxy = section.SocksProxy;
-
-            if (!string.IsNullOrWhiteSpace(section.SocksUserName))
-                proxy.SocksUserName = section.SocksUserName;
-
-            if (!string.IsNullOrWhiteSpace(section.SocksPassword))
-                proxy.SocksPassword = section.SocksPassword;
-
-            if (!string.IsNullOrWhiteSpace(section.ProxyAutoConfigUrl))
-                proxy.ProxyAutoConfigUrl = section.ProxyAutoConfigUrl;
-
-            if (section.BypassAddresses?.Any() ?? false)
-                proxy.AddBypassAddresses(section.BypassAddresses);
-
-            return proxy;
         }
     }
 }

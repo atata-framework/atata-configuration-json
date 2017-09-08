@@ -2,11 +2,14 @@
   "driver": {
     "remoteAddress": "http://127.0.0.1:8888/wd/hub",
     "capabilities": {
-      "type": "phantomjs",
-      "cap1": "some-val",
-      "cap2": 5.1,
-      "cap3": true
+      "cap1": true,
+      "cap2": 5,
+      "cap3": "str",
+      "proxy": {
+        "httpProxy": "http",
+        "ftpProxy": "ftp"
+      }
     },
-    "commandTimeout": 60
+    "commandTimeout": 100
   }
 }

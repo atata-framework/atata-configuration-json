@@ -1,15 +1,11 @@
 ﻿{
   "driver": {
     "remoteAddress": "http://127.0.0.1:8888/wd/hub",
-    "desiredCapabilities": "Firefox",
     "capabilities": {
+      "type": "phantomjs",
       "cap1": "some-val",
       "cap2": 5.1,
-      "cap3": true,
-      "loggingPreferences": {
-        "browser": "Info",
-        "driver": "Warning"
-      }
+      "cap3": true
     },
     "commandTimeout": 60
   }

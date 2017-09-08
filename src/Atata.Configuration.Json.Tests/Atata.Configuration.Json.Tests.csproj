@@ -81,6 +81,8 @@
     <Compile Include="ConfigFilePathTests.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="LogConsumerTests.cs" />
+    <Compile Include="Overrides\RemoteDriverJsonMapperOverride.cs" />
+    <Compile Include="Overrides\RemoteDriverAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\PhantomJSDriverJsonMapperOverride.cs" />
     <Compile Include="Overrides\PhantomJSAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\EdgeDriverJsonMapperOverride.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Overrides\ChromeAtataContextBuilderOverride.cs" />
     <Compile Include="Overrides\ChromeDriverJsonMapperOverride.cs" />
     <Compile Include="Overrides\DriverContext`2.cs" />
+    <Compile Include="Overrides\RemoteDriverContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenshotConsumerTests.cs" />
     <Compile Include="SetUpFixture.cs" />
@@ -136,7 +139,7 @@
     <None Include="Simple.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Remote.json">
+    <None Include="Configs\Remote.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Chrome+NUnit.json">

@@ -236,5 +236,19 @@ namespace Atata.Configuration.Json.Tests
 
             context.Service.AdditionalArguments.Should().Equal("arg1", "arg2");
         }
+
+        [Test]
+        public void Driver_Remote()
+        {
+            var context = RemoteDriverAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Build().
+                    ApplyJsonConfig(@"Configs/Remote.json");
+
+                builder.BuildingContext.DriverCreator();
+            }
+        }
     }
 }

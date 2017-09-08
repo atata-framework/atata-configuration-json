@@ -11,12 +11,5 @@ namespace Atata.Configuration.Json.Tests
             AtataContextBuilder builder = AtataContext.Build().
                 ApplyJsonConfig("Chrome+NUnit.json");
         }
-
-        [Test]
-        public void Remote()
-        {
-            AtataContextBuilder builder = AtataContext.Build().
-                ApplyJsonConfig("Remote.json");
-        }
     }
 }

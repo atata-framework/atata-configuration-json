@@ -8,6 +8,7 @@ namespace Atata.Configuration.Json.Tests
         [OneTimeSetUp]
         public void SetUp()
         {
+            DriverJsonMapperAliases.Register<RemoteDriverJsonMapperOverride>(DriverJsonMapperAliases.Remote);
             DriverJsonMapperAliases.Register<ChromeDriverJsonMapperOverride>(DriverJsonMapperAliases.Chrome);
             DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverJsonMapperAliases.Firefox);
             DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverJsonMapperAliases.InternetExplorer);

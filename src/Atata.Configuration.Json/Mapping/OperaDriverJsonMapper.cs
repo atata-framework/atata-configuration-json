@@ -21,7 +21,7 @@ namespace Atata
             }
 
             if (section.Proxy != null)
-                options.Proxy = CreateProxy(section.Proxy);
+                options.Proxy = section.Proxy.ToProxy();
 
             if (section.Arguments?.Any() ?? false)
                 options.AddArguments(section.Arguments);

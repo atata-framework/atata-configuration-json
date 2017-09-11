@@ -79,7 +79,7 @@
     </Compile>
     <Compile Include="DriverTests.cs" />
     <Compile Include="ConfigFilePathTests.cs" />
-    <Compile Include="ConfigTests.cs" />
+    <Compile Include="GeneralSettingsTests.cs" />
     <Compile Include="LogConsumerTests.cs" />
     <Compile Include="Overrides\RemoteDriverJsonMapperOverride.cs" />
     <Compile Include="Overrides\RemoteDriverAtataContextBuilderOverride.cs" />
@@ -145,7 +145,7 @@
     <None Include="Configs\Remote.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Chrome+NUnit.json">
+    <None Include="Configs\Chrome+NUnit.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">

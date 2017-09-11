@@ -591,9 +591,9 @@
             <typeparam name="T">The type of the control's data.</typeparam>
             <typeparam name="TOwner">The type of the owner page object.</typeparam>
         </member>
-        <member name="P:Atata.AtataBuildingContext.TestName">
+        <member name="P:Atata.AtataBuildingContext.TestNameFactory">
             <summary>
-            Gets or sets the name of the test.
+            Gets or sets the factory method of the test name.
             </summary>
         </member>
         <member name="P:Atata.AtataBuildingContext.BaseUrl">
@@ -659,11 +659,18 @@
             <param name="typeNameOrAlias">The type name or alias of the log consumer.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
+        <member name="M:Atata.AtataContextBuilder.UseTestName(System.Func{System.String})">
+            <summary>
+            Sets the factory method of the test name.
+            </summary>
+            <param name="testNameFactory">The factory method of the test name.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilder.UseTestName(System.String)">
             <summary>
             Sets the name of the test.
             </summary>
-            <param name="name">The name of the test.</param>
+            <param name="testName">The name of the test.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilder.UseBaseUrl(System.String)">

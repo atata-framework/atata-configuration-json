@@ -8,12 +8,12 @@ namespace Atata.Configuration.Json.Tests
         [OneTimeSetUp]
         public void SetUp()
         {
-            DriverJsonMapperAliases.Register<RemoteDriverJsonMapperOverride>(DriverJsonMapperAliases.Remote);
-            DriverJsonMapperAliases.Register<ChromeDriverJsonMapperOverride>(DriverJsonMapperAliases.Chrome);
-            DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverJsonMapperAliases.Firefox);
-            DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverJsonMapperAliases.InternetExplorer);
-            DriverJsonMapperAliases.Register<EdgeDriverJsonMapperOverride>(DriverJsonMapperAliases.Edge);
-            DriverJsonMapperAliases.Register<PhantomJSDriverJsonMapperOverride>(DriverJsonMapperAliases.PhantomJS);
+            DriverJsonMapperAliases.Register<RemoteDriverJsonMapperOverride>(DriverAliases.Remote);
+            DriverJsonMapperAliases.Register<ChromeDriverJsonMapperOverride>(DriverAliases.Chrome);
+            DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverAliases.Firefox);
+            DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverAliases.InternetExplorer);
+            DriverJsonMapperAliases.Register<EdgeDriverJsonMapperOverride>(DriverAliases.Edge);
+            DriverJsonMapperAliases.Register<PhantomJSDriverJsonMapperOverride>(DriverAliases.PhantomJS);
         }
     }
 }

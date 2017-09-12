@@ -33,6 +33,9 @@ namespace Atata
 
         protected virtual void Map(DriverJsonSection section, RemoteDriverAtataContextBuilder builder)
         {
+            if (!string.IsNullOrWhiteSpace(section.Alias))
+                builder.WithAlias(section.Alias);
+
             if (section.CommandTimeout != null)
                 builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 

@@ -342,6 +342,13 @@
             </summary>
             <typeparam name="TOwner">The type of the owner page object.</typeparam>
         </member>
+        <member name="M:Atata.CustomDriverAtataContextBuilder.WithAlias(System.String)">
+            <summary>
+            Specifies the driver alias.
+            </summary>
+            <param name="alias">The alias.</param>
+            <returns>The same builder instance.</returns>
+        </member>
         <member name="M:Atata.DriverAtataContextBuilder`3.CreateDriver(`1,`2,System.TimeSpan)">
             <summary>
             Creates the driver instance.
@@ -350,6 +357,13 @@
             <param name="options">The driver options.</param>
             <param name="commandTimeout">The command timeout.</param>
             <returns>The driver instance.</returns>
+        </member>
+        <member name="M:Atata.DriverAtataContextBuilder`3.WithAlias(System.String)">
+            <summary>
+            Specifies the driver alias.
+            </summary>
+            <param name="alias">The alias.</param>
+            <returns>The same builder instance.</returns>
         </member>
         <member name="M:Atata.DriverAtataContextBuilder`3.WithOptions(System.Func{`2})">
             <summary>
@@ -422,10 +436,58 @@
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
             <returns>The same builder instance.</returns>
         </member>
+        <member name="T:Atata.IDriverFactory">
+            <summary>
+            Represents the driver factory.
+            </summary>
+        </member>
+        <member name="P:Atata.IDriverFactory.Alias">
+            <summary>
+            Gets the alias.
+            </summary>
+        </member>
+        <member name="M:Atata.IDriverFactory.Create">
+            <summary>
+            Creates the driver instance.
+            </summary>
+            <returns>The created <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver"/> instance.</returns>
+        </member>
+        <member name="M:Atata.LogConsumerAtataContextBuilderExtensions.WithoutSectionFinish``1(Atata.AtataContextBuilder{``0})">
+            <summary>
+            Defines that the logging should not use section-like pair messages (not "Starting: {action}" and "Finished: {action}", but just "{action}").
+            </summary>
+            <typeparam name="TTLogConsumer">The type of the log consumer.</typeparam>
+            <param name="builder">The builder.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.LogConsumerAtataContextBuilderExtensions.WithMinLevel``1(Atata.AtataContextBuilder{``0},Atata.LogLevel)">
+            <summary>
+            Specifies the minimum level of the log event to write to the log.
+            </summary>
+            <typeparam name="TTLogConsumer">The type of the log consumer.</typeparam>
+            <param name="builder">The builder.</param>
+            <param name="level">The level.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.LogConsumerAtataContextBuilderExtensions.WithLoggerName(Atata.AtataContextBuilder{Atata.NLogConsumer},System.String)">
+            <summary>
+            Specifies the name of NLog logger.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="loggerName">The name of the logger.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
         <member name="F:Atata.RemoteDriverAtataContextBuilder.DefaultCommandTimeout">
             <summary>
             The default command timeout is 60 seconds.
             </summary>
+        </member>
+        <member name="M:Atata.RemoteDriverAtataContextBuilder.WithAlias(System.String)">
+            <summary>
+            Specifies the driver alias.
+            </summary>
+            <param name="alias">The alias.</param>
+            <returns>The same builder instance.</returns>
         </member>
         <member name="M:Atata.RemoteDriverAtataContextBuilder.WithRemoteAddress(System.Uri)">
             <summary>
@@ -490,6 +552,63 @@
             </summary>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
             <returns>The same builder instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.With``1(Atata.AtataContextBuilder{``0},OpenQA.Selenium.ScreenshotImageFormat)">
+            <summary>
+            Specifies the image format of the file screenshot consumer.
+            </summary>
+            <typeparam name="TConsumer">The type of the file screenshot consumer.</typeparam>
+            <param name="builder">The builder.</param>
+            <param name="imageFormat">The image format.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.WithFolderPath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{System.String})">
+            <summary>
+            Specifies the folder path builder of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="folderPathBuilder">The folder path builder function.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.WithFolderPath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
+            <summary>
+            Specifies the folder path of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="folderPath">The folder path.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.WithFileName(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{Atata.ScreenshotInfo,System.String})">
+            <summary>
+            Specifies the file name builder of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="fileNameBuilder">The file name builder function that takes an instance of <see cref="T:Atata.ScreenshotInfo"/>.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.WithFileName(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
+            <summary>
+            Specifies the file name of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="fileName">The file name.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.WithFilePath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{Atata.ScreenshotInfo,System.String})">
+            <summary>
+            Specifies the file path builder of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="filePathBuilder">The file path builder function that takes an instance of <see cref="T:Atata.ScreenshotInfo"/>.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.ScreenshotConsumerAtataContextBuilderExtensions.WithFilePath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
+            <summary>
+            Specifies the file path of the file screenshot consumer.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="filePath">The file path.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
         <member name="P:Atata.FileScreenshotConsumerBase.ImageFormat">
             <summary>
@@ -616,12 +735,79 @@
             Gets or sets the type of the assertion exception. The default value is typeof(Atata.AssertionException).
             </summary>
         </member>
+        <member name="T:Atata.AtataContextBuilder">
+            <summary>
+            Represents the builder of <see cref="T:Atata.AtataContext"/>.
+            </summary>
+        </member>
+        <member name="P:Atata.AtataContextBuilder.BuildingContext">
+            <summary>
+            Gets the building context.
+            </summary>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseDriver``1(``0)">
+            <summary>
+            Use the driver factory.
+            </summary>
+            <typeparam name="TDriverFactory">The type of the driver factory.</typeparam>
+            <param name="driverFactory">The driver factory.</param>
+            <returns>The <typeparamref name="TDriverFactory"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseDriver(System.String)">
+            <summary>
+            Sets the alias of the driver to use.
+            </summary>
+            <param name="alias">The alias of the driver.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilder.UseDriver(System.Func{OpenQA.Selenium.Remote.RemoteWebDriver})">
             <summary>
-            Use custom driver creator function.
+            Use custom driver factory method.
             </summary>
-            <param name="driverCreator">The builder.</param>
+            <param name="driverFactory">The driver factory method.</param>
+            <returns>The <see cref="T:Atata.CustomDriverAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseChrome">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.Chrome.ChromeDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseFirefox">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.Firefox.FirefoxDriver"/>.
+            </summary>
             <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseInternetExplorer">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseEdge">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.Edge.EdgeDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseOpera">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.Opera.OperaDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UsePhantomJS">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.PhantomJS.PhantomJSDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseSafari">
+            <summary>
+            Use the <see cref="T:OpenQA.Selenium.Safari.SafariDriver"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilder.UseRemoteDriver">
             <summary>
@@ -644,6 +830,31 @@
             <param name="typeNameOrAlias">The type name or alias of the log consumer.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
+        <member name="M:Atata.AtataContextBuilder.AddTraceLogging">
+            <summary>
+            Adds the <see cref="T:Atata.TraceLogConsumer"/> instance that uses <see cref="T:System.Diagnostics.Trace"/> class for logging.
+            </summary>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.AddDebugLogging">
+            <summary>
+            Adds the <see cref="T:Atata.DebugLogConsumer"/> instance that uses <see cref="T:System.Diagnostics.Debug"/> class for logging.
+            </summary>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.AddNUnitTestContextLogging">
+            <summary>
+            Adds the <see cref="T:Atata.NUnitTestContextLogConsumer"/> instance that uses NUnit.Framework.TestContext class for logging.
+            </summary>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.AddNLogLogging(System.String)">
+            <summary>
+            Adds the <see cref="T:Atata.NLogConsumer"/> instance that uses NLog.Logger class for logging.
+            </summary>
+            <param name="loggerName">The name of the logger.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilder.AddScreenshotConsumer``1(``0)">
             <summary>
             Adds the screenshot consumer.
@@ -657,6 +868,12 @@
             Adds the screenshot consumer.
             </summary>
             <param name="typeNameOrAlias">The type name or alias of the log consumer.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.AddScreenshotFileSaving">
+            <summary>
+            Adds the <see cref="T:Atata.FileScreenshotConsumer"/> instance for the screenshot saving to file.
+            </summary>
             <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilder.UseTestName(System.Func{System.String})">
@@ -713,6 +930,25 @@
             Adds the action to perform during <see cref="T:Atata.AtataContext"/> cleanup.
             </summary>
             <param name="action">The action.</param>
+            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.UseNUnitTestName">
+            <summary>
+            Defines that the name of the test should be taken from the NUnit test.
+            </summary>
+            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.LogNUnitError">
+            <summary>
+            Defines that an error occurred during the NUnit test execution should be added to the log during the cleanup.
+            </summary>
+            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.TakeScreenshotOnNUnitError(System.String)">
+            <summary>
+            Defines that an error occurred during the NUnit test execution should be captured by a screenshot during the cleanup.
+            </summary>
+            <param name="title">The screenshot title.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContextBuilder.SetUp">
@@ -775,211 +1011,6 @@
             </summary>
             <param name="propertyName">The name of the CSS property.</param>
             <returns>The CSS property's current value.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseChrome(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.Chrome.ChromeDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.ChromeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseFirefox(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.Firefox.FirefoxDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.FirefoxAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseInternetExplorer(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.InternetExplorerAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseEdge(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.Edge.EdgeDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.EdgeAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseOpera(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.Opera.OperaDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.OperaAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UsePhantomJS(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.PhantomJS.PhantomJSDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.PhantomJSAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseSafari(Atata.AtataContextBuilder)">
-            <summary>
-            Use the <see cref="T:OpenQA.Selenium.Safari.SafariDriver"/>.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.SafariAtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.UseNUnitTestName(Atata.AtataContextBuilder)">
-            <summary>
-            Defines that the name of the test should be taken from the NUnit test.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.LogNUnitError(Atata.AtataContextBuilder)">
-            <summary>
-            Defines that an error occurred during the NUnit test execution should be added to the log during the cleanup.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.TakeScreenshotOnNUnitError(Atata.AtataContextBuilder,System.String)">
-            <summary>
-            Defines that an error occurred during the NUnit test execution should be captured by a screenshot during the cleanup.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="title">The screenshot title.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddTraceLogging(Atata.AtataContextBuilder)">
-            <summary>
-            Adds the <see cref="T:Atata.TraceLogConsumer"/> instance that uses <see cref="T:System.Diagnostics.Trace"/> class for logging.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddDebugLogging(Atata.AtataContextBuilder)">
-            <summary>
-            Adds the <see cref="T:Atata.DebugLogConsumer"/> instance that uses <see cref="T:System.Diagnostics.Debug"/> class for logging.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddNUnitTestContextLogging(Atata.AtataContextBuilder)">
-            <summary>
-            Adds the <see cref="T:Atata.NUnitTestContextLogConsumer"/> instance that uses NUnit.Framework.TestContext class for logging.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddNLogLogging(Atata.AtataContextBuilder,System.String)">
-            <summary>
-            Adds the <see cref="T:Atata.NLogConsumer"/> instance that uses NLog.Logger class for logging.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="loggerName">Name of the logger.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddScreenshotFileSaving(Atata.AtataContextBuilder)">
-            <summary>
-            Adds the <see cref="T:Atata.FileScreenshotConsumer"/> instance for the screenshot saving to file.
-            </summary>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddScreenshotFileSaving(Atata.AtataContextBuilder,System.String)">
-            <summary>
-            Adds the <see cref="T:Atata.FileScreenshotConsumer"/> instance with the specified folder path.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="folderPath">The folder path.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.AddScreenshotFileSaving(Atata.AtataContextBuilder,System.Func{System.String})">
-            <summary>
-            Adds the <see cref="T:Atata.FileScreenshotConsumer"/> instance with the specified folder path builder.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="folderPathBuilder">The folder path builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.With(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Drawing.Imaging.ImageFormat)">
-            <summary>
-            Specifies the image format of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="imageFormat">The image format.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.With``1(Atata.AtataContextBuilder{``0},OpenQA.Selenium.ScreenshotImageFormat)">
-            <summary>
-            Specifies the image format of the file screenshot consumer.
-            </summary>
-            <typeparam name="TConsumer">The type of the file screenshot consumer.</typeparam>
-            <param name="builder">The builder.</param>
-            <param name="imageFormat">The image format.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithFolderPath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{System.String})">
-            <summary>
-            Specifies the folder path builder of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="folderPathBuilder">The folder path builder function.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithFolderPath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
-            <summary>
-            Specifies the folder path of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="folderPath">The folder path.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithFileName(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{Atata.ScreenshotInfo,System.String})">
-            <summary>
-            Specifies the file name builder of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="fileNameBuilder">The file name builder function that takes an instance of <see cref="T:Atata.ScreenshotInfo"/>.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithFileName(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
-            <summary>
-            Specifies the file name of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="fileName">The file name.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithFilePath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.Func{Atata.ScreenshotInfo,System.String})">
-            <summary>
-            Specifies the file path builder of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="filePathBuilder">The file path builder function that takes an instance of <see cref="T:Atata.ScreenshotInfo"/>.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithFilePath(Atata.AtataContextBuilder{Atata.FileScreenshotConsumer},System.String)">
-            <summary>
-            Specifies the file path of the file screenshot consumer.
-            </summary>
-            <param name="builder">The builder.</param>
-            <param name="filePath">The file path.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithoutSectionFinish``1(Atata.AtataContextBuilder{``0})">
-            <summary>
-            Defines that the logging should not use section-like messages (not "Starting: {action}" and "Finished: {action}", but just "{action}").
-            </summary>
-            <typeparam name="TTLogConsumer">The type of the log consumer.</typeparam>
-            <param name="builder">The builder.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
-        </member>
-        <member name="M:Atata.AtataContextBuilderExtensions.WithMinLevel``1(Atata.AtataContextBuilder{``0},Atata.LogLevel)">
-            <summary>
-            Specifies the minimum level of the log event to write to the log.
-            </summary>
-            <typeparam name="TTLogConsumer">The type of the log consumer.</typeparam>
-            <param name="builder">The builder.</param>
-            <param name="level">The level.</param>
-            <returns>The <see cref="T:Atata.AtataContextBuilder`1"/> instance.</returns>
         </member>
         <member name="P:Atata.AtataContextBuilder`1.Context">
             <summary>

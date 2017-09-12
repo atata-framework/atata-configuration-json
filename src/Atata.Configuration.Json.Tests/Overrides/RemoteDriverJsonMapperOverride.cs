@@ -4,7 +4,7 @@
     {
         protected override RemoteDriverAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {
-            return new RemoteDriverAtataContextBuilderOverride(builder.BuildingContext);
+            return builder.UseDriver(new RemoteDriverAtataContextBuilderOverride(builder.BuildingContext));
         }
     }
 }

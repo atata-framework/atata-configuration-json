@@ -4,7 +4,7 @@
     {
         protected override PhantomJSAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {
-            return new PhantomJSAtataContextBuilderOverride(builder.BuildingContext);
+            return builder.UseDriver(new PhantomJSAtataContextBuilderOverride(builder.BuildingContext));
         }
     }
 }

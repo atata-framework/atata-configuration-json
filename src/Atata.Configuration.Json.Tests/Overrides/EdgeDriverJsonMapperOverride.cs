@@ -4,7 +4,7 @@
     {
         protected override EdgeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {
-            return new EdgeAtataContextBuilderOverride(builder.BuildingContext);
+            return builder.UseDriver(new EdgeAtataContextBuilderOverride(builder.BuildingContext));
         }
     }
 }

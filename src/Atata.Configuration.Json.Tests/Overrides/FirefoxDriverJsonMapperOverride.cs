@@ -4,7 +4,7 @@
     {
         protected override FirefoxAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {
-            return new FirefoxAtataContextBuilderOverride(builder.BuildingContext);
+            return builder.UseDriver(new FirefoxAtataContextBuilderOverride(builder.BuildingContext));
         }
     }
 }

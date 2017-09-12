@@ -4,7 +4,7 @@
     {
         protected override ChromeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {
-            return new ChromeAtataContextBuilderOverride(builder.BuildingContext);
+            return builder.UseDriver(new ChromeAtataContextBuilderOverride(builder.BuildingContext));
         }
     }
 }

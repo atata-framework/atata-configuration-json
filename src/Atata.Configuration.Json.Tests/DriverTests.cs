@@ -25,7 +25,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/Chrome.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             var capabilities = context.Options.ToCapabilities();
@@ -103,7 +103,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/Firefox.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             var capabilities = context.Options.ToCapabilities();
@@ -156,7 +156,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/InternetExplorer.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             var capabilities = context.Options.ToCapabilities();
@@ -198,7 +198,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/Edge.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             var capabilities = context.Options.ToCapabilities();
@@ -222,7 +222,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/PhantomJS.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             var capabilities = context.Options.ToCapabilities();
@@ -247,7 +247,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/Remote.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             context.RemoteAddress.Should().Be("http://127.0.0.1:8888/wd/hub");
@@ -277,7 +277,7 @@ namespace Atata.Configuration.Json.Tests
                 AtataContextBuilder builder = AtataContext.Build().
                     ApplyJsonConfig(@"Configs/RemotePhantomJS.json");
 
-                builder.BuildingContext.DriverCreator();
+                builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
             var capabilities = context.Capabilities;

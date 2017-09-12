@@ -4,7 +4,7 @@
     {
         protected override InternetExplorerAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
         {
-            return new InternetExplorerAtataContextBuilderOverride(builder.BuildingContext);
+            return builder.UseDriver(new InternetExplorerAtataContextBuilderOverride(builder.BuildingContext));
         }
     }
 }

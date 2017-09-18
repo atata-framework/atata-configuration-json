@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using Atata.Configuration.Json;
 using Newtonsoft.Json;
 
@@ -25,7 +26,11 @@ namespace Atata
 
             TConfig config = JsonConvert.DeserializeObject<TConfig>(jsonContent);
 
-            return JsonConfigMapper.Map(config, builder);
+            AtataContextBuilder resultBuilder = JsonConfigMapper.Map(config, builder);
+
+            SetCurrentConfig(config);
+
+            return resultBuilder;
         }
 
         private static string BuildCompleteFilePath(string filePath, string environmentAlias)
@@ -60,6 +65,20 @@ namespace Atata
                 completeFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, completeFilePath);
 
             return completeFilePath;
+        }
+
+        private static void SetCurrentConfig<TConfig>(TConfig config)
+            where TConfig : JsonConfig<TConfig>
+        {
+            Type type = typeof(TConfig);
+            string currentPropertyName = nameof(JsonConfig.Current);
+
+            PropertyInfo property = type.GetProperty(currentPropertyName, BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+
+            if (property == null)
+                throw new MissingMemberException(type.FullName, currentPropertyName);
+
+            property.SetValue(null, config, null);
         }
     }
 }

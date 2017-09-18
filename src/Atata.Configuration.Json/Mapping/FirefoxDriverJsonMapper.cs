@@ -2,7 +2,7 @@
 using System.Linq;
 using OpenQA.Selenium.Firefox;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class FirefoxDriverJsonMapper : DriverJsonMapper<FirefoxAtataContextBuilder, FirefoxDriverService, FirefoxOptions>
     {

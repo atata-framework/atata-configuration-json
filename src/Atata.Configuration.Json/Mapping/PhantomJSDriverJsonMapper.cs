@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using OpenQA.Selenium.PhantomJS;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class PhantomJSDriverJsonMapper : DriverJsonMapper<PhantomJSAtataContextBuilder, PhantomJSDriverService, PhantomJSOptions>
     {

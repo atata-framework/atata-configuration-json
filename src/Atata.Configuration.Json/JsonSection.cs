@@ -4,7 +4,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class JsonSection
     {

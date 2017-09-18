@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using OpenQA.Selenium;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class ProxyJsonSection : JsonSection
     {

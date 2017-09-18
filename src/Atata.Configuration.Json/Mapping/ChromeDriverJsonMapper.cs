@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using OpenQA.Selenium.Chrome;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class ChromeDriverJsonMapper : DriverJsonMapper<ChromeAtataContextBuilder, ChromeDriverService, ChromeOptions>
     {

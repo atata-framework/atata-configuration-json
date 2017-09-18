@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.Safari;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class SafariDriverJsonMapper : DriverJsonMapper<SafariAtataContextBuilder, SafariDriverService, SafariOptions>
     {

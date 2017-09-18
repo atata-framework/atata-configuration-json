@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public static class JsonConfigMapper
     {

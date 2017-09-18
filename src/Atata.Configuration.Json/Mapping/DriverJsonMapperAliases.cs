@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public static class DriverJsonMapperAliases
     {

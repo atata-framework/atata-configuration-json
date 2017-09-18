@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.Edge;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class EdgeDriverJsonMapper : DriverJsonMapper<EdgeAtataContextBuilder, EdgeDriverService, EdgeOptions>
     {

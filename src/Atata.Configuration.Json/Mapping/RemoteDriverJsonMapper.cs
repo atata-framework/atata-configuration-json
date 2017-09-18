@@ -9,7 +9,7 @@ using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Safari;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class RemoteDriverJsonMapper : IDriverJsonMapper
     {

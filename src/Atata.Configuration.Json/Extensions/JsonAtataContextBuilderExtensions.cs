@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Atata.Configuration.Json;
 using Newtonsoft.Json;
 
 namespace Atata

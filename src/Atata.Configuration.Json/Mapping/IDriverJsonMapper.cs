@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public interface IDriverJsonMapper
     {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Newtonsoft.Json;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public abstract class JsonConfig<TConfig> : JsonSection
         where TConfig : JsonConfig<TConfig>

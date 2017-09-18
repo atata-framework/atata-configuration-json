@@ -2,7 +2,7 @@
 using System.Linq;
 using OpenQA.Selenium;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJsonMapper
             where TBuilder : DriverAtataContextBuilder<TBuilder, TService, TOptions>

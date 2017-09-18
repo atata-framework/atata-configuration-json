@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using OpenQA.Selenium.Opera;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class OperaDriverJsonMapper : DriverJsonMapper<OperaAtataContextBuilder, OperaDriverService, OperaOptions>
     {

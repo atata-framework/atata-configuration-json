@@ -1,4 +1,4 @@
-﻿namespace Atata
+﻿namespace Atata.Configuration.Json
 {
     public class DriverPerformanceLoggingPreferencesJsonSection : JsonSection
     {

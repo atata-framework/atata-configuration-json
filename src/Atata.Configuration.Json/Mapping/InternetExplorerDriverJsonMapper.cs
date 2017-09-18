@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.IE;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class InternetExplorerDriverJsonMapper : DriverJsonMapper<InternetExplorerAtataContextBuilder, InternetExplorerDriverService, InternetExplorerOptions>
     {

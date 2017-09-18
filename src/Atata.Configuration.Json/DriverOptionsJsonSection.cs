@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using OpenQA.Selenium.Chrome;
 
-namespace Atata
+namespace Atata.Configuration.Json
 {
     public class DriverOptionsJsonSection : JsonSection
     {

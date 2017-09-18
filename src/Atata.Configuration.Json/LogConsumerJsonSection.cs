@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Atata
+﻿namespace Atata.Configuration.Json
 {
     public class LogConsumerJsonSection : JsonSection
     {

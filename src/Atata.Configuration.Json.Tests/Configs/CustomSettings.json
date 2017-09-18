@@ -1,0 +1,31 @@
+﻿{
+  "driver": {
+    "type": "Chrome",
+    "options": {
+      "arguments": [ "disable-extensions", "no-sandbox", "start-maximized" ]
+    }
+  },
+  "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
+  "useNUnitTestName": true,
+  "logNUnitError": true,
+  "takeScreenshotOnNUnitError": true,
+  "takeScreenshotOnNUnitErrorTitle": "Fail",
+  "intProperty": 5,
+  "stringProperty": "str",
+  "boolProperty": true,
+  "stringArrayValues": [ "str1", "str2", "str3" ],
+  "section": {
+    "stringProperty": "section_str",
+    "boolProperty": true
+  },
+  "items": [
+    {
+      "name": "item1",
+      "value": 5
+    },
+    {
+      "name": "item2",
+      "value": 7
+    }
+  ]
+}

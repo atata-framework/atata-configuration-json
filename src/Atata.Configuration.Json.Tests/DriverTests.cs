@@ -22,7 +22,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/Chrome.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
@@ -100,7 +100,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/Firefox.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
@@ -153,7 +153,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/InternetExplorer.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
@@ -195,7 +195,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/Edge.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
@@ -219,7 +219,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/PhantomJS.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
@@ -244,7 +244,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/Remote.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
@@ -274,7 +274,7 @@ namespace Atata.Configuration.Json.Tests
 
             using (context.UseNullDriver())
             {
-                AtataContextBuilder builder = AtataContext.Build().
+                AtataContextBuilder builder = AtataContext.Configure().
                     ApplyJsonConfig(@"Configs/RemotePhantomJS.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();

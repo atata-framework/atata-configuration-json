@@ -10,7 +10,7 @@ namespace Atata.Configuration.Json.Tests
         [Test]
         public void LogConsumer_AllKinds()
         {
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("LogConsumers");
 
             LogConsumerInfo[] expected =

@@ -11,7 +11,7 @@ namespace Atata.Configuration.Json.Tests
         [Test]
         public void ConfigFilePath_Default()
         {
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig();
 
             builder.BuildingContext.BaseUrl.Should().EndWith("atata");
@@ -22,7 +22,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = "Simple.json";
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath);
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple");
@@ -33,7 +33,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = "Simple.json";
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath, "QA");
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple.qa");
@@ -44,7 +44,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = "Simple";
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath);
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple");
@@ -55,7 +55,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = "Simple";
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath, "QA");
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple.qa");
@@ -66,7 +66,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Simple.json");
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath);
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple");
@@ -77,7 +77,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Simple.json");
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath, "QA");
 
             builder.BuildingContext.BaseUrl.Should().EndWith("simple.qa");
@@ -88,7 +88,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory;
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath);
 
             builder.BuildingContext.BaseUrl.Should().EndWith("atata");
@@ -99,7 +99,7 @@ namespace Atata.Configuration.Json.Tests
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory;
 
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(filePath, "QA");
 
             builder.BuildingContext.BaseUrl.Should().EndWith("atata.qa");

@@ -12,7 +12,7 @@ namespace Atata.Configuration.Json.Tests
         [Test]
         public void ScreenshotConsumer_AllKinds()
         {
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("ScreenshotConsumers");
 
             IScreenshotConsumer[] expected =

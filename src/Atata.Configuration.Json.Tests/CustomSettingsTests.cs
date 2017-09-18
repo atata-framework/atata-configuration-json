@@ -9,7 +9,7 @@ namespace Atata.Configuration.Json.Tests
         [Test]
         public void CustomSettings()
         {
-            AtataContext.Build().
+            AtataContext.Configure().
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");
 
             CustomJsonConfig.Current.IntProperty.Should().Be(5);

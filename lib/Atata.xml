@@ -735,6 +735,12 @@
             Gets or sets the type of the assertion exception. The default value is typeof(Atata.AssertionException).
             </summary>
         </member>
+        <member name="M:Atata.AtataBuildingContext.Clone">
+            <summary>
+            Creates a copy of the current instance.
+            </summary>
+            <returns>The copied <see cref="T:Atata.AtataBuildingContext"/> instance.</returns>
+        </member>
         <member name="T:Atata.AtataContextBuilder">
             <summary>
             Represents the builder of <see cref="T:Atata.AtataContext"/>.
@@ -951,10 +957,22 @@
             <param name="title">The screenshot title.</param>
             <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
         </member>
+        <member name="M:Atata.AtataContextBuilder.Clear">
+            <summary>
+            Clears the <see cref="P:Atata.AtataContextBuilder.BuildingContext"/>.
+            </summary>
+            <returns>The <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
+        </member>
         <member name="M:Atata.AtataContextBuilder.SetUp">
             <summary>
             Sets up the context.
             </summary>
+        </member>
+        <member name="M:Atata.AtataContextBuilder.Build">
+            <summary>
+            Builds the <see cref="T:Atata.AtataContext" /> instance and sets it to <see cref="P:Atata.AtataContext.Current" /> property.
+            </summary>
+            <returns>The created <see cref="T:Atata.AtataContext"/> instance.</returns>
         </member>
         <member name="T:Atata.UIComponentAttributeProvider`1">
             <summary>
@@ -2312,6 +2330,11 @@
             Gets the current context.
             </summary>
         </member>
+        <member name="P:Atata.AtataContext.GlobalConfiguration">
+            <summary>
+            Gets the global configuration.
+            </summary>
+        </member>
         <member name="P:Atata.AtataContext.BuildStart">
             <summary>
             Gets the build start date and time. Contains the same value for all the tests being executed within one build.
@@ -2356,6 +2379,12 @@
             <summary>
             Gets the type of the assertion exception. The default value is typeof(Atata.AssertionException).
             </summary>
+        </member>
+        <member name="M:Atata.AtataContext.Configure">
+            <summary>
+            Creates <see cref="T:Atata.AtataContextBuilder"/> instance for <see cref="T:Atata.AtataContext"/> configuration. Sets the value to <see cref="P:Atata.AtataContextBuilder.BuildingContext"/> copied from <see cref="P:Atata.AtataContext.GlobalConfiguration"/>.
+            </summary>
+            <returns>The created <see cref="T:Atata.AtataContextBuilder"/> instance.</returns>
         </member>
         <member name="M:Atata.AtataContext.CleanUp(System.Boolean)">
             <summary>

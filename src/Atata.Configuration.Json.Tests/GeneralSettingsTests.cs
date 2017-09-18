@@ -10,7 +10,7 @@ namespace Atata.Configuration.Json.Tests
         [Test]
         public void GeneralSettings_NUnit()
         {
-            AtataContextBuilder builder = AtataContext.Build().
+            AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("Configs/Chrome+NUnit.json");
 
             var context = builder.BuildingContext;

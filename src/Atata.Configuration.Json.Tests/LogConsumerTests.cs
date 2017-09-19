@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Atata.Configuration.Json.Tests
 {
     [TestFixture]
-    public class LogConsumerTests
+    public class LogConsumerTests : TestFixture
     {
         [Test]
         public void LogConsumer_AllKinds()

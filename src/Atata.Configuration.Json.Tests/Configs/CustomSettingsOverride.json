@@ -1,0 +1,21 @@
+﻿{
+  "driver": {
+    "type": "Chrome",
+    "options": {
+      "arguments": [ "disable-extensions", "no-sandbox" ]
+    }
+  },
+  "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/override",
+  "stringProperty": "str2",
+  "stringArrayValues": [ "str4" ],
+  "stringListValues": [ "str4" ],
+  "section": {
+    "boolProperty": false
+  },
+  "items": [
+    {
+      "name": "item3",
+      "value": 9
+    }
+  ]
+}

@@ -100,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenshotConsumerTests.cs" />
     <Compile Include="SetUpFixture.cs" />
+    <Compile Include="TestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atata.Configuration.Json\Atata.Configuration.Json.csproj">
@@ -112,6 +113,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Atata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\CustomSettingsOverride.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Configs\CustomSettings.json">

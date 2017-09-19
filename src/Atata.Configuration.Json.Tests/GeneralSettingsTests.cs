@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Atata.Configuration.Json.Tests
 {
     [TestFixture]
-    public class GeneralSettingsTests
+    public class GeneralSettingsTests : TestFixture
     {
         [Test]
         public void GeneralSettings_NUnit()

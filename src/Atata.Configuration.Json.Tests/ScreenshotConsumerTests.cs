@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 namespace Atata.Configuration.Json.Tests
 {
     [TestFixture]
-    public class ScreenshotConsumerTests
+    public class ScreenshotConsumerTests : TestFixture
     {
         [Test]
         public void ScreenshotConsumer_AllKinds()

@@ -13,7 +13,7 @@ using OpenQA.Selenium.Remote;
 namespace Atata.Configuration.Json.Tests
 {
     [TestFixture]
-    public class DriverTests
+    public class DriverTests : TestFixture
     {
         [Test]
         public void Driver_Chrome()

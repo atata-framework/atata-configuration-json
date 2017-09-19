@@ -18,17 +18,20 @@ namespace Atata
         }
 
         public static AtataContextBuilder ApplyJsonConfig<TConfig>(this AtataContextBuilder builder, string filePath = null, string environmentAlias = null)
-            where TConfig : JsonConfig<TConfig>
+            where TConfig : JsonConfig<TConfig>, new()
         {
             string completeFilePath = BuildCompleteFilePath(filePath, environmentAlias);
 
             string jsonContent = File.ReadAllText(completeFilePath);
 
-            TConfig config = JsonConvert.DeserializeObject<TConfig>(jsonContent);
+            PropertyInfo currentConfigProperty = GetCurrentConfigProperty<TConfig>();
+
+            TConfig config = currentConfigProperty.GetValue(null, null) as TConfig ?? new TConfig();
+            JsonConvert.PopulateObject(jsonContent, config);
 
             AtataContextBuilder resultBuilder = JsonConfigMapper.Map(config, builder);
 
-            SetCurrentConfig(config);
+            currentConfigProperty.SetValue(null, config, null);
 
             return resultBuilder;
         }
@@ -67,18 +70,15 @@ namespace Atata
             return completeFilePath;
         }
 
-        private static void SetCurrentConfig<TConfig>(TConfig config)
+        private static PropertyInfo GetCurrentConfigProperty<TConfig>()
             where TConfig : JsonConfig<TConfig>
         {
             Type type = typeof(TConfig);
             string currentPropertyName = nameof(JsonConfig.Current);
 
-            PropertyInfo property = type.GetProperty(currentPropertyName, BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            PropertyInfo property = type.GetProperty(currentPropertyName, BindingFlags.GetProperty | BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
 
-            if (property == null)
-                throw new MissingMemberException(type.FullName, currentPropertyName);
-
-            property.SetValue(null, config, null);
+            return property ?? throw new MissingMemberException(type.FullName, currentPropertyName);
         }
     }
 }

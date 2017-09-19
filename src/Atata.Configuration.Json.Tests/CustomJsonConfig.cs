@@ -1,4 +1,6 @@
-﻿namespace Atata.Configuration.Json.Tests
+﻿using System.Collections.Generic;
+
+namespace Atata.Configuration.Json.Tests
 {
     public class CustomJsonConfig : JsonConfig<CustomJsonConfig>
     {
@@ -12,9 +14,11 @@
 
         public string[] StringArrayValues { get; set; }
 
+        public List<string> StringListValues { get; set; }
+
         public CustomSection Section { get; set; }
 
-        public CustomItemSection[] Items { get; set; }
+        public List<CustomItemSection> Items { get; set; }
 
         public class CustomSection
         {

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Atata.Configuration.Json.Tests
 {
     [TestFixture]
-    public class ConfigFilePathTests
+    public class ConfigFilePathTests : TestFixture
     {
         [Test]
         public void ConfigFilePath_Default()
@@ -15,6 +15,15 @@ namespace Atata.Configuration.Json.Tests
                 ApplyJsonConfig();
 
             builder.BuildingContext.BaseUrl.Should().EndWith("atata");
+        }
+
+        [Test]
+        public void ConfigFilePath_Default_WithAlias()
+        {
+            AtataContextBuilder builder = AtataContext.Configure().
+                ApplyJsonConfig(environmentAlias: "QA");
+
+            builder.BuildingContext.BaseUrl.Should().EndWith("atata.qa");
         }
 
         [Test]

@@ -1,110 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D58A65C7-B2D0-4C1E-B97C-C31A6833AE35}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atata.Configuration.Json</RootNamespace>
-    <AssemblyName>Atata.Configuration.Json</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+    <Version>0.1.0</Version>
+    <Authors>Yevgeniy Shunevych</Authors>
+    <Company>Yevgeniy Shunevych</Company>
+    <Product>Atata Framework</Product>
+    <Description>C#/.NET package for JSON configuration of Atata.</Description>
+    <Copyright>© Yevgeniy Shunevych 2017</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/atata-framework/atata-configuration-json/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo.png?v2</PackageIconUrl>
+    <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
+    <PackageTags>atata automation testing test selenium webdriver browser configuration</PackageTags>
+    <PackageReleaseNotes>0.1.0 - Initial release.</PackageReleaseNotes>
     <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Atata, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atata.0.15.0\lib\net40\Atata.dll</HintPath>
-    </Reference>
-    <Reference Include="Atata.WebDriverExtras, Version=0.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atata.WebDriverExtras.0.13.0\lib\net40\Atata.WebDriverExtras.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WebDriver, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.6.0\lib\net40\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Support, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.3.6.0\lib\net40\WebDriver.Support.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Atata" Version="0.15.0" />
+    <PackageReference Include="Atata.WebDriverExtras" Version="0.13.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Selenium.Support" Version="3.6.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.6.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="DriverPerformanceLoggingPreferencesJsonSection.cs" />
-    <Compile Include="Extensions\CheckExtensions.cs" />
-    <Compile Include="Mapping\PhantomJSDriverJsonMapper.cs" />
-    <Compile Include="Mapping\OperaDriverJsonMapper.cs" />
-    <Compile Include="Mapping\EdgeDriverJsonMapper.cs" />
-    <Compile Include="Mapping\RemoteDriverJsonMapper.cs" />
-    <Compile Include="Mapping\SafariDriverJsonMapper.cs" />
-    <Compile Include="Mapping\ChromeDriverJsonMapper.cs" />
-    <Compile Include="Mapping\DriverJsonMapperAliases.cs" />
-    <Compile Include="Mapping\DriverJsonMapper`3.cs" />
-    <Compile Include="Extensions\JsonAtataContextBuilderExtensions.cs" />
-    <Compile Include="CapabilitiesJsonSection.cs" />
-    <Compile Include="DesiredCapabilitiesJsonSection.cs" />
-    <Compile Include="DriverOptionsJsonSection.cs" />
-    <Compile Include="DriverProfileJsonSection.cs" />
-    <Compile Include="DriverServiceJsonSection.cs" />
-    <Compile Include="JsonConfig.cs" />
-    <Compile Include="Mapping\FirefoxDriverJsonMapper.cs" />
-    <Compile Include="Mapping\IDriverJsonMapper.cs" />
-    <Compile Include="Mapping\InternetExplorerDriverJsonMapper.cs" />
-    <Compile Include="Mapping\JsonConfigMapper.cs" />
-    <Compile Include="JsonConfig`1.cs" />
-    <Compile Include="JsonSection.cs" />
-    <Compile Include="LogConsumerJsonSection.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DriverJsonSection.cs" />
-    <Compile Include="ProxyJsonSection.cs" />
-    <Compile Include="ScreenshotConsumerJsonSection.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+   <ItemGroup Condition="'$(TargetFramework)' == 'net40' Or '$(TargetFramework)' == 'net45'">
+     <Reference Include="Microsoft.CSharp" />
+   </ItemGroup>
+
 </Project>

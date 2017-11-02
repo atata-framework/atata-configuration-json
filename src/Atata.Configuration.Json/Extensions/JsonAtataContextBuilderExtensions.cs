@@ -33,6 +33,12 @@ namespace Atata
             return resultBuilder;
         }
 
+        public static AtataContextBuilder ApplyJsonConfig<TConfig>(this AtataContextBuilder builder, JsonConfig<TConfig> config)
+            where TConfig : JsonConfig<TConfig>
+        {
+            return JsonConfigMapper.Map((TConfig)config, builder);
+        }
+
         private static string BuildCompleteFilePath(string filePath, string environmentAlias)
         {
             string completeFilePath = null;
@@ -81,7 +87,7 @@ namespace Atata
         }
 
         private static PropertyInfo GetCurrentConfigProperty<TConfig>()
-        where TConfig : JsonConfig<TConfig>
+            where TConfig : JsonConfig<TConfig>
         {
             Type type = typeof(TConfig);
             string currentPropertyName = nameof(JsonConfig.Current);

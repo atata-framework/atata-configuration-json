@@ -74,6 +74,9 @@ namespace Atata.Configuration.Json.Tests
                     Value = 9
                 }
             });
+
+            CustomJsonConfig.Current.Drivers.Should().HaveCount(1);
+            CustomJsonConfig.Current.Drivers[0].Options.Arguments.Should().Equal("disable-extensions", "no-sandbox");
         }
 
         public override void TearDown()

@@ -24,14 +24,11 @@ namespace Atata
 
             string jsonContent = File.ReadAllText(completeFilePath);
 
-            PropertyInfo currentConfigProperty = GetCurrentConfigProperty<TConfig>();
-
-            TConfig config = currentConfigProperty.GetValue(null, null) as TConfig ?? new TConfig();
-            JsonConvert.PopulateObject(jsonContent, config);
+            TConfig config = JsonConvert.DeserializeObject<TConfig>(jsonContent);
 
             AtataContextBuilder resultBuilder = JsonConfigMapper.Map(config, builder);
 
-            currentConfigProperty.SetValue(null, config, null);
+            UpdateConfigCurrentValue(config, jsonContent);
 
             return resultBuilder;
         }
@@ -70,8 +67,21 @@ namespace Atata
             return completeFilePath;
         }
 
-        private static PropertyInfo GetCurrentConfigProperty<TConfig>()
+        private static void UpdateConfigCurrentValue<TConfig>(TConfig config, string jsonContent)
             where TConfig : JsonConfig<TConfig>
+        {
+            PropertyInfo currentConfigProperty = GetCurrentConfigProperty<TConfig>();
+
+            if (currentConfigProperty.GetValue(null, null) is TConfig currentConfig)
+                JsonConvert.PopulateObject(jsonContent, currentConfig);
+            else
+                currentConfig = config;
+
+            currentConfigProperty.SetValue(null, currentConfig, null);
+        }
+
+        private static PropertyInfo GetCurrentConfigProperty<TConfig>()
+        where TConfig : JsonConfig<TConfig>
         {
             Type type = typeof(TConfig);
             string currentPropertyName = nameof(JsonConfig.Current);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using Atata.Configuration.Json;
 using Newtonsoft.Json;
 
@@ -28,7 +27,16 @@ namespace Atata
 
             AtataContextBuilder resultBuilder = JsonConfigMapper.Map(config, builder);
 
-            UpdateConfigCurrentValue(config, jsonContent);
+            JsonConfigManager<TConfig>.UpdateCurrentValue(jsonContent, config);
+
+            if (builder == AtataContext.GlobalConfiguration)
+            {
+                JsonConfigManager<TConfig>.UpdateGlobalValue(jsonContent);
+            }
+            else if (!resultBuilder.BuildingContext.CleanUpActions.Contains(JsonConfigManager<TConfig>.ResetCurrentValue))
+            {
+                resultBuilder.BuildingContext.CleanUpActions.Add(JsonConfigManager<TConfig>.ResetCurrentValue);
+            }
 
             return resultBuilder;
         }
@@ -71,30 +79,6 @@ namespace Atata
                 completeFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, completeFilePath);
 
             return completeFilePath;
-        }
-
-        private static void UpdateConfigCurrentValue<TConfig>(TConfig config, string jsonContent)
-            where TConfig : JsonConfig<TConfig>
-        {
-            PropertyInfo currentConfigProperty = GetCurrentConfigProperty<TConfig>();
-
-            if (currentConfigProperty.GetValue(null, null) is TConfig currentConfig)
-                JsonConvert.PopulateObject(jsonContent, currentConfig);
-            else
-                currentConfig = config;
-
-            currentConfigProperty.SetValue(null, currentConfig, null);
-        }
-
-        private static PropertyInfo GetCurrentConfigProperty<TConfig>()
-            where TConfig : JsonConfig<TConfig>
-        {
-            Type type = typeof(TConfig);
-            string currentPropertyName = nameof(JsonConfig.Current);
-
-            PropertyInfo property = type.GetProperty(currentPropertyName, BindingFlags.GetProperty | BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-
-            return property ?? throw new MissingMemberException(type.FullName, currentPropertyName);
         }
     }
 }

@@ -79,11 +79,33 @@ namespace Atata.Configuration.Json.Tests
             CustomJsonConfig.Current.Drivers[0].Options.Arguments.Should().Equal("disable-extensions", "no-sandbox");
         }
 
-        public override void TearDown()
+        [Test]
+        public void CustomSettings_GlobalThenCurrent()
         {
-            base.TearDown();
+            AtataContext.GlobalConfiguration.
+                ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");
 
-            CustomJsonConfig.Current = null;
+            AtataContext.Configure().
+                ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettingsOverride.json").
+                Build();
+
+            CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override");
+
+            CustomJsonConfig.Global.StringProperty.Should().Be("str");
+            CustomJsonConfig.Current.StringProperty.Should().Be("str2");
+
+            CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
+            CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4" });
+
+            AtataContext.Current.CleanUp();
+
+            CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            CustomJsonConfig.Global.StringProperty.Should().Be("str");
+            CustomJsonConfig.Current.StringProperty.Should().Be("str");
+            CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
+            CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
         }
     }
 }

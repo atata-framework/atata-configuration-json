@@ -8,16 +8,29 @@ namespace Atata.Configuration.Json
     {
         [ThreadStatic]
 #pragma warning disable S2743 // Static fields should not be used in generic types
-        private static TConfig current;
+        private static TConfig currentThreadStaticConfig;
+
+        private static TConfig currentStaticConfig;
 #pragma warning restore S2743 // Static fields should not be used in generic types
+
+        /// <summary>
+        /// Gets or sets the global <see cref="JsonConfig{TConfig}"/> instance.
+        /// </summary>
+        public static TConfig Global { get; set; }
 
         /// <summary>
         /// Gets or sets the current <see cref="JsonConfig{TConfig}"/> instance.
         /// </summary>
         public static TConfig Current
         {
-            get { return current; }
-            set { current = value; }
+            get => AtataContext.IsThreadStatic ? currentThreadStaticConfig : currentStaticConfig;
+            set
+            {
+                if (AtataContext.IsThreadStatic)
+                    currentThreadStaticConfig = value;
+                else
+                    currentStaticConfig = value;
+            }
         }
 
         public DriverJsonSection[] Drivers { get; set; }

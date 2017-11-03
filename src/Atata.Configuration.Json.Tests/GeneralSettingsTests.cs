@@ -17,7 +17,7 @@ namespace Atata.Configuration.Json.Tests
 
             context.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
 
-            context.CleanUpActions.Should().HaveCount(2);
+            context.CleanUpActions.Should().HaveCount(3);
 
             context.AssertionExceptionType.Should().Be(typeof(NUnit.Framework.AssertionException));
 

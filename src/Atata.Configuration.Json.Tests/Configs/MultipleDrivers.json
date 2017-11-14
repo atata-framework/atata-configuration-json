@@ -1,0 +1,16 @@
+﻿{
+  "drivers": [
+    {
+      "type": "chrome",
+      "options": {
+        "arguments": [ "start-maximized" ]
+      }
+    },
+    {
+      "type": "firefox",
+      "options": {
+        "arguments": [ "--start-maximized" ]
+      }
+    }
+  ]
+}

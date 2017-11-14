@@ -288,5 +288,17 @@ namespace Atata.Configuration.Json.Tests
 
             capabilities.GetCapability(CapabilityType.BrowserName).Should().Be("phantomjs");
         }
+
+        [Test]
+        public void Driver_Multiple()
+        {
+            AtataContextBuilder builder = AtataContext.Configure().
+                ApplyJsonConfig(@"Configs/MultipleDrivers.json");
+
+            builder.BuildingContext.DriverFactories.Should().HaveCount(2);
+            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Chrome);
+            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Firefox);
+        }
     }
 }

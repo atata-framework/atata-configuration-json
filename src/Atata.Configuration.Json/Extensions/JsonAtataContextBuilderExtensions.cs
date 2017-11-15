@@ -11,11 +11,26 @@ namespace Atata
 
         private const string DefaultConfigFileExtension = ".json";
 
+        /// <summary>
+        /// Applies JSON configuration from the file. By default reads "Atata.json" file.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="environmentAlias">The environment alias.</param>
+        /// <returns>The <see cref="AtataContextBuilder"/> instance.</returns>
         public static AtataContextBuilder ApplyJsonConfig(this AtataContextBuilder builder, string filePath = null, string environmentAlias = null)
         {
             return builder.ApplyJsonConfig<JsonConfig>(filePath, environmentAlias);
         }
 
+        /// <summary>
+        /// Applies JSON configuration from the file. By default reads "Atata.json" file.
+        /// </summary>
+        /// <typeparam name="TConfig">The type of the configuration class.</typeparam>
+        /// <param name="builder">The builder.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="environmentAlias">The environment alias.</param>
+        /// <returns>The <see cref="AtataContextBuilder"/> instance.</returns>
         public static AtataContextBuilder ApplyJsonConfig<TConfig>(this AtataContextBuilder builder, string filePath = null, string environmentAlias = null)
             where TConfig : JsonConfig<TConfig>, new()
         {
@@ -41,6 +56,13 @@ namespace Atata
             return resultBuilder;
         }
 
+        /// <summary>
+        /// Applies JSON configuration from <paramref name="config"/> parameter.
+        /// </summary>
+        /// <typeparam name="TConfig">The type of the configuration class.</typeparam>
+        /// <param name="builder">The builder.</param>
+        /// <param name="config">The configuration.</param>
+        /// <returns>The <see cref="AtataContextBuilder"/> instance.</returns>
         public static AtataContextBuilder ApplyJsonConfig<TConfig>(this AtataContextBuilder builder, JsonConfig<TConfig> config)
             where TConfig : JsonConfig<TConfig>
         {

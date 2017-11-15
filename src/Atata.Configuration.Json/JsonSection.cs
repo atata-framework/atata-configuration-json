@@ -6,6 +6,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Atata.Configuration.Json
 {
+    /// <summary>
+    /// Represents JSON section.
+    /// </summary>
     public class JsonSection
     {
         [JsonExtensionData]

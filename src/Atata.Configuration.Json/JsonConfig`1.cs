@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace Atata.Configuration.Json
 {
+    /// <summary>
+    /// Represents JSON configuration.
+    /// </summary>
+    /// <typeparam name="TConfig">The type of the configuration class.</typeparam>
     public abstract class JsonConfig<TConfig> : JsonSection
         where TConfig : JsonConfig<TConfig>
     {

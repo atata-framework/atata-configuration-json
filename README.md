@@ -10,16 +10,16 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 ## Table of Contents
 
-- [Features](#)
-- [Installation](#)
-- [Usage](#)
-  - [JSON](#)
-  - [Apply Configuration](#)
-  - [Get Config Properties](#)
-  - [Custom Settings](#)
-- [JSON Schema](#)
-- [Feedback](#)
-- [License](#)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [JSON](#json)
+  - [Apply Configuration](#apply-configuration)
+  - [Get Config Properties](#get-config-properties)
+  - [Custom Settings](#custom-settings)
+- [JSON Schema](#json-schema)
+- [Feedback](#feedback)
+- [License](#license)
 
 ## Features
 
@@ -54,7 +54,7 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
 
 #### Use Chrome with NUnit settings
 
-```json
+```js
 {
   "driver": {
     "type": "Chrome",
@@ -78,7 +78,7 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
 
 #### Use Firefox
 
-```json
+```js
 {
   "driver": {
     "type": "firefox",
@@ -92,7 +92,7 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
 
 #### Multi-Driver
 
-```json
+```js
 {
   "drivers": [
     {
@@ -162,7 +162,7 @@ string baseUrl = JsonConfig.Current.BaseUrl;
 
 #### Define Config Settings
 
-```json
+```js
 {
   // Driver, url and other standard settings...
 
@@ -247,7 +247,7 @@ string sectionBoolValue = CustomJsonConfig.Current.Section.BoolProperty;
 
 ## JSON Schema
 
-```json
+```js
 {
   "drivers": [ // Use "drivers" for multiple drivers support.
     {

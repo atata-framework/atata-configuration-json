@@ -10,10 +10,10 @@ namespace Atata.Configuration.Json
         // Common, but actually used only by Chrome.
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 
-        public CapabilitiesJsonSection AdditionalCapabilities { get; set; }
+        public JsonSection AdditionalCapabilities { get; set; }
 
         // Chrome, Firefox, InternetExplorer and Opera specific.
-        public CapabilitiesJsonSection GlobalAdditionalCapabilities { get; set; }
+        public JsonSection GlobalAdditionalCapabilities { get; set; }
 
         // Chrome, Firefox, Opera and Internet Explorer specific.
         public ProxyJsonSection Proxy { get; set; }

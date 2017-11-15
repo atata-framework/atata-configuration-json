@@ -1,6 +1,6 @@
 ﻿namespace Atata.Configuration.Json
 {
-    public class DesiredCapabilitiesJsonSection : CapabilitiesJsonSection
+    public class DesiredCapabilitiesJsonSection : JsonSection
     {
         public string Type { get; set; }
 

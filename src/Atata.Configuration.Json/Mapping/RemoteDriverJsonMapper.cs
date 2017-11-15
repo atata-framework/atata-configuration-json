@@ -53,19 +53,19 @@ namespace Atata.Configuration.Json
         {
             switch (typeName?.ToLower())
             {
-                case "chrome":
+                case DriverAliases.Chrome:
                     return new ChromeDriverJsonMapper();
-                case "firefox":
+                case DriverAliases.Firefox:
                     return new FirefoxDriverJsonMapper();
-                case "internetexplorer":
+                case DriverAliases.InternetExplorer:
                     return new InternetExplorerDriverJsonMapper();
-                case "safari":
+                case DriverAliases.Safari:
                     return new SafariDriverJsonMapper();
-                case "opera":
+                case DriverAliases.Opera:
                     return new OperaDriverJsonMapper();
-                case "edge":
+                case DriverAliases.Edge:
                     return new EdgeDriverJsonMapper();
-                case "phantomjs":
+                case DriverAliases.PhantomJS:
                     return new PhantomJSDriverJsonMapper();
                 case null:
                     throw new ArgumentNullException(nameof(typeName), "Options type name is not defined.");

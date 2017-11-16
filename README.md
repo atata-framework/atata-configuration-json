@@ -144,8 +144,8 @@ AtataContext.Configure().
     ApplyJsonConfig(). // Applies default "Atata.json" config.
 #if QA
     ApplyJsonConfig(environmentAlias: "QA"). // Applies "Atata.QA.json" for build configuration with "QA" conditional compilation symbol.
-#elif PROD
-    ApplyJsonConfig(environmentAlias: "PROD"). // Applies "Atata.PROD.json" for build configuration with "PROD" conditional compilation symbol.
+#elif STAGING
+    ApplyJsonConfig(environmentAlias: "STAGING"). // Applies "Atata.STAGING.json" for build configuration with "STAGING" conditional compilation symbol.
 #endif
     Build();
 ```

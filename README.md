@@ -57,9 +57,9 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
 ```js
 {
   "driver": {
-    "type": "Chrome",
+    "type": "chrome",
     "options": {
-      "arguments": [ "disable-extensions", "start-maximized" ]
+      "arguments": [ "start-maximized" ]
     }
   },
   "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",

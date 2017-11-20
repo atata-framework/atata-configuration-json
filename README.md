@@ -242,7 +242,7 @@ AtataContext.Configure().
 ```cs
 string rootStringValue = AppConfig.Current.StringProperty;
 
-string sectionBoolValue = CustomJsonConfig.Current.Section.BoolProperty;
+string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
 ```
 
 ## JSON Schema

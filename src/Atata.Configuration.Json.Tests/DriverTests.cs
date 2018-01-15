@@ -5,7 +5,6 @@ using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
@@ -181,7 +180,7 @@ namespace Atata.Configuration.Json.Tests
             context.Options.EnableNativeEvents.Should().BeFalse();
             context.Options.RequireWindowFocus.Should().BeTrue();
             context.Options.BrowserAttachTimeout.Should().Be(TimeSpan.FromSeconds(2));
-            context.Options.UnexpectedAlertBehavior.Should().Be(InternetExplorerUnexpectedAlertBehavior.Dismiss);
+            context.Options.ElementScrollBehavior.Should().Be(InternetExplorerElementScrollBehavior.Bottom);
 
             context.Service.LoggingLevel.Should().Be(InternetExplorerDriverLogLevel.Debug);
 
@@ -207,7 +206,7 @@ namespace Atata.Configuration.Json.Tests
             capabilities.GetCapability("cap2").Should().Be(5);
             capabilities.GetCapability("cap3").Should().Be("str");
 
-            context.Options.PageLoadStrategy.Should().Be(EdgePageLoadStrategy.Eager);
+            context.Options.PageLoadStrategy.Should().Be(PageLoadStrategy.Eager);
 
             context.Service.Package.Should().Be("pack");
         }

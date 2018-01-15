@@ -20,7 +20,7 @@
       "enableNativeEvents": false,
       "requireWindowFocus": true,
       "browserAttachTimeout": 2,
-      "unexpectedAlertBehavior": "Dismiss"
+      "elementScrollBehavior": "Bottom"
     },
     "service": {
       "loggingLevel": "Debug"

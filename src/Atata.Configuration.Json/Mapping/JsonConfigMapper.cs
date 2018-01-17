@@ -10,6 +10,9 @@ namespace Atata.Configuration.Json
             if (config.BaseUrl != null)
                 builder.UseBaseUrl(config.BaseUrl);
 
+            if (config.Culture != null)
+                builder.UseCulture(config.Culture);
+
             if (config.RetryTimeout != null)
                 builder.UseRetryTimeout(TimeSpan.FromSeconds(config.RetryTimeout.Value));
 

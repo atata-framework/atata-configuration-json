@@ -51,6 +51,8 @@ namespace Atata.Configuration.Json
 
         public string BaseUrl { get; set; }
 
+        public string Culture { get; set; }
+
         /// <summary>
         /// Gets or sets the retry timeout in seconds.
         /// </summary>

@@ -6,6 +6,7 @@
     }
   },
   "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
+  "culture":  "en-US",
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,

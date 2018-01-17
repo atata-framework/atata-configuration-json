@@ -63,6 +63,7 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
     }
   },
   "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
+  "culture": "en-US",
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
@@ -361,6 +362,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     "commandTimeout": 60 // Sets the command timeout in seconds.
   },
   "baseUrl": "string",
+  "culture": "string", // For example: "en-US".
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
@@ -391,8 +393,11 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
 
 Any feedback, issues and feature requests are welcome.
 
-If you faced an issue please report it to [Atata.Configuration.Json Issues](https://github.com/atata-framework/atata-configuration-json/issues), write to [Atata Gitter](https://gitter.im/atata-framework/atata-configuration-json) or just mail to yevgeniy.shunevych@gmail.com.
+If you faced an issue please report it to [Atata.Configuration.Json Issues](https://github.com/atata-framework/atata-configuration-json/issues),
+write to [Atata.Configuration.Json Gitter](https://gitter.im/atata-framework/atata-configuration-json)
+or just mail to yevgeniy.shunevych@gmail.com.
 
 ## License
 
-Atata is an open source software, licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+Atata is an open source software, licensed under the Apache License 2.0.
+See [LICENSE](LICENSE) for details.

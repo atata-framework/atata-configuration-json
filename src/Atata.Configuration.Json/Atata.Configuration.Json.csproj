@@ -7,7 +7,7 @@
     <Company>Yevgeniy Shunevych</Company>
     <Product>Atata Framework</Product>
     <Description>C#/.NET package for Atata configuration through JSON files.</Description>
-    <Copyright>© Yevgeniy Shunevych 2017</Copyright>
+    <Copyright>© Yevgeniy Shunevych 2018</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/atata-framework/atata-configuration-json/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo.png?v2</PackageIconUrl>

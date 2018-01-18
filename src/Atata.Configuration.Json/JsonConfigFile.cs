@@ -86,36 +86,48 @@ namespace Atata.Configuration.Json
         /// <returns>The full file path.</returns>
         public static string GetFullPath(string filePath = null, string environmentAlias = null)
         {
-            string fullPath = null;
+            string path = GetRelativePath(filePath, environmentAlias);
+
+            return Path.IsPathRooted(path)
+                ? path
+                : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+        }
+
+        /// <summary>
+        /// Returns the relative path for the file using optionally <paramref name="filePath"/> and <paramref name="environmentAlias"/> arguments.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="environmentAlias">The environment alias.</param>
+        /// <returns>The relative file path.</returns>
+        public static string GetRelativePath(string filePath = null, string environmentAlias = null)
+        {
+            string path = null;
             string environmentAliasInsertion = string.IsNullOrWhiteSpace(environmentAlias) ? null : $".{environmentAlias}";
 
             if (string.IsNullOrWhiteSpace(filePath))
             {
-                fullPath = $"{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
+                path = $"{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
             }
             else
             {
                 if (filePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
                 {
-                    fullPath = $"{filePath}{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
+                    path = $"{filePath}{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
                 }
                 else if (Path.HasExtension(filePath))
                 {
                     if (environmentAliasInsertion == null)
-                        fullPath = filePath;
+                        path = filePath;
                     else
-                        fullPath = $"{Path.GetFileNameWithoutExtension(filePath)}{environmentAliasInsertion}{Path.GetExtension(filePath)}";
+                        path = $"{Path.GetFileNameWithoutExtension(filePath)}{environmentAliasInsertion}{Path.GetExtension(filePath)}";
                 }
                 else
                 {
-                    fullPath = $"{filePath}{environmentAliasInsertion}{DefaultFileExtension}";
+                    path = $"{filePath}{environmentAliasInsertion}{DefaultFileExtension}";
                 }
             }
 
-            if (!Path.IsPathRooted(fullPath))
-                fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fullPath);
-
-            return fullPath;
+            return path;
         }
     }
 }

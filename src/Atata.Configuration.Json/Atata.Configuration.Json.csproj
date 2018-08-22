@@ -32,7 +32,7 @@ Features:
     <PackageReference Include="Atata" Version="0.16.0" />
     <PackageReference Include="Atata.WebDriverExtras" Version="0.14.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>

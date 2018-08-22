@@ -59,8 +59,8 @@ namespace Atata.Configuration.Json.Tests
 
             ((List<string>)optionsCapabilities["windowTypes"]).Should().Equal("win1", "win2");
 
+            context.Options.PerformanceLoggingPreferences.IsCollectingNetworkEvents.Should().BeFalse();
             context.Options.PerformanceLoggingPreferences.IsCollectingPageEvents.Should().BeFalse();
-            context.Options.PerformanceLoggingPreferences.IsCollectingTimelineEvents.Should().BeFalse();
             context.Options.PerformanceLoggingPreferences.BufferUsageReportingInterval.Should().Be(TimeSpan.FromSeconds(70));
             context.Options.PerformanceLoggingPreferences.TracingCategories.Should().Be("cat1,cat2");
 

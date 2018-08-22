@@ -25,8 +25,8 @@
       "encodedExtensions": [ "ZW5jLWV4dDE=", "ZW5jLWV4dDI=" ],
       "windowTypes": [ "win1", "win2" ],
       "performanceLoggingPreferences": {
+        "isCollectingNetworkEvents": false,
         "IsCollectingPageEvents": false,
-        "isCollectingTimelineEvents": false,
         "bufferUsageReportingInterval": "00:01:10",
         "tracingCategories": [ "cat1", "cat2" ]
       },

@@ -46,7 +46,8 @@
     },
     "service": {
       "port": 555,
-      "whitelistedIPAddresses":  "5.5.5.5,7.7.7.7"
+      "hostName": "127.0.0.1",
+      "whitelistedIPAddresses": "5.5.5.5,7.7.7.7"
     }
   }
 }

@@ -87,6 +87,7 @@ namespace Atata.Configuration.Json.Tests
             context.Options.MinidumpPath.Should().Be("mdp");
 
             context.Service.Port.Should().Be(555);
+            context.Service.HostName.Should().Be("127.0.0.1");
             context.Service.WhitelistedIPAddresses.Should().Be("5.5.5.5,7.7.7.7");
 
             context.CommandTimeout.Should().Be(TimeSpan.FromMinutes(1));

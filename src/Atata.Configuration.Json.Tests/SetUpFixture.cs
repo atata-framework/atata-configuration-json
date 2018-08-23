@@ -13,7 +13,6 @@ namespace Atata.Configuration.Json.Tests
             DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverAliases.Firefox);
             DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverAliases.InternetExplorer);
             DriverJsonMapperAliases.Register<EdgeDriverJsonMapperOverride>(DriverAliases.Edge);
-            DriverJsonMapperAliases.Register<PhantomJSDriverJsonMapperOverride>(DriverAliases.PhantomJS);
         }
     }
 }

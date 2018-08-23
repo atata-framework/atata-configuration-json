@@ -286,9 +286,19 @@ namespace Atata.Configuration.Json.Tests
 
             var chromeCapabilities = (Dictionary<string, object>)capabilities.GetCapability(ChromeOptions.Capability);
 
-            chromeCapabilities["cap1"].Should().Be(true);
-            chromeCapabilities["cap2"].Should().Be(5);
-            chromeCapabilities["cap3"].Should().Be("str");
+            chromeCapabilities.Should().Equal(new Dictionary<string, object>
+            {
+                ["detach"] = true,
+                ["cap1"] = true,
+                ["cap2"] = 5,
+                ["cap3"] = "str"
+            });
+
+            //chromeCapabilities.Should().HaveCount(4);
+            //chromeCapabilities["detach"].Should().Be(true);
+            //chromeCapabilities["cap1"].Should().Be(true);
+            //chromeCapabilities["cap2"].Should().Be(5);
+            //chromeCapabilities["cap3"].Should().Be("str");
         }
 
         [Test]

@@ -293,12 +293,6 @@ namespace Atata.Configuration.Json.Tests
                 ["cap2"] = 5,
                 ["cap3"] = "str"
             });
-
-            //chromeCapabilities.Should().HaveCount(4);
-            //chromeCapabilities["detach"].Should().Be(true);
-            //chromeCapabilities["cap1"].Should().Be(true);
-            //chromeCapabilities["cap2"].Should().Be(5);
-            //chromeCapabilities["cap3"].Should().Be("str");
         }
 
         [Test]

@@ -292,6 +292,24 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
+        public void Driver_Remote_WithoutType()
+        {
+            var context = RemoteDriverAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Configure().
+                    ApplyJsonConfig(@"Configs/RemoteFirefox.json");
+
+                builder.BuildingContext.DriverFactoryToUse.Create();
+            }
+
+            ICapabilities capabilities = context.Capabilities;
+
+            capabilities.GetCapability(CapabilityType.BrowserName).Should().Be(DriverAliases.Firefox);
+        }
+
+        [Test]
         public void Driver_Multiple()
         {
             AtataContextBuilder builder = AtataContext.Configure().

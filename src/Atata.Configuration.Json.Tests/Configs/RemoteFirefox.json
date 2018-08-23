@@ -1,0 +1,7 @@
+﻿{
+  "driver": {
+    "options": {
+      "type": "firefox"
+    }
+  }
+}

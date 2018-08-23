@@ -12,8 +12,6 @@
 
         public DriverServiceJsonSection Service { get; set; }
 
-        public DesiredCapabilitiesJsonSection Capabilities { get; set; }
-
         /// <summary>
         /// Gets or sets the command timeout in seconds.
         /// </summary>

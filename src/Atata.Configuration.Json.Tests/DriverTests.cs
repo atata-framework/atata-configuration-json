@@ -226,19 +226,6 @@ namespace Atata.Configuration.Json.Tests
             }
 
             context.RemoteAddress.Should().Be("http://127.0.0.1:8888/wd/hub");
-
-            var capabilities = context.Capabilities;
-
-            capabilities.GetCapability("cap1").Should().Be(true);
-            capabilities.GetCapability("cap2").Should().Be(5);
-            capabilities.GetCapability("cap3").Should().Be("str");
-
-            Proxy proxy = (Proxy)capabilities.GetCapability(CapabilityType.Proxy);
-
-            proxy.Kind.Should().Be(ProxyKind.Manual);
-            proxy.HttpProxy.Should().Be("http");
-            proxy.FtpProxy.Should().Be("ftp");
-
             context.CommandTimeout.Should().Be(TimeSpan.FromSeconds(100));
         }
 

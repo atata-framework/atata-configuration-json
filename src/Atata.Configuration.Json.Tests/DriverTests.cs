@@ -296,6 +296,21 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
+        public void Driver_Remote_WithTypelessOptions()
+        {
+            var context = RemoteDriverAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Configure().
+                    ApplyJsonConfig(@"Configs/RemoteTypeless.json");
+
+                Assert.Throws<ArgumentNullException>(() =>
+                    builder.BuildingContext.DriverFactoryToUse.Create());
+            }
+        }
+
+        [Test]
         public void Driver_Remote_WithoutType()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;

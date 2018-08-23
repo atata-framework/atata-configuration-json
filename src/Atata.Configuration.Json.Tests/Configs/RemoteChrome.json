@@ -1,0 +1,14 @@
+﻿{
+  "driver": {
+    "type": "remote",
+    "options": {
+      "type": "chrome",
+      "LeaveBrowserRunning": true,
+      "additionalCapabilities": {
+        "cap1": true,
+        "cap2": 5,
+        "cap3": "str"
+      }
+    }
+  }
+}

@@ -137,7 +137,7 @@
     <None Include="Configs\Chrome.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Configs\RemotePhantomJS.json">
+    <None Include="Configs\RemoteChrome.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="ScreenshotConsumers.json">

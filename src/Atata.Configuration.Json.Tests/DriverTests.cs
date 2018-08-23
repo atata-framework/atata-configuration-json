@@ -268,25 +268,27 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithCapabilitiesType()
+        public void Driver_Remote_WithOptions()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
             using (context.UseNullDriver())
             {
                 AtataContextBuilder builder = AtataContext.Configure().
-                    ApplyJsonConfig(@"Configs/RemotePhantomJS.json");
+                    ApplyJsonConfig(@"Configs/RemoteChrome.json");
 
                 builder.BuildingContext.DriverFactoryToUse.Create();
             }
 
-            var capabilities = context.Capabilities;
+            ICapabilities capabilities = context.Capabilities;
 
-            capabilities.GetCapability("cap1").Should().Be(true);
-            capabilities.GetCapability("cap2").Should().Be(5);
-            capabilities.GetCapability("cap3").Should().Be("str");
+            capabilities.GetCapability(CapabilityType.BrowserName).Should().Be(DriverAliases.Chrome);
 
-            capabilities.GetCapability(CapabilityType.BrowserName).Should().Be("phantomjs");
+            var chromeCapabilities = (Dictionary<string, object>)capabilities.GetCapability(ChromeOptions.Capability);
+
+            chromeCapabilities["cap1"].Should().Be(true);
+            chromeCapabilities["cap2"].Should().Be(5);
+            chromeCapabilities["cap3"].Should().Be("str");
         }
 
         [Test]

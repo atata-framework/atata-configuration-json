@@ -258,13 +258,13 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     }
   ],
   "driver": { // Use "driver" for single driver support.
-    "type": "chrome", // Supports: "remote", "chrome", "firefox", "internetexplorer", "safari", "opera", "edge", "phantomjs" and custom mappers registered via DriverJsonMapperAliases.Register method.
+    "type": "chrome", // Supports: "remote", "chrome", "firefox", "internetexplorer", "safari", "opera", "edge" and custom mappers registered via DriverJsonMapperAliases.Register method.
                       // Custom RemoteWebDriver type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
     "alias": "custom_alias", // Use aliases when you have several drivers of the same type.
     "remoteAddress": "http://127.0.0.1:8888/wd/hub", // Remote driver specific.
     "options": { // Configures driver options.
       "type": "chome", // Remote driver specific.
-                       // Supports: chrome, firefox, internetexplorer, safari, opera, edge, phantomjs.
+                       // Supports: chrome, firefox, internetexplorer, safari, opera, edge.
       "loggingPreferences": { // Dictionary of logType and logLevel.
                               // Invokes SetLoggingPreference method of DriverOptions for each item.
         "browser": "Info",
@@ -356,7 +356,6 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     "service": { // Configures driver service.
       "driverPath": "string",
       "driverExecutableFileName": "string",
-      "arguments": [ "string", "string" ], // PhantomJS specific.
       "{{driverServicePropertyName}}": "value" // Any property of driver specific service (e.g.: ChromeDriverService).
     },
     "commandTimeout": 60 // Sets the command timeout in seconds.

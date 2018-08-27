@@ -16,7 +16,6 @@ namespace Atata.Configuration.Json
             Register<SafariDriverJsonMapper>(DriverAliases.Safari);
             Register<OperaDriverJsonMapper>(DriverAliases.Opera);
             Register<EdgeDriverJsonMapper>(DriverAliases.Edge);
-            Register<PhantomJSDriverJsonMapper>(DriverAliases.PhantomJS);
         }
 
         public static void Register<T>(string alias)

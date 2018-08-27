@@ -54,8 +54,6 @@ namespace Atata.Configuration.Json
                     return new OperaDriverJsonMapper();
                 case DriverAliases.Edge:
                     return new EdgeDriverJsonMapper();
-                case DriverAliases.PhantomJS:
-                    return new PhantomJSDriverJsonMapper();
                 case null:
                     throw new ArgumentNullException(nameof(typeName), "Options type name is not defined.");
                 default:

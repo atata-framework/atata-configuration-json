@@ -54,14 +54,64 @@ namespace Atata.Configuration.Json
         public string Culture { get; set; }
 
         /// <summary>
-        /// Gets or sets the retry timeout in seconds.
+        /// Gets or sets the base retry timeout in seconds.
         /// </summary>
-        public double? RetryTimeout { get; set; }
+        [Obsolete("Use BaseRetryTimeout instead.")] // Obsolete since v0.17.0.
+        public double? RetryTimeout
+        {
+            get => BaseRetryTimeout;
+            set => BaseRetryTimeout = value;
+        }
 
         /// <summary>
-        /// Gets or sets the retry interval in seconds.
+        /// Gets or sets the base retry interval in seconds.
         /// </summary>
-        public double? RetryInterval { get; set; }
+        [Obsolete("Use BaseRetryInterval instead.")] // Obsolete since v0.17.0.
+        public double? RetryInterval
+        {
+            get => BaseRetryInterval;
+            set => BaseRetryInterval = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the base retry timeout in seconds.
+        /// </summary>
+        public double? BaseRetryTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the base retry interval in seconds.
+        /// </summary>
+        public double? BaseRetryInterval { get; set; }
+
+        /// <summary>
+        /// Gets or sets the element find timeout in seconds.
+        /// </summary>
+        public double? ElementFindTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the element find retry interval in seconds.
+        /// </summary>
+        public double? ElementFindRetryInterval { get; set; }
+
+        /// <summary>
+        /// Gets or sets the waiting timeout in seconds.
+        /// </summary>
+        public double? WaitingTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the waiting retry interval in seconds.
+        /// </summary>
+        public double? WaitingRetryInterval { get; set; }
+
+        /// <summary>
+        /// Gets or sets the verification timeout in seconds.
+        /// </summary>
+        public double? VerificationTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the verification retry interval in seconds.
+        /// </summary>
+        public double? VerificationRetryInterval { get; set; }
 
         public string AssertionExceptionType { get; set; }
 

@@ -23,8 +23,17 @@ namespace Atata.Configuration.Json.Tests
 
             context.AssertionExceptionType.Should().Be(typeof(NUnit.Framework.AssertionException));
 
-            context.RetryTimeout.Should().Be(TimeSpan.FromSeconds(7));
-            context.RetryInterval.Should().Be(TimeSpan.FromSeconds(0.7));
+            context.BaseRetryTimeout.Should().Be(TimeSpan.FromSeconds(7));
+            context.BaseRetryInterval.Should().Be(TimeSpan.FromSeconds(0.7));
+
+            context.ElementFindTimeout.Should().Be(TimeSpan.FromSeconds(8));
+            context.ElementFindRetryInterval.Should().Be(TimeSpan.FromSeconds(0.8));
+
+            context.WaitingTimeout.Should().Be(TimeSpan.FromSeconds(9));
+            context.WaitingRetryInterval.Should().Be(TimeSpan.FromSeconds(0.9));
+
+            context.VerificationTimeout.Should().Be(TimeSpan.FromSeconds(10));
+            context.VerificationRetryInterval.Should().Be(TimeSpan.FromSeconds(1));
 
             context.TestNameFactory().Should().Be(nameof(GeneralSettings_NUnit));
         }

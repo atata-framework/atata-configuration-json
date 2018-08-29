@@ -13,11 +13,29 @@ namespace Atata.Configuration.Json
             if (config.Culture != null)
                 builder.UseCulture(config.Culture);
 
-            if (config.RetryTimeout != null)
-                builder.UseRetryTimeout(TimeSpan.FromSeconds(config.RetryTimeout.Value));
+            if (config.BaseRetryTimeout != null)
+                builder.UseBaseRetryTimeout(TimeSpan.FromSeconds(config.BaseRetryTimeout.Value));
 
-            if (config.RetryInterval != null)
-                builder.UseRetryInterval(TimeSpan.FromSeconds(config.RetryInterval.Value));
+            if (config.BaseRetryInterval != null)
+                builder.UseBaseRetryInterval(TimeSpan.FromSeconds(config.BaseRetryInterval.Value));
+
+            if (config.ElementFindTimeout != null)
+                builder.UseElementFindTimeout(TimeSpan.FromSeconds(config.ElementFindTimeout.Value));
+
+            if (config.ElementFindRetryInterval != null)
+                builder.UseElementFindRetryInterval(TimeSpan.FromSeconds(config.ElementFindRetryInterval.Value));
+
+            if (config.WaitingTimeout != null)
+                builder.UseWaitingTimeout(TimeSpan.FromSeconds(config.WaitingTimeout.Value));
+
+            if (config.WaitingRetryInterval != null)
+                builder.UseWaitingRetryInterval(TimeSpan.FromSeconds(config.WaitingRetryInterval.Value));
+
+            if (config.VerificationTimeout != null)
+                builder.UseVerificationTimeout(TimeSpan.FromSeconds(config.VerificationTimeout.Value));
+
+            if (config.VerificationRetryInterval != null)
+                builder.UseVerificationRetryInterval(TimeSpan.FromSeconds(config.VerificationRetryInterval.Value));
 
             if (config.AssertionExceptionType != null)
                 builder.UseAssertionExceptionType(Type.GetType(config.AssertionExceptionType, true));

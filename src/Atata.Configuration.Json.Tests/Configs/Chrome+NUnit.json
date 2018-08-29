@@ -19,6 +19,12 @@
     }
   ],
   "assertionExceptionType": "NUnit.Framework.AssertionException, nunit.framework",
-  "retryTimeout": 7,
-  "retryInterval": 0.7
+  "baseRetryTimeout": 7,
+  "baseRetryInterval": 0.7,
+  "elementFindTimeout": 8,
+  "elementFindRetryInterval": 0.8,
+  "waitingTimeout": 9,
+  "waitingRetryInterval": 0.9,
+  "verificationTimeout": 10,
+  "verificationRetryInterval": 1
 }

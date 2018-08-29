@@ -367,8 +367,14 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
   "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
-  "retryTimeout": 5, // Sets the retry timeout in seconds.
-  "retryInterval": 0.5, // Sets the retry interval in seconds.
+  "baseRetryTimeout": 5, // Sets the base retry timeout in seconds.
+  "baseRetryInterval": 0.5, // Sets the base retry interval in seconds.
+  "elementFindTimeout": 5, // Sets the element find timeout in seconds.
+  "elementFindRetryInterval": 0.5, // Sets the element find retry interval in seconds.
+  "waitingTimeout": 5, // Sets the waiting timeout in seconds.
+  "waitingRetryInterval": 0.5, // Sets the waiting retry interval in seconds.
+  "verificationTimeout": 5, // Sets the verification timeout in seconds.
+  "verificationRetryInterval": 0.5, // Sets the verification retry interval in seconds.
   "logConsumers": [ // Configures list of log consumers.
     {
       "type": "nunit", // Supports: "debug", "trace", "nunit", "nlog" and custom consumers registered via LogConsumerAliases.Register method.

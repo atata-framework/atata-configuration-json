@@ -51,7 +51,7 @@ namespace Atata.Configuration.Json.Tests
             context.Options.Proxy.HttpProxy.Should().Be("http");
             context.Options.Proxy.FtpProxy.Should().Be("ftp");
 
-            context.Options.Arguments.Should().Equal("disable-extensions", "no-sandbox", "start-maximized");
+            context.Options.Arguments.Should().Equal("disable-extensions", "start-maximized");
 
             ((List<string>)optionsCapabilities["excludeSwitches"]).Should().Equal("exc-arg");
 

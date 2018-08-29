@@ -2,11 +2,11 @@
   "driver": {
     "type": "Chrome",
     "options": {
-      "arguments": [ "disable-extensions", "no-sandbox", "start-maximized" ]
+      "arguments": [ "disable-extensions", "start-maximized" ]
     }
   },
   "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
-  "culture":  "en-US",
+  "culture": "en-US",
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,

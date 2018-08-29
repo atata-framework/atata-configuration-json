@@ -7,6 +7,8 @@ namespace Atata.Configuration.Json.Tests
         [TearDown]
         public virtual void TearDown()
         {
+            AtataContext.Current?.CleanUp();
+
             JsonConfig.Current = null;
             JsonConfig.Global = null;
             CustomJsonConfig.Current = null;

@@ -7,35 +7,46 @@ namespace Atata.Configuration.Json
     internal static class JsonConfigManager<TConfig>
         where TConfig : JsonConfig<TConfig>
     {
-        internal static void UpdateGlobalValue(string jsonContent)
+        internal static void UpdateGlobalValue(string jsonContent, TConfig config)
         {
-            PropertyInfo configProperty = GetConfigProperty(nameof(JsonConfig.Global));
+            PropertyInfo globalConfigProperty = GetConfigProperty(nameof(JsonConfig.Global));
 
-            if (configProperty.GetValue(null, null) is TConfig currentConfig)
+            if (globalConfigProperty.GetValue(null, null) is TConfig currentConfig)
                 JsonConvert.PopulateObject(jsonContent, currentConfig);
             else
-                currentConfig = JsonConvert.DeserializeObject<TConfig>(jsonContent);
-
-            configProperty.SetValue(null, currentConfig, null);
+                globalConfigProperty.SetValue(null, config, null);
         }
 
         internal static void UpdateCurrentValue(string jsonContent, TConfig config)
         {
-            PropertyInfo configProperty = GetConfigProperty(nameof(JsonConfig.Current));
+            PropertyInfo currentConfigProperty = GetConfigProperty(nameof(JsonConfig.Current));
 
-            if (configProperty.GetValue(null, null) is TConfig currentConfig)
+            if (currentConfigProperty.GetValue(null, null) is TConfig currentConfig)
                 JsonConvert.PopulateObject(jsonContent, currentConfig);
             else
-                currentConfig = config;
+                currentConfigProperty.SetValue(null, config, null);
+        }
 
-            configProperty.SetValue(null, currentConfig, null);
+        internal static void InitCurrentValue()
+        {
+            PropertyInfo currentConfigProperty = GetConfigProperty(nameof(JsonConfig.Current));
+
+            if (currentConfigProperty.GetValue(null, null) == null)
+            {
+                object globalValue = GetConfigProperty(nameof(JsonConfig.Global)).GetValue(null, null);
+
+                if (globalValue != null)
+                {
+                    string serializedGlobalValue = JsonConvert.SerializeObject(globalValue);
+                    object clonedGlobalValue = JsonConvert.DeserializeObject(serializedGlobalValue, globalValue.GetType());
+                    currentConfigProperty.SetValue(null, clonedGlobalValue, null);
+                }
+            }
         }
 
         internal static void ResetCurrentValue()
         {
-            object globalValue = GetConfigProperty(nameof(JsonConfig.Global)).GetValue(null, null);
-
-            GetConfigProperty(nameof(JsonConfig.Current)).SetValue(null, globalValue, null);
+            GetConfigProperty(nameof(JsonConfig.Current)).SetValue(null, null, null);
         }
 
         private static PropertyInfo GetConfigProperty(string name)

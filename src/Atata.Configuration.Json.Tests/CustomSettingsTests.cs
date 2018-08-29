@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Threading.Tasks;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Atata.Configuration.Json.Tests
@@ -76,7 +77,7 @@ namespace Atata.Configuration.Json.Tests
             });
 
             CustomJsonConfig.Current.Drivers.Should().HaveCount(1);
-            CustomJsonConfig.Current.Drivers[0].Options.Arguments.Should().Equal("disable-extensions", "no-sandbox");
+            CustomJsonConfig.Current.Drivers[0].Options.Arguments.Should().Equal("disable-extensions");
         }
 
         [Test]
@@ -98,14 +99,42 @@ namespace Atata.Configuration.Json.Tests
             CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
             CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4" });
 
-            AtataContext.Current.CleanUp();
+            AtataContext parallelAtataContext = null;
+            CustomJsonConfig parallelCustomJsonConfig = null;
 
-            CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
-            CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
-            CustomJsonConfig.Global.StringProperty.Should().Be("str");
-            CustomJsonConfig.Current.StringProperty.Should().Be("str");
-            CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
-            CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
+            Task.Run(() =>
+            {
+                parallelAtataContext = AtataContext.Configure().
+                    ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettingsOverride2.json").
+                    Build();
+
+                parallelCustomJsonConfig = CustomJsonConfig.Current;
+            }).Wait();
+
+            try
+            {
+                CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+
+                CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override");
+                CustomJsonConfig.Current.StringProperty.Should().Be("str2");
+                CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4" });
+
+                parallelCustomJsonConfig.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override2");
+                parallelCustomJsonConfig.StringProperty.Should().Be("str3");
+                parallelCustomJsonConfig.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str5" });
+
+                AtataContext.Current.CleanUp();
+
+                CustomJsonConfig.Current.Should().BeNull();
+
+                CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+                CustomJsonConfig.Global.StringProperty.Should().Be("str");
+                CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
+            }
+            finally
+            {
+                parallelAtataContext.CleanUp();
+            }
         }
     }
 }

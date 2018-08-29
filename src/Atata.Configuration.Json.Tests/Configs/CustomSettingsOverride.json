@@ -2,7 +2,7 @@
   "driver": {
     "type": "Chrome",
     "options": {
-      "arguments": [ "disable-extensions", "no-sandbox" ]
+      "arguments": [ "disable-extensions" ]
     }
   },
   "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/override",

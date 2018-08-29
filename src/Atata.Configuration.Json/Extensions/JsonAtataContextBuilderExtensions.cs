@@ -37,16 +37,21 @@ namespace Atata
 
             AtataContextBuilder resultBuilder = JsonConfigMapper.Map(config, builder);
 
-            JsonConfigManager<TConfig>.UpdateCurrentValue(jsonContent, config);
-
             if (builder == AtataContext.GlobalConfiguration)
             {
-                JsonConfigManager<TConfig>.UpdateGlobalValue(jsonContent);
+                JsonConfigManager<TConfig>.UpdateGlobalValue(jsonContent, config);
+
+                if (!resultBuilder.BuildingContext.OnBuildingActions.Contains(JsonConfigManager<TConfig>.InitCurrentValue))
+                    resultBuilder.BuildingContext.OnBuildingActions.Add(JsonConfigManager<TConfig>.InitCurrentValue);
             }
-            else if (!resultBuilder.BuildingContext.CleanUpActions.Contains(JsonConfigManager<TConfig>.ResetCurrentValue))
+            else
             {
-                resultBuilder.BuildingContext.CleanUpActions.Add(JsonConfigManager<TConfig>.ResetCurrentValue);
+                JsonConfigManager<TConfig>.InitCurrentValue();
+                JsonConfigManager<TConfig>.UpdateCurrentValue(jsonContent, config);
             }
+
+            if (!resultBuilder.BuildingContext.CleanUpActions.Contains(JsonConfigManager<TConfig>.ResetCurrentValue))
+                resultBuilder.BuildingContext.CleanUpActions.Add(JsonConfigManager<TConfig>.ResetCurrentValue);
 
             return resultBuilder;
         }

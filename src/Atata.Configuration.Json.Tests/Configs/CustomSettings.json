@@ -10,6 +10,13 @@
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "Fail",
+  "logConsumers": [
+    {
+      "type": "nunit",
+      "sectionFinish": true
+    }
+  ],
+
   "intProperty": 5,
   "stringProperty": "str",
   "boolProperty": true,

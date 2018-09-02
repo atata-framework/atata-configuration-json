@@ -36,6 +36,8 @@ namespace Atata.Configuration.Json.Tests
             context.VerificationRetryInterval.Should().Be(TimeSpan.FromSeconds(1));
 
             context.TestNameFactory().Should().Be(nameof(GeneralSettings_NUnit));
+
+            builder.Build();
         }
     }
 }

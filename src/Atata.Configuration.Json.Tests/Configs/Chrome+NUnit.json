@@ -3,6 +3,10 @@
     "type": "Chrome",
     "options": {
       "arguments": [ "disable-extensions", "start-maximized" ]
+    },
+    "service": {
+      "driverPath": "{basedir}",
+      "driverExecutableFileName": "chromedriver.exe"
     }
   },
   "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",

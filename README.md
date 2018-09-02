@@ -354,8 +354,9 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
       "{{driverOptionsPropertyName}}": "value" // Any property of driver specific options (e.g.: ChromeOptions).
     },
     "service": { // Configures driver service.
-      "driverPath": "string",
-      "driverExecutableFileName": "string",
+      "driverPath": "string", // Sets absolute or relative driver folder path.
+                              // Allows "{basedir}" value at the beginning that equals AppDomain.CurrentDomain.BaseDirectory.
+      "driverExecutableFileName": "string", // Sets the name of the driver executable file.
       "{{driverServicePropertyName}}": "value" // Any property of driver specific service (e.g.: ChromeDriverService).
     },
     "commandTimeout": 60 // Sets the command timeout in seconds.

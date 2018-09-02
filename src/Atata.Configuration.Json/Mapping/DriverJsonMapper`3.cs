@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using OpenQA.Selenium;
 
@@ -9,6 +10,8 @@ namespace Atata.Configuration.Json
             where TService : DriverService
             where TOptions : DriverOptions, new()
     {
+        public const string BaseDirectoryVariable = "{basedir}";
+
         public void Map(DriverJsonSection section, AtataContextBuilder builder)
         {
             TBuilder driverBuilder = CreateDriverBuilder(builder);
@@ -36,7 +39,7 @@ namespace Atata.Configuration.Json
                 builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 
             if (!string.IsNullOrWhiteSpace(section.Service?.DriverPath))
-                builder.WithDriverPath(section.Service.DriverPath);
+                builder.WithDriverPath(FormatDriverPath(section.Service.DriverPath));
 
             if (!string.IsNullOrWhiteSpace(section.Service?.DriverExecutableFileName))
                 builder.WithDriverExecutableFileName(section.Service.DriverExecutableFileName);
@@ -74,6 +77,13 @@ namespace Atata.Configuration.Json
 
             if (properties?.Any() ?? false)
                 AtataMapper.Map(properties, service);
+        }
+
+        private static string FormatDriverPath(string driverPath)
+        {
+            return driverPath.Contains(BaseDirectoryVariable)
+                ? driverPath.Replace(BaseDirectoryVariable, AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
+                : driverPath;
         }
     }
 }

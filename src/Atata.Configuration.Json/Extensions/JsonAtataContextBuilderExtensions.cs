@@ -53,6 +53,8 @@ namespace Atata
             if (!resultBuilder.BuildingContext.CleanUpActions.Contains(JsonConfigManager<TConfig>.ResetCurrentValue))
                 resultBuilder.BuildingContext.CleanUpActions.Add(JsonConfigManager<TConfig>.ResetCurrentValue);
 
+            resultBuilder.OnBuilding(() => AtataContext.Current.Log.Trace($"Use: \"{JsonConfigFile.GetRelativePath(filePath, environmentAlias)}\" config"));
+
             return resultBuilder;
         }
 

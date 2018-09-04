@@ -8,6 +8,8 @@
 
 C#/.NET package for [Atata](https://github.com/atata-framework/atata) configuration through JSON files.
 
+Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
+
 ## Table of Contents
 
 - [Features](#features)

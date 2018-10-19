@@ -41,8 +41,8 @@ namespace Atata.Configuration.Json
 
         public DriverJsonSection Driver
         {
-            get { return Drivers?.SingleOrDefault(); }
-            set { Drivers = new[] { value }; }
+            get { return Drivers?.FirstOrDefault(); }
+            set { Drivers = value == null ? null : new[] { value }; }
         }
 
         public LogConsumerJsonSection[] LogConsumers { get; set; }

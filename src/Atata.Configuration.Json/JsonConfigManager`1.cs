@@ -7,6 +7,12 @@ namespace Atata.Configuration.Json
     internal static class JsonConfigManager<TConfig>
         where TConfig : JsonConfig<TConfig>
     {
+        private static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
+        {
+            ContractResolver = JsonConfigContractResolver.Instance,
+            NullValueHandling = NullValueHandling.Ignore
+        };
+
         internal static void UpdateGlobalValue(string jsonContent, TConfig config)
         {
             PropertyInfo globalConfigProperty = GetConfigProperty(nameof(JsonConfig.Global));
@@ -37,7 +43,8 @@ namespace Atata.Configuration.Json
 
                 if (globalValue != null)
                 {
-                    string serializedGlobalValue = JsonConvert.SerializeObject(globalValue);
+                    string serializedGlobalValue = JsonConvert.SerializeObject(globalValue, SerializerSettings);
+
                     object clonedGlobalValue = JsonConvert.DeserializeObject(serializedGlobalValue, globalValue.GetType());
                     currentConfigProperty.SetValue(null, clonedGlobalValue, null);
                 }

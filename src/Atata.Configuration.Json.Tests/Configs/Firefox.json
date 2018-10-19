@@ -17,7 +17,7 @@
       },
       "arguments": [ "--start-maximized" ],
       "profile": {
-        "profileDirectory": "dir",
+        //"profileDirectory": "dir",
         "deleteSourceOnClean": true,
         "enableNativeEvents": true,
         "preferences": {

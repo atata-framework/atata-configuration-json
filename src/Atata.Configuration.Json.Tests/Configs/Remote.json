@@ -1,6 +1,9 @@
 ﻿{
   "driver": {
     "remoteAddress": "http://127.0.0.1:8888/wd/hub",
-    "commandTimeout": 100
+    "commandTimeout": 100,
+    "options": {
+      "type": "chrome"
+    }
   }
 }

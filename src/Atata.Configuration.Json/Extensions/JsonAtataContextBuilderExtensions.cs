@@ -37,7 +37,7 @@ namespace Atata
 
             AtataContextBuilder resultBuilder = JsonConfigMapper.Map(config, builder);
 
-            if (builder == AtataContext.GlobalConfiguration)
+            if (builder.BuildingContext == AtataContext.GlobalConfiguration.BuildingContext)
             {
                 JsonConfigManager<TConfig>.UpdateGlobalValue(jsonContent, config);
 

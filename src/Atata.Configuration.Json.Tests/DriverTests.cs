@@ -55,6 +55,32 @@ namespace Atata.Configuration.Json.Tests
             context.CommandTimeout.Should().Be(TimeSpan.FromMinutes(1));
         }
 
+        [Test]
+        public void Driver_Chrome_ThruGlobalConfiguration_AfterRuntimeConfiguration()
+        {
+            AtataContext.GlobalConfiguration.
+                UseChrome().
+                    WithCommandTimeout(TimeSpan.FromMinutes(2)).
+                ApplyJsonConfig(@"Configs/Chrome.json");
+
+            var context = ChromeAtataContextBuilderOverride.Context;
+
+            using (context.UseNullDriver())
+            {
+                AtataContextBuilder builder = AtataContext.Configure();
+
+                builder.BuildingContext.DriverFactoryToUse.Create();
+            }
+
+            VerifyChromeOptions(context.Options);
+            VerifyChromeService(context.Service);
+
+            context.CommandTimeout.Should().Be(TimeSpan.FromMinutes(1));
+
+            VerifyChromeJsonConfig(JsonConfig.Global);
+            JsonConfig.Current.Should().BeNull();
+        }
+
         private static void VerifyChromeOptions(ChromeOptions options)
         {
             var capabilities = options.ToCapabilities();

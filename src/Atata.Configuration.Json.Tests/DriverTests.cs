@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
@@ -433,7 +434,7 @@ namespace Atata.Configuration.Json.Tests
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");
 
-            var driver = JsonConfig.Global.Driver;
+            JsonConfig.Global.Drivers.Select(x => x.Type).Should().Equal(DriverAliases.Chrome, DriverAliases.Firefox);
 
             AtataContextBuilder builder = AtataContext.Configure();
 

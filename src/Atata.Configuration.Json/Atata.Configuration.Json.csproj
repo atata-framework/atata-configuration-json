@@ -20,7 +20,7 @@ Features:
 - Merged configuration via multiple files
 - Multiple environments support</Description>
     <Copyright>© Yevgeniy Shunevych 2019</Copyright>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/atata-framework/atata-configuration-json/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo_68.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>

@@ -13,7 +13,7 @@ namespace Atata.Configuration.Json.Tests
             AtataContext.Configure().
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");
 
-            CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            CustomJsonConfig.Current.BaseUrl.Should().Be("https://demo.atata.io/");
             CustomJsonConfig.Current.IntProperty.Should().Be(5);
             CustomJsonConfig.Current.StringProperty.Should().Be("str");
             CustomJsonConfig.Current.BoolProperty.Should().Be(true);
@@ -46,7 +46,7 @@ namespace Atata.Configuration.Json.Tests
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json").
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettingsOverride.json");
 
-            CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override");
+            CustomJsonConfig.Current.BaseUrl.Should().Be("https://demo.atata.io/override");
             CustomJsonConfig.Current.IntProperty.Should().Be(5);
             CustomJsonConfig.Current.StringProperty.Should().Be("str2");
             CustomJsonConfig.Current.BoolProperty.Should().Be(true);
@@ -90,8 +90,8 @@ namespace Atata.Configuration.Json.Tests
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettingsOverride.json").
                 Build();
 
-            CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
-            CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override");
+            CustomJsonConfig.Global.BaseUrl.Should().Be("https://demo.atata.io/");
+            CustomJsonConfig.Current.BaseUrl.Should().Be("https://demo.atata.io/override");
 
             CustomJsonConfig.Global.StringProperty.Should().Be("str");
             CustomJsonConfig.Current.StringProperty.Should().Be("str2");
@@ -113,13 +113,13 @@ namespace Atata.Configuration.Json.Tests
 
             try
             {
-                CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+                CustomJsonConfig.Global.BaseUrl.Should().Be("https://demo.atata.io/");
 
-                CustomJsonConfig.Current.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override");
+                CustomJsonConfig.Current.BaseUrl.Should().Be("https://demo.atata.io/override");
                 CustomJsonConfig.Current.StringProperty.Should().Be("str2");
                 CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4" });
 
-                parallelCustomJsonConfig.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/override2");
+                parallelCustomJsonConfig.BaseUrl.Should().Be("https://demo.atata.io/override2");
                 parallelCustomJsonConfig.StringProperty.Should().Be("str3");
                 parallelCustomJsonConfig.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str5" });
 
@@ -127,7 +127,7 @@ namespace Atata.Configuration.Json.Tests
 
                 CustomJsonConfig.Current.Should().BeNull();
 
-                CustomJsonConfig.Global.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+                CustomJsonConfig.Global.BaseUrl.Should().Be("https://demo.atata.io/");
                 CustomJsonConfig.Global.StringProperty.Should().Be("str");
                 CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
             }

@@ -20,10 +20,10 @@ namespace Atata.Configuration.Json.Tests
 
             JsonConfig.Current.Should().BeNull();
 
-            config.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            config.BaseUrl.Should().Be("https://demo.atata.io/");
 
             builder.BuildingContext.DriverFactories.Should().HaveCount(1);
-            builder.BuildingContext.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            builder.BuildingContext.BaseUrl.Should().Be("https://demo.atata.io/");
         }
 
         [Test]
@@ -37,12 +37,12 @@ namespace Atata.Configuration.Json.Tests
 
             CustomJsonConfig.Current.Should().BeNull();
 
-            config.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            config.BaseUrl.Should().Be("https://demo.atata.io/");
             config.IntProperty.Should().Be(5);
             config.StringArrayValues.Should().Equal(new[] { "str1", "str2", "str3" });
 
             builder.BuildingContext.DriverFactories.Should().HaveCount(1);
-            builder.BuildingContext.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            builder.BuildingContext.BaseUrl.Should().Be("https://demo.atata.io/");
         }
     }
 }

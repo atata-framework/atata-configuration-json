@@ -5,7 +5,7 @@
       "arguments": [ "disable-extensions" ]
     }
   },
-  "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/override",
+  "baseUrl": "https://demo.atata.io/override",
   "stringProperty": "str2",
   "stringArrayValues": [ "str4" ],
   "stringListValues": [ "str4" ],

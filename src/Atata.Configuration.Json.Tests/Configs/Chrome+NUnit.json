@@ -9,7 +9,7 @@
       "driverExecutableFileName": "chromedriver.exe"
     }
   },
-  "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
+  "baseUrl": "https://demo.atata.io/",
   "culture": "en-US",
   "useNUnitTestName": true,
   "logNUnitError": true,

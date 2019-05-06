@@ -5,7 +5,7 @@
       "arguments": [ "disable-extensions", "start-maximized" ]
     }
   },
-  "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
+  "baseUrl": "https://demo.atata.io/",
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,

@@ -15,7 +15,7 @@ namespace Atata.Configuration.Json.Tests
 
             var context = builder.BuildingContext;
 
-            context.BaseUrl.Should().Be("https://atata-framework.github.io/atata-sample-app/#!/");
+            context.BaseUrl.Should().Be("https://demo.atata.io/");
 
             context.Culture.Name.Should().Be("en-US");
 

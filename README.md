@@ -4,14 +4,14 @@
 [![GitHub release](https://img.shields.io/github/release/atata-framework/atata-configuration-json.svg)](https://github.com/atata-framework/atata-configuration-json/releases)
 [![Gitter](https://badges.gitter.im/atata-framework/atata-configuration-json.svg)](https://gitter.im/atata-framework/atata-configuration-json)
 [![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/enQtNDMzMzk3OTY5NjgzLTJlNzAyN2E3MzY3MDE4ZGE1ZDQzOGY2NThiYWExZTNkNDc5YjdlNzFjYmUwYjZmNDI2MDJlMGQ3ODNlMDljMzU)
-[![Docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata-framework.github.io/)
+[![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)
 [![Twitter](https://img.shields.io/badge/follow-@AtataFramework-blue.svg)](https://twitter.com/AtataFramework)
 
 C#/.NET package for [Atata](https://github.com/atata-framework/atata) configuration through JSON files.
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
-**[What's new in v1.0.0](https://atata-framework.github.io/blog/2018/10/19/atata.configuration.json-1.0.0-released/)**
+**[What's new in v1.0.0](https://atata.io/blog/2018/10/19/atata.configuration.json-1.0.0-released/)**
 
 ## Table of Contents
 
@@ -67,7 +67,7 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
       "arguments": [ "start-maximized" ]
     }
   },
-  "baseUrl": "https://atata-framework.github.io/atata-sample-app/#!/",
+  "baseUrl": "https://demo.atata.io/",
   "culture": "en-US",
   "useNUnitTestName": true,
   "logNUnitError": true,

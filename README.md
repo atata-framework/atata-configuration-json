@@ -268,7 +268,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     "alias": "custom_alias", // Use aliases when you have several drivers of the same type.
     "remoteAddress": "http://127.0.0.1:8888/wd/hub", // Remote driver specific.
     "options": { // Configures driver options.
-      "type": "chome", // Remote driver specific.
+      "type": "chrome", // Remote driver specific.
                        // Supports: chrome, firefox, internetexplorer, safari, opera, edge.
       "loggingPreferences": { // Dictionary of logType and logLevel.
                               // Invokes SetLoggingPreference method of DriverOptions for each item.

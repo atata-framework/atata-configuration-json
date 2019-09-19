@@ -113,6 +113,9 @@ namespace Atata.Configuration.Json
         /// </summary>
         public double? VerificationRetryInterval { get; set; }
 
+        /// <summary>
+        /// Gets or sets the assembly-qualified type name of the assertion exception.
+        /// </summary>
         public string AssertionExceptionType { get; set; }
 
         /// <summary>

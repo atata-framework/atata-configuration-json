@@ -124,6 +124,12 @@ namespace Atata.Configuration.Json
         /// </summary>
         public string AggregateAssertionExceptionType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the assembly-qualified type name of the aggregate assertion strategy.
+        /// The type should implement <see cref="IAggregateAssertionStrategy"/>.
+        /// </summary>
+        public string AggregateAssertionStrategyType { get; set; }
+
         public bool UseNUnitTestName { get; set; }
 
         public bool LogNUnitError { get; set; }

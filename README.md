@@ -382,8 +382,10 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
+
   "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
   "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
+  "aggregateAssertionStrategyType": "string", // Sets the type name of the aggregate assertion strategy. The type should implement IAggregateAssertionStrategy.
 
   "logConsumers": [ // Configures list of log consumers.
     {

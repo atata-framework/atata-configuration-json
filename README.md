@@ -72,6 +72,8 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
+  "assertionExceptionType": "NUnit.Framework.AssertionException, nunit.framework",
+  "useNUnitAggregateAssertionStrategy": true,
   "logConsumers": [
     {
       "type": "nunit",
@@ -121,10 +123,18 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
 ### Apply Configuration
 
 #### Default
+
 ```cs
 AtataContext.Configure().
     ApplyJsonConfig(). // Applies default "Atata.json" config.
     Build();
+```
+
+#### Default Globally
+
+```cs
+AtataContext.GlobalConfiguration.
+    ApplyJsonConfig();
 ```
 
 #### Named
@@ -156,12 +166,20 @@ AtataContext.Configure().
     Build();
 ```
 
-### Get Config Properties
+### Get Current Config Properties
 
 Use `JsonConfig.Current` to get current configuration properties.
 
 ```cs
 string baseUrl = JsonConfig.Current.BaseUrl;
+```
+
+### Get Global Config Properties
+
+Use `JsonConfig.Global` to get global configuration properties.
+
+```cs
+string baseUrl = JsonConfig.Global.BaseUrl;
 ```
 
 ### Custom Settings

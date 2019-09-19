@@ -60,6 +60,9 @@ namespace Atata.Configuration.Json
                     builder.TakeScreenshotOnNUnitError();
             }
 
+            if (config.UseNUnitAggregateAssertionStrategy)
+                builder.UseNUnitAggregateAssertionStrategy();
+
             if (config.LogConsumers != null)
             {
                 foreach (var item in config.LogConsumers)

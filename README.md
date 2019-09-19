@@ -378,14 +378,15 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "verificationTimeout": 5, // Sets the verification timeout in seconds.
   "verificationRetryInterval": 0.5, // Sets the verification retry interval in seconds.
 
+  "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
+  "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
+  "aggregateAssertionStrategyType": "string", // Sets the type name of the aggregate assertion strategy. The type should implement IAggregateAssertionStrategy.
+
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
-
-  "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
-  "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
-  "aggregateAssertionStrategyType": "string", // Sets the type name of the aggregate assertion strategy. The type should implement IAggregateAssertionStrategy.
+  "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
 
   "logConsumers": [ // Configures list of log consumers.
     {

@@ -166,7 +166,9 @@ AtataContext.Configure().
     Build();
 ```
 
-### Get Current Config Properties
+### Get Config Properties
+
+#### Current
 
 Use `JsonConfig.Current` to get current configuration properties.
 
@@ -174,7 +176,7 @@ Use `JsonConfig.Current` to get current configuration properties.
 string baseUrl = JsonConfig.Current.BaseUrl;
 ```
 
-### Get Global Config Properties
+#### Global
 
 Use `JsonConfig.Global` to get global configuration properties.
 

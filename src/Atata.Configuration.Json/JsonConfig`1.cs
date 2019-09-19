@@ -115,6 +115,12 @@ namespace Atata.Configuration.Json
 
         public string AssertionExceptionType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the assembly-qualified type name of the aggregate assertion exception.
+        /// The exception type should have public constructor with <c>IEnumerable&lt;AssertionResult&gt;</c> argument.
+        /// </summary>
+        public string AggregateAssertionExceptionType { get; set; }
+
         public bool UseNUnitTestName { get; set; }
 
         public bool LogNUnitError { get; set; }

@@ -40,6 +40,9 @@ namespace Atata.Configuration.Json
             if (config.AssertionExceptionType != null)
                 builder.UseAssertionExceptionType(Type.GetType(config.AssertionExceptionType, true));
 
+            if (config.AggregateAssertionExceptionType != null)
+                builder.UseAggregateAssertionExceptionType(Type.GetType(config.AggregateAssertionExceptionType, true));
+
             if (config.UseNUnitTestName)
                 builder.UseNUnitTestName();
 

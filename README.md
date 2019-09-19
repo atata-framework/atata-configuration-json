@@ -368,11 +368,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   },
   "baseUrl": "string",
   "culture": "string", // For example: "en-US".
-  "useNUnitTestName": true,
-  "logNUnitError": true,
-  "takeScreenshotOnNUnitError": true,
-  "takeScreenshotOnNUnitErrorTitle": "string",
-  "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
+
   "baseRetryTimeout": 5, // Sets the base retry timeout in seconds.
   "baseRetryInterval": 0.5, // Sets the base retry interval in seconds.
   "elementFindTimeout": 5, // Sets the element find timeout in seconds.
@@ -381,6 +377,14 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "waitingRetryInterval": 0.5, // Sets the waiting retry interval in seconds.
   "verificationTimeout": 5, // Sets the verification timeout in seconds.
   "verificationRetryInterval": 0.5, // Sets the verification retry interval in seconds.
+
+  "useNUnitTestName": true,
+  "logNUnitError": true,
+  "takeScreenshotOnNUnitError": true,
+  "takeScreenshotOnNUnitErrorTitle": "string",
+  "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
+  "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
+
   "logConsumers": [ // Configures list of log consumers.
     {
       "type": "nunit", // Supports: "debug", "trace", "nunit", "nlog" and custom consumers registered via LogConsumerAliases.Register method.

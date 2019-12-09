@@ -14,11 +14,11 @@ namespace Atata.Configuration.Json.Tests
 
         public string[] StringArrayValues { get; set; }
 
-        public List<string> StringListValues { get; set; }
+        public List<string> StringListValues { get; } = new List<string>();
 
         public CustomSection Section { get; set; }
 
-        public List<CustomItemSection> Items { get; set; }
+        public List<CustomItemSection> Items { get; } = new List<CustomItemSection>();
 
         public class CustomSection
         {

@@ -24,7 +24,7 @@ namespace Atata.Configuration.Json.Tests
 
             builder.BuildingContext.ScreenshotConsumers.Select(x => x.GetType()).Should().BeEquivalentTo(expected.Select(x => x.GetType()));
 
-            builder.BuildingContext.ScreenshotConsumers.ShouldAllBeEquivalentTo(
+            builder.BuildingContext.ScreenshotConsumers.Should().BeEquivalentTo(
                 expected,
                 opt => opt.IncludingAllRuntimeProperties());
         }

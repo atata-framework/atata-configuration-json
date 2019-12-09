@@ -86,7 +86,7 @@ namespace Atata.Configuration.Json.Tests
             var capabilities = options.ToCapabilities();
             var optionsCapabilities = (Dictionary<string, object>)capabilities.GetCapability(ChromeOptions.Capability);
 
-            capabilities.GetCapability(CapabilityType.LoggingPreferences).ShouldBeEquivalentTo(new Dictionary<string, object>
+            capabilities.GetCapability(CapabilityType.LoggingPreferences).Should().BeEquivalentTo(new Dictionary<string, object>
             {
                 ["browser"] = "INFO",
                 ["driver"] = "WARNING"

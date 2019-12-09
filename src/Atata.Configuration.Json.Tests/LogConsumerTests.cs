@@ -22,12 +22,12 @@ namespace Atata.Configuration.Json.Tests
                 new LogConsumerInfo(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
             };
 
-            builder.BuildingContext.LogConsumers.ShouldAllBeEquivalentTo(
+            builder.BuildingContext.LogConsumers.Should().BeEquivalentTo(
                 expected,
                 opt => opt.IncludingAllRuntimeProperties().Using<ILogConsumer>(ctx =>
                     {
                         ctx.Subject.Should().BeOfType(ctx.Expectation.GetType());
-                        ctx.Subject.ShouldBeEquivalentTo(ctx.Expectation, opt2 => opt2.IncludingAllRuntimeProperties());
+                        ctx.Subject.Should().BeEquivalentTo(ctx.Expectation, opt2 => opt2.IncludingAllRuntimeProperties());
                     }).WhenTypeIs<ILogConsumer>());
         }
 

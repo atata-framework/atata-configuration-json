@@ -24,7 +24,7 @@ namespace Atata.Configuration.Json.Tests
             CustomJsonConfig.Current.Section.StringProperty.Should().Be("section_str");
             CustomJsonConfig.Current.Section.BoolProperty.Should().Be(true);
 
-            CustomJsonConfig.Current.Items.ShouldBeEquivalentTo(new[]
+            CustomJsonConfig.Current.Items.Should().BeEquivalentTo(new[]
             {
                 new CustomJsonConfig.CustomItemSection
                 {
@@ -57,7 +57,7 @@ namespace Atata.Configuration.Json.Tests
             CustomJsonConfig.Current.Section.StringProperty.Should().Be("section_str");
             CustomJsonConfig.Current.Section.BoolProperty.Should().Be(false);
 
-            CustomJsonConfig.Current.Items.ShouldBeEquivalentTo(new[]
+            CustomJsonConfig.Current.Items.Should().BeEquivalentTo(new[]
             {
                 new CustomJsonConfig.CustomItemSection
                 {

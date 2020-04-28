@@ -15,6 +15,10 @@ namespace Atata.Configuration.Json
         private static TConfig currentThreadStaticConfig;
 
         private static TConfig currentStaticConfig;
+
+#if NET46 || NETSTANDARD2_0
+        private static System.Threading.AsyncLocal<TConfig> currentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
+#endif
 #pragma warning restore S2743 // Static fields should not be used in generic types
 
         /// <summary>
@@ -24,14 +28,29 @@ namespace Atata.Configuration.Json
 
         /// <summary>
         /// Gets or sets the current <see cref="JsonConfig{TConfig}"/> instance.
+        /// Keeps in sync with <see cref="AtataContext.Current"/> relying on its <see cref="AtataContext.ModeOfCurrent"/> value.
         /// </summary>
         public static TConfig Current
         {
-            get => AtataContext.IsThreadStatic ? currentThreadStaticConfig : currentStaticConfig;
+            get
+            {
+                return AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
+                    ? currentThreadStaticConfig
+#if NET46 || NETSTANDARD2_0
+                    : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
+                    ? currentAsyncLocalConfig.Value
+#endif
+                    : currentStaticConfig;
+            }
+
             set
             {
-                if (AtataContext.IsThreadStatic)
+                if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic)
                     currentThreadStaticConfig = value;
+#if NET46 || NETSTANDARD2_0
+                else if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal)
+                    currentAsyncLocalConfig.Value = value;
+#endif
                 else
                     currentStaticConfig = value;
             }

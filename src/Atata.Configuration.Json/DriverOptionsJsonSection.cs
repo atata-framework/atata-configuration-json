@@ -24,7 +24,7 @@ namespace Atata.Configuration.Json
         // Chrome and Opera specific.
         public string[] ExcludedArguments { get; set; }
 
-        // Chrome and Opera specific.
+        // Chrome, Edge and Opera specific.
         public string[] Extensions { get; set; }
 
         // Chrome and Opera specific.

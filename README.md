@@ -322,7 +322,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
       },
       "arguments": [ "string", "string" ], // Chrome, Firefox and Opera specific.
       "excludedArguments": [ "string", "string" ], // Chrome and Opera specific.
-      "extensions": [ "string", "string" ], // Chrome and Opera specific.
+      "extensions": [ "string", "string" ], // Chrome, Edge and Opera specific.
       "encodedExtensions": [ "string", "string" ], // Chrome and Opera specific.
       "windowTypes": [ "string", "string" ], // Chrome specific.
       "performanceLoggingPreferences": { // Chrome specific.

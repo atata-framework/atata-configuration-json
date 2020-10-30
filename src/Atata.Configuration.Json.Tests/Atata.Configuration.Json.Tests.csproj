@@ -12,10 +12,6 @@
     <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(Configuration)=='Debug'">
-    <DefineConstants>DEBUG</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">

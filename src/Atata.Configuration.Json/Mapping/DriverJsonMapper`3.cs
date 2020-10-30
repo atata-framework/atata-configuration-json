@@ -12,6 +12,11 @@ namespace Atata.Configuration.Json
     {
         public const string BaseDirectoryVariable = "{basedir}";
 
+        private readonly Lazy<IObjectMapper> lazyObjectMapper = new Lazy<IObjectMapper>(
+            () => new ObjectMapper(new ObjectConverter()));
+
+        protected IObjectMapper ObjectMapper => lazyObjectMapper.Value;
+
         public void Map(DriverJsonSection section, AtataContextBuilder builder)
         {
             TBuilder driverBuilder = CreateDriverBuilder(builder);
@@ -56,7 +61,7 @@ namespace Atata.Configuration.Json
             var properties = section.ExtraPropertiesMap;
 
             if (properties?.Any() ?? false)
-                AtataMapper.Map(properties, options);
+                ObjectMapper.Map(properties, options);
 
             if (section.LoggingPreferences?.Any() ?? false)
             {
@@ -76,7 +81,7 @@ namespace Atata.Configuration.Json
             var properties = section.ExtraPropertiesMap;
 
             if (properties?.Any() ?? false)
-                AtataMapper.Map(properties, service);
+                ObjectMapper.Map(properties, service);
         }
 
         private static string FormatDriverPath(string driverPath)

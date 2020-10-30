@@ -65,7 +65,7 @@ namespace Atata.Configuration.Json
 
         private void MapPerformanceLoggingPreferences(DriverPerformanceLoggingPreferencesJsonSection section, ChromePerformanceLoggingPreferences preferences)
         {
-            AtataMapper.Map(section.ExtraPropertiesMap, preferences);
+            ObjectMapper.Map(section.ExtraPropertiesMap, preferences);
 
             if (section.TracingCategories?.Any() ?? false)
                 preferences.AddTracingCategories(section.TracingCategories);

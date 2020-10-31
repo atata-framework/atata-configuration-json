@@ -10,15 +10,15 @@ namespace Atata.Configuration.Json
     public abstract class JsonConfig<TConfig> : JsonSection
         where TConfig : JsonConfig<TConfig>
     {
-        [ThreadStatic]
 #pragma warning disable S2743 // Static fields should not be used in generic types
+#if NET46 || NETSTANDARD2_0
+        private static readonly System.Threading.AsyncLocal<TConfig> CurrentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
+
+#endif
+        [ThreadStatic]
         private static TConfig currentThreadStaticConfig;
 
         private static TConfig currentStaticConfig;
-
-#if NET46 || NETSTANDARD2_0
-        private static System.Threading.AsyncLocal<TConfig> currentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
-#endif
 #pragma warning restore S2743 // Static fields should not be used in generic types
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Atata.Configuration.Json
                     ? currentThreadStaticConfig
 #if NET46 || NETSTANDARD2_0
                     : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
-                    ? currentAsyncLocalConfig.Value
+                    ? CurrentAsyncLocalConfig.Value
 #endif
                     : currentStaticConfig;
             }
@@ -49,7 +49,7 @@ namespace Atata.Configuration.Json
                     currentThreadStaticConfig = value;
 #if NET46 || NETSTANDARD2_0
                 else if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal)
-                    currentAsyncLocalConfig.Value = value;
+                    CurrentAsyncLocalConfig.Value = value;
 #endif
                 else
                     currentStaticConfig = value;

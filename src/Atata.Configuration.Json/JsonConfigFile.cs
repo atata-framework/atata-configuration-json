@@ -101,33 +101,31 @@ namespace Atata.Configuration.Json
         /// <returns>The relative file path.</returns>
         public static string GetRelativePath(string filePath = null, string environmentAlias = null)
         {
-            string path = null;
-            string environmentAliasInsertion = string.IsNullOrWhiteSpace(environmentAlias) ? null : $".{environmentAlias}";
+            string environmentAliasInsertion = string.IsNullOrWhiteSpace(environmentAlias)
+                ? null
+                : $".{environmentAlias}";
 
             if (string.IsNullOrWhiteSpace(filePath))
             {
-                path = $"{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
+                return $"{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
             }
             else
             {
                 if (filePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
                 {
-                    path = $"{filePath}{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
+                    return $"{filePath}{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
                 }
                 else if (Path.HasExtension(filePath))
                 {
-                    if (environmentAliasInsertion == null)
-                        path = filePath;
-                    else
-                        path = $"{Path.GetFileNameWithoutExtension(filePath)}{environmentAliasInsertion}{Path.GetExtension(filePath)}";
+                    return environmentAliasInsertion == null
+                        ? filePath
+                        : $"{Path.GetFileNameWithoutExtension(filePath)}{environmentAliasInsertion}{Path.GetExtension(filePath)}";
                 }
                 else
                 {
-                    path = $"{filePath}{environmentAliasInsertion}{DefaultFileExtension}";
+                    return $"{filePath}{environmentAliasInsertion}{DefaultFileExtension}";
                 }
             }
-
-            return path;
         }
     }
 }

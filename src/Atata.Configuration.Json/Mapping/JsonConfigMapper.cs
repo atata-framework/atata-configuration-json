@@ -81,6 +81,15 @@ namespace Atata.Configuration.Json
                     MapDriver(item, builder);
             }
 
+            if (config.DefaultAssemblyNamePatternToFindTypes != null)
+                builder.UseDefaultAssemblyNamePatternToFindTypes(config.DefaultAssemblyNamePatternToFindTypes);
+
+            if (config.AssemblyNamePatternToFindComponentTypes != null)
+                builder.UseAssemblyNamePatternToFindComponentTypes(config.AssemblyNamePatternToFindComponentTypes);
+
+            if (config.AssemblyNamePatternToFindAttributeTypes != null)
+                builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
+
             return builder;
         }
 

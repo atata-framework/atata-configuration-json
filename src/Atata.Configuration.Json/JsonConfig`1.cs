@@ -161,5 +161,20 @@ namespace Atata.Configuration.Json
         /// Gets or sets a value indicating whether to use <see cref="NUnitAggregateAssertionStrategy"/> as the aggregate assertion strategy.
         /// </summary>
         public bool UseNUnitAggregateAssertionStrategy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default assembly name pattern that is used to filter assemblies to find types in them.
+        /// </summary>
+        public string DefaultAssemblyNamePatternToFindTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the assembly name pattern that is used to filter assemblies to find component types in them.
+        /// </summary>
+        public string AssemblyNamePatternToFindComponentTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the assembly name pattern that is used to filter assemblies to find attribute types in them.
+        /// </summary>
+        public string AssemblyNamePatternToFindAttributeTypes { get; set; }
     }
 }

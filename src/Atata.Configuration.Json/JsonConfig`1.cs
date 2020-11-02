@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Atata.Configuration.Json
 {
@@ -56,17 +58,31 @@ namespace Atata.Configuration.Json
             }
         }
 
-        public DriverJsonSection[] Drivers { get; set; }
+        public List<DriverJsonSection> Drivers { get; set; }
 
+        [JsonConverter(typeof(JsonConverterWithoutPopulation))]
         public DriverJsonSection Driver
         {
-            get { return Drivers?.FirstOrDefault(); }
-            set { Drivers = value == null ? null : new[] { value }; }
+            get
+            {
+                return Drivers?.LastOrDefault();
+            }
+
+            set
+            {
+                if (value != null)
+                {
+                    if (Drivers == null)
+                        Drivers = new List<DriverJsonSection>();
+
+                    Drivers.Add(value);
+                }
+            }
         }
 
-        public LogConsumerJsonSection[] LogConsumers { get; set; }
+        public List<LogConsumerJsonSection> LogConsumers { get; set; }
 
-        public ScreenshotConsumerJsonSection[] ScreenshotConsumers { get; set; }
+        public List<ScreenshotConsumerJsonSection> ScreenshotConsumers { get; set; }
 
         public string BaseUrl { get; set; }
 

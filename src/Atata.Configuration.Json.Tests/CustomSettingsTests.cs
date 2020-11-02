@@ -76,8 +76,8 @@ namespace Atata.Configuration.Json.Tests
                 }
             });
 
-            CustomJsonConfig.Current.Drivers.Should().HaveCount(1);
-            CustomJsonConfig.Current.Drivers[0].Options.Arguments.Should().Equal("disable-extensions");
+            CustomJsonConfig.Current.Drivers.Should().HaveCount(2);
+            CustomJsonConfig.Current.Driver.Options.Arguments.Should().Equal("disable-extensions");
         }
 
         [Test]

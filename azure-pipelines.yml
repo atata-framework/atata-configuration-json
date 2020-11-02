@@ -1,0 +1,35 @@
+variables:
+  buildConfiguration: 'Release'
+  solutionPath: '**\Atata.Configuration.Json.sln'
+
+jobs:
+- job: BuildAndRunCodeAnalysis
+  displayName: Build and run code analysis
+  pool:
+    vmImage: windows-latest
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: Build solution with code analysis
+    inputs:
+      command: build
+      projects: $(solutionPath)
+      arguments: -c $(buildConfiguration) -warnaserror
+
+- job: RunTests
+  displayName: Run tests
+  pool:
+    vmImage: windows-latest
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: Build solution
+    inputs:
+      command: build
+      projects: $(solutionPath)
+      arguments: -c $(buildConfiguration) -p:RunCodeAnalysis=false
+  - task: DotNetCoreCLI@2
+    displayName: 'Run tests'
+    timeoutInMinutes: 10
+    inputs:
+      command: test
+      projects: '**\*.csproj'
+      arguments: -c $(buildConfiguration) -s "azure-pipelines.runsettings" --no-build

@@ -8,7 +8,7 @@ namespace Atata.Configuration.Json.Tests
     public class LogConsumerTests : TestFixture
     {
         [Test]
-        public void LogConsumer_AllKinds()
+        public void AllKinds()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("LogConsumers");

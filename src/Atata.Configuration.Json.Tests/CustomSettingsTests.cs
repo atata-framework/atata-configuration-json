@@ -8,7 +8,7 @@ namespace Atata.Configuration.Json.Tests
     public class CustomSettingsTests : TestFixture
     {
         [Test]
-        public void CustomSettings()
+        public void Regular()
         {
             AtataContext.Configure().
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");
@@ -40,7 +40,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void CustomSettings_Merged()
+        public void Merged()
         {
             AtataContext.Configure().
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json").
@@ -81,7 +81,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void CustomSettings_GlobalThenCurrent()
+        public void GlobalThenCurrent()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");

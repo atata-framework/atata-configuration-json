@@ -16,7 +16,7 @@ namespace Atata.Configuration.Json.Tests
     public class DriverTests : TestFixture
     {
         [Test]
-        public void Driver_Chrome()
+        public void Chrome()
         {
             var context = ChromeAtataContextBuilderOverride.Context;
 
@@ -35,7 +35,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Chrome_ThruGlobalConfiguration()
+        public void Chrome_ThruGlobalConfiguration()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/Chrome.json");
@@ -56,7 +56,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Chrome_ThruGlobalConfiguration_AfterRuntimeConfiguration()
+        public void Chrome_ThruGlobalConfiguration_AfterRuntimeConfiguration()
         {
             AtataContext.GlobalConfiguration.
                 UseChrome().
@@ -151,7 +151,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Chrome_ThruGlobalConfiguration_VerifyJsonConfig()
+        public void Chrome_ThruGlobalConfiguration_VerifyJsonConfig()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/Chrome.json");
@@ -245,7 +245,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Firefox()
+        public void Firefox()
         {
             var context = FirefoxAtataContextBuilderOverride.Context;
 
@@ -299,7 +299,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_InternetExplorer()
+        public void InternetExplorer()
         {
             var context = InternetExplorerAtataContextBuilderOverride.Context;
 
@@ -341,7 +341,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Edge()
+        public void Edge()
         {
             var context = EdgeAtataContextBuilderOverride.Context;
 
@@ -365,7 +365,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote()
+        public void Remote()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -382,7 +382,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithOptions()
+        public void Remote_WithOptions()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -410,7 +410,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithTypelessOptions()
+        public void Remote_WithTypelessOptions()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -425,7 +425,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithoutType()
+        public void Remote_WithoutType()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -443,7 +443,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Multiple()
+        public void Multiple()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");
@@ -455,7 +455,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Multiple_ThruGlobalConfiguration()
+        public void Multiple_ThruGlobalConfiguration()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");

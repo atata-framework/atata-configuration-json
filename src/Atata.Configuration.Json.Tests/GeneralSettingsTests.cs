@@ -9,7 +9,7 @@ namespace Atata.Configuration.Json.Tests
     public class GeneralSettingsTests : TestFixture
     {
         [Test]
-        public void GeneralSettings_NUnit()
+        public void GeneralAndNUnit()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("Configs/Chrome+NUnit.json");
@@ -38,7 +38,7 @@ namespace Atata.Configuration.Json.Tests
                 context.VerificationTimeout.Should().Be(TimeSpan.FromSeconds(10));
                 context.VerificationRetryInterval.Should().Be(TimeSpan.FromSeconds(1));
 
-                context.TestNameFactory().Should().Be(nameof(GeneralSettings_NUnit));
+                context.TestNameFactory().Should().Be(nameof(GeneralAndNUnit));
 
                 context.DefaultAssemblyNamePatternToFindTypes.Should().Be("def");
                 context.AssemblyNamePatternToFindComponentTypes.Should().Be("comp");

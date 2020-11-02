@@ -43,6 +43,9 @@ namespace Atata.Configuration.Json
             if (section.CommandTimeout != null)
                 builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 
+            if (section.PortsToIgnore?.Any() ?? false)
+                builder.WithPortsToIgnore(section.PortsToIgnore);
+
             if (!string.IsNullOrWhiteSpace(section.Service?.DriverPath))
                 builder.WithDriverPath(FormatDriverPath(section.Service.DriverPath));
 

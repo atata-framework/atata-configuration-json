@@ -1,0 +1,29 @@
+﻿{
+  "attributes": {
+    "component": [
+      {
+        "type": "OrdinaryPage",
+        "properties": [
+          {
+            "name": "Prop1",
+            "attributes": [
+              {
+                "type": "FindById",
+                "value": "some-id"
+              }
+            ]
+          },
+          {
+            "name": "Prop2",
+            "attributes": [
+              {
+                "type": "FindByName",
+                "values": "some-name"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
 
 namespace Atata.Configuration.Json.Tests
 {
+    [TestFixture]
     public class TestFixture
     {
         [TearDown]

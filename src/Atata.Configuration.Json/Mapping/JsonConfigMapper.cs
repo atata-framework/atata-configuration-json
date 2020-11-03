@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Atata.Configuration.Json
 {
@@ -90,6 +91,9 @@ namespace Atata.Configuration.Json
             if (config.AssemblyNamePatternToFindAttributeTypes != null)
                 builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
 
+            if (config.Attributes != null)
+                MapAttributes(config.Attributes, builder);
+
             return builder;
         }
 
@@ -117,6 +121,62 @@ namespace Atata.Configuration.Json
         {
             IDriverJsonMapper mapper = DriverJsonMapperAliases.Resolve(section.Type);
             mapper.Map(section, builder);
+        }
+
+        private static void MapAttributes(AttributesJsonSection attributesSection, AtataContextBuilder builder)
+        {
+            AttributeMapper attributeMapper = new AttributeMapper(
+                builder.BuildingContext.AssemblyNamePatternToFindAttributeTypes ?? builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes,
+                builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes);
+
+            if (attributesSection.Global != null)
+            {
+                builder.Attributes.Global.Add(
+                    attributesSection.Global.Select(attributeMapper.Map));
+            }
+
+            if (attributesSection.Assembly != null)
+            {
+                foreach (AssemblyAttributesJsonSection assemblySection in attributesSection.Assembly)
+                {
+                    if (string.IsNullOrEmpty(assemblySection.Name))
+                        throw new ConfigurationException(
+                            "\"name\" configuration property of assembly section is not specified.");
+
+                    if (assemblySection.Attributes != null)
+                        builder.Attributes.Assembly(assemblySection.Name).Add(
+                            assemblySection.Attributes.Select(attributeMapper.Map));
+                }
+            }
+
+            if (attributesSection.Component != null)
+            {
+                foreach (ComponentAttributesJsonSection componentSection in attributesSection.Component)
+                {
+                    if (string.IsNullOrEmpty(componentSection.Type))
+                        throw new ConfigurationException(
+                            "\"type\" configuration property of component section is not specified.");
+
+                    var componentAttributesBuilder = builder.Attributes.Component(componentSection.Type);
+
+                    if (componentSection.Attributes != null)
+                        componentAttributesBuilder.Add(componentSection.Attributes.Select(attributeMapper.Map));
+
+                    if (componentSection.Properties != null)
+                    {
+                        foreach (PropertyAttributesJsonSection propertySection in componentSection.Properties)
+                        {
+                            if (string.IsNullOrEmpty(propertySection.Name))
+                                throw new ConfigurationException(
+                                    "\"name\" configuration property of property section is not specified.");
+
+                            if (propertySection.Attributes != null)
+                                componentAttributesBuilder.Property(propertySection.Name).Add(
+                                    propertySection.Attributes.Select(attributeMapper.Map));
+                        }
+                    }
+                }
+            }
         }
     }
 }

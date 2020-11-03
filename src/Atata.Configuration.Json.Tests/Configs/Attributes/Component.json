@@ -1,0 +1,15 @@
+﻿{
+  "attributes": {
+    "component": [
+      {
+        "type": "OrdinaryPage",
+        "attributes": [
+          {
+            "type": "url",
+            "url": "/some-url"
+          }
+        ]
+      }
+    ]
+  }
+}

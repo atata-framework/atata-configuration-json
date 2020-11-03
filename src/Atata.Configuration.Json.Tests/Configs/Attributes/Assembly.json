@@ -1,0 +1,24 @@
+﻿{
+  "attributes": {
+    "assembly": [
+      {
+        "name": "Atata.Configuration.Json.Tests",
+        "attributes": [
+          {
+            "type": "FindById",
+            "value": "some-id"
+          }
+        ]
+      },
+      {
+        "name": "Atata",
+        "attributes": [
+          {
+            "type": "FindByName",
+            "values": "some-name"
+          }
+        ]
+      }
+    ]
+  }
+}

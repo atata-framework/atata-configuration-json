@@ -192,5 +192,10 @@ namespace Atata.Configuration.Json
         /// Gets or sets the assembly name pattern that is used to filter assemblies to find attribute types in them.
         /// </summary>
         public string AssemblyNamePatternToFindAttributeTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the attributes.
+        /// </summary>
+        public AttributesJsonSection Attributes { get; set; }
     }
 }

@@ -33,6 +33,8 @@ namespace Atata.Configuration.Json
                     return (bool)token;
                 case JTokenType.TimeSpan:
                     return (TimeSpan)token;
+                case JTokenType.Array:
+                    return ((JArray)token).Select(ConvertJToken).ToArray();
                 default:
                     return (string)token;
             }

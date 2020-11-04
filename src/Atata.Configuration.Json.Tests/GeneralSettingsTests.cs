@@ -44,8 +44,6 @@ namespace Atata.Configuration.Json.Tests
                 context.AssemblyNamePatternToFindComponentTypes.Should().Be("comp");
                 context.AssemblyNamePatternToFindAttributeTypes.Should().Be("attr");
             }
-
-            builder.Build();
         }
     }
 }

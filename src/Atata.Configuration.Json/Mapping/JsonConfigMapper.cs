@@ -47,6 +47,9 @@ namespace Atata.Configuration.Json
             if (config.AggregateAssertionStrategyType != null)
                 builder.UseAggregateAssertionStrategy(ActivatorEx.CreateInstance<IAggregateAssertionStrategy>(config.AggregateAssertionStrategyType));
 
+            if (config.WarningReportStrategyType != null)
+                builder.UseWarningReportStrategy(ActivatorEx.CreateInstance<IWarningReportStrategy>(config.WarningReportStrategyType));
+
             if (config.UseNUnitTestName)
                 builder.UseNUnitTestName();
 

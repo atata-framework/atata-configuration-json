@@ -149,21 +149,27 @@ namespace Atata.Configuration.Json
         public double? VerificationRetryInterval { get; set; }
 
         /// <summary>
-        /// Gets or sets the assembly-qualified type name of the assertion exception.
+        /// Gets or sets the type name of the assertion exception.
         /// </summary>
         public string AssertionExceptionType { get; set; }
 
         /// <summary>
-        /// Gets or sets the assembly-qualified type name of the aggregate assertion exception.
+        /// Gets or sets the type name of the aggregate assertion exception.
         /// The exception type should have public constructor with <c>IEnumerable&lt;AssertionResult&gt;</c> argument.
         /// </summary>
         public string AggregateAssertionExceptionType { get; set; }
 
         /// <summary>
-        /// Gets or sets the assembly-qualified type name of the aggregate assertion strategy.
+        /// Gets or sets the type name of the aggregate assertion strategy.
         /// The type should implement <see cref="IAggregateAssertionStrategy"/>.
         /// </summary>
         public string AggregateAssertionStrategyType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type name of the strategy for warning assertion reporting.
+        /// The type should implement <see cref="IWarningReportStrategy"/>.
+        /// </summary>
+        public string WarningReportStrategyType { get; set; }
 
         public bool UseNUnitTestName { get; set; }
 

@@ -190,6 +190,11 @@ namespace Atata.Configuration.Json
         public bool UseNUnitWarningReportStrategy { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to enable all NUnit features for Atata.
+        /// </summary>
+        public bool UseAllNUnitFeatures { get; set; }
+
+        /// <summary>
         /// Gets or sets the default assembly name pattern that is used to filter assemblies to find types in them.
         /// </summary>
         public string DefaultAssemblyNamePatternToFindTypes { get; set; }

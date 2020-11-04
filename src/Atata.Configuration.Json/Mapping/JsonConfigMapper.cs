@@ -70,6 +70,9 @@ namespace Atata.Configuration.Json
             if (config.UseNUnitWarningReportStrategy)
                 builder.UseNUnitWarningReportStrategy();
 
+            if (config.UseAllNUnitFeatures)
+                builder.UseAllNUnitFeatures();
+
             if (config.LogConsumers != null)
             {
                 foreach (var item in config.LogConsumers)

@@ -67,6 +67,9 @@ namespace Atata.Configuration.Json
             if (config.UseNUnitAggregateAssertionStrategy)
                 builder.UseNUnitAggregateAssertionStrategy();
 
+            if (config.UseNUnitWarningReportStrategy)
+                builder.UseNUnitWarningReportStrategy();
+
             if (config.LogConsumers != null)
             {
                 foreach (var item in config.LogConsumers)

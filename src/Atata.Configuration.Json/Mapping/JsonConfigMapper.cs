@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 
 namespace Atata.Configuration.Json
 {
@@ -38,17 +39,36 @@ namespace Atata.Configuration.Json
             if (config.VerificationRetryInterval != null)
                 builder.UseVerificationRetryInterval(TimeSpan.FromSeconds(config.VerificationRetryInterval.Value));
 
+            if (config.DefaultAssemblyNamePatternToFindTypes != null)
+                builder.UseDefaultAssemblyNamePatternToFindTypes(config.DefaultAssemblyNamePatternToFindTypes);
+
+            if (config.AssemblyNamePatternToFindComponentTypes != null)
+                builder.UseAssemblyNamePatternToFindComponentTypes(config.AssemblyNamePatternToFindComponentTypes);
+
+            if (config.AssemblyNamePatternToFindAttributeTypes != null)
+                builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
+
+            Lazy<Assembly[]> lazyAssembliesToFindTypesIn = new Lazy<Assembly[]>(
+                () => AssemblyFinder.FindAllByPattern(builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes),
+                isThreadSafe: false);
+
             if (config.AssertionExceptionType != null)
-                builder.UseAssertionExceptionType(Type.GetType(config.AssertionExceptionType, true));
+                builder.UseAssertionExceptionType(
+                    TypeFinder.FindInAssemblies(config.AssertionExceptionType, lazyAssembliesToFindTypesIn.Value));
 
             if (config.AggregateAssertionExceptionType != null)
-                builder.UseAggregateAssertionExceptionType(Type.GetType(config.AggregateAssertionExceptionType, true));
+                builder.UseAggregateAssertionExceptionType(
+                    TypeFinder.FindInAssemblies(config.AggregateAssertionExceptionType, lazyAssembliesToFindTypesIn.Value));
 
             if (config.AggregateAssertionStrategyType != null)
-                builder.UseAggregateAssertionStrategy(ActivatorEx.CreateInstance<IAggregateAssertionStrategy>(config.AggregateAssertionStrategyType));
+                builder.UseAggregateAssertionStrategy(
+                    ActivatorEx.CreateInstance<IAggregateAssertionStrategy>(
+                        TypeFinder.FindInAssemblies(config.AggregateAssertionStrategyType, lazyAssembliesToFindTypesIn.Value)));
 
             if (config.WarningReportStrategyType != null)
-                builder.UseWarningReportStrategy(ActivatorEx.CreateInstance<IWarningReportStrategy>(config.WarningReportStrategyType));
+                builder.UseWarningReportStrategy(
+                    ActivatorEx.CreateInstance<IWarningReportStrategy>(
+                        TypeFinder.FindInAssemblies(config.WarningReportStrategyType, lazyAssembliesToFindTypesIn.Value)));
 
             if (config.UseNUnitTestName)
                 builder.UseNUnitTestName();
@@ -90,15 +110,6 @@ namespace Atata.Configuration.Json
                 foreach (var item in config.Drivers)
                     MapDriver(item, builder);
             }
-
-            if (config.DefaultAssemblyNamePatternToFindTypes != null)
-                builder.UseDefaultAssemblyNamePatternToFindTypes(config.DefaultAssemblyNamePatternToFindTypes);
-
-            if (config.AssemblyNamePatternToFindComponentTypes != null)
-                builder.UseAssemblyNamePatternToFindComponentTypes(config.AssemblyNamePatternToFindComponentTypes);
-
-            if (config.AssemblyNamePatternToFindAttributeTypes != null)
-                builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
 
             if (config.Attributes != null)
                 MapAttributes(config.Attributes, builder);

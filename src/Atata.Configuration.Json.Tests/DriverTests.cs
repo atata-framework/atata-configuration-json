@@ -453,9 +453,9 @@ namespace Atata.Configuration.Json.Tests
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");
 
             builder.BuildingContext.DriverFactories.Should().HaveCount(2);
-            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Chrome);
-            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Firefox);
-            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Chrome);
+            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Chrome);
         }
 
         [Test]
@@ -464,17 +464,17 @@ namespace Atata.Configuration.Json.Tests
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");
 
-            JsonConfig.Global.Drivers.Select(x => x.Type).Should().Equal(DriverAliases.Chrome, DriverAliases.Firefox);
+            JsonConfig.Global.Drivers.Select(x => x.Type).Should().Equal(DriverAliases.Firefox, DriverAliases.Chrome);
 
             AtataContextBuilder builder = AtataContext.Configure();
 
             builder.BuildingContext.DriverFactories.Should().HaveCount(2);
-            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Chrome);
-            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Firefox);
-            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Chrome);
+            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Chrome);
 
             builder.Build();
-            AtataContext.Current.Driver.Should().BeOfType<FirefoxDriver>();
+            AtataContext.Current.Driver.Should().BeOfType<ChromeDriver>();
             JsonConfig.Global.Drivers.Should().HaveCount(2);
             JsonConfig.Current.Drivers.Should().HaveCount(2);
         }

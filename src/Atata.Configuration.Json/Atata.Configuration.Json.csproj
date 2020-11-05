@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net45;net46;netstandard2.0</TargetFrameworks>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>Atata Framework</Product>
@@ -26,13 +26,9 @@ Features:
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
     <PackageTags>atata automation testing test selenium webdriver browser configuration</PackageTags>
-    <PackageReleaseNotes>1.3.0 - https://atata.io/blog/2020/04/28/atata.configuration.json-1.3.0-released/
-1.2.0 - https://atata.io/blog/2019/09/19/atata.configuration.json-1.2.0-released/
-1.1.0 - https://atata.io/blog/2019/05/13/atata.configuration.json-1.1.0-released/
-1.0.0 - https://atata.io/blog/2018/10/19/atata.configuration.json-1.0.0-released/
-0.17.0 - https://atata.io/blog/2018/09/05/atata.configuration.json-0.17.0-released/
-0.16.0 - https://atata.io/blog/2018/01/18/atata.configuration.json-0.16.0-released/
-0.15.0 - Initial release.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.4.0 - https://atata.io/blog/2020/11/05/atata.configuration.json-1.4.0-released/
+1.3.0 - https://atata.io/blog/2020/04/28/atata.configuration.json-1.3.0-released/
+1.2.0 - https://atata.io/blog/2019/09/19/atata.configuration.json-1.2.0-released/</PackageReleaseNotes>
     <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryType>git</RepositoryType>

@@ -429,7 +429,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     "global": [
       {
         "type": "attribute type",
-        "{{attrributeValueName}}": "value" // Any property or constructor parameter of attribute.
+        "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
       }
     ],
     "assembly": [
@@ -438,7 +438,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
         "attributes": [
           {
             "type": "attribute type",
-            "{{attrributeValueName}}": "value" // Any property or constructor parameter of attribute.
+            "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
           }
         ]
       }
@@ -449,7 +449,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
         "attributes": [
           {
             "type": "attribute type",
-            "{{attrributeValueName}}": "value" // Any property or constructor parameter of attribute.
+            "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
           }
         ],
         "properties": [
@@ -458,7 +458,7 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
             "attributes": [
               {
                 "type": "attribute type",
-                "{{attrributeValueName}}": "value" // Any property or constructor parameter of attribute.
+                "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
               }
             ]
           }

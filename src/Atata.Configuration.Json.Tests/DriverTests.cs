@@ -144,7 +144,7 @@ namespace Atata.Configuration.Json.Tests
             options.MinidumpPath.Should().Be("mdp");
         }
 
-        private void VerifyChromeService(ChromeDriverService service)
+        private static void VerifyChromeService(ChromeDriverService service)
         {
             service.Port.Should().Be(555);
             service.HostName.Should().Be("127.0.0.1");

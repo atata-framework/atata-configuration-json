@@ -12,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
-**[What's new in v1.4.0](https://atata.io/blog/2020/11/05/atata.configuration.json-1.4.0-released/)**
+**[What's new in v1.5.0](https://atata.io/blog/2020/12/16/atata.configuration.json-1.5.0-released/)**
 
 ## Table of Contents
 

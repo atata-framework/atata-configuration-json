@@ -12,7 +12,6 @@ namespace Atata.Configuration.Json
     public abstract class JsonConfig<TConfig> : JsonSection
         where TConfig : JsonConfig<TConfig>
     {
-#pragma warning disable S2743 // Static fields should not be used in generic types
 #if NET46 || NETSTANDARD2_0
         private static readonly System.Threading.AsyncLocal<TConfig> CurrentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
 
@@ -21,7 +20,6 @@ namespace Atata.Configuration.Json
         private static TConfig currentThreadStaticConfig;
 
         private static TConfig currentStaticConfig;
-#pragma warning restore S2743 // Static fields should not be used in generic types
 
         /// <summary>
         /// Gets or sets the global <see cref="JsonConfig{TConfig}"/> instance.

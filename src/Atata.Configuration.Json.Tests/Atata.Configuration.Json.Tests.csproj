@@ -27,7 +27,7 @@
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.28.0" />
     <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.150.1.2" />
     <PackageReference Include="Selenium.WebDriver.MicrosoftDriver" Version="17.17134.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.0.0.9566">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.15.0.24505">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

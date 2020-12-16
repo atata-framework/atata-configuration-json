@@ -16,5 +16,10 @@
         /// Gets or sets the command timeout in seconds.
         /// </summary>
         public double? CommandTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ports to ignore.
+        /// </summary>
+        public int[] PortsToIgnore { get; set; }
     }
 }

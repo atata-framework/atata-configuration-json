@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -16,7 +17,7 @@ namespace Atata.Configuration.Json.Tests
     public class DriverTests : TestFixture
     {
         [Test]
-        public void Driver_Chrome()
+        public void Chrome()
         {
             var context = ChromeAtataContextBuilderOverride.Context;
 
@@ -35,7 +36,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Chrome_ThruGlobalConfiguration()
+        public void Chrome_ThruGlobalConfiguration()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/Chrome.json");
@@ -56,7 +57,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Chrome_ThruGlobalConfiguration_AfterRuntimeConfiguration()
+        public void Chrome_ThruGlobalConfiguration_AfterRuntimeConfiguration()
         {
             AtataContext.GlobalConfiguration.
                 UseChrome().
@@ -143,7 +144,7 @@ namespace Atata.Configuration.Json.Tests
             options.MinidumpPath.Should().Be("mdp");
         }
 
-        private void VerifyChromeService(ChromeDriverService service)
+        private static void VerifyChromeService(ChromeDriverService service)
         {
             service.Port.Should().Be(555);
             service.HostName.Should().Be("127.0.0.1");
@@ -151,7 +152,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Chrome_ThruGlobalConfiguration_VerifyJsonConfig()
+        public void Chrome_ThruGlobalConfiguration_VerifyJsonConfig()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/Chrome.json");
@@ -167,85 +168,88 @@ namespace Atata.Configuration.Json.Tests
 
         private static void VerifyChromeJsonConfig(JsonConfig config)
         {
-            config.Driver.Options.LoggingPreferences.Should().Equal(
-                            new Dictionary<string, OpenQA.Selenium.LogLevel>
-                            {
-                                ["browser"] = OpenQA.Selenium.LogLevel.Info,
-                                ["driver"] = OpenQA.Selenium.LogLevel.Warning
-                            });
+            using (new AssertionScope())
+            {
+                config.Driver.Options.LoggingPreferences.Should().Equal(
+                    new Dictionary<string, OpenQA.Selenium.LogLevel>
+                    {
+                        ["browser"] = OpenQA.Selenium.LogLevel.Info,
+                        ["driver"] = OpenQA.Selenium.LogLevel.Warning
+                    });
 
-            config.Driver.Options.AdditionalCapabilities.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["cap1"] = true,
-                    ["cap2"] = 5,
-                    ["cap3"] = "str"
-                });
+                config.Driver.Options.AdditionalCapabilities.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["cap1"] = true,
+                        ["cap2"] = 5,
+                        ["cap3"] = "str"
+                    });
 
-            config.Driver.Options.GlobalAdditionalCapabilities.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["globalcap1"] = true,
-                    ["globalcap2"] = 5,
-                    ["globalcap3"] = "str"
-                });
+                config.Driver.Options.GlobalAdditionalCapabilities.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["globalcap1"] = true,
+                        ["globalcap2"] = 5,
+                        ["globalcap3"] = "str"
+                    });
 
-            config.Driver.Options.Proxy.Kind.Should().BeNull();
-            config.Driver.Options.Proxy.HttpProxy.Should().Be("http");
-            config.Driver.Options.Proxy.FtpProxy.Should().Be("ftp");
+                config.Driver.Options.Proxy.Kind.Should().BeNull();
+                config.Driver.Options.Proxy.HttpProxy.Should().Be("http");
+                config.Driver.Options.Proxy.FtpProxy.Should().Be("ftp");
 
-            config.Driver.Options.Arguments.Should().Equal("disable-extensions", "start-maximized");
-            config.Driver.Options.ExcludedArguments.Should().Equal("exc-arg");
+                config.Driver.Options.Arguments.Should().Equal("disable-extensions", "start-maximized");
+                config.Driver.Options.ExcludedArguments.Should().Equal("exc-arg");
 
-            config.Driver.Options.EncodedExtensions.Should().Equal("ZW5jLWV4dDE=", "ZW5jLWV4dDI=");
+                config.Driver.Options.EncodedExtensions.Should().Equal("ZW5jLWV4dDE=", "ZW5jLWV4dDI=");
 
-            config.Driver.Options.WindowTypes.Should().Equal("win1", "win2");
+                config.Driver.Options.WindowTypes.Should().Equal("win1", "win2");
 
-            config.Driver.Options.PerformanceLoggingPreferences.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["isCollectingNetworkEvents"] = false,
-                    ["IsCollectingPageEvents"] = false,
-                    ["bufferUsageReportingInterval"] = "00:01:10"
-                });
-            config.Driver.Options.PerformanceLoggingPreferences.TracingCategories.Should().Equal("cat1", "cat2");
+                config.Driver.Options.PerformanceLoggingPreferences.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["isCollectingNetworkEvents"] = false,
+                        ["IsCollectingPageEvents"] = false,
+                        ["bufferUsageReportingInterval"] = "00:01:10"
+                    });
+                config.Driver.Options.PerformanceLoggingPreferences.TracingCategories.Should().Equal("cat1", "cat2");
 
-            config.Driver.Options.UserProfilePreferences.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["pref1"] = 7,
-                    ["pref2"] = false,
-                    ["pref3"] = "str"
-                });
+                config.Driver.Options.UserProfilePreferences.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["pref1"] = 7,
+                        ["pref2"] = false,
+                        ["pref3"] = "str"
+                    });
 
-            config.Driver.Options.LocalStatePreferences.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["pref1"] = 2.7,
-                    ["pref2"] = true,
-                    ["pref3"] = string.Empty
-                });
+                config.Driver.Options.LocalStatePreferences.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["pref1"] = 2.7,
+                        ["pref2"] = true,
+                        ["pref3"] = string.Empty
+                    });
 
-            config.Driver.Options.MobileEmulationDeviceName.Should().Be("emul");
+                config.Driver.Options.MobileEmulationDeviceName.Should().Be("emul");
 
-            config.Driver.Options.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["LeaveBrowserRunning"] = true,
-                    ["minidumpPath"] = "mdp"
-                });
+                config.Driver.Options.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["LeaveBrowserRunning"] = true,
+                        ["minidumpPath"] = "mdp"
+                    });
 
-            config.Driver.Service.ExtraPropertiesMap.Should().Equal(
-                new Dictionary<string, object>
-                {
-                    ["port"] = 555,
-                    ["hostName"] = "127.0.0.1",
-                    ["whitelistedIPAddresses"] = "5.5.5.5,7.7.7.7"
-                });
+                config.Driver.Service.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["port"] = 555,
+                        ["hostName"] = "127.0.0.1",
+                        ["whitelistedIPAddresses"] = "5.5.5.5,7.7.7.7"
+                    });
+            }
         }
 
         [Test]
-        public void Driver_Firefox()
+        public void Firefox()
         {
             var context = FirefoxAtataContextBuilderOverride.Context;
 
@@ -299,7 +303,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_InternetExplorer()
+        public void InternetExplorer()
         {
             var context = InternetExplorerAtataContextBuilderOverride.Context;
 
@@ -341,7 +345,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Edge()
+        public void Edge()
         {
             var context = EdgeAtataContextBuilderOverride.Context;
 
@@ -365,7 +369,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote()
+        public void Remote()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -382,7 +386,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithOptions()
+        public void Remote_WithOptions()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -410,7 +414,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithTypelessOptions()
+        public void Remote_WithTypelessOptions()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -425,7 +429,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Remote_WithoutType()
+        public void Remote_WithoutType()
         {
             var context = RemoteDriverAtataContextBuilderOverride.Context;
 
@@ -443,36 +447,58 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void Driver_Multiple()
+        public void Multiple()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");
 
             builder.BuildingContext.DriverFactories.Should().HaveCount(2);
-            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Chrome);
-            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Firefox);
-            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Chrome);
+            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Chrome);
         }
 
         [Test]
-        public void Driver_Multiple_ThruGlobalConfiguration()
+        public void Multiple_ThruGlobalConfiguration()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig(@"Configs/MultipleDrivers.json");
 
-            JsonConfig.Global.Drivers.Select(x => x.Type).Should().Equal(DriverAliases.Chrome, DriverAliases.Firefox);
+            JsonConfig.Global.Drivers.Select(x => x.Type).Should().Equal(DriverAliases.Firefox, DriverAliases.Chrome);
 
             AtataContextBuilder builder = AtataContext.Configure();
 
             builder.BuildingContext.DriverFactories.Should().HaveCount(2);
-            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Chrome);
-            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Firefox);
-            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Firefox);
+            builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Chrome);
+            builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Chrome);
 
             builder.Build();
-            AtataContext.Current.Driver.Should().BeOfType<FirefoxDriver>();
+            AtataContext.Current.Driver.Should().BeOfType<ChromeDriver>();
             JsonConfig.Global.Drivers.Should().HaveCount(2);
             JsonConfig.Current.Drivers.Should().HaveCount(2);
+        }
+
+        [Test]
+        public void Multiple_ViaMultipleConfigs()
+        {
+            AtataContextBuilder builder = AtataContext.Configure().
+                ApplyJsonConfig(@"Configs/Edge.json").
+                ApplyJsonConfig(@"Configs/Firefox.json").
+                ApplyJsonConfig(@"Configs/Chrome.json");
+
+            builder.BuildingContext.DriverFactories.Should().HaveCount(3);
+
+            using (new AssertionScope())
+            {
+                builder.BuildingContext.DriverFactories[0].Alias.Should().Be(DriverAliases.Edge);
+                builder.BuildingContext.DriverFactories[1].Alias.Should().Be(DriverAliases.Firefox);
+                builder.BuildingContext.DriverFactories[2].Alias.Should().Be(DriverAliases.Chrome);
+                builder.BuildingContext.DriverFactoryToUse.Alias.Should().Be(DriverAliases.Chrome);
+            }
+
+            JsonConfig.Current.Drivers.Should().HaveCount(3);
+            VerifyChromeJsonConfig(JsonConfig.Current);
         }
     }
 }

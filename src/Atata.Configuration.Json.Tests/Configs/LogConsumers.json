@@ -7,7 +7,10 @@
     {
       "type": "trace",
       "minLevel": "Trace",
-      "sectionFinish": true
+      "sectionFinish": true,
+      "messageNestingLevelIndent": "_ ",
+      "messageStartSectionPrefix": "S:",
+      "messageEndSectionPrefix": "E:"
     },
     {
       "type": "nunit",

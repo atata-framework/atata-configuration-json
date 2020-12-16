@@ -8,7 +8,7 @@ namespace Atata.Configuration.Json.Tests
     public class CustomSettingsTests : TestFixture
     {
         [Test]
-        public void CustomSettings()
+        public void Regular()
         {
             AtataContext.Configure().
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");
@@ -40,7 +40,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void CustomSettings_Merged()
+        public void Merged()
         {
             AtataContext.Configure().
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json").
@@ -76,12 +76,12 @@ namespace Atata.Configuration.Json.Tests
                 }
             });
 
-            CustomJsonConfig.Current.Drivers.Should().HaveCount(1);
-            CustomJsonConfig.Current.Drivers[0].Options.Arguments.Should().Equal("disable-extensions");
+            CustomJsonConfig.Current.Drivers.Should().HaveCount(2);
+            CustomJsonConfig.Current.Driver.Options.Arguments.Should().Equal("disable-extensions");
         }
 
         [Test]
-        public void CustomSettings_GlobalThenCurrent()
+        public void GlobalThenCurrent()
         {
             AtataContext.GlobalConfiguration.
                 ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettings.json");

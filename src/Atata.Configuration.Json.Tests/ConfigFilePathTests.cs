@@ -9,7 +9,7 @@ namespace Atata.Configuration.Json.Tests
     public class ConfigFilePathTests : TestFixture
     {
         [Test]
-        public void ConfigFilePath_Default()
+        public void Default()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig();
@@ -18,7 +18,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_Default_WithAlias()
+        public void Default_WithAlias()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig(environmentAlias: "QA");
@@ -27,7 +27,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FileName()
+        public void FileName()
         {
             string filePath = "Simple.json";
 
@@ -38,7 +38,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FileName_WithAlias()
+        public void FileName_WithAlias()
         {
             string filePath = "Simple.json";
 
@@ -49,7 +49,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FileName_WithoutExtension()
+        public void FileName_WithoutExtension()
         {
             string filePath = "Simple";
 
@@ -60,7 +60,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FileName_WithAlias_WithoutExtension()
+        public void FileName_WithAlias_WithoutExtension()
         {
             string filePath = "Simple";
 
@@ -71,7 +71,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_AbsolutePath()
+        public void AbsolutePath()
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Simple.json");
 
@@ -82,7 +82,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_AbsolutePath_WithAlias()
+        public void AbsolutePath_WithAlias()
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Simple.json");
 
@@ -93,7 +93,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FolderPath()
+        public void FolderPath()
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -104,7 +104,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void ConfigFilePath_FolderPath_WithAlias()
+        public void FolderPath_WithAlias()
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory;
 

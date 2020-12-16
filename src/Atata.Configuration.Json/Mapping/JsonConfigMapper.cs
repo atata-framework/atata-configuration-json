@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Atata.Configuration.Json
 {
@@ -37,14 +39,36 @@ namespace Atata.Configuration.Json
             if (config.VerificationRetryInterval != null)
                 builder.UseVerificationRetryInterval(TimeSpan.FromSeconds(config.VerificationRetryInterval.Value));
 
+            if (config.DefaultAssemblyNamePatternToFindTypes != null)
+                builder.UseDefaultAssemblyNamePatternToFindTypes(config.DefaultAssemblyNamePatternToFindTypes);
+
+            if (config.AssemblyNamePatternToFindComponentTypes != null)
+                builder.UseAssemblyNamePatternToFindComponentTypes(config.AssemblyNamePatternToFindComponentTypes);
+
+            if (config.AssemblyNamePatternToFindAttributeTypes != null)
+                builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
+
+            Lazy<Assembly[]> lazyAssembliesToFindTypesIn = new Lazy<Assembly[]>(
+                () => AssemblyFinder.FindAllByPattern(builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes),
+                isThreadSafe: false);
+
             if (config.AssertionExceptionType != null)
-                builder.UseAssertionExceptionType(Type.GetType(config.AssertionExceptionType, true));
+                builder.UseAssertionExceptionType(
+                    TypeFinder.FindInAssemblies(config.AssertionExceptionType, lazyAssembliesToFindTypesIn.Value));
 
             if (config.AggregateAssertionExceptionType != null)
-                builder.UseAggregateAssertionExceptionType(Type.GetType(config.AggregateAssertionExceptionType, true));
+                builder.UseAggregateAssertionExceptionType(
+                    TypeFinder.FindInAssemblies(config.AggregateAssertionExceptionType, lazyAssembliesToFindTypesIn.Value));
 
             if (config.AggregateAssertionStrategyType != null)
-                builder.UseAggregateAssertionStrategy(ActivatorEx.CreateInstance<IAggregateAssertionStrategy>(config.AggregateAssertionStrategyType));
+                builder.UseAggregateAssertionStrategy(
+                    ActivatorEx.CreateInstance<IAggregateAssertionStrategy>(
+                        TypeFinder.FindInAssemblies(config.AggregateAssertionStrategyType, lazyAssembliesToFindTypesIn.Value)));
+
+            if (config.WarningReportStrategyType != null)
+                builder.UseWarningReportStrategy(
+                    ActivatorEx.CreateInstance<IWarningReportStrategy>(
+                        TypeFinder.FindInAssemblies(config.WarningReportStrategyType, lazyAssembliesToFindTypesIn.Value)));
 
             if (config.UseNUnitTestName)
                 builder.UseNUnitTestName();
@@ -62,6 +86,12 @@ namespace Atata.Configuration.Json
 
             if (config.UseNUnitAggregateAssertionStrategy)
                 builder.UseNUnitAggregateAssertionStrategy();
+
+            if (config.UseNUnitWarningReportStrategy)
+                builder.UseNUnitWarningReportStrategy();
+
+            if (config.UseAllNUnitFeatures)
+                builder.UseAllNUnitFeatures();
 
             if (config.LogConsumers != null)
             {
@@ -81,6 +111,9 @@ namespace Atata.Configuration.Json
                     MapDriver(item, builder);
             }
 
+            if (config.Attributes != null)
+                MapAttributes(config.Attributes, builder);
+
             return builder;
         }
 
@@ -93,6 +126,15 @@ namespace Atata.Configuration.Json
 
             if (section.SectionFinish == false)
                 consumerBuilder.WithoutSectionFinish();
+
+            if (section.MessageNestingLevelIndent != null)
+                consumerBuilder.WithMessageNestingLevelIndent(section.MessageNestingLevelIndent);
+
+            if (section.MessageStartSectionPrefix != null)
+                consumerBuilder.WithMessageStartSectionPrefix(section.MessageStartSectionPrefix);
+
+            if (section.MessageEndSectionPrefix != null)
+                consumerBuilder.WithMessageEndSectionPrefix(section.MessageEndSectionPrefix);
 
             consumerBuilder.WithProperties(section.ExtraPropertiesMap);
         }
@@ -108,6 +150,62 @@ namespace Atata.Configuration.Json
         {
             IDriverJsonMapper mapper = DriverJsonMapperAliases.Resolve(section.Type);
             mapper.Map(section, builder);
+        }
+
+        private static void MapAttributes(AttributesJsonSection attributesSection, AtataContextBuilder builder)
+        {
+            AttributeMapper attributeMapper = new AttributeMapper(
+                builder.BuildingContext.AssemblyNamePatternToFindAttributeTypes ?? builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes,
+                builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes);
+
+            if (attributesSection.Global != null)
+            {
+                builder.Attributes.Global.Add(
+                    attributesSection.Global.Select(attributeMapper.Map));
+            }
+
+            if (attributesSection.Assembly != null)
+            {
+                foreach (AssemblyAttributesJsonSection assemblySection in attributesSection.Assembly)
+                {
+                    if (string.IsNullOrEmpty(assemblySection.Name))
+                        throw new ConfigurationException(
+                            "\"name\" configuration property of assembly section is not specified.");
+
+                    if (assemblySection.Attributes != null)
+                        builder.Attributes.Assembly(assemblySection.Name).Add(
+                            assemblySection.Attributes.Select(attributeMapper.Map));
+                }
+            }
+
+            if (attributesSection.Component != null)
+            {
+                foreach (ComponentAttributesJsonSection componentSection in attributesSection.Component)
+                {
+                    if (string.IsNullOrEmpty(componentSection.Type))
+                        throw new ConfigurationException(
+                            "\"type\" configuration property of component section is not specified.");
+
+                    var componentAttributesBuilder = builder.Attributes.Component(componentSection.Type);
+
+                    if (componentSection.Attributes != null)
+                        componentAttributesBuilder.Add(componentSection.Attributes.Select(attributeMapper.Map));
+
+                    if (componentSection.Properties != null)
+                    {
+                        foreach (PropertyAttributesJsonSection propertySection in componentSection.Properties)
+                        {
+                            if (string.IsNullOrEmpty(propertySection.Name))
+                                throw new ConfigurationException(
+                                    "\"name\" configuration property of property section is not specified.");
+
+                            if (propertySection.Attributes != null)
+                                componentAttributesBuilder.Property(propertySection.Name).Add(
+                                    propertySection.Attributes.Select(attributeMapper.Map));
+                        }
+                    }
+                }
+            }
         }
     }
 }

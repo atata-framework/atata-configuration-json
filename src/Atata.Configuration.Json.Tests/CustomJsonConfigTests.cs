@@ -10,7 +10,7 @@ namespace Atata.Configuration.Json.Tests
     public class CustomJsonConfigTests : TestFixture
     {
         [Test]
-        public void CustomJsonConfig_Default()
+        public void Default()
         {
             string jsonContent = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Configs/CustomSettings.json"));
             JsonConfig config = JsonConvert.DeserializeObject<JsonConfig>(jsonContent);
@@ -27,7 +27,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void CustomJsonConfig_Custom()
+        public void Custom()
         {
             string jsonContent = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Configs/CustomSettings.json"));
             CustomJsonConfig config = JsonConvert.DeserializeObject<CustomJsonConfig>(jsonContent);

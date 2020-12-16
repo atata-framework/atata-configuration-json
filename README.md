@@ -2,6 +2,7 @@
 
 [![NuGet](http://img.shields.io/nuget/v/Atata.Configuration.Json.svg?style=flat)](https://www.nuget.org/packages/Atata.Configuration.Json/)
 [![GitHub release](https://img.shields.io/github/release/atata-framework/atata-configuration-json.svg)](https://github.com/atata-framework/atata-configuration-json/releases)
+[![Build status](https://dev.azure.com/atata-framework/atata-configuration-json/_apis/build/status/atata-configuration-json-ci?branchName=master)](https://dev.azure.com/atata-framework/atata-configuration-json/_build/latest?definitionId=33&branchName=master)
 [![Gitter](https://badges.gitter.im/atata-framework/atata-configuration-json.svg)](https://gitter.im/atata-framework/atata-configuration-json)
 [![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/zt-5j3lyln7-WD1ZtMDzXBhPm0yXLDBzbA)
 [![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)
@@ -11,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
-**[What's new in v1.3.0](https://atata.io/blog/2020/04/28/atata.configuration.json-1.3.0-released/)**
+**[What's new in v1.4.0](https://atata.io/blog/2020/11/05/atata.configuration.json-1.4.0-released/)**
 
 ## Table of Contents
 
@@ -23,6 +24,7 @@ Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
   - [Get Config Properties](#get-config-properties)
   - [Custom Settings](#custom-settings)
 - [JSON Schema](#json-schema)
+  - [Type Name Values](#type-name-values)
 - [Feedback](#feedback)
 - [License](#license)
 
@@ -69,18 +71,7 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
   },
   "baseUrl": "https://demo.atata.io/",
   "culture": "en-US",
-  "useNUnitTestName": true,
-  "logNUnitError": true,
-  "takeScreenshotOnNUnitError": true,
-  "assertionExceptionType": "NUnit.Framework.AssertionException, nunit.framework",
-  "useNUnitAggregateAssertionStrategy": true,
-  "logConsumers": [
-    {
-      "type": "nunit",
-      "minLevel": "Info",
-      "sectionFinish": true
-    }
-  ]
+  "useAllNUnitFeatures": true
 }
 ```
 
@@ -384,7 +375,8 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
       "driverExecutableFileName": "string", // Sets the name of the driver executable file.
       "{{driverServicePropertyName}}": "value" // Any property of driver specific service (e.g.: ChromeDriverService).
     },
-    "commandTimeout": 60 // Sets the command timeout in seconds.
+    "commandTimeout": 60, // Sets the command timeout in seconds.
+    "portsToIgnore": [ 60001, 60002 ] // Sets the ports to ignore while creating driver service.
   },
   "baseUrl": "string",
   "culture": "string", // For example: "en-US".
@@ -401,12 +393,20 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
   "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
   "aggregateAssertionStrategyType": "string", // Sets the type name of the aggregate assertion strategy. The type should implement IAggregateAssertionStrategy.
+  "warningReportStrategyType": "string", // Sets the type name of the strategy for warning assertion reporting. The type should implement IWarningReportStrategy.
 
+  "defaultAssemblyNamePatternToFindTypes": "regex_string",
+  "assemblyNamePatternToFindComponentTypes": "regex_string",
+  "assemblyNamePatternToFindAttributeTypes": "regex_string",
+
+  "useAllNUnitFeatures": true, // Indicates to enable all NUnit features for Atata.
+  // Or enable particular NUnit configuration options:
   "useNUnitTestName": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
   "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
+  "useNUnitWarningReportStrategy": true, // Indicates to use NUnitWarningReportStrategy as the strategy for warning assertion reporting.
 
   "logConsumers": [ // Configures list of log consumers.
     {
@@ -414,6 +414,9 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
                        // Custom ILogConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
       "minLevel": "Info", // Supports: Trace, Debug, Info, Warn, Error, Fatal.
       "sectionFinish": true,
+      "messageNestingLevelIndent": "- ",
+      "messageStartSectionPrefix": "> ",
+      "messageEndSectionPrefix": "< ",
       "{{logConsumerPropertyName}}": "value" // Any property of log consumer.
     }
   ],
@@ -423,9 +426,63 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
                       // Custom IScreenshotConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
       "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "folderPath", "imageFormat".
     }
-  ]
+  ],
+
+  "attributes": { // Configures context attributes.
+    "global": [
+      {
+        "type": "attribute type",
+        "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
+      }
+    ],
+    "assembly": [
+      {
+        "name": "assembly name",
+        "attributes": [
+          {
+            "type": "attribute type",
+            "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
+          }
+        ]
+      }
+    ],
+    "component": [
+      {
+        "type": "component type",
+        "attributes": [
+          {
+            "type": "attribute type",
+            "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
+          }
+        ],
+        "properties": [
+          {
+            "name": "property name",
+            "attributes": [
+              {
+                "type": "attribute type",
+                "{{attributeValueName}}": "value" // Any property or constructor parameter of attribute.
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
+
+### Type Name Values
+
+There are a few ways to specify a type name, for example, of attribute or component:
+
+- Full assembly-qualified name: `Product.Lib.SomeClass, Product.Lib`
+- Namespace-qualified name: `Product.Lib.SomeClass`
+- Partial namespace-qualified name: `Lib.SomeClass`
+- Just type name: `SomeClass`
+
+Find out more information on [AssemblyQualifiedName](https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname) docs,
+which also contains information about a format of generic and nested type names.
 
 ## Feedback
 

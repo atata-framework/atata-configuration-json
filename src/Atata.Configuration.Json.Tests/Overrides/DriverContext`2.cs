@@ -1,8 +1,10 @@
 ﻿using System;
+using OpenQA.Selenium;
 
 namespace Atata.Configuration.Json.Tests
 {
     public class DriverContext<TService, TOptions>
+        where TService : DriverService
     {
         public bool ReturnsNull { get; set; }
 
@@ -37,6 +39,7 @@ namespace Atata.Configuration.Json.Tests
             public void Dispose()
             {
                 context.ReturnsNull = false;
+                context.Service?.Dispose();
             }
         }
     }

@@ -1,0 +1,9 @@
+﻿{
+  "logConsumers": [
+    {
+      "type": "trace",
+      "minLevel": "Trace",
+      "sectionFinish": true
+    }
+  ]
+}

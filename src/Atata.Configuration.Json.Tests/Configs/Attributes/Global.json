@@ -1,0 +1,36 @@
+﻿{
+  "attributes": {
+    "global": [
+      {
+        "type": "termFindSettings",
+        "targetAttributeType": "FindById",
+        "targetType": "Field`2",
+        "case": "lowermerged"
+      },
+      {
+        "type": "findSettings",
+        "visibility": "any",
+        "targetAttributeTypes": [
+          "FindByClass",
+          "FindByFieldSetAttribute",
+          "Atata.FindByLabelAttribute, Atata"
+        ],
+        "targetTypes": [
+          "Table`2",
+          "Table`3"
+        ]
+      },
+      {
+        "type": "FindById",
+        "value": "some-id"
+      },
+      {
+        "type": "FindByName",
+        "values": [
+          "name1",
+          "name2"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+﻿{
+  "logConsumers": [
+    {
+      "type": "debug",
+      "separator": " - "
+    }
+  ]
+}

@@ -10,7 +10,7 @@ namespace Atata.Configuration.Json.Tests
     public class ScreenshotConsumerTests : TestFixture
     {
         [Test]
-        public void ScreenshotConsumer_AllKinds()
+        public void Multiple_ViaSingleConfig()
         {
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("ScreenshotConsumers");

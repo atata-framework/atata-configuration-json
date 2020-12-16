@@ -80,7 +80,7 @@ namespace Atata.Configuration.Json
 
         private void MapProfile(DriverProfileJsonSection section, FirefoxProfile profile)
         {
-            AtataMapper.Map(section.ExtraPropertiesMap, profile);
+            ObjectMapper.Map(section.ExtraPropertiesMap, profile);
 
             if (section.Extensions != null)
             {

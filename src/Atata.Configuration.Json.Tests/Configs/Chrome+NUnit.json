@@ -7,7 +7,8 @@
     "service": {
       "driverPath": "{basedir}",
       "driverExecutableFileName": "chromedriver.exe"
-    }
+    },
+    "portsToIgnore": [ 60999, 60998]
   },
   "baseUrl": "https://demo.atata.io/",
   "culture": "en-US",
@@ -29,5 +30,9 @@
   "waitingTimeout": 9,
   "waitingRetryInterval": 0.9,
   "verificationTimeout": 10,
-  "verificationRetryInterval": 1
+  "verificationRetryInterval": 1,
+
+  "defaultAssemblyNamePatternToFindTypes": "def",
+  "assemblyNamePatternToFindComponentTypes": "comp",
+  "assemblyNamePatternToFindAttributeTypes": "attr"
 }

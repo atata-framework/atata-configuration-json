@@ -18,7 +18,12 @@ namespace Atata.Configuration.Json.Tests
             LogConsumerInfo[] expected =
             {
                 new LogConsumerInfo(new DebugLogConsumer { Separator = " - " }),
-                new LogConsumerInfo(new TraceLogConsumer(), LogLevel.Trace, true),
+                new LogConsumerInfo(new TraceLogConsumer(), LogLevel.Trace, true)
+                {
+                    MessageNestingLevelIndent = "_ ",
+                    MessageStartSectionPrefix = "S:",
+                    MessageEndSectionPrefix = "E:",
+                },
                 new LogConsumerInfo(new NUnitTestContextLogConsumer(), LogLevel.Info, false),
                 new LogConsumerInfo(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, false),
                 new LogConsumerInfo(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)

@@ -127,6 +127,15 @@ namespace Atata.Configuration.Json
             if (section.SectionFinish == false)
                 consumerBuilder.WithoutSectionFinish();
 
+            if (section.MessageNestingLevelIndent != null)
+                consumerBuilder.WithMessageNestingLevelIndent(section.MessageNestingLevelIndent);
+
+            if (section.MessageStartSectionPrefix != null)
+                consumerBuilder.WithMessageStartSectionPrefix(section.MessageStartSectionPrefix);
+
+            if (section.MessageEndSectionPrefix != null)
+                consumerBuilder.WithMessageEndSectionPrefix(section.MessageEndSectionPrefix);
+
             consumerBuilder.WithProperties(section.ExtraPropertiesMap);
         }
 

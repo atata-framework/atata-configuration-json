@@ -414,6 +414,9 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
                        // Custom ILogConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
       "minLevel": "Info", // Supports: Trace, Debug, Info, Warn, Error, Fatal.
       "sectionFinish": true,
+      "messageNestingLevelIndent": "- ",
+      "messageStartSectionPrefix": "> ",
+      "messageEndSectionPrefix": "< ",
       "{{logConsumerPropertyName}}": "value" // Any property of log consumer.
     }
   ],

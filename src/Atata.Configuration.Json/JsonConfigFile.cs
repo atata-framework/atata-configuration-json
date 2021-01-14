@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 namespace Atata.Configuration.Json
@@ -55,7 +56,20 @@ namespace Atata.Configuration.Json
         {
             string fullFilePath = GetFullPath(filePath, environmentAlias);
 
-            return File.ReadAllText(fullFilePath);
+            string jsonText = File.ReadAllText(fullFilePath);
+            return ProcessJsonText(jsonText);
+        }
+
+        private static string ProcessJsonText(string jsonText)
+        {
+            Regex regex = new Regex(@"{env:.+}");
+
+            return regex.Replace(jsonText, match =>
+            {
+                string variableName = match.Value.Substring(5, match.Value.Length - 6);
+                return Environment.GetEnvironmentVariable(variableName)
+                    ?? throw new ConfigurationException($@"""{variableName}"" environment variable is not found.");
+            });
         }
 
         /// <summary>

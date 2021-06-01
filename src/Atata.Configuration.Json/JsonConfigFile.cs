@@ -62,7 +62,7 @@ namespace Atata.Configuration.Json
 
         private static string ProcessJsonText(string jsonText)
         {
-            Regex regex = new Regex(@"{env:.+}");
+            Regex regex = new Regex(@"{env:\D[^}]*}");
 
             return regex.Replace(jsonText, match =>
             {

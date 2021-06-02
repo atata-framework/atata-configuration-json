@@ -19,11 +19,14 @@ namespace Atata.Configuration.Json.Tests
             attribute1.Case.Should().Be(TermCase.LowerMerged);
             attribute1.TargetTypes.Should().Equal(typeof(Field<,>));
             attribute1.TargetAttributeTypes.Should().Equal(typeof(FindByIdAttribute));
+            attribute1.ExcludeTargetTypes.Should().Equal(typeof(CheckBox<>));
 
             var attribute2 = result[1].Should().BeOfType<FindSettingsAttribute>().Subject;
             attribute2.Visibility.Should().Be(Visibility.Any);
             attribute2.TargetTypes.Should().Equal(typeof(Table<,>), typeof(Table<,,>));
             attribute2.TargetAttributeTypes.Should().Equal(typeof(FindByClassAttribute), typeof(FindByFieldSetAttribute), typeof(FindByLabelAttribute));
+            attribute2.ExcludeTargetNames.Should().Equal("a", "b");
+            attribute2.ExcludeTargetParentTypes.Should().Equal(typeof(Frame<>));
 
             var attribute3 = result[2].Should().BeOfType<FindByIdAttribute>().Subject;
             attribute3.Values.Should().Equal("some-id");

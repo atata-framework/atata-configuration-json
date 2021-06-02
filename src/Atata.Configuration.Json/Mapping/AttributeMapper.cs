@@ -41,7 +41,7 @@ namespace Atata.Configuration.Json
 
             if (!typeof(Attribute).IsAssignableFrom(attributeType))
                 throw new ConfigurationException(
-                    $"\"type\"=\"{section.Type}\" configuration property of attribute secton doesn't reference an attribute type.");
+                    $"\"type\"=\"{section.Type}\" configuration property of attribute section doesn't reference an attribute type.");
 
             var valuesMap = section.ExtraPropertiesMap.ToDictionary(
                 x => x.Key,

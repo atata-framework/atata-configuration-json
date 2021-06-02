@@ -169,7 +169,20 @@ namespace Atata.Configuration.Json
         /// </summary>
         public string WarningReportStrategyType { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to use NUnit test name.
+        /// </summary>
         public bool UseNUnitTestName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use NUnit test suite (fixture) name.
+        /// </summary>
+        public bool UseNUnitTestSuiteName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use NUnit test suite (fixture) type.
+        /// </summary>
+        public bool UseNUnitTestSuiteType { get; set; }
 
         public bool LogNUnitError { get; set; }
 

@@ -73,6 +73,12 @@ namespace Atata.Configuration.Json
             if (config.UseNUnitTestName)
                 builder.UseNUnitTestName();
 
+            if (config.UseNUnitTestSuiteName)
+                builder.UseNUnitTestSuiteName();
+
+            if (config.UseNUnitTestSuiteType)
+                builder.UseNUnitTestSuiteType();
+
             if (config.LogNUnitError)
                 builder.LogNUnitError();
 

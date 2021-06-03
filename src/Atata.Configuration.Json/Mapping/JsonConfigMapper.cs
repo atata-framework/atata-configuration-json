@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -148,7 +149,24 @@ namespace Atata.Configuration.Json
             if (section.MessageEndSectionPrefix != null)
                 consumerBuilder.WithMessageEndSectionPrefix(section.MessageEndSectionPrefix);
 
-            consumerBuilder.WithProperties(section.ExtraPropertiesMap);
+            if (consumerBuilder.Context is NLogFileConsumer nLogFileConsumer)
+                ConfigureNLogFileConsumer(nLogFileConsumer, section.ExtraPropertiesMap);
+            else
+                consumerBuilder.WithProperties(section.ExtraPropertiesMap);
+        }
+
+        // TODO: Remove this method when NLogFileConsumer will get string path/name properties.
+        private static void ConfigureNLogFileConsumer(NLogFileConsumer consumer, Dictionary<string, object> propertiesMap)
+        {
+            foreach (var item in propertiesMap)
+            {
+                if (item.Key.Equals("FolderPath", StringComparison.OrdinalIgnoreCase))
+                    consumer.FolderPathBuilder = _ => item.Value.ToString();
+                else if (item.Key.Equals("FileName", StringComparison.OrdinalIgnoreCase))
+                    consumer.FileNameBuilder = _ => item.Value.ToString();
+                else if (item.Key.Equals("FilePath", StringComparison.OrdinalIgnoreCase))
+                    consumer.FilePathBuilder = _ => item.Value.ToString();
+            }
         }
 
         private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection section, AtataContextBuilder builder)

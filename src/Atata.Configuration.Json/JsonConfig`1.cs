@@ -200,6 +200,8 @@ namespace Atata.Configuration.Json
 
         public string TakeScreenshotOnNUnitErrorTitle { get; set; }
 
+        public bool OnCleanUpAddArtifactsToNUnitTestContext { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether to use <see cref="NUnitAggregateAssertionStrategy"/> as the aggregate assertion strategy.
         /// </summary>

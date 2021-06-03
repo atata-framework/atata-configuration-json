@@ -97,6 +97,9 @@ namespace Atata.Configuration.Json
                     builder.TakeScreenshotOnNUnitError();
             }
 
+            if (config.OnCleanUpAddArtifactsToNUnitTestContext)
+                builder.OnCleanUpAddArtifactsToNUnitTestContext();
+
             if (config.UseNUnitAggregateAssertionStrategy)
                 builder.UseNUnitAggregateAssertionStrategy();
 

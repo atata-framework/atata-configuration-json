@@ -15,6 +15,9 @@ namespace Atata.Configuration.Json
             if (config.Culture != null)
                 builder.UseCulture(config.Culture);
 
+            if (config.ArtifactsPath != null)
+                builder.UseArtifactsPath(config.ArtifactsPath);
+
             if (config.BaseRetryTimeout != null)
                 builder.UseBaseRetryTimeout(TimeSpan.FromSeconds(config.BaseRetryTimeout.Value));
 

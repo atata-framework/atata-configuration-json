@@ -87,6 +87,11 @@ namespace Atata.Configuration.Json
         public string Culture { get; set; }
 
         /// <summary>
+        /// Gets or sets the Artifacts directory path.
+        /// </summary>
+        public string ArtifactsPath { get; set; }
+
+        /// <summary>
         /// Gets or sets the base retry timeout in seconds.
         /// </summary>
         [Obsolete("Use BaseRetryTimeout instead.")] // Obsolete since v0.17.0.

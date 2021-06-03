@@ -202,6 +202,8 @@ namespace Atata.Configuration.Json
 
         public bool OnCleanUpAddArtifactsToNUnitTestContext { get; set; }
 
+        public string OnCleanUpAddDirectoryFilesToNUnitTestContext { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether to use <see cref="NUnitAggregateAssertionStrategy"/> as the aggregate assertion strategy.
         /// </summary>

@@ -100,6 +100,9 @@ namespace Atata.Configuration.Json
             if (config.OnCleanUpAddArtifactsToNUnitTestContext)
                 builder.OnCleanUpAddArtifactsToNUnitTestContext();
 
+            if (config.OnCleanUpAddDirectoryFilesToNUnitTestContext != null)
+                builder.OnCleanUpAddDirectoryFilesToNUnitTestContext(config.OnCleanUpAddDirectoryFilesToNUnitTestContext);
+
             if (config.UseNUnitAggregateAssertionStrategy)
                 builder.UseNUnitAggregateAssertionStrategy();
 

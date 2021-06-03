@@ -15,6 +15,9 @@ namespace Atata.Configuration.Json
             if (config.Culture != null)
                 builder.UseCulture(config.Culture);
 
+            if (config.TimeZone != null)
+                builder.UseTimeZone(config.TimeZone);
+
             if (config.ArtifactsPath != null)
                 builder.UseArtifactsPath(config.ArtifactsPath);
 

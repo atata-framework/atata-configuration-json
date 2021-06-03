@@ -24,6 +24,8 @@ namespace Atata.Configuration.Json.Tests
                     DateTime.Now.Year.ToString(),
                     nameof(StandardSettingsTests),
                     TestContext.CurrentContext.Test.Name));
+
+            result.ValueOf(x => x.TimeZone.Id).Should.Equal("UTC");
         }
     }
 }

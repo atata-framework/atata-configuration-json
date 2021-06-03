@@ -87,6 +87,11 @@ namespace Atata.Configuration.Json
         public string Culture { get; set; }
 
         /// <summary>
+        /// Gets or sets the time zone identifier.
+        /// </summary>
+        public string TimeZone { get; set; }
+
+        /// <summary>
         /// Gets or sets the Artifacts directory path.
         /// </summary>
         public string ArtifactsPath { get; set; }

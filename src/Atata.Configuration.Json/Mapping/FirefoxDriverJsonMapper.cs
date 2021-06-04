@@ -18,7 +18,7 @@ namespace Atata.Configuration.Json
             if (section.GlobalAdditionalCapabilities != null)
             {
                 foreach (var item in section.GlobalAdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, item.Value, true);
+                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value), true);
             }
 
             if (section.Proxy != null)
@@ -59,7 +59,7 @@ namespace Atata.Configuration.Json
                     options.SetPreference(name, castedValue);
                     break;
                 case string castedValue:
-                    options.SetPreference(name, castedValue);
+                    options.SetPreference(name, FillTemplateVariables(castedValue));
                     break;
                 case null:
                     options.SetPreference(name, null as string);
@@ -106,7 +106,7 @@ namespace Atata.Configuration.Json
                     profile.SetPreference(name, castedValue);
                     break;
                 case string castedValue:
-                    profile.SetPreference(name, castedValue);
+                    profile.SetPreference(name, FillTemplateVariables(castedValue));
                     break;
                 case null:
                     throw new ArgumentNullException(nameof(value), $"Unsupported {nameof(FirefoxProfile)} preference value: null. Supports: string, int, bool.");

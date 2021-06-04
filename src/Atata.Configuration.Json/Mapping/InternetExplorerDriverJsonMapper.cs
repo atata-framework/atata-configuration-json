@@ -16,7 +16,7 @@ namespace Atata.Configuration.Json
             if (section.GlobalAdditionalCapabilities != null)
             {
                 foreach (var item in section.GlobalAdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, item.Value, true);
+                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value), true);
             }
 
             if (section.Proxy != null)

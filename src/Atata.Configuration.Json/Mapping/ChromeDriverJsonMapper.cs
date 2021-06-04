@@ -17,7 +17,7 @@ namespace Atata.Configuration.Json
             if (section.GlobalAdditionalCapabilities != null)
             {
                 foreach (var item in section.GlobalAdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, item.Value, true);
+                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value), true);
             }
 
             if (section.Proxy != null)
@@ -47,13 +47,13 @@ namespace Atata.Configuration.Json
             if (section.UserProfilePreferences != null)
             {
                 foreach (var item in section.UserProfilePreferences.ExtraPropertiesMap)
-                    options.AddUserProfilePreference(item.Key, item.Value);
+                    options.AddUserProfilePreference(item.Key, FillTemplateVariables(item.Value));
             }
 
             if (section.LocalStatePreferences != null)
             {
                 foreach (var item in section.LocalStatePreferences.ExtraPropertiesMap)
-                    options.AddLocalStatePreference(item.Key, item.Value);
+                    options.AddLocalStatePreference(item.Key, FillTemplateVariables(item.Value));
             }
 
             if (!string.IsNullOrWhiteSpace(section.MobileEmulationDeviceName))

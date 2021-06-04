@@ -75,7 +75,7 @@ namespace Atata.Configuration.Json
             if (section.AdditionalCapabilities != null)
             {
                 foreach (var item in section.AdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, item.Value);
+                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value));
             }
         }
 
@@ -93,5 +93,13 @@ namespace Atata.Configuration.Json
                 ? driverPath.Replace(BaseDirectoryVariable, AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
                 : driverPath;
         }
+
+        protected static object FillTemplateVariables(object value) =>
+            value is string valueAsString
+                ? FillTemplateVariables(valueAsString)
+                : value;
+
+        protected static string FillTemplateVariables(string value) =>
+            AtataContext.Current?.FillTemplateString(value) ?? value;
     }
 }

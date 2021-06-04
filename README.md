@@ -12,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
-**[What's new in v1.5.0](https://atata.io/blog/2020/12/16/atata.configuration.json-1.5.0-released/)**
+**[What's new in v1.6.0](https://atata.io/blog/2021/06/04/atata.configuration.json-1.6.0-released/)**
 
 ## Table of Contents
 
@@ -380,6 +380,8 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   },
   "baseUrl": "string",
   "culture": "string", // For example: "en-US".
+  "timeZone": "string", // For example: "UTC".
+  "artifactsPath": "string",
 
   "baseRetryTimeout": 5, // Sets the base retry timeout in seconds.
   "baseRetryInterval": 0.5, // Sets the base retry interval in seconds.
@@ -402,9 +404,13 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "useAllNUnitFeatures": true, // Indicates to enable all NUnit features for Atata.
   // Or enable particular NUnit configuration options:
   "useNUnitTestName": true,
+  "useNUnitTestSuiteName": true,
+  "useNUnitTestSuiteType": true,
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
+  "onCleanUpAddArtifactsToNUnitTestContext": true,
+  "onCleanUpAddDirectoryFilesToNUnitTestContext": "string",
   "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
   "useNUnitWarningReportStrategy": true, // Indicates to use NUnitWarningReportStrategy as the strategy for warning assertion reporting.
 

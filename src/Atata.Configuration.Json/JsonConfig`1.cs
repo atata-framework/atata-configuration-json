@@ -80,9 +80,8 @@ namespace Atata.Configuration.Json
 
         /// <summary>
         /// Gets or sets the driver initialization stage.
-        /// The default value is <see cref="AtataContextDriverInitializationStage.Build"/>.
         /// </summary>
-        public AtataContextDriverInitializationStage DriverInitializationStage { get; set; } = AtataContextDriverInitializationStage.Build;
+        public AtataContextDriverInitializationStage? DriverInitializationStage { get; set; }
 
         public List<LogConsumerJsonSection> LogConsumers { get; set; }
 

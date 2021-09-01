@@ -5,6 +5,7 @@
       "arguments": [ "headless" ]
     }
   },
+  "driverInitializationStage": "OnDemand",
   "baseUrl": "https://demo.atata.io/",
   "artifactsPath": "{basedir}/artifacts/{build-start:yyyy}{test-suite-name-sanitized:/*}{test-name-sanitized:/*}",
   "timeZone": "UTC",

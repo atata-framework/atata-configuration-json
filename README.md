@@ -378,6 +378,8 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     "commandTimeout": 60, // Sets the command timeout in seconds.
     "portsToIgnore": [ 60001, 60002 ] // Sets the ports to ignore while creating driver service.
   },
+  "driverInitializationStage": "string", // Supports: "none", "build" and "onDemand".
+
   "baseUrl": "string",
   "culture": "string", // For example: "en-US".
   "timeZone": "string", // For example: "UTC".

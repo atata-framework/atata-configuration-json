@@ -15,6 +15,8 @@ namespace Atata.Configuration.Json.Tests
                 .Build()
                 .ToResultSubject();
 
+            result.ValueOf(x => x.DriverInitializationStage).Should.Equal(AtataContextDriverInitializationStage.OnDemand);
+
             result.ValueOf(x => x.BaseUrl).Should.Equal("https://demo.atata.io/");
 
             result.ValueOf(x => x.Artifacts.FullName.Value).Should.Equal(

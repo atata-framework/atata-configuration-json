@@ -8,7 +8,7 @@
       "driverPath": "{basedir}",
       "driverExecutableFileName": "chromedriver.exe"
     },
-    "portsToIgnore": [ 60999, 60998]
+    "portsToIgnore": [ 60999, 60998 ]
   },
   "baseUrl": "https://demo.atata.io/",
   "culture": "en-US",

@@ -10,6 +10,8 @@ namespace Atata.Configuration.Json
         public static AtataContextBuilder Map<TConfig>(TConfig config, AtataContextBuilder builder)
             where TConfig : JsonConfig<TConfig>
         {
+            builder.UseDriverInitializationStage(config.DriverInitializationStage);
+
             if (config.BaseUrl != null)
                 builder.UseBaseUrl(config.BaseUrl);
 

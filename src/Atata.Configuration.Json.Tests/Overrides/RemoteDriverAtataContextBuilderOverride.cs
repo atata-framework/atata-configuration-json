@@ -15,7 +15,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         public static RemoteDriverContext Context =>
-            context ?? (context = new RemoteDriverContext());
+            context ??= new RemoteDriverContext();
 
         protected override RemoteWebDriver CreateDriver(Uri remoteAddress, ICapabilities capabilities, TimeSpan commandTimeout)
         {

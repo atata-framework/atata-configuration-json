@@ -18,7 +18,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         public static DriverContext<TService, TOptions> Context =>
-            context ?? (context = new DriverContext<TService, TOptions>());
+            context ??= new DriverContext<TService, TOptions>();
 
         protected override RemoteWebDriver CreateDriver(TService service, TOptions options, TimeSpan commandTimeout)
         {

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFramework>net5.0</TargetFramework>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>Atata Framework</Product>

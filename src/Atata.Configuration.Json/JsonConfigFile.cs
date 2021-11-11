@@ -67,9 +67,19 @@ namespace Atata.Configuration.Json
             return regex.Replace(jsonText, match =>
             {
                 string variableName = match.Value.Substring(5, match.Value.Length - 6);
-                return Environment.GetEnvironmentVariable(variableName)
-                    ?? throw new ConfigurationException($@"""{variableName}"" environment variable is not found.");
+
+                string variableValue = Environment.GetEnvironmentVariable(variableName);
+
+                return variableValue != null
+                    ? EscapeToJsonString(variableValue)
+                    : throw new ConfigurationException($@"""{variableName}"" environment variable is not found.");
             });
+        }
+
+        private static string EscapeToJsonString(string value)
+        {
+            string escaped = JsonConvert.ToString(value);
+            return escaped.Substring(1, escaped.Length - 2);
         }
 
         /// <summary>

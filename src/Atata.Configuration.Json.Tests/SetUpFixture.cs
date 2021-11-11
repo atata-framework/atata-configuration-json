@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Atata.WebDriverSetup;
+using NUnit.Framework;
 
 namespace Atata.Configuration.Json.Tests
 {
@@ -13,6 +14,8 @@ namespace Atata.Configuration.Json.Tests
             DriverJsonMapperAliases.Register<FirefoxDriverJsonMapperOverride>(DriverAliases.Firefox);
             DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverAliases.InternetExplorer);
             DriverJsonMapperAliases.Register<EdgeDriverJsonMapperOverride>(DriverAliases.Edge);
+
+            DriverSetup.AutoSetUp(BrowserNames.Chrome, BrowserNames.Firefox, BrowserNames.Edge, BrowserNames.InternetExplorer);
         }
     }
 }

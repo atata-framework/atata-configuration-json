@@ -10,6 +10,8 @@
       "pageLoadStrategy": "eager"
     },
     "service": {
+      "driverPath": "{env:EdgeDriver}",
+      "driverExecutableFileName": "msedgedriver.exe",
       "package": "pack"
     }
   }

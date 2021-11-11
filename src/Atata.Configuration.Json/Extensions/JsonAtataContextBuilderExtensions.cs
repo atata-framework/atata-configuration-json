@@ -1,4 +1,5 @@
-﻿using Atata.Configuration.Json;
+﻿using System.Linq;
+using Atata.Configuration.Json;
 using Newtonsoft.Json;
 
 namespace Atata
@@ -41,8 +42,7 @@ namespace Atata
             {
                 JsonConfigManager<TConfig>.UpdateGlobalValue(jsonContent, config);
 
-                if (!resultBuilder.BuildingContext.OnBuildingActions.Contains(JsonConfigManager<TConfig>.InitCurrentValue))
-                    resultBuilder.BuildingContext.OnBuildingActions.Add(JsonConfigManager<TConfig>.InitCurrentValue);
+                EnsureInitConfigEventHandlerIsSubscribed<TConfig>(resultBuilder);
             }
             else
             {
@@ -50,10 +50,10 @@ namespace Atata
                 JsonConfigManager<TConfig>.UpdateCurrentValue(jsonContent, config);
             }
 
-            if (!resultBuilder.BuildingContext.CleanUpActions.Contains(JsonConfigManager<TConfig>.ResetCurrentValue))
-                resultBuilder.BuildingContext.CleanUpActions.Add(JsonConfigManager<TConfig>.ResetCurrentValue);
+            EnsureResetConfigEventHandlerIsSubscribed<TConfig>(resultBuilder);
 
-            resultBuilder.OnBuilding(() => AtataContext.Current.Log.Trace($"Use: \"{JsonConfigFile.GetRelativePath(filePath, environmentAlias)}\" config"));
+            resultBuilder.EventSubscriptions.Add(
+                new LogJsonConfigPathEventHandler(JsonConfigFile.GetRelativePath(filePath, environmentAlias)));
 
             return resultBuilder;
         }
@@ -69,6 +69,26 @@ namespace Atata
             where TConfig : JsonConfig<TConfig>
         {
             return JsonConfigMapper.Map((TConfig)config, builder);
+        }
+
+        private static void EnsureInitConfigEventHandlerIsSubscribed<TConfig>(AtataContextBuilder builder)
+            where TConfig : JsonConfig<TConfig>
+        {
+            bool isInitConfigSubscribed = builder.BuildingContext.EventSubscriptions
+                .Any(x => x.EventType == typeof(AtataContextInitEvent) && x.EventHandler is InitCurrentJsonConfigEventHandler<TConfig>);
+
+            if (!isInitConfigSubscribed)
+                builder.EventSubscriptions.Add(new InitCurrentJsonConfigEventHandler<TConfig>());
+        }
+
+        private static void EnsureResetConfigEventHandlerIsSubscribed<TConfig>(AtataContextBuilder builder)
+            where TConfig : JsonConfig<TConfig>
+        {
+            bool isResetConfigSubscribed = builder.BuildingContext.EventSubscriptions
+                .Any(x => x.EventType == typeof(AtataContextCleanUpEvent) && x.EventHandler is ResetCurrentJsonConfigEventHandler<TConfig>);
+
+            if (!isResetConfigSubscribed)
+                builder.EventSubscriptions.Add(new ResetCurrentJsonConfigEventHandler<TConfig>());
         }
     }
 }

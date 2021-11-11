@@ -1,16 +1,15 @@
 ﻿using System;
-using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 
 namespace Atata.Configuration.Json.Tests
 {
-    using TOptions = EdgeOptions;
-    using TService = EdgeDriverService;
+    using TOptions = OpenQA.Selenium.Edge.EdgeOptions;
+    using TService = OpenQA.Selenium.Edge.EdgeDriverService;
 
     public class EdgeAtataContextBuilderOverride : EdgeAtataContextBuilder
     {
         [ThreadStatic]
-        private static DriverContext<TService, TOptions> context;
+        private static DriverContext<TService, TOptions> s_context;
 
         public EdgeAtataContextBuilderOverride(AtataBuildingContext buildingContext)
             : base(buildingContext)
@@ -18,7 +17,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         public static DriverContext<TService, TOptions> Context =>
-            context ??= new DriverContext<TService, TOptions>();
+            s_context ??= new DriverContext<TService, TOptions>();
 
         protected override RemoteWebDriver CreateDriver(TService service, TOptions options, TimeSpan commandTimeout)
         {

@@ -6,7 +6,7 @@ namespace Atata
 {
     internal static class CheckExtensions
     {
-        internal static T Check<T>(this T value, Predicate<T> checkPredicate, string argumentName, string errorMessage = null)
+        internal static T Check<T>(this T value, Predicate<T> checkPredicate, string argumentName, string errorMessage)
         {
             if (checkPredicate != null && !checkPredicate(value))
                 throw new ArgumentException(errorMessage, argumentName);
@@ -17,17 +17,7 @@ namespace Atata
         internal static T CheckNotNull<T>(this T value, string argumentName, string errorMessage = null)
         {
             if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
-
-            return value;
-        }
-
-        internal static string CheckNotNullOrEmpty(this string value, string argumentName, string errorMessage = null)
-        {
-            if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
-            if (value == string.Empty)
-                throw new ArgumentException(ConcatMessage("Should not be empty string.", errorMessage), argumentName);
+                throw CreateArgumentNullException(argumentName, errorMessage);
 
             return value;
         }
@@ -35,9 +25,19 @@ namespace Atata
         internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string errorMessage = null)
         {
             if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
+                throw CreateArgumentNullException(argumentName, errorMessage);
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException(ConcatMessage("Should not be empty string or whitespace.", errorMessage), argumentName);
+
+            return value;
+        }
+
+        internal static string CheckNotNullOrEmpty(this string value, string argumentName, string errorMessage = null)
+        {
+            if (value == null)
+                throw CreateArgumentNullException(argumentName, errorMessage);
+            if (value.Length == 0)
+                throw new ArgumentException(ConcatMessage("Should not be empty string.", errorMessage), argumentName);
 
             return value;
         }
@@ -45,7 +45,7 @@ namespace Atata
         internal static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T> collection, string argumentName, string errorMessage = null)
         {
             if (collection == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
+                throw CreateArgumentNullException(argumentName, errorMessage);
             if (!collection.Any())
                 throw new ArgumentException(ConcatMessage("Collection should contain at least one element.", errorMessage), argumentName);
 
@@ -79,13 +79,30 @@ namespace Atata
             return value;
         }
 
-        internal static int CheckIndexNonNegative(this int value)
+        internal static int CheckIndexNonNegative(this int index)
         {
-            if (value < 0)
-                throw new ArgumentOutOfRangeException("index", value, "Index was out of range. Must be non-negative.");
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), index, "Index was out of range. Must be non-negative.");
+
+            return index;
+        }
+
+        internal static Type CheckIs<T>(this Type value, string argumentName, string errorMessage = null)
+        {
+            value.CheckNotNull(argumentName);
+
+            Type expectedType = typeof(T);
+
+            if (!expectedType.IsAssignableFrom(value))
+                throw new ArgumentException(ConcatMessage($"{value.FullName} type should be assignable to {expectedType.FullName}.", errorMessage), argumentName);
 
             return value;
         }
+
+        private static ArgumentNullException CreateArgumentNullException(string argumentName, string message) =>
+            message is null
+            ? new ArgumentNullException(argumentName)
+            : new ArgumentNullException(argumentName, message);
 
         private static string ConcatMessage(string primaryMessage, string secondaryMessage)
         {

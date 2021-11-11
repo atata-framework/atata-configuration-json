@@ -7,7 +7,7 @@ namespace Atata.Configuration.Json.Tests
     public class RemoteDriverAtataContextBuilderOverride : RemoteDriverAtataContextBuilder
     {
         [ThreadStatic]
-        private static RemoteDriverContext context;
+        private static RemoteDriverContext s_context;
 
         public RemoteDriverAtataContextBuilderOverride(AtataBuildingContext buildingContext)
             : base(buildingContext)
@@ -15,7 +15,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         public static RemoteDriverContext Context =>
-            context ??= new RemoteDriverContext();
+            s_context ??= new RemoteDriverContext();
 
         protected override RemoteWebDriver CreateDriver(Uri remoteAddress, ICapabilities capabilities, TimeSpan commandTimeout)
         {

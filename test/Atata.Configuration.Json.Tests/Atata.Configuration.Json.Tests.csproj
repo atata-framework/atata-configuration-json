@@ -2,27 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Authors>Yevgeniy Shunevych</Authors>
-    <Company>Yevgeniy Shunevych</Company>
-    <Product>Atata Framework</Product>
-    <Copyright>© Yevgeniy Shunevych 2021</Copyright>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
-    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Atata.WebDriverSetup" Version="1.2.1" />
     <PackageReference Include="FluentAssertions" Version="6.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="NLog" Version="4.7.12" />
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.15.0.24505" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>

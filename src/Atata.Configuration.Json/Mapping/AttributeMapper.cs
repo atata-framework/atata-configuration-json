@@ -7,26 +7,26 @@ namespace Atata.Configuration.Json
 {
     public class AttributeMapper
     {
-        private static readonly Dictionary<string, string> AlternativeParameterNamesMap = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> s_alternativeParameterNamesMap = new Dictionary<string, string>
         {
             ["value"] = "values",
             ["case"] = "termCase"
         };
 
-        private readonly Assembly[] assembliesToFindAttributeTypes;
+        private readonly Assembly[] _assembliesToFindAttributeTypes;
 
-        private readonly IObjectCreator objectCreator;
+        private readonly IObjectCreator _objectCreator;
 
         public AttributeMapper(string assemblyNamePatternToFindAttributeTypes, string defaultAssemblyNamePatternToFindTypes)
         {
-            assembliesToFindAttributeTypes = AssemblyFinder.FindAllByPattern(assemblyNamePatternToFindAttributeTypes);
+            _assembliesToFindAttributeTypes = AssemblyFinder.FindAllByPattern(assemblyNamePatternToFindAttributeTypes);
 
             IObjectConverter objectConverter = new ObjectConverter
             {
                 AssemblyNamePatternToFindTypes = defaultAssemblyNamePatternToFindTypes
             };
             IObjectMapper objectMapper = new ObjectMapper(objectConverter);
-            objectCreator = new ObjectCreator(objectConverter, objectMapper);
+            _objectCreator = new ObjectCreator(objectConverter, objectMapper);
         }
 
         public Attribute Map(AttributeJsonSection section)
@@ -37,7 +37,7 @@ namespace Atata.Configuration.Json
 
             string typeName = NormalizeAttributeTypeName(section.Type);
 
-            Type attributeType = TypeFinder.FindInAssemblies(typeName, assembliesToFindAttributeTypes);
+            Type attributeType = TypeFinder.FindInAssemblies(typeName, _assembliesToFindAttributeTypes);
 
             if (!typeof(Attribute).IsAssignableFrom(attributeType))
                 throw new ConfigurationException(
@@ -47,18 +47,16 @@ namespace Atata.Configuration.Json
                 x => x.Key,
                 x => PostProcessConfigurationValue(x.Key, x.Value));
 
-            return (Attribute)objectCreator.Create(attributeType, valuesMap, AlternativeParameterNamesMap);
+            return (Attribute)_objectCreator.Create(attributeType, valuesMap, s_alternativeParameterNamesMap);
         }
 
         private static object PostProcessConfigurationValue(string name, object value)
         {
-            if (name.EndsWith("AttributeType"))
-                if (value is string stringValue)
-                    return NormalizeAttributeTypeName(stringValue);
+            if (name.EndsWith("AttributeType", StringComparison.Ordinal) && value is string stringValue)
+                return NormalizeAttributeTypeName(stringValue);
 
-            if (name.EndsWith("AttributeTypes"))
-                if (value is object[] arrayValue)
-                    return arrayValue.Select(x => NormalizeAttributeTypeName(x.ToString())).ToArray();
+            if (name.EndsWith("AttributeTypes", StringComparison.Ordinal) && value is object[] arrayValue)
+                return arrayValue.Select(x => NormalizeAttributeTypeName(x.ToString())).ToArray();
 
             return value;
         }

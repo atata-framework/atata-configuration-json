@@ -5,7 +5,7 @@ namespace Atata.Configuration.Json
 {
     public static class DriverJsonMapperAliases
     {
-        private static readonly Dictionary<string, IDriverJsonMapper> AliasMapperMap = new Dictionary<string, IDriverJsonMapper>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, IDriverJsonMapper> s_aliasMapperMap = new Dictionary<string, IDriverJsonMapper>(StringComparer.OrdinalIgnoreCase);
 
         static DriverJsonMapperAliases()
         {
@@ -29,14 +29,17 @@ namespace Atata.Configuration.Json
             alias.CheckNotNullOrWhitespace(nameof(alias));
             mapper.CheckNotNull(nameof(mapper));
 
-            AliasMapperMap[alias.ToLower()] = mapper;
+            s_aliasMapperMap[alias.ToLowerInvariant()] = mapper;
         }
 
         public static IDriverJsonMapper Resolve(string alias)
         {
-            return AliasMapperMap.TryGetValue(alias ?? DriverAliases.Remote, out IDriverJsonMapper mapper)
+            return s_aliasMapperMap.TryGetValue(alias ?? DriverAliases.Remote, out IDriverJsonMapper mapper)
                 ? mapper
-                : throw new ArgumentException($"There is no JSON mapper defined for \"{alias}\" driver alias. Use one of predefined mappers or {nameof(DriverJsonMapperAliases)}.{nameof(Register)} method to register custom driver JSON mapper.", nameof(alias));
+                : throw new ArgumentException(
+                    $"There is no JSON mapper defined for \"{alias}\" driver alias. " +
+                    $"Use one of predefined mappers or {nameof(DriverJsonMapperAliases)}.{nameof(Register)} method to register custom driver JSON mapper.",
+                    nameof(alias));
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Atata.Configuration.Json
             }
         }
 
-        private void SetOptionsPreference(string name, object value, FirefoxOptions options)
+        private static void SetOptionsPreference(string name, object value, FirefoxOptions options)
         {
             switch (value)
             {
@@ -69,7 +69,7 @@ namespace Atata.Configuration.Json
             }
         }
 
-        private FirefoxProfile CreateProfile(DriverProfileJsonSection section)
+        private static FirefoxProfile CreateProfile(DriverProfileJsonSection section)
         {
             string profileDirectory = string.IsNullOrWhiteSpace(section.ProfileDirectory)
                 ? null
@@ -78,24 +78,7 @@ namespace Atata.Configuration.Json
             return new FirefoxProfile(profileDirectory, section.DeleteSourceOnClean ?? false);
         }
 
-        private void MapProfile(DriverProfileJsonSection section, FirefoxProfile profile)
-        {
-            ObjectMapper.Map(section.ExtraPropertiesMap, profile);
-
-            if (section.Extensions != null)
-            {
-                foreach (var item in section.Extensions)
-                    profile.AddExtension(item);
-            }
-
-            if (section.Preferences != null)
-            {
-                foreach (var item in section.Preferences.ExtraPropertiesMap)
-                    SetProfilePreference(item.Key, item.Value, profile);
-            }
-        }
-
-        private void SetProfilePreference(string name, object value, FirefoxProfile profile)
+        private static void SetProfilePreference(string name, object value, FirefoxProfile profile)
         {
             switch (value)
             {
@@ -112,6 +95,23 @@ namespace Atata.Configuration.Json
                     throw new ArgumentNullException(nameof(value), $"Unsupported {nameof(FirefoxProfile)} preference value: null. Supports: string, int, bool.");
                 default:
                     throw new ArgumentException($"Unsupported FirefoxProfile preference value type: {value.GetType().FullName}. Supports: bool, int, string.", nameof(value));
+            }
+        }
+
+        private void MapProfile(DriverProfileJsonSection section, FirefoxProfile profile)
+        {
+            ObjectMapper.Map(section.ExtraPropertiesMap, profile);
+
+            if (section.Extensions != null)
+            {
+                foreach (var item in section.Extensions)
+                    profile.AddExtension(item);
+            }
+
+            if (section.Preferences != null)
+            {
+                foreach (var item in section.Preferences.ExtraPropertiesMap)
+                    SetProfilePreference(item.Key, item.Value, profile);
             }
         }
     }

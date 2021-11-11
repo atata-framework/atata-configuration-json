@@ -1,6 +1,7 @@
-﻿// This file is used by Code Analysis to maintain SuppressMessage
-// attributes that are applied to this project.
-// Project-level suppressions either have no target or are given
-// a specific target and scoped to a namespace, type, member, etc.
+﻿using System.Diagnostics.CodeAnalysis;
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.Tests.CustomJsonConfig.StringArrayValues")]
+#pragma warning disable S103 // Lines should not be too long
+
+[assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.Tests.CustomJsonConfig.StringArrayValues")]
+
+#pragma warning restore S103 // Lines should not be too long

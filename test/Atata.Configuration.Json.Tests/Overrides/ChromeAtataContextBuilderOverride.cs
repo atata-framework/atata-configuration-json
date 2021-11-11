@@ -1,16 +1,15 @@
 ﻿using System;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 
 namespace Atata.Configuration.Json.Tests
 {
-    using TOptions = ChromeOptions;
-    using TService = ChromeDriverService;
+    using TOptions = OpenQA.Selenium.Chrome.ChromeOptions;
+    using TService = OpenQA.Selenium.Chrome.ChromeDriverService;
 
     public class ChromeAtataContextBuilderOverride : ChromeAtataContextBuilder
     {
         [ThreadStatic]
-        private static DriverContext<TService, TOptions> context;
+        private static DriverContext<TService, TOptions> s_context;
 
         public ChromeAtataContextBuilderOverride(AtataBuildingContext buildingContext)
             : base(buildingContext)
@@ -18,7 +17,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         public static DriverContext<TService, TOptions> Context =>
-            context ??= new DriverContext<TService, TOptions>();
+            s_context ??= new DriverContext<TService, TOptions>();
 
         protected override RemoteWebDriver CreateDriver(TService service, TOptions options, TimeSpan commandTimeout)
         {

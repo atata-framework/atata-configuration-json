@@ -35,7 +35,7 @@ namespace Atata.Configuration.Json.Tests
 
             public void Take(ScreenshotInfo screenshotInfo)
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException();
             }
         }
     }

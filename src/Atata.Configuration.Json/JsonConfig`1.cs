@@ -13,13 +13,13 @@ namespace Atata.Configuration.Json
         where TConfig : JsonConfig<TConfig>
     {
 #if NET46 || NETSTANDARD2_0
-        private static readonly System.Threading.AsyncLocal<TConfig> CurrentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
+        private static readonly System.Threading.AsyncLocal<TConfig> s_currentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
 
 #endif
         [ThreadStatic]
-        private static TConfig currentThreadStaticConfig;
+        private static TConfig s_currentThreadStaticConfig;
 
-        private static TConfig currentStaticConfig;
+        private static TConfig s_currentStaticConfig;
 
         /// <summary>
         /// Gets or sets the global <see cref="JsonConfig{TConfig}"/> instance.
@@ -35,24 +35,24 @@ namespace Atata.Configuration.Json
             get
             {
                 return AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
-                    ? currentThreadStaticConfig
+                    ? s_currentThreadStaticConfig
 #if NET46 || NETSTANDARD2_0
                     : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
-                    ? CurrentAsyncLocalConfig.Value
+                    ? s_currentAsyncLocalConfig.Value
 #endif
-                    : currentStaticConfig;
+                    : s_currentStaticConfig;
             }
 
             set
             {
                 if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic)
-                    currentThreadStaticConfig = value;
+                    s_currentThreadStaticConfig = value;
 #if NET46 || NETSTANDARD2_0
                 else if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal)
-                    CurrentAsyncLocalConfig.Value = value;
+                    s_currentAsyncLocalConfig.Value = value;
 #endif
                 else
-                    currentStaticConfig = value;
+                    s_currentStaticConfig = value;
             }
         }
 
@@ -70,9 +70,7 @@ namespace Atata.Configuration.Json
             {
                 if (value != null)
                 {
-                    if (Drivers == null)
-                        Drivers = new List<DriverJsonSection>();
-
+                    Drivers = Drivers ?? new List<DriverJsonSection>();
                     Drivers.Add(value);
                 }
             }

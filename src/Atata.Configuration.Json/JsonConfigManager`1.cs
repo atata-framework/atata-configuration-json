@@ -7,7 +7,7 @@ namespace Atata.Configuration.Json
     internal static class JsonConfigManager<TConfig>
         where TConfig : JsonConfig<TConfig>
     {
-        private static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
+        private static readonly JsonSerializerSettings s_serializerSettings = new JsonSerializerSettings
         {
             ContractResolver = JsonConfigContractResolver.Instance,
             NullValueHandling = NullValueHandling.Ignore
@@ -43,7 +43,7 @@ namespace Atata.Configuration.Json
 
                 if (globalValue != null)
                 {
-                    string serializedGlobalValue = JsonConvert.SerializeObject(globalValue, SerializerSettings);
+                    string serializedGlobalValue = JsonConvert.SerializeObject(globalValue, s_serializerSettings);
 
                     object clonedGlobalValue = JsonConvert.DeserializeObject(serializedGlobalValue, globalValue.GetType());
                     currentConfigProperty.SetValue(null, clonedGlobalValue, null);
@@ -59,7 +59,9 @@ namespace Atata.Configuration.Json
         private static PropertyInfo GetConfigProperty(string name)
         {
             Type type = typeof(TConfig);
-            PropertyInfo property = type.GetProperty(name, BindingFlags.GetProperty | BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            PropertyInfo property = type.GetProperty(
+                name,
+                BindingFlags.GetProperty | BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
 
             return property ?? throw new MissingMemberException(type.FullName, name);
         }

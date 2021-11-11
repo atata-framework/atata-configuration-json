@@ -1,16 +1,15 @@
 ﻿using System;
-using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 
 namespace Atata.Configuration.Json.Tests
 {
-    using TOptions = InternetExplorerOptions;
-    using TService = InternetExplorerDriverService;
+    using TOptions = OpenQA.Selenium.IE.InternetExplorerOptions;
+    using TService = OpenQA.Selenium.IE.InternetExplorerDriverService;
 
     public class InternetExplorerAtataContextBuilderOverride : InternetExplorerAtataContextBuilder
     {
         [ThreadStatic]
-        private static DriverContext<TService, TOptions> context;
+        private static DriverContext<TService, TOptions> s_context;
 
         public InternetExplorerAtataContextBuilderOverride(AtataBuildingContext buildingContext)
             : base(buildingContext)
@@ -18,7 +17,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         public static DriverContext<TService, TOptions> Context =>
-            context ??= new DriverContext<TService, TOptions>();
+            s_context ??= new DriverContext<TService, TOptions>();
 
         protected override RemoteWebDriver CreateDriver(TService service, TOptions options, TimeSpan commandTimeout)
         {

@@ -28,16 +28,16 @@ namespace Atata.Configuration.Json.Tests
 
         private class DriverContextNullableSession : IDisposable
         {
-            private readonly RemoteDriverContext context;
+            private readonly RemoteDriverContext _context;
 
             public DriverContextNullableSession(RemoteDriverContext context)
             {
-                this.context = context;
+                _context = context;
             }
 
             public void Dispose()
             {
-                context.ReturnsNull = false;
+                _context.ReturnsNull = false;
             }
         }
     }

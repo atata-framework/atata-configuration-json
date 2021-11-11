@@ -38,9 +38,9 @@ namespace Atata.Configuration.Json
                 builder.WithOptions(() => CreateOptions(section.Options));
         }
 
-        private IDriverJsonMapper GetOptionsMapper(string typeName)
+        private static IDriverJsonMapper GetOptionsMapper(string typeName)
         {
-            switch (typeName?.ToLower())
+            switch (typeName?.ToLowerInvariant())
             {
                 case DriverAliases.Chrome:
                     return new ChromeDriverJsonMapper();

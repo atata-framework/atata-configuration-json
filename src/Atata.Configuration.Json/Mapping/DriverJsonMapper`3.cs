@@ -12,10 +12,10 @@ namespace Atata.Configuration.Json
     {
         public const string BaseDirectoryVariable = "{basedir}";
 
-        private readonly Lazy<IObjectMapper> lazyObjectMapper = new Lazy<IObjectMapper>(
+        private readonly Lazy<IObjectMapper> _lazyObjectMapper = new Lazy<IObjectMapper>(
             () => new ObjectMapper(new ObjectConverter()));
 
-        protected IObjectMapper ObjectMapper => lazyObjectMapper.Value;
+        protected IObjectMapper ObjectMapper => _lazyObjectMapper.Value;
 
         public void Map(DriverJsonSection section, AtataContextBuilder builder)
         {

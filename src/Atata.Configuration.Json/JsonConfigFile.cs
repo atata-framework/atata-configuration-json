@@ -135,7 +135,7 @@ namespace Atata.Configuration.Json
             }
             else
             {
-                if (filePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                if (filePath.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
                 {
                     return $"{filePath}{DefaultFileName}{environmentAliasInsertion}{DefaultFileExtension}";
                 }

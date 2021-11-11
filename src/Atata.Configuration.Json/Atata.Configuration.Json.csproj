@@ -3,9 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>net40;net45;net46;netstandard2.0</TargetFrameworks>
     <Version>1.7.0</Version>
-    <Authors>Yevgeniy Shunevych</Authors>
-    <Company>Yevgeniy Shunevych</Company>
-    <Product>Atata Framework</Product>
     <Description>C#/.NET package for Atata configuration through JSON files.
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
@@ -19,35 +16,20 @@ Features:
 - Multi-driver configuration
 - Merged configuration via multiple files
 - Multiple environments support</Description>
-    <Copyright>© Yevgeniy Shunevych 2021</Copyright>
+    <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
     <PackageId>Atata.Configuration.Json</PackageId>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>atata automation testing test selenium webdriver browser configuration</PackageTags>
     <PackageReleaseNotes>1.7.0 - https://atata.io/blog/2021/09/02/atata.configuration.json-1.7.0-released/
 1.6.0 - https://atata.io/blog/2021/06/04/atata.configuration.json-1.6.0-released/
 1.5.0 - https://atata.io/blog/2020/12/16/atata.configuration.json-1.5.0-released/</PackageReleaseNotes>
-    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Atata" Version="1.12.0" />
     <PackageReference Include="Atata.WebDriverExtras" Version="1.5.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
   </ItemGroup>
   
-  <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
 </Project>

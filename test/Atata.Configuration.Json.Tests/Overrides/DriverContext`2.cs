@@ -29,17 +29,17 @@ namespace Atata.Configuration.Json.Tests
 
         private class DriverContextNullableSession : IDisposable
         {
-            private readonly DriverContext<TService, TOptions> context;
+            private readonly DriverContext<TService, TOptions> _context;
 
             public DriverContextNullableSession(DriverContext<TService, TOptions> context)
             {
-                this.context = context;
+                _context = context;
             }
 
             public void Dispose()
             {
-                context.ReturnsNull = false;
-                context.Service?.Dispose();
+                _context.ReturnsNull = false;
+                _context.Service?.Dispose();
             }
         }
     }

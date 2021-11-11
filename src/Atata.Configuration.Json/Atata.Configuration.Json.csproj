@@ -28,7 +28,7 @@ Features:
     <PackageReleaseNotes>1.7.0 - https://atata.io/blog/2021/09/02/atata.configuration.json-1.7.0-released/
 1.6.0 - https://atata.io/blog/2021/06/04/atata.configuration.json-1.6.0-released/
 1.5.0 - https://atata.io/blog/2020/12/16/atata.configuration.json-1.5.0-released/</PackageReleaseNotes>
-    <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

@@ -1,6 +1,5 @@
 variables:
   buildConfiguration: 'Release'
-  solutionPath: '**\Atata.Configuration.Json.sln'
 
 jobs:
 - job: BuildAndRunCodeAnalysis
@@ -12,7 +11,7 @@ jobs:
     displayName: Build solution with code analysis
     inputs:
       command: build
-      projects: $(solutionPath)
+      projects: '*.sln'
       arguments: -c $(buildConfiguration) -warnaserror
 
 - job: RunTests
@@ -24,12 +23,12 @@ jobs:
     displayName: Build solution
     inputs:
       command: build
-      projects: $(solutionPath)
+      projects: '*.sln'
       arguments: -c $(buildConfiguration) -p:RunCodeAnalysis=false
   - task: DotNetCoreCLI@2
     displayName: 'Run tests'
     timeoutInMinutes: 10
     inputs:
       command: test
-      projects: '**\*.csproj'
+      projects: 'test/*/*Tests.csproj'
       arguments: -c $(buildConfiguration) -s "azure-pipelines.runsettings" --no-build

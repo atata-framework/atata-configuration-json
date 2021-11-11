@@ -9,7 +9,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
-    <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Atata.Configuration.Json\Atata.Configuration.Json.csproj" />
+    <ProjectReference Include="..\..\src\Atata.Configuration.Json\Atata.Configuration.Json.csproj" />
   </ItemGroup>
 
   <ItemGroup>

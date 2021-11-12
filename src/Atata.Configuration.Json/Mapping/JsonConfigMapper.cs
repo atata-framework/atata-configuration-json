@@ -136,6 +136,9 @@ namespace Atata.Configuration.Json
             if (config.Attributes != null)
                 MapAttributes(config.Attributes, builder);
 
+            if (config.EventSubscriptions != null)
+                MapEventSubscriptions(config.EventSubscriptions, builder);
+
             return builder;
         }
 
@@ -245,6 +248,17 @@ namespace Atata.Configuration.Json
                     }
                 }
             }
+        }
+
+        private static void MapEventSubscriptions(List<EventSubscriptionJsonSection> sections, AtataContextBuilder builder)
+        {
+            EventSubscriptionMapper eventSubscriptionMapper = new EventSubscriptionMapper(
+                builder.BuildingContext.AssemblyNamePatternToFindEventTypes ?? builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes,
+                builder.BuildingContext.AssemblyNamePatternToFindEventHandlerTypes ?? builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes,
+                builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes);
+
+            builder.BuildingContext.EventSubscriptions.AddRange(
+                sections.Select(x => eventSubscriptionMapper.Map(x)));
         }
     }
 }

@@ -436,6 +436,14 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
     }
   ],
 
+  "eventSubscriptions": [
+    {
+      "eventType": "event type", // Optional.
+      "handlerType": "handler type", // Required.
+      "{{handlerValueName}}": "value" // Any property or constructor parameter of event handler.
+    }
+  ],
+
   "attributes": { // Configures context attributes.
     "global": [
       {

@@ -241,5 +241,10 @@ namespace Atata.Configuration.Json
         /// Gets or sets the attributes.
         /// </summary>
         public AttributesJsonSection Attributes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event subscriptions.
+        /// </summary>
+        public List<EventSubscriptionJsonSection> EventSubscriptions { get; set; }
     }
 }

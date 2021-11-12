@@ -44,5 +44,8 @@
 [assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.PropertyAttributesJsonSection.Attributes")]
 [assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.ChromeDriverJsonMapper.MapOptions(Atata.Configuration.Json.DriverOptionsJsonSection,OpenQA.Selenium.Chrome.ChromeOptions)")]
 [assembly: SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types", Justification = "<Pending>", Scope = "member", Target = "~F:Atata.Configuration.Json.JsonConfigManager`1.s_serializerSettings")]
+[assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.EventSubscriptionMapper.Map(Atata.Configuration.Json.EventSubscriptionJsonSection)~Atata.EventSubscriptionItem")]
+[assembly: SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.EventSubscriptions")]
+[assembly: SuppressMessage("Major Code Smell", "S4004:Collection properties should be readonly", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.EventSubscriptions")]
 
 #pragma warning restore S103 // Lines should not be too long

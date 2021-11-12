@@ -1,0 +1,8 @@
+﻿{
+  "eventSubscriptions": [
+    {
+      "eventType": "EventSubscriptionsTests+TestEvent",
+      "handlerType": "EventSubscriptionsTests+TestEventHandler"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
-**[What's new in v1.7.0](https://atata.io/blog/2021/09/02/atata.configuration.json-1.7.0-released/)**
+**[What's new in v1.8.0](https://atata.io/blog/2021/11/12/atata.configuration.json-1.8.0-released/)**
 
 ## Table of Contents
 
@@ -116,45 +116,45 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
 #### Default
 
 ```cs
-AtataContext.Configure().
-    ApplyJsonConfig(). // Applies default "Atata.json" config.
-    Build();
+AtataContext.Configure()
+    .ApplyJsonConfig() // Applies default "Atata.json" config.
+    .Build();
 ```
 
 #### Default Globally
 
 ```cs
-AtataContext.GlobalConfiguration.
-    ApplyJsonConfig();
+AtataContext.GlobalConfiguration
+    .ApplyJsonConfig();
 ```
 
 #### Named
 
 ```cs
-AtataContext.Configure().
-    ApplyJsonConfig("Config.json"). // Applies "Config.json" config.
-    Build();
+AtataContext.Configure()
+    .ApplyJsonConfig("Config.json") // Applies "Config.json" config.
+    .Build();
 ```
 
 #### Named With Environment
 
 ```cs
-AtataContext.Configure().
-    ApplyJsonConfig("Config", environmentAlias: "QA"). // Applies "Config.QA.json" config.
-    Build();
+AtataContext.Configure()
+    .ApplyJsonConfig("Config", environmentAlias: "QA") // Applies "Config.QA.json" config.
+    .Build();
 ```
 
 #### Environment by Preprocessor Directive
 
 ```cs
-AtataContext.Configure().
-    ApplyJsonConfig(). // Applies default "Atata.json" config.
+AtataContext.Configure()
+    .ApplyJsonConfig() // Applies default "Atata.json" config.
 #if QA
-    ApplyJsonConfig(environmentAlias: "QA"). // Applies "Atata.QA.json" for build configuration with "QA" conditional compilation symbol.
+    .ApplyJsonConfig(environmentAlias: "QA") // Applies "Atata.QA.json" for build configuration with "QA" conditional compilation symbol.
 #elif STAGING
-    ApplyJsonConfig(environmentAlias: "STAGING"). // Applies "Atata.STAGING.json" for build configuration with "STAGING" conditional compilation symbol.
+    .ApplyJsonConfig(environmentAlias: "STAGING") // Applies "Atata.STAGING.json" for build configuration with "STAGING" conditional compilation symbol.
 #endif
-    Build();
+    .Build();
 ```
 
 ### Get Config Properties
@@ -249,9 +249,9 @@ namespace SampleApp
 #### Apply Config
 
 ```cs
-AtataContext.Configure().
-    ApplyJsonConfig<AppConfig>().
-    Build();
+AtataContext.Configure()
+    .ApplyJsonConfig<AppConfig>()
+    .Build();
 ```
 
 #### Use Config
@@ -402,6 +402,8 @@ string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
   "defaultAssemblyNamePatternToFindTypes": "regex_string",
   "assemblyNamePatternToFindComponentTypes": "regex_string",
   "assemblyNamePatternToFindAttributeTypes": "regex_string",
+  "assemblyNamePatternToFindEventTypes": "regex_string",
+  "assemblyNamePatternToFindEventHandlerTypes": "regex_string",
 
   "useAllNUnitFeatures": true, // Indicates to enable all NUnit features for Atata.
   // Or enable particular NUnit configuration options:

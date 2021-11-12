@@ -58,6 +58,12 @@ namespace Atata.Configuration.Json
             if (config.AssemblyNamePatternToFindAttributeTypes != null)
                 builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
 
+            if (config.AssemblyNamePatternToFindEventTypes != null)
+                builder.UseAssemblyNamePatternToFindEventTypes(config.AssemblyNamePatternToFindEventTypes);
+
+            if (config.AssemblyNamePatternToFindEventHandlerTypes != null)
+                builder.UseAssemblyNamePatternToFindEventHandlerTypes(config.AssemblyNamePatternToFindEventHandlerTypes);
+
             Lazy<Assembly[]> lazyAssembliesToFindTypesIn = new Lazy<Assembly[]>(
                 () => AssemblyFinder.FindAllByPattern(builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes),
                 isThreadSafe: false);

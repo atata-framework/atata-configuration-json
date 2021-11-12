@@ -238,6 +238,16 @@ namespace Atata.Configuration.Json
         public string AssemblyNamePatternToFindAttributeTypes { get; set; }
 
         /// <summary>
+        /// Gets or sets the assembly name pattern that is used to filter assemblies to find event types in them.
+        /// </summary>
+        public string AssemblyNamePatternToFindEventTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the assembly name pattern that is used to filter assemblies to find event handler types in them.
+        /// </summary>
+        public string AssemblyNamePatternToFindEventHandlerTypes { get; set; }
+
+        /// <summary>
         /// Gets or sets the attributes.
         /// </summary>
         public AttributesJsonSection Attributes { get; set; }

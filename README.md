@@ -23,6 +23,7 @@ Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
   - [Apply Configuration](#apply-configuration)
   - [Get Config Properties](#get-config-properties)
   - [Custom Settings](#custom-settings)
+  - [Reference Environment Variables](#reference-environment-variables)
 - [JSON Schema](#json-schema)
   - [Type Name Values](#type-name-values)
 - [Feedback](#feedback)
@@ -108,7 +109,6 @@ Install [`Atata.Configuration.Json`](https://www.nuget.org/packages/Atata.Config
     }
   ]
 }
-
 ```
 
 ### Apply Configuration
@@ -260,6 +260,19 @@ AtataContext.Configure()
 string rootStringValue = AppConfig.Current.StringProperty;
 
 string sectionBoolValue = AppConfig.Current.Section.BoolProperty;
+```
+
+### Reference Environment Variables
+
+It is possible to use environment variables as configuration values of standard or custom properties
+with help of `{env:VarName}` template insertions.
+
+```js
+{
+  "baseUrl": "{env:BaseUrl}",
+  "accountEmail": "{env:AccountEmail}",
+  "accountPassword": "{env:AccountPassword}"
+}
 ```
 
 ## JSON Schema

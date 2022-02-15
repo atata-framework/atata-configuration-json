@@ -144,19 +144,6 @@ AtataContext.Configure()
     .Build();
 ```
 
-#### Environment by Preprocessor Directive
-
-```cs
-AtataContext.Configure()
-    .ApplyJsonConfig() // Applies default "Atata.json" config.
-#if QA
-    .ApplyJsonConfig(environmentAlias: "QA") // Applies "Atata.QA.json" for build configuration with "QA" conditional compilation symbol.
-#elif STAGING
-    .ApplyJsonConfig(environmentAlias: "STAGING") // Applies "Atata.STAGING.json" for build configuration with "STAGING" conditional compilation symbol.
-#endif
-    .Build();
-```
-
 ### Get Config Properties
 
 #### Current

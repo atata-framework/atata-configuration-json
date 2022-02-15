@@ -57,7 +57,7 @@ namespace Atata.Configuration.Json
                     options.SetPreference(name, FillTemplateVariables(castedValue));
                     break;
                 case null:
-                    options.SetPreference(name, null as string);
+                    options.SetPreference(name, null);
                     break;
                 default:
                     throw new ArgumentException($"Unsupported {nameof(FirefoxOptions)} preference value type: {value.GetType().FullName}. Supports: bool, int, long, double, string.", nameof(value));
@@ -89,7 +89,7 @@ namespace Atata.Configuration.Json
                 case null:
                     throw new ArgumentNullException(nameof(value), $"Unsupported {nameof(FirefoxProfile)} preference value: null. Supports: string, int, bool.");
                 default:
-                    throw new ArgumentException($"Unsupported FirefoxProfile preference value type: {value.GetType().FullName}. Supports: bool, int, string.", nameof(value));
+                    throw new ArgumentException($"Unsupported {nameof(FirefoxProfile)} preference value type: {value.GetType().FullName}. Supports: bool, int, string.", nameof(value));
             }
         }
 

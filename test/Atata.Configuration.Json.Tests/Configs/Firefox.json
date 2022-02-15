@@ -16,16 +16,6 @@
         "kind": "ProxyAutoConfigure"
       },
       "arguments": [ "--start-maximized" ],
-      //"profile": {
-      //  "profileDirectory": "dir",
-      //  "deleteSourceOnClean": true,
-      //  "enableNativeEvents": true,
-      //  "preferences": {
-      //    "pref1": true,
-      //    "pref2": 5,
-      //    "pref3": "str"
-      //  }
-      //},
       "preferences": {
         "pref1": true,
         "pref2": 5,

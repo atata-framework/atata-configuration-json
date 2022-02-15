@@ -288,16 +288,6 @@ namespace Atata.Configuration.Json.Tests
 
             ((List<object>)optionsCapabilities["args"]).Should().Equal("--start-maximized");
 
-            // TODO: Review Firefox profileDirectory setting.
-            ////typeof(FirefoxProfile).GetField("sourceProfileDir", BindingFlags.NonPublic | BindingFlags.Instance)
-            ////    ?.GetValue(context.Options.Profile).Should().Be("dir");
-
-            // TODO: Review Firefox profile setting.
-            ////typeof(FirefoxProfile).GetField("deleteSource", BindingFlags.NonPublic | BindingFlags.Instance)
-            ////    ?.GetValue(context.Options.Profile).Should().Be(true);
-
-            ////context.Options.Profile.EnableNativeEvents.Should().BeTrue();
-
             ((Dictionary<string, object>)optionsCapabilities["prefs"]).Should().Equal(new Dictionary<string, object>
             {
                 ["pref1"] = true,

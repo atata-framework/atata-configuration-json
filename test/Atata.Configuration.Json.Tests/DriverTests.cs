@@ -8,7 +8,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 
 namespace Atata.Configuration.Json.Tests
 {
@@ -84,15 +83,15 @@ namespace Atata.Configuration.Json.Tests
         private static void VerifyChromeOptions(ChromeOptions options)
         {
             var capabilities = options.ToCapabilities();
-            var optionsCapabilities = (Dictionary<string, object>)capabilities.GetCapability(ChromeOptions.Capability);
+            var browserCapabilities = (Dictionary<string, object>)capabilities.GetCapability(new ChromeOptions().CapabilityName);
 
-            capabilities.GetCapability(CapabilityType.LoggingPreferences).Should().BeEquivalentTo(new Dictionary<string, object>
+            capabilities.GetCapability("goog:loggingPrefs").Should().BeEquivalentTo(new Dictionary<string, object>
             {
                 ["browser"] = "INFO",
                 ["driver"] = "WARNING"
             });
 
-            optionsCapabilities.Should().Contain(new Dictionary<string, object>
+            browserCapabilities.Should().Contain(new Dictionary<string, object>
             {
                 ["cap1"] = true,
                 ["cap2"] = 5,
@@ -109,32 +108,32 @@ namespace Atata.Configuration.Json.Tests
 
             options.Arguments.Should().Equal("disable-extensions", "start-maximized");
 
-            ((List<string>)optionsCapabilities["excludeSwitches"]).Should().Equal("exc-arg");
+            ((List<string>)browserCapabilities["excludeSwitches"]).Should().Equal("exc-arg");
 
             options.Extensions.Should().Equal("ZW5jLWV4dDE=", "ZW5jLWV4dDI=");
 
-            ((List<string>)optionsCapabilities["windowTypes"]).Should().Equal("win1", "win2");
+            ((List<string>)browserCapabilities["windowTypes"]).Should().Equal("win1", "win2");
 
             options.PerformanceLoggingPreferences.IsCollectingNetworkEvents.Should().BeFalse();
             options.PerformanceLoggingPreferences.IsCollectingPageEvents.Should().BeFalse();
             options.PerformanceLoggingPreferences.BufferUsageReportingInterval.Should().Be(TimeSpan.FromSeconds(70));
             options.PerformanceLoggingPreferences.TracingCategories.Should().Be("cat1,cat2");
 
-            ((Dictionary<string, object>)optionsCapabilities["prefs"]).Should().Equal(new Dictionary<string, object>
+            ((Dictionary<string, object>)browserCapabilities["prefs"]).Should().Equal(new Dictionary<string, object>
             {
                 ["pref1"] = 7,
                 ["pref2"] = false,
                 ["pref3"] = "str"
             });
 
-            ((Dictionary<string, object>)optionsCapabilities["localState"]).Should().Equal(new Dictionary<string, object>
+            ((Dictionary<string, object>)browserCapabilities["localState"]).Should().Equal(new Dictionary<string, object>
             {
                 ["pref1"] = 2.7,
                 ["pref2"] = true,
                 ["pref3"] = string.Empty
             });
 
-            ((Dictionary<string, object>)optionsCapabilities["mobileEmulation"]).Should().Equal(new Dictionary<string, object>
+            ((Dictionary<string, object>)browserCapabilities["mobileEmulation"]).Should().Equal(new Dictionary<string, object>
             {
                 ["deviceName"] = "emul"
             });
@@ -175,7 +174,15 @@ namespace Atata.Configuration.Json.Tests
                         ["driver"] = OpenQA.Selenium.LogLevel.Warning
                     });
 
-                config.Driver.Options.AdditionalCapabilities.ExtraPropertiesMap.Should().BeEquivalentTo(
+                config.Driver.Options.AdditionalOptions.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["globalcap1"] = true,
+                        ["globalcap2"] = 5,
+                        ["globalcap3"] = "str"
+                    });
+
+                config.Driver.Options.AdditionalBrowserOptions.ExtraPropertiesMap.Should().BeEquivalentTo(
                     new Dictionary<string, object>
                     {
                         ["cap1"] = true,
@@ -192,17 +199,12 @@ namespace Atata.Configuration.Json.Tests
                         }
                     });
 
-                config.Driver.Options.GlobalAdditionalCapabilities.ExtraPropertiesMap.Should().Equal(
-                    new Dictionary<string, object>
-                    {
-                        ["globalcap1"] = true,
-                        ["globalcap2"] = 5,
-                        ["globalcap3"] = "str"
-                    });
-
-                config.Driver.Options.Proxy.Kind.Should().BeNull();
-                config.Driver.Options.Proxy.HttpProxy.Should().Be("http");
-                config.Driver.Options.Proxy.FtpProxy.Should().Be("ftp");
+                config.Driver.Options.Proxy.ExtraPropertiesMap.Should().Equal(
+                   new Dictionary<string, object>
+                   {
+                       ["httpProxy"] = "http",
+                       ["ftpProxy"] = "ftp"
+                   });
 
                 config.Driver.Options.Arguments.Should().Equal("disable-extensions", "start-maximized");
                 config.Driver.Options.ExcludedArguments.Should().Equal("exc-arg");
@@ -273,9 +275,9 @@ namespace Atata.Configuration.Json.Tests
 
             optionsCapabilities.Should().Contain(new Dictionary<string, object>
             {
-                ["cap1"] = true,
-                ["cap2"] = 5,
-                ["cap3"] = "str"
+                ["cap1"] = false,
+                ["cap2"] = 15,
+                ["cap3"] = "str2"
             });
 
             capabilities.GetCapability("globalcap1").Should().Be(true);
@@ -328,9 +330,9 @@ namespace Atata.Configuration.Json.Tests
 
             optionsCapabilities.Should().Contain(new Dictionary<string, object>
             {
-                ["cap1"] = true,
-                ["cap2"] = 5,
-                ["cap3"] = "str"
+                ["cap1"] = false,
+                ["cap2"] = 15,
+                ["cap3"] = "str2"
             });
 
             capabilities.GetCapability("globalcap1").Should().Be(true);
@@ -338,6 +340,7 @@ namespace Atata.Configuration.Json.Tests
             capabilities.GetCapability("globalcap3").Should().Be("str");
 
             context.Options.Proxy.Kind.Should().Be(ProxyKind.Manual);
+            context.Options.Proxy.SocksVersion.Should().Be(5);
             context.Options.Proxy.SocksProxy.Should().Be("socks");
             context.Options.Proxy.SocksUserName.Should().Be("name");
             context.Options.Proxy.SocksPassword.Should().Be("pass");
@@ -373,7 +376,7 @@ namespace Atata.Configuration.Json.Tests
 
             context.Options.PageLoadStrategy.Should().Be(PageLoadStrategy.Eager);
 
-            context.Service.Package.Should().Be("pack");
+            context.Service.WhitelistedIPAddresses.Should().Be("ips");
         }
 
         [Test]
@@ -410,7 +413,7 @@ namespace Atata.Configuration.Json.Tests
 
             capabilities.GetCapability(CapabilityType.BrowserName).Should().Be(DriverAliases.Chrome);
 
-            var chromeCapabilities = (Dictionary<string, object>)capabilities.GetCapability(ChromeOptions.Capability);
+            var chromeCapabilities = (Dictionary<string, object>)capabilities.GetCapability(new ChromeOptions().CapabilityName);
 
             chromeCapabilities.Should().Equal(new Dictionary<string, object>
             {

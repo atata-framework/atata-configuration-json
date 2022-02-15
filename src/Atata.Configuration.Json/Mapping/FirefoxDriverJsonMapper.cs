@@ -6,23 +6,18 @@ namespace Atata.Configuration.Json
 {
     public class FirefoxDriverJsonMapper : DriverJsonMapper<FirefoxAtataContextBuilder, FirefoxDriverService, FirefoxOptions>
     {
-        protected override FirefoxAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseFirefox();
-        }
+        protected override FirefoxAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+            builder.UseFirefox();
 
         protected override void MapOptions(DriverOptionsJsonSection section, FirefoxOptions options)
         {
             base.MapOptions(section, options);
 
-            if (section.GlobalAdditionalCapabilities != null)
+            if (section.AdditionalBrowserOptions != null)
             {
-                foreach (var item in section.GlobalAdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value), true);
+                foreach (var item in section.AdditionalBrowserOptions.ExtraPropertiesMap)
+                    options.AddAdditionalFirefoxOption(item.Key, FillTemplateVariables(item.Value));
             }
-
-            if (section.Proxy != null)
-                options.Proxy = section.Proxy.ToProxy();
 
             if (section.Arguments?.Any() ?? false)
                 options.AddArguments(section.Arguments);

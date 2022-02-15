@@ -15,21 +15,21 @@ namespace Atata.Configuration.Json.Tests
             AtataContextBuilder builder = AtataContext.Configure().
                 ApplyJsonConfig("Configs/LogConsumers");
 
-            LogConsumerInfo[] expected =
+            LogConsumerConfiguration[] expected =
             {
-                new LogConsumerInfo(new DebugLogConsumer { Separator = " - " }),
-                new LogConsumerInfo(new TraceLogConsumer(), LogLevel.Trace, true)
+                new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
+                new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace, true)
                 {
                     MessageNestingLevelIndent = "_ ",
                     MessageStartSectionPrefix = "S:",
                     MessageEndSectionPrefix = "E:",
                 },
-                new LogConsumerInfo(new NUnitTestContextLogConsumer(), LogLevel.Info, false),
-                new LogConsumerInfo(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, false),
-                new LogConsumerInfo(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
+                new LogConsumerConfiguration(new NUnitTestContextLogConsumer(), LogLevel.Info, false),
+                new LogConsumerConfiguration(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, false),
+                new LogConsumerConfiguration(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
             };
 
-            AssertLogConsumers(expected, builder.BuildingContext.LogConsumers);
+            AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
 
             JsonConfig.Current.LogConsumers.Count.Should().Be(expected.Length);
         }
@@ -41,19 +41,19 @@ namespace Atata.Configuration.Json.Tests
                 ApplyJsonConfig("Configs/DebugLogConsumers").
                 ApplyJsonConfig("Configs/TraceLogConsumers");
 
-            LogConsumerInfo[] expected =
+            LogConsumerConfiguration[] expected =
             {
-                new LogConsumerInfo(new DebugLogConsumer { Separator = " - " }),
-                new LogConsumerInfo(new TraceLogConsumer(), LogLevel.Trace, true)
+                new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
+                new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace, true)
             };
 
-            AssertLogConsumers(expected, builder.BuildingContext.LogConsumers);
+            AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
 
             JsonConfig.Current.LogConsumers.Select(x => x.Type)
                 .Should().Equal(LogConsumerAliases.Debug, LogConsumerAliases.Trace);
         }
 
-        private static void AssertLogConsumers(IEnumerable<LogConsumerInfo> expected, IEnumerable<LogConsumerInfo> actual)
+        private static void AssertLogConsumers(IEnumerable<LogConsumerConfiguration> expected, IEnumerable<LogConsumerConfiguration> actual)
         {
             actual.Should().BeEquivalentTo(
                 expected,

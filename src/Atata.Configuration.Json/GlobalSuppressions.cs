@@ -31,7 +31,6 @@
 [assembly: SuppressMessage("Major Code Smell", "S4004:Collection properties should be readonly", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.AttributesJsonSection.Component")]
 [assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.AttributeMapper.Map(Atata.Configuration.Json.AttributeJsonSection)~System.Attribute")]
 [assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.ProxyJsonSection.BypassAddresses")]
-[assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.ProxyJsonSection.ToProxy~OpenQA.Selenium.Proxy")]
 [assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.ComponentAttributesJsonSection.Attributes")]
 [assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.ComponentAttributesJsonSection.Properties")]
 [assembly: SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.LogConsumers")]
@@ -47,5 +46,7 @@
 [assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.EventSubscriptionMapper.Map(Atata.Configuration.Json.EventSubscriptionJsonSection)~Atata.EventSubscriptionItem")]
 [assembly: SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.EventSubscriptions")]
 [assembly: SuppressMessage("Major Code Smell", "S4004:Collection properties should be readonly", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.EventSubscriptions")]
+[assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.ChromiumDriverJsonMapper`3.MapOptions(Atata.Configuration.Json.DriverOptionsJsonSection,`2)")]
+[assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.DriverJsonMapper`3.MapOptions(Atata.Configuration.Json.DriverOptionsJsonSection,`2)")]
 
 #pragma warning restore S103 // Lines should not be too long

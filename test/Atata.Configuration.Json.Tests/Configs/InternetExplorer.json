@@ -2,17 +2,18 @@
   "driver": {
     "type": "internetexplorer",
     "options": {
-      "additionalCapabilities": {
-        "cap1": true,
-        "cap2": 5,
-        "cap3": "str"
-      },
-      "globalAdditionalCapabilities": {
+      "additionalOptions": {
         "globalcap1": true,
         "globalcap2": 5,
         "globalcap3": "str"
       },
+      "additionalBrowserOptions": {
+        "cap1": false,
+        "cap2": 15,
+        "cap3": "str2"
+      },
       "proxy": {
+        "socksVersion": 5,
         "socksProxy": "socks",
         "socksUserName": "name",
         "socksPassword": "pass"

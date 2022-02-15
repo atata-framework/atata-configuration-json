@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Chromium;
 
 namespace Atata.Configuration.Json
 {
@@ -10,12 +10,11 @@ namespace Atata.Configuration.Json
         // Common, but actually used only by Chrome.
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 
-        public JsonSection AdditionalCapabilities { get; set; }
+        public JsonSection AdditionalOptions { get; set; }
 
-        // Chrome, Firefox, InternetExplorer and Opera specific.
-        public JsonSection GlobalAdditionalCapabilities { get; set; }
+        // Chrome, Firefox, Edge, InternetExplorer and Opera specific.
+        public JsonSection AdditionalBrowserOptions { get; set; }
 
-        // Chrome, Firefox, Opera and Internet Explorer specific.
         public ProxyJsonSection Proxy { get; set; }
 
         // Chrome, Firefox and Opera specific.
@@ -51,7 +50,7 @@ namespace Atata.Configuration.Json
         // Chrome specific.
         public string MobileEmulationDeviceName { get; set; }
 
-        // Chrome specific.
-        public ChromeMobileEmulationDeviceSettings MobileEmulationDeviceSettings { get; set; }
+        // Chrome and Edge specific.
+        public ChromiumMobileEmulationDeviceSettings MobileEmulationDeviceSettings { get; set; }
     }
 }

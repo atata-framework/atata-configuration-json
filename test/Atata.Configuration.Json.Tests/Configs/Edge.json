@@ -2,7 +2,7 @@
   "driver": {
     "type": "edge",
     "options": {
-      "additionalCapabilities": {
+      "additionalOptions": {
         "cap1": true,
         "cap2": 5,
         "cap3": "str"
@@ -12,7 +12,7 @@
     "service": {
       "driverPath": "{env:EdgeDriver}",
       "driverExecutableFileName": "msedgedriver.exe",
-      "package": "pack"
+      "whitelistedIPAddresses": "ips"
     }
   }
 }

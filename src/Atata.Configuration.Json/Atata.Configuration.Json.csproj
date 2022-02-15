@@ -26,10 +26,10 @@ Features:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Atata" Version="1.14.0" />
-    <PackageReference Include="Atata.WebDriverExtras" Version="1.5.0" />
+    <PackageReference Include="Atata" Version="2.0.0-beta.1" />
+    <PackageReference Include="Atata.WebDriverExtras" Version="2.0.0-beta.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
   </ItemGroup>
   
 </Project>

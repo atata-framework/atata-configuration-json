@@ -23,11 +23,6 @@ namespace Atata.Configuration.Json.Tests
 
                 context.Culture.Name.Should().Be("en-US");
 
-                // TODO: Atata v2. Remove the following block.
-#pragma warning disable CS0618 // Type or member is obsolete
-                context.CleanUpActions.Should().HaveCount(0);
-#pragma warning restore CS0618 // Type or member is obsolete
-
                 context.EventSubscriptions.Where(x => x.EventType == typeof(AtataContextCleanUpEvent))
                     .Should().HaveCount(3);
 

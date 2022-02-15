@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenQA.Selenium.Remote;
+using OpenQA.Selenium;
 
 namespace Atata.Configuration.Json.Tests
 {
@@ -19,7 +19,7 @@ namespace Atata.Configuration.Json.Tests
         public static DriverContext<TService, TOptions> Context =>
             s_context ??= new DriverContext<TService, TOptions>();
 
-        protected override RemoteWebDriver CreateDriver(TService service, TOptions options, TimeSpan commandTimeout)
+        protected override IWebDriver CreateDriver(TService service, TOptions options, TimeSpan commandTimeout)
         {
             Context.Set(service, options, commandTimeout);
 

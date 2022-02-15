@@ -6,7 +6,12 @@
         "browser": "Info",
         "driver": "Warning"
       },
-      "additionalCapabilities": {
+      "additionalOptions": {
+        "globalcap1": true,
+        "globalcap2": 5,
+        "globalcap3": "str"
+      },
+      "additionalBrowserOptions": {
         "cap1": true,
         "cap2": 5,
         "cap3": "str",
@@ -17,11 +22,6 @@
             "cap4:3:1": "str2"
           }
         }
-      },
-      "globalAdditionalCapabilities": {
-        "globalcap1": true,
-        "globalcap2": 5,
-        "globalcap3": "str"
       },
       "proxy": {
         "httpProxy": "http",

@@ -5,23 +5,18 @@ namespace Atata.Configuration.Json
 {
     public class OperaDriverJsonMapper : DriverJsonMapper<OperaAtataContextBuilder, OperaDriverService, OperaOptions>
     {
-        protected override OperaAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseOpera();
-        }
+        protected override OperaAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+            builder.UseOpera();
 
         protected override void MapOptions(DriverOptionsJsonSection section, OperaOptions options)
         {
             base.MapOptions(section, options);
 
-            if (section.GlobalAdditionalCapabilities != null)
+            if (section.AdditionalBrowserOptions != null)
             {
-                foreach (var item in section.GlobalAdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value), true);
+                foreach (var item in section.AdditionalBrowserOptions.ExtraPropertiesMap)
+                    options.AddAdditionalOperaOption(item.Key, FillTemplateVariables(item.Value));
             }
-
-            if (section.Proxy != null)
-                options.Proxy = section.Proxy.ToProxy();
 
             if (section.Arguments?.Any() ?? false)
                 options.AddArguments(section.Arguments);

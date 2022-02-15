@@ -6,9 +6,9 @@ using OpenQA.Selenium;
 namespace Atata.Configuration.Json
 {
     public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJsonMapper
-            where TBuilder : DriverAtataContextBuilder<TBuilder, TService, TOptions>
-            where TService : DriverService
-            where TOptions : DriverOptions, new()
+        where TBuilder : DriverAtataContextBuilder<TBuilder, TService, TOptions>
+        where TService : DriverService
+        where TOptions : DriverOptions, new()
     {
         public const string BaseDirectoryVariable = "{basedir}";
 
@@ -66,17 +66,31 @@ namespace Atata.Configuration.Json
             if (properties?.Any() ?? false)
                 ObjectMapper.Map(properties, options);
 
+            if (section.Proxy != null)
+            {
+                options.Proxy = new Proxy();
+                MapProxy(section.Proxy, options.Proxy);
+            }
+
+            if (section.AdditionalOptions != null)
+            {
+                foreach (var item in section.AdditionalOptions.ExtraPropertiesMap)
+                    options.AddAdditionalOption(item.Key, FillTemplateVariables(item.Value));
+            }
+
             if (section.LoggingPreferences?.Any() ?? false)
             {
                 foreach (var item in section.LoggingPreferences)
                     options.SetLoggingPreference(item.Key, item.Value);
             }
+        }
 
-            if (section.AdditionalCapabilities != null)
-            {
-                foreach (var item in section.AdditionalCapabilities.ExtraPropertiesMap)
-                    options.AddAdditionalCapability(item.Key, FillTemplateVariables(item.Value));
-            }
+        private void MapProxy(ProxyJsonSection section, Proxy proxy)
+        {
+            ObjectMapper.Map(section.ExtraPropertiesMap, proxy);
+
+            if (section.BypassAddresses?.Any() ?? false)
+                proxy.AddBypassAddresses(section.BypassAddresses);
         }
 
         protected virtual void MapService(DriverServiceJsonSection section, TService service)

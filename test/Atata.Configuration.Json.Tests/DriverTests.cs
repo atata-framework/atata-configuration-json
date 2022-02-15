@@ -175,12 +175,21 @@ namespace Atata.Configuration.Json.Tests
                         ["driver"] = OpenQA.Selenium.LogLevel.Warning
                     });
 
-                config.Driver.Options.AdditionalCapabilities.ExtraPropertiesMap.Should().Equal(
+                config.Driver.Options.AdditionalCapabilities.ExtraPropertiesMap.Should().BeEquivalentTo(
                     new Dictionary<string, object>
                     {
                         ["cap1"] = true,
                         ["cap2"] = 5,
-                        ["cap3"] = "str"
+                        ["cap3"] = "str",
+                        ["cap4"] = new Dictionary<string, object>
+                        {
+                            ["cap4:1"] = false,
+                            ["cap4:2"] = 14,
+                            ["cap4:3"] = new Dictionary<string, object>
+                            {
+                                ["cap4:3:1"] = "str2"
+                            }
+                        }
                     });
 
                 config.Driver.Options.GlobalAdditionalCapabilities.ExtraPropertiesMap.Should().Equal(

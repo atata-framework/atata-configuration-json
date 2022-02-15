@@ -9,7 +9,14 @@
       "additionalCapabilities": {
         "cap1": true,
         "cap2": 5,
-        "cap3": "str"
+        "cap3": "str",
+        "cap4": {
+          "cap4:1": false,
+          "cap4:2": 14,
+          "cap4:3": {
+            "cap4:3:1": "str2"
+          }
+        }
       },
       "globalAdditionalCapabilities": {
         "globalcap1": true,

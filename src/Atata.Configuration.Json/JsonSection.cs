@@ -35,6 +35,8 @@ namespace Atata.Configuration.Json
                     return (TimeSpan)token;
                 case JTokenType.Array:
                     return ((JArray)token).Select(ConvertJToken).ToArray();
+                case JTokenType.Object:
+                    return ((IEnumerable<KeyValuePair<string, JToken>>)token).ToDictionary(x => x.Key, x => ConvertJToken(x.Value));
                 default:
                     return (string)token;
             }

@@ -10,7 +10,7 @@
 
 C#/.NET package for [Atata](https://github.com/atata-framework/atata) configuration through JSON files.
 
-Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
+*The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
 **[What's new in v1.8.0](https://atata.io/blog/2021/11/12/atata.configuration.json-1.8.0-released/)**
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Newtonsoft.Json;
 
 namespace Atata.Configuration.Json
@@ -12,10 +13,8 @@ namespace Atata.Configuration.Json
     public abstract class JsonConfig<TConfig> : JsonSection
         where TConfig : JsonConfig<TConfig>
     {
-#if NET46 || NETSTANDARD2_0
-        private static readonly System.Threading.AsyncLocal<TConfig> s_currentAsyncLocalConfig = new System.Threading.AsyncLocal<TConfig>();
+        private static readonly AsyncLocal<TConfig> s_currentAsyncLocalConfig = new AsyncLocal<TConfig>();
 
-#endif
         [ThreadStatic]
         private static TConfig s_currentThreadStaticConfig;
 
@@ -36,21 +35,17 @@ namespace Atata.Configuration.Json
             {
                 return AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
                     ? s_currentThreadStaticConfig
-#if NET46 || NETSTANDARD2_0
                     : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
-                    ? s_currentAsyncLocalConfig.Value
-#endif
-                    : s_currentStaticConfig;
+                        ? s_currentAsyncLocalConfig.Value
+                        : s_currentStaticConfig;
             }
 
             set
             {
                 if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic)
                     s_currentThreadStaticConfig = value;
-#if NET46 || NETSTANDARD2_0
                 else if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal)
                     s_currentAsyncLocalConfig.Value = value;
-#endif
                 else
                     s_currentStaticConfig = value;
             }

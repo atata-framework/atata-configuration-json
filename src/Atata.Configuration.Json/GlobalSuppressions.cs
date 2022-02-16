@@ -48,5 +48,6 @@
 [assembly: SuppressMessage("Major Code Smell", "S4004:Collection properties should be readonly", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.EventSubscriptions")]
 [assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.ChromiumDriverJsonMapper`3.MapOptions(Atata.Configuration.Json.DriverOptionsJsonSection,`2)")]
 [assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.DriverJsonMapper`3.MapOptions(Atata.Configuration.Json.DriverOptionsJsonSection,`2)")]
+[assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.ChromiumDriverJsonMapper`3.CreateAndMapAndroidOptions(Atata.Configuration.Json.AndroidOptionsJsonSection)~OpenQA.Selenium.Chromium.ChromiumAndroidOptions")]
 
 #pragma warning restore S103 // Lines should not be too long

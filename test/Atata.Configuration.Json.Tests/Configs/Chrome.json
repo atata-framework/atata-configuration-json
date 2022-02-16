@@ -49,7 +49,11 @@
       },
       "mobileEmulationDeviceName": "emul",
       "LeaveBrowserRunning": true,
-      "minidumpPath": "mdp"
+      "minidumpPath": "mdp",
+      "androidOptions": {
+        "androidPackage": "pack1",
+        "androidActivity": "act1"
+      }
     },
     "service": {
       "port": 555,

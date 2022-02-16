@@ -50,6 +50,9 @@ namespace Atata.Configuration.Json
 
             if (section.MobileEmulationDeviceSettings != null)
                 options.EnableMobileEmulation(section.MobileEmulationDeviceSettings);
+
+            if (section.AndroidOptions != null)
+                options.AndroidOptions = CreateAndMapAndroidOptions(section.AndroidOptions);
         }
 
         private void MapPerformanceLoggingPreferences(DriverPerformanceLoggingPreferencesJsonSection section, ChromiumPerformanceLoggingPreferences preferences)
@@ -58,6 +61,18 @@ namespace Atata.Configuration.Json
 
             if (section.TracingCategories?.Any() ?? false)
                 preferences.AddTracingCategories(section.TracingCategories);
+        }
+
+        private ChromiumAndroidOptions CreateAndMapAndroidOptions(AndroidOptionsJsonSection section)
+        {
+            if (string.IsNullOrEmpty(section.AndroidPackage))
+                throw new ConfigurationException(
+                    "\"androidPackage\" configuration property of \"androidOptions\" section is not specified.");
+
+            var androidOptions = new ChromiumAndroidOptions(FillTemplateVariables(section.AndroidPackage));
+            ObjectMapper.Map(section.ExtraPropertiesMap, androidOptions);
+
+            return androidOptions;
         }
     }
 }

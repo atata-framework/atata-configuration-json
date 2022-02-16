@@ -52,5 +52,8 @@ namespace Atata.Configuration.Json
 
         // Chrome and Edge specific.
         public ChromiumMobileEmulationDeviceSettings MobileEmulationDeviceSettings { get; set; }
+
+        // Chrome and Firefox specific.
+        public AndroidOptionsJsonSection AndroidOptions { get; set; }
     }
 }

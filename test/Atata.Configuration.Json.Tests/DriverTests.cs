@@ -138,6 +138,9 @@ namespace Atata.Configuration.Json.Tests
                 ["deviceName"] = "emul"
             });
 
+            browserCapabilities["androidPackage"].Should().Be("pack1");
+            browserCapabilities["androidActivity"].Should().Be("act1");
+
             options.LeaveBrowserRunning.Should().BeTrue();
             options.MinidumpPath.Should().Be("mdp");
         }
@@ -245,6 +248,13 @@ namespace Atata.Configuration.Json.Tests
                     {
                         ["LeaveBrowserRunning"] = true,
                         ["minidumpPath"] = "mdp"
+                    });
+
+                config.Driver.Options.AndroidOptions.AndroidPackage.Should().Be("pack1");
+                config.Driver.Options.AndroidOptions.ExtraPropertiesMap.Should().Equal(
+                    new Dictionary<string, object>
+                    {
+                        ["androidActivity"] = "act1",
                     });
 
                 config.Driver.Service.ExtraPropertiesMap.Should().Equal(

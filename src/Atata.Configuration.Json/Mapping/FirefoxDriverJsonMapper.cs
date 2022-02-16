@@ -35,6 +35,9 @@ namespace Atata.Configuration.Json
                 foreach (var item in section.Preferences.ExtraPropertiesMap)
                     SetOptionsPreference(item.Key, item.Value, options);
             }
+
+            if (section.AndroidOptions != null)
+                options.AndroidOptions = CreateAndMapAndroidOptions(section.AndroidOptions);
         }
 
         private static void SetOptionsPreference(string name, object value, FirefoxOptions options)
@@ -108,6 +111,21 @@ namespace Atata.Configuration.Json
                 foreach (var item in section.Preferences.ExtraPropertiesMap)
                     SetProfilePreference(item.Key, item.Value, profile);
             }
+        }
+
+        private FirefoxAndroidOptions CreateAndMapAndroidOptions(AndroidOptionsJsonSection section)
+        {
+            if (string.IsNullOrEmpty(section.AndroidPackage))
+                throw new ConfigurationException(
+                    "\"androidPackage\" configuration property of \"androidOptions\" section is not specified.");
+
+            var androidOptions = new FirefoxAndroidOptions(FillTemplateVariables(section.AndroidPackage));
+            ObjectMapper.Map(section.ExtraPropertiesMap, androidOptions);
+
+            if (section.AndroidIntentArguments != null)
+                androidOptions.AddIntentArguments(section.AndroidIntentArguments);
+
+            return androidOptions;
         }
     }
 }

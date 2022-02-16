@@ -21,7 +21,12 @@
         "pref2": 5,
         "pref3": "str"
       },
-      "logLevel": "warn"
+      "logLevel": "warn",
+      "androidOptions": {
+        "androidPackage": "pack1",
+        "androidActivity": "act1",
+        "androidIntentArguments": [ "arg1", "arg2" ]
+      }
     },
     "service": {
       "host": "127.0.0.5"

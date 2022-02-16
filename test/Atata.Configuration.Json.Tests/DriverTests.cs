@@ -307,6 +307,10 @@ namespace Atata.Configuration.Json.Tests
 
             context.Options.LogLevel.Should().Be(FirefoxDriverLogLevel.Warn);
 
+            optionsCapabilities["androidPackage"].Should().Be("pack1");
+            optionsCapabilities["androidActivity"].Should().Be("act1");
+            optionsCapabilities["androidIntentArguments"].Should().BeEquivalentTo(new[] { "arg1", "arg2" });
+
             context.Service.Host.Should().Be("127.0.0.5");
 
             context.CommandTimeout.Should().Be(TimeSpan.FromSeconds(0.95));

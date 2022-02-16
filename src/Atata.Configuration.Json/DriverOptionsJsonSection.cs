@@ -7,7 +7,6 @@ namespace Atata.Configuration.Json
     {
         public string Type { get; set; }
 
-        // Common, but actually used only by Chrome.
         public Dictionary<string, OpenQA.Selenium.LogLevel> LoggingPreferences { get; set; }
 
         public JsonSection AdditionalOptions { get; set; }
@@ -17,28 +16,28 @@ namespace Atata.Configuration.Json
 
         public ProxyJsonSection Proxy { get; set; }
 
-        // Chrome, Firefox and Opera specific.
+        // Chrome, Firefox, Edge and Opera specific.
         public string[] Arguments { get; set; }
 
-        // Chrome and Opera specific.
+        // Chrome, Edge and Opera specific.
         public string[] ExcludedArguments { get; set; }
 
         // Chrome, Edge and Opera specific.
         public string[] Extensions { get; set; }
 
-        // Chrome and Opera specific.
+        // Chrome, Edge and Opera specific.
         public string[] EncodedExtensions { get; set; }
 
-        // Chrome specific.
+        // Chrome and Edge specific.
         public string[] WindowTypes { get; set; }
 
-        // Chrome specific.
+        // Chrome and Edge specific.
         public DriverPerformanceLoggingPreferencesJsonSection PerformanceLoggingPreferences { get; set; }
 
-        // Chrome and Opera specific.
+        // Chrome, Edge and Opera specific.
         public JsonSection UserProfilePreferences { get; set; }
 
-        // Chrome and Opera specific.
+        // Chrome, Edge and Opera specific.
         public JsonSection LocalStatePreferences { get; set; }
 
         // Firefox specific.
@@ -47,13 +46,13 @@ namespace Atata.Configuration.Json
         // Firefox specific.
         public JsonSection Preferences { get; set; }
 
-        // Chrome specific.
+        // Chrome and Edge specific.
         public string MobileEmulationDeviceName { get; set; }
 
         // Chrome and Edge specific.
         public ChromiumMobileEmulationDeviceSettings MobileEmulationDeviceSettings { get; set; }
 
-        // Chrome and Firefox specific.
+        // Chrome, Firefox and Edge specific.
         public AndroidOptionsJsonSection AndroidOptions { get; set; }
     }
 }

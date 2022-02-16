@@ -2,7 +2,7 @@
 
 [![NuGet](http://img.shields.io/nuget/v/Atata.Configuration.Json.svg?style=flat)](https://www.nuget.org/packages/Atata.Configuration.Json/)
 [![GitHub release](https://img.shields.io/github/release/atata-framework/atata-configuration-json.svg)](https://github.com/atata-framework/atata-configuration-json/releases)
-[![Build status](https://dev.azure.com/atata-framework/atata-configuration-json/_apis/build/status/atata-configuration-json-ci?branchName=master)](https://dev.azure.com/atata-framework/atata-configuration-json/_build/latest?definitionId=33&branchName=master)
+[![Build status](https://dev.azure.com/atata-framework/atata-configuration-json/_apis/build/status/atata-configuration-json-ci?branchName=main)](https://dev.azure.com/atata-framework/atata-configuration-json/_build/latest?definitionId=33&branchName=main)
 [![Gitter](https://badges.gitter.im/atata-framework/atata-configuration-json.svg)](https://gitter.im/atata-framework/atata-configuration-json)
 [![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/zt-5j3lyln7-WD1ZtMDzXBhPm0yXLDBzbA)
 [![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)

@@ -11,6 +11,7 @@
     "portsToIgnore": [ 60999, 60998 ]
   },
   "baseUrl": "https://demo.atata.io/",
+  "defaultControlVisibility": "Visible",
   "culture": "en-US",
   "useNUnitTestName": true,
   "logNUnitError": true,

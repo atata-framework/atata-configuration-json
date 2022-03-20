@@ -82,6 +82,8 @@ namespace Atata.Configuration.Json
 
         public string BaseUrl { get; set; }
 
+        public Visibility? DefaultControlVisibility { get; set; }
+
         public string Culture { get; set; }
 
         /// <summary>

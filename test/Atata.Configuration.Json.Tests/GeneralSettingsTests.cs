@@ -21,6 +21,8 @@ namespace Atata.Configuration.Json.Tests
             {
                 context.BaseUrl.Should().Be("https://demo.atata.io/");
 
+                context.DefaultControlVisibility.Should().Be(Visibility.Visible);
+
                 context.Culture.Name.Should().Be("en-US");
 
                 context.EventSubscriptions.Where(x => x.EventType == typeof(AtataContextCleanUpEvent))

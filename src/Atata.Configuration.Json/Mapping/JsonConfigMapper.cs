@@ -16,6 +16,9 @@ namespace Atata.Configuration.Json
             if (config.BaseUrl != null)
                 builder.UseBaseUrl(config.BaseUrl);
 
+            if (config.DefaultControlVisibility != null)
+                builder.UseDefaultControlVisibility(config.DefaultControlVisibility.Value);
+
             if (config.Culture != null)
                 builder.UseCulture(config.Culture);
 
@@ -150,7 +153,7 @@ namespace Atata.Configuration.Json
 
         private static void MapLogConsumer(LogConsumerJsonSection section, AtataContextBuilder builder)
         {
-            var consumerBuilder = builder.AddLogConsumer(section.Type);
+            var consumerBuilder = builder.LogConsumers.Add(section.Type);
 
             if (section.MinLevel != null)
                 consumerBuilder.WithMinLevel(section.MinLevel.Value);
@@ -179,7 +182,7 @@ namespace Atata.Configuration.Json
             foreach (var item in propertiesMap)
             {
                 if (item.Key.Equals("FolderPath", StringComparison.OrdinalIgnoreCase))
-                    consumer.FolderPathBuilder = _ => item.Value.ToString();
+                    consumer.DirectoryPathBuilder = _ => item.Value.ToString();
                 else if (item.Key.Equals("FileName", StringComparison.OrdinalIgnoreCase))
                     consumer.FileNameBuilder = _ => item.Value.ToString();
                 else if (item.Key.Equals("FilePath", StringComparison.OrdinalIgnoreCase))
@@ -189,7 +192,7 @@ namespace Atata.Configuration.Json
 
         private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection section, AtataContextBuilder builder)
         {
-            var consumerBuilder = builder.AddScreenshotConsumer(section.Type);
+            var consumerBuilder = builder.ScreenshotConsumers.Add(section.Type);
 
             consumerBuilder.WithProperties(section.ExtraPropertiesMap);
         }

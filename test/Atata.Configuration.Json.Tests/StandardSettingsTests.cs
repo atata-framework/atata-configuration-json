@@ -28,6 +28,9 @@ namespace Atata.Configuration.Json.Tests
                     TestContext.CurrentContext.Test.Name));
 
             result.ValueOf(x => x.TimeZone.Id).Should.Equal("UTC");
+
+            result.ValueOf(x => x.Variables["customIntVar"]).Should.Be(7L);
+            result.ValueOf(x => x.Variables["customStringVar"]).Should.Be("strvar");
         }
     }
 }

@@ -10,5 +10,10 @@
   "artifactsPath": "{basedir}/artifacts/{build-start:yyyy}{test-suite-name-sanitized:/*}{test-name-sanitized:/*}",
   "timeZone": "UTC",
 
+  "variables": {
+    "customIntVar": 7,
+    "customStringVar": "strvar"
+  },
+
   "useAllNUnitFeatures": true
 }

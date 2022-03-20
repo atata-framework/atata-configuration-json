@@ -51,5 +51,7 @@
 [assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.ChromiumDriverJsonMapper`3.CreateAndMapAndroidOptions(Atata.Configuration.Json.AndroidOptionsJsonSection)~OpenQA.Selenium.Chromium.ChromiumAndroidOptions")]
 [assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.FirefoxDriverJsonMapper.CreateAndMapAndroidOptions(Atata.Configuration.Json.AndroidOptionsJsonSection)~OpenQA.Selenium.Firefox.FirefoxAndroidOptions")]
 [assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.AndroidOptionsJsonSection.AndroidIntentArguments")]
+[assembly: SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.Variables")]
+[assembly: SuppressMessage("Major Code Smell", "S4004:Collection properties should be readonly", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.Variables")]
 
 #pragma warning restore S103 // Lines should not be too long

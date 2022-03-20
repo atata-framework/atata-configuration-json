@@ -28,6 +28,9 @@ namespace Atata.Configuration.Json
             if (config.ArtifactsPath != null)
                 builder.UseArtifactsPath(config.ArtifactsPath);
 
+            if (config.Variables != null)
+                builder.AddVariables(config.Variables);
+
             if (config.BaseRetryTimeout != null)
                 builder.UseBaseRetryTimeout(TimeSpan.FromSeconds(config.BaseRetryTimeout.Value));
 

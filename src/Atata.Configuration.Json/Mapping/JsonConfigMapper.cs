@@ -184,7 +184,10 @@ namespace Atata.Configuration.Json
         {
             foreach (var item in propertiesMap)
             {
+                // TODO: v3. Remove first if block.
                 if (item.Key.Equals("FolderPath", StringComparison.OrdinalIgnoreCase))
+                    consumer.DirectoryPathBuilder = _ => item.Value.ToString();
+                else if (item.Key.Equals("DirectoryPath", StringComparison.OrdinalIgnoreCase))
                     consumer.DirectoryPathBuilder = _ => item.Value.ToString();
                 else if (item.Key.Equals("FileName", StringComparison.OrdinalIgnoreCase))
                     consumer.FileNameBuilder = _ => item.Value.ToString();

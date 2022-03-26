@@ -420,7 +420,8 @@ with help of `{env:VarName}` template insertions.
 
   "logConsumers": [ // Configures list of log consumers.
     {
-      "type": "nunit", // Supports: "debug", "trace", "nunit", "nlog" and custom consumers registered via LogConsumerAliases.Register method.
+      "type": "nunit", // Supports: "debug", "trace", "console", "nunit", "nlog", "nlog-file", "log4net"
+                       // and custom consumers registered via LogConsumerAliases.Register method.
                        // Custom ILogConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
       "minLevel": "Info", // Supports: Trace, Debug, Info, Warn, Error, Fatal.
       "sectionFinish": true,

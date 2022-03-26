@@ -93,7 +93,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void FolderPath()
+        public void DirectoryPath()
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -104,7 +104,7 @@ namespace Atata.Configuration.Json.Tests
         }
 
         [Test]
-        public void FolderPath_WithAlias()
+        public void DirectoryPath_WithAlias()
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory;
 

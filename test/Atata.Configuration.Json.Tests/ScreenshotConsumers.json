@@ -11,7 +11,7 @@
     },
     {
       "type": "file",
-      "folderPath": "/logs",
+      "directoryPath": "/logs",
       "fileName": "{test-name}",
       "imageFormat": "jpeg"
     }

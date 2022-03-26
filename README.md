@@ -370,7 +370,7 @@ with help of `{env:VarName}` template insertions.
       "{{driverOptionsPropertyName}}": "value" // Any property of driver specific options (e.g.: ChromeOptions).
     },
     "service": { // Configures driver service.
-      "driverPath": "string", // Sets absolute or relative driver folder path.
+      "driverPath": "string", // Sets absolute or relative driver directory path.
                               // Allows "{basedir}" value at the beginning that equals AppDomain.CurrentDomain.BaseDirectory.
       "driverExecutableFileName": "string", // Sets the name of the driver executable file.
       "{{driverServicePropertyName}}": "value" // Any property of driver specific service (e.g.: ChromeDriverService).
@@ -434,7 +434,7 @@ with help of `{env:VarName}` template insertions.
     {
       "type": "file", // Supports: "file" and custom consumers registered via ScreenshotConsumerAliases.Register method.
                       // Custom IScreenshotConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
-      "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "folderPath", "imageFormat".
+      "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "directoryPath", "imageFormat".
     }
   ],
 

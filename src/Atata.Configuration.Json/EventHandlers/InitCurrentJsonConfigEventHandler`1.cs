@@ -1,9 +1,9 @@
 ﻿namespace Atata.Configuration.Json
 {
-    internal sealed class InitCurrentJsonConfigEventHandler<TConfig> : IEventHandler<AtataContextInitEvent>
+    internal sealed class InitCurrentJsonConfigEventHandler<TConfig> : IEventHandler<AtataContextInitStartedEvent>
         where TConfig : JsonConfig<TConfig>
     {
-        public void Handle(AtataContextInitEvent eventData, AtataContext context) =>
+        public void Handle(AtataContextInitStartedEvent eventData, AtataContext context) =>
             JsonConfigManager<TConfig>.InitCurrentValue();
     }
 }

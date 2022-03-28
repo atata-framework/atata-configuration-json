@@ -75,7 +75,7 @@ namespace Atata
             where TConfig : JsonConfig<TConfig>
         {
             bool isInitConfigSubscribed = builder.BuildingContext.EventSubscriptions
-                .Any(x => x.EventType == typeof(AtataContextInitEvent) && x.EventHandler is InitCurrentJsonConfigEventHandler<TConfig>);
+                .Any(x => x.EventType == typeof(AtataContextInitStartedEvent) && x.EventHandler is InitCurrentJsonConfigEventHandler<TConfig>);
 
             if (!isInitConfigSubscribed)
                 builder.EventSubscriptions.Add(new InitCurrentJsonConfigEventHandler<TConfig>());

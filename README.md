@@ -12,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v1.8.0](https://atata.io/blog/2021/11/12/atata.configuration.json-1.8.0-released/)**
+**[What's new in v2.0.0](https://github.com/atata-framework/atata-configuration-json/releases/tag/v2.0.0)**
 
 ## Table of Contents
 
@@ -286,21 +286,18 @@ with help of `{env:VarName}` template insertions.
         "browser": "Info",
         "driver": "Warning"
       },
-      "additionalCapabilities": { // Dictionary of capabilityName and capabilityValue.
-                                  // Invokes AddAdditionalCapability method of DriverOptions for each item.
-        "cap1": true,
-        "cap2": 5,
-        "cap3": "str"
-      },
-      "globalAdditionalCapabilities": { // Chrome, Firefox, InternetExplorer and Opera specific.
-                                        // Dictionary of capabilityName and capabilityValue.
-                                        // Invokes AddAdditionalCapability(name, value, true) method of driver specific options (e.g., ChromeOptions) for each item.
+      "additionalOptions": { // Dictionary of additional driver options.
         "globalcap1": true,
         "globalcap2": 5,
         "globalcap3": "str"
       },
-      "proxy": { // Chrome, Firefox, Opera and Internet Explorer specific.
-                 // Configures instance of OpenQA.Selenium.Proxy type.
+      "additionalBrowserOptions": { // Chrome, Firefox, Edge, InternetExplorer and Opera specific.
+                                    // Dictionary of additional browser options.
+        "cap1": true,
+        "cap2": 5,
+        "cap3": "str"
+      },
+      "proxy": { // Configures instance of OpenQA.Selenium.Proxy type.
         "kind": "Manual" // Supports values of OpenQA.Selenium.ProxyKind enum.
         "httpProxy": "string",
         "ftpProxy": "string",
@@ -311,41 +308,29 @@ with help of `{env:VarName}` template insertions.
         "proxyAutoConfigUrl": "string",
         "bypassAddresses": [ "string", "string" ]
       },
-      "arguments": [ "string", "string" ], // Chrome, Firefox and Opera specific.
-      "excludedArguments": [ "string", "string" ], // Chrome and Opera specific.
+      "arguments": [ "string", "string" ], // Chrome, Firefox, Edge and Opera specific.
+      "excludedArguments": [ "string", "string" ], // Chrome, Edge and Opera specific.
       "extensions": [ "string", "string" ], // Chrome, Edge and Opera specific.
-      "encodedExtensions": [ "string", "string" ], // Chrome and Opera specific.
-      "windowTypes": [ "string", "string" ], // Chrome specific.
-      "performanceLoggingPreferences": { // Chrome specific.
-                                         // Configures instance of OpenQA.Selenium.Chrome.ChromePerformanceLoggingPreferences type.
+      "encodedExtensions": [ "string", "string" ], // Chrome, Edge and Opera specific.
+      "windowTypes": [ "string", "string" ], // Chrome and Edge specific.
+      "performanceLoggingPreferences": { // Chrome and Edge specific.
+                                         // Configures instance of OpenQA.Selenium.Chromium.ChromiumPerformanceLoggingPreferences type.
         "isCollectingNetworkEvents": false,
         "isCollectingPageEvents": false,
-        "isCollectingTimelineEvents": false,
         "bufferUsageReportingInterval": "00:01:10",
         "tracingCategories": [ "string", "string" ]
       },
-      "userProfilePreferences": { // Chrome and Opera specific.
+      "userProfilePreferences": { // Chrome, Edge and Opera specific.
                                   // Dictionary of preferenceName and preferenceValue.
                                   // Invokes AddUserProfilePreference method of driver specific options (e.g., ChromeOptions) for each item.
         "pref1": false,
         "pref2": "str"
       },
-      "localStatePreferences": { // Chrome and Opera specific.
+      "localStatePreferences": { // Chrome, Edge and Opera specific.
                                  // Dictionary of preferenceName and preferenceValue.
                                  // Invokes AddLocalStatePreference method of driver specific options (e.g., ChromeOptions) for each item.
         "pref1": 2.7,
         "pref2": true
-      },
-      "mobileEmulationDeviceName": "string", // Chrome specific.
-                                             // Invokes EnableMobileEmulation(string deviceName) method of ChromeOptions.
-      "mobileEmulationDeviceSettings": { // Chrome specific.
-                                         // Configures instance of OpenQA.Selenium.Chrome.ChromeMobileEmulationDeviceSettings type.
-                                         // Invokes EnableMobileEmulation(ChromeMobileEmulationDeviceSettings deviceSettings) method of ChromeOptions.
-        "userAgent": "string",
-        "width": 100,
-        "height": 100,
-        "pixelRation": 1.5,
-        "enableTouchEvents": true
       },
       "profile": { // Firefox specific.
                    // Configures instance of OpenQA.Selenium.Firefox.FirefoxProfile type.
@@ -357,8 +342,7 @@ with help of `{env:VarName}` template insertions.
           "pref2": 5,
           "pref3": "str"
         },
-        "extensions": [ "string", "string" ],
-        "{{profilePropertyName}}": "value" // Any property of FirefoxProfile type.
+        "extensions": [ "string", "string" ]
       },
       "preferences": { // Firefox specific.
                        // Dictionary of preferenceName and preferenceValue.
@@ -366,6 +350,25 @@ with help of `{env:VarName}` template insertions.
         "pref1": true,
         "pref2": 5,
         "pref3": "str"
+      },
+      "mobileEmulationDeviceName": "string", // Chrome and Edge specific.
+                                             // Invokes EnableMobileEmulation(string deviceName) method of ChromeOptions.
+      "mobileEmulationDeviceSettings": { // Chrome and Edge specific.
+                                         // Configures instance of OpenQA.Selenium.Chromium.ChromiumMobileEmulationDeviceSettings type.
+                                         // Invokes EnableMobileEmulation(ChromiumMobileEmulationDeviceSettings deviceSettings) method of ChromeOptions.
+        "userAgent": "string",
+        "width": 100,
+        "height": 100,
+        "pixelRation": 1.5,
+        "enableTouchEvents": true
+      },
+      "androidOptions": { // Chrome, Firefox and Edge specific.
+        "androidPackage": "pack1",
+        "androidDeviceSerial": "serial",
+        "androidActivity": "act1",
+        "useRunningApp": true, // Chrome specific.
+        "androidProcess": "proc", // Chrome specific.
+        "androidIntentArguments": [ "arg1", "arg2" ] // Firefox specific.
       },
       "{{driverOptionsPropertyName}}": "value" // Any property of driver specific options (e.g.: ChromeOptions).
     },
@@ -385,6 +388,8 @@ with help of `{env:VarName}` template insertions.
   "timeZone": "string", // For example: "UTC".
   "artifactsPath": "string",
 
+  "defaultControlVisibility": "string", // Supports: "Any" (default), "Visible" and "Invisible".
+
   "baseRetryTimeout": 5, // Sets the base retry timeout in seconds.
   "baseRetryInterval": 0.5, // Sets the base retry interval in seconds.
   "elementFindTimeout": 5, // Sets the element find timeout in seconds.
@@ -393,6 +398,10 @@ with help of `{env:VarName}` template insertions.
   "waitingRetryInterval": 0.5, // Sets the waiting retry interval in seconds.
   "verificationTimeout": 5, // Sets the verification timeout in seconds.
   "verificationRetryInterval": 0.5, // Sets the verification retry interval in seconds.
+
+  "variables": {
+    "{{anyVariableName}}": "value" // Any custom variable. Value can be string, number or boolean.
+  },
 
   "assertionExceptionType": "string", // Replaces Atata.AssertionException type with custom type, e.g.: "NUnit.Framework.AssertionException, nunit.framework".
   "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
@@ -431,6 +440,7 @@ with help of `{env:VarName}` template insertions.
       "{{logConsumerPropertyName}}": "value" // Any property of log consumer.
     }
   ],
+
   "screenshotConsumers": [ // Configures list of screenshot consumers.
     {
       "type": "file", // Supports: "file" and custom consumers registered via ScreenshotConsumerAliases.Register method.

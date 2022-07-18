@@ -14,7 +14,6 @@ namespace Atata.Configuration.Json
             Register<FirefoxDriverJsonMapper>(DriverAliases.Firefox);
             Register<InternetExplorerDriverJsonMapper>(DriverAliases.InternetExplorer);
             Register<SafariDriverJsonMapper>(DriverAliases.Safari);
-            Register<OperaDriverJsonMapper>(DriverAliases.Opera);
             Register<EdgeDriverJsonMapper>(DriverAliases.Edge);
         }
 

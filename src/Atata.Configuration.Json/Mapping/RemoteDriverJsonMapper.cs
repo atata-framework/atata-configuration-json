@@ -50,8 +50,6 @@ namespace Atata.Configuration.Json
                     return new InternetExplorerDriverJsonMapper();
                 case DriverAliases.Safari:
                     return new SafariDriverJsonMapper();
-                case DriverAliases.Opera:
-                    return new OperaDriverJsonMapper();
                 case DriverAliases.Edge:
                     return new EdgeDriverJsonMapper();
                 case null:

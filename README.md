@@ -274,13 +274,13 @@ with help of `{env:VarName}` template insertions.
     }
   ],
   "driver": { // Use "driver" for single driver support.
-    "type": "chrome", // Supports: "remote", "chrome", "firefox", "internetexplorer", "safari", "opera", "edge" and custom mappers registered via DriverJsonMapperAliases.Register method.
+    "type": "chrome", // Supports: "remote", "chrome", "firefox", "internetexplorer", "safari", "edge" and custom mappers registered via DriverJsonMapperAliases.Register method.
                       // Custom RemoteWebDriver type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
     "alias": "custom_alias", // Use aliases when you have several drivers of the same type.
     "remoteAddress": "http://127.0.0.1:8888/wd/hub", // Remote driver specific.
     "options": { // Configures driver options.
       "type": "chrome", // Remote driver specific.
-                       // Supports: chrome, firefox, internetexplorer, safari, opera, edge.
+                       // Supports: "chrome", "firefox", "internetexplorer", "safari", "edge".
       "loggingPreferences": { // Dictionary of logType and logLevel.
                               // Invokes SetLoggingPreference method of DriverOptions for each item.
         "browser": "Info",
@@ -291,7 +291,7 @@ with help of `{env:VarName}` template insertions.
         "globalcap2": 5,
         "globalcap3": "str"
       },
-      "additionalBrowserOptions": { // Chrome, Firefox, Edge, InternetExplorer and Opera specific.
+      "additionalBrowserOptions": { // Chrome, Firefox, Edge and InternetExplorer specific.
                                     // Dictionary of additional browser options.
         "cap1": true,
         "cap2": 5,
@@ -308,10 +308,10 @@ with help of `{env:VarName}` template insertions.
         "proxyAutoConfigUrl": "string",
         "bypassAddresses": [ "string", "string" ]
       },
-      "arguments": [ "string", "string" ], // Chrome, Firefox, Edge and Opera specific.
-      "excludedArguments": [ "string", "string" ], // Chrome, Edge and Opera specific.
-      "extensions": [ "string", "string" ], // Chrome, Edge and Opera specific.
-      "encodedExtensions": [ "string", "string" ], // Chrome, Edge and Opera specific.
+      "arguments": [ "string", "string" ], // Chrome, Firefox and Edge specific.
+      "excludedArguments": [ "string", "string" ], // Chrome and Edge specific.
+      "extensions": [ "string", "string" ], // Chrome and Edge specific.
+      "encodedExtensions": [ "string", "string" ], // Chrome and Edge specific.
       "windowTypes": [ "string", "string" ], // Chrome and Edge specific.
       "performanceLoggingPreferences": { // Chrome and Edge specific.
                                          // Configures instance of OpenQA.Selenium.Chromium.ChromiumPerformanceLoggingPreferences type.
@@ -320,13 +320,13 @@ with help of `{env:VarName}` template insertions.
         "bufferUsageReportingInterval": "00:01:10",
         "tracingCategories": [ "string", "string" ]
       },
-      "userProfilePreferences": { // Chrome, Edge and Opera specific.
+      "userProfilePreferences": { // Chrome and Edge specific.
                                   // Dictionary of preferenceName and preferenceValue.
                                   // Invokes AddUserProfilePreference method of driver specific options (e.g., ChromeOptions) for each item.
         "pref1": false,
         "pref2": "str"
       },
-      "localStatePreferences": { // Chrome, Edge and Opera specific.
+      "localStatePreferences": { // Chrome and Edge specific.
                                  // Dictionary of preferenceName and preferenceValue.
                                  // Invokes AddLocalStatePreference method of driver specific options (e.g., ChromeOptions) for each item.
         "pref1": 2.7,

@@ -11,21 +11,21 @@ namespace Atata.Configuration.Json
 
         public JsonSection AdditionalOptions { get; set; }
 
-        // Chrome, Firefox, Edge, InternetExplorer and Opera specific.
+        // Chrome, Firefox, Edge and InternetExplorer specific.
         public JsonSection AdditionalBrowserOptions { get; set; }
 
         public ProxyJsonSection Proxy { get; set; }
 
-        // Chrome, Firefox, Edge and Opera specific.
+        // Chrome, Firefox and Edge specific.
         public string[] Arguments { get; set; }
 
-        // Chrome, Edge and Opera specific.
+        // Chrome and Edge specific.
         public string[] ExcludedArguments { get; set; }
 
-        // Chrome, Edge and Opera specific.
+        // Chrome and Edge specific.
         public string[] Extensions { get; set; }
 
-        // Chrome, Edge and Opera specific.
+        // Chrome and Edge specific.
         public string[] EncodedExtensions { get; set; }
 
         // Chrome and Edge specific.
@@ -34,10 +34,10 @@ namespace Atata.Configuration.Json
         // Chrome and Edge specific.
         public DriverPerformanceLoggingPreferencesJsonSection PerformanceLoggingPreferences { get; set; }
 
-        // Chrome, Edge and Opera specific.
+        // Chrome and Edge specific.
         public JsonSection UserProfilePreferences { get; set; }
 
-        // Chrome, Edge and Opera specific.
+        // Chrome and Edge specific.
         public JsonSection LocalStatePreferences { get; set; }
 
         // Firefox specific.

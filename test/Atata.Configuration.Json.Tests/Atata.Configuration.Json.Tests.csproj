@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,10 +1,7 @@
-﻿namespace Atata.Configuration.Json.Tests
+﻿namespace Atata.Configuration.Json.Tests;
+
+public class EdgeDriverJsonMapperOverride : EdgeDriverJsonMapper
 {
-    public class EdgeDriverJsonMapperOverride : EdgeDriverJsonMapper
-    {
-        protected override EdgeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseDriver(new EdgeAtataContextBuilderOverride(builder.BuildingContext));
-        }
-    }
+    protected override EdgeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+        builder.UseDriver(new EdgeAtataContextBuilderOverride(builder.BuildingContext));
 }

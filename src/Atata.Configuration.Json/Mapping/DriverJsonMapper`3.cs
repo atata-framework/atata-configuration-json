@@ -101,12 +101,10 @@ namespace Atata.Configuration.Json
                 ObjectMapper.Map(properties, service);
         }
 
-        private static string FormatDriverPath(string driverPath)
-        {
-            return driverPath.Contains(BaseDirectoryVariable)
+        private static string FormatDriverPath(string driverPath) =>
+            driverPath.Contains(BaseDirectoryVariable)
                 ? driverPath.Replace(BaseDirectoryVariable, AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
                 : driverPath;
-        }
 
         protected static object FillTemplateVariables(object value) =>
             value is string valueAsString

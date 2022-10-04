@@ -18,10 +18,8 @@ namespace Atata.Configuration.Json
             return mapper.CreateOptions(section);
         }
 
-        protected virtual RemoteDriverAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseRemoteDriver();
-        }
+        protected virtual RemoteDriverAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+            builder.UseRemoteDriver();
 
         protected virtual void Map(DriverJsonSection section, RemoteDriverAtataContextBuilder builder)
         {

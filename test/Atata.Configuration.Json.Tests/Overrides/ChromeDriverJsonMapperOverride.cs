@@ -1,10 +1,7 @@
-﻿namespace Atata.Configuration.Json.Tests
+﻿namespace Atata.Configuration.Json.Tests;
+
+public class ChromeDriverJsonMapperOverride : ChromeDriverJsonMapper
 {
-    public class ChromeDriverJsonMapperOverride : ChromeDriverJsonMapper
-    {
-        protected override ChromeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseDriver(new ChromeAtataContextBuilderOverride(builder.BuildingContext));
-        }
-    }
+    protected override ChromeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+        builder.UseDriver(new ChromeAtataContextBuilderOverride(builder.BuildingContext));
 }

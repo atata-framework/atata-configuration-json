@@ -31,15 +31,11 @@ namespace Atata.Configuration.Json
         /// </summary>
         public static TConfig Current
         {
-            get
-            {
-                return AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
-                    ? s_currentThreadStaticConfig
-                    : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
-                        ? s_currentAsyncLocalConfig.Value
-                        : s_currentStaticConfig;
-            }
-
+            get => AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
+                ? s_currentThreadStaticConfig
+                : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
+                    ? s_currentAsyncLocalConfig.Value
+                    : s_currentStaticConfig;
             set
             {
                 if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic)
@@ -56,11 +52,7 @@ namespace Atata.Configuration.Json
         [JsonConverter(typeof(JsonConverterWithoutPopulation))]
         public DriverJsonSection Driver
         {
-            get
-            {
-                return Drivers?.LastOrDefault();
-            }
-
+            get => Drivers?.LastOrDefault();
             set
             {
                 if (value != null)

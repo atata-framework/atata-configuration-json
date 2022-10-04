@@ -1,42 +1,35 @@
-﻿using System;
-using System.Linq;
-using FluentAssertions;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace Atata.Configuration.Json.Tests
+namespace Atata.Configuration.Json.Tests;
+
+[TestFixture]
+public class ScreenshotConsumerTests : TestFixture
 {
-    [TestFixture]
-    public class ScreenshotConsumerTests : TestFixture
+    [Test]
+    public void Multiple_ViaSingleConfig()
     {
-        [Test]
-        public void Multiple_ViaSingleConfig()
+        AtataContextBuilder builder = AtataContext.Configure()
+            .ApplyJsonConfig("ScreenshotConsumers");
+
+        IScreenshotConsumer[] expected =
         {
-            AtataContextBuilder builder = AtataContext.Configure().
-                ApplyJsonConfig("ScreenshotConsumers");
+            new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Png, FilePath = "/logs/{test-name}.txt" },
+            new CustomScreenshotConsumer { IntProperty = 15 },
+            new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Jpeg, DirectoryPath = "/logs", FileName = "{test-name}" }
+        };
 
-            IScreenshotConsumer[] expected =
-            {
-                new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Png, FilePath = "/logs/{test-name}.txt" },
-                new CustomScreenshotConsumer { IntProperty = 15 },
-                new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Jpeg, DirectoryPath = "/logs", FileName = "{test-name}" }
-            };
+        builder.BuildingContext.ScreenshotConsumers.Select(x => x.GetType()).Should().BeEquivalentTo(expected.Select(x => x.GetType()));
 
-            builder.BuildingContext.ScreenshotConsumers.Select(x => x.GetType()).Should().BeEquivalentTo(expected.Select(x => x.GetType()));
+        builder.BuildingContext.ScreenshotConsumers.Should().BeEquivalentTo(
+            expected,
+            opt => opt.IncludingAllRuntimeProperties());
+    }
 
-            builder.BuildingContext.ScreenshotConsumers.Should().BeEquivalentTo(
-                expected,
-                opt => opt.IncludingAllRuntimeProperties());
-        }
+    public class CustomScreenshotConsumer : IScreenshotConsumer
+    {
+        public int? IntProperty { get; set; }
 
-        public class CustomScreenshotConsumer : IScreenshotConsumer
-        {
-            public int? IntProperty { get; set; }
-
-            public void Take(ScreenshotInfo screenshotInfo)
-            {
-                throw new NotSupportedException();
-            }
-        }
+        public void Take(ScreenshotInfo screenshotInfo) =>
+            throw new NotSupportedException();
     }
 }

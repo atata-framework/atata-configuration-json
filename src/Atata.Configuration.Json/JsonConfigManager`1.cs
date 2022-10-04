@@ -51,10 +51,8 @@ namespace Atata.Configuration.Json
             }
         }
 
-        internal static void ResetCurrentValue()
-        {
+        internal static void ResetCurrentValue() =>
             GetConfigProperty(nameof(JsonConfig.Current)).SetValue(null, null, null);
-        }
 
         private static PropertyInfo GetConfigProperty(string name)
         {

@@ -1,10 +1,7 @@
-﻿namespace Atata.Configuration.Json.Tests
+﻿namespace Atata.Configuration.Json.Tests;
+
+public class InternetExplorerDriverJsonMapperOverride : InternetExplorerDriverJsonMapper
 {
-    public class InternetExplorerDriverJsonMapperOverride : InternetExplorerDriverJsonMapper
-    {
-        protected override InternetExplorerAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseDriver(new InternetExplorerAtataContextBuilderOverride(builder.BuildingContext));
-        }
-    }
+    protected override InternetExplorerAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+        builder.UseDriver(new InternetExplorerAtataContextBuilderOverride(builder.BuildingContext));
 }

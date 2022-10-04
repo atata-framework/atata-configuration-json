@@ -27,10 +27,8 @@ namespace Atata.Configuration.Json
         /// <param name="filePath">The file path.</param>
         /// <param name="environmentAlias">The environment alias.</param>
         /// <returns>The deserialized object of <see cref="JsonConfig"/> type.</returns>
-        public static JsonConfig Read(string filePath = null, string environmentAlias = null)
-        {
-            return Read<JsonConfig>(filePath, environmentAlias);
-        }
+        public static JsonConfig Read(string filePath = null, string environmentAlias = null) =>
+            Read<JsonConfig>(filePath, environmentAlias);
 
         /// <summary>
         /// Reads the JSON config file and deserializes it to an object of <typeparamref name="TConfig"/> type.
@@ -86,10 +84,8 @@ namespace Atata.Configuration.Json
         /// Reads the default "Atata.json" config file, deserializes it and returns the driver aliases.
         /// </summary>
         /// <returns>An array of the driver aliases.</returns>
-        public static string[] ReadDriverAliasesFromDefaultConfig()
-        {
-            return ReadDriverAliases();
-        }
+        public static string[] ReadDriverAliasesFromDefaultConfig() =>
+            ReadDriverAliases();
 
         /// <summary>
         /// Reads the JSON config file, deserializes it and returns the driver aliases.
@@ -97,10 +93,11 @@ namespace Atata.Configuration.Json
         /// <param name="filePath">The file path.</param>
         /// <param name="environmentAlias">The environment alias.</param>
         /// <returns>An array of the driver aliases.</returns>
-        public static string[] ReadDriverAliases(string filePath = null, string environmentAlias = null)
-        {
-            return Read<JsonConfig>(filePath, environmentAlias).Drivers?.Select(x => x.Alias).ToArray() ?? new string[0];
-        }
+        public static string[] ReadDriverAliases(string filePath = null, string environmentAlias = null) =>
+            Read<JsonConfig>(filePath, environmentAlias)
+                .Drivers?.Select(x => x.Alias)
+                .ToArray()
+                ?? new string[0];
 
         /// <summary>
         /// Returns the full/absolute path for the file using optionally <paramref name="filePath"/> and <paramref name="environmentAlias"/> arguments.

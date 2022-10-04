@@ -61,11 +61,9 @@ namespace Atata.Configuration.Json
             return value;
         }
 
-        private static string NormalizeAttributeTypeName(string typeName)
-        {
-            return !typeName.Contains(",") && !typeName.EndsWith(nameof(Attribute), StringComparison.OrdinalIgnoreCase)
+        private static string NormalizeAttributeTypeName(string typeName) =>
+            !typeName.Contains(",") && !typeName.EndsWith(nameof(Attribute), StringComparison.OrdinalIgnoreCase)
                 ? typeName + nameof(Attribute)
                 : typeName;
-        }
     }
 }

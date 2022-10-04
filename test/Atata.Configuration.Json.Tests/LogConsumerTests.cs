@@ -1,77 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using NUnit.Framework;
+﻿namespace Atata.Configuration.Json.Tests;
 
-namespace Atata.Configuration.Json.Tests
+[TestFixture]
+public class LogConsumerTests : TestFixture
 {
-    [TestFixture]
-    public class LogConsumerTests : TestFixture
+    [Test]
+    public void Multiple_ViaSingleConfig()
     {
-        [Test]
-        public void Multiple_ViaSingleConfig()
-        {
-            AtataContextBuilder builder = AtataContext.Configure().
-                ApplyJsonConfig("Configs/LogConsumers");
+        AtataContextBuilder builder = AtataContext.Configure()
+            .ApplyJsonConfig("Configs/LogConsumers");
 
-            LogConsumerConfiguration[] expected =
+        LogConsumerConfiguration[] expected =
+        {
+            new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
+            new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace, true)
             {
-                new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
-                new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace, true)
-                {
-                    MessageNestingLevelIndent = "_ ",
-                    MessageStartSectionPrefix = "S:",
-                    MessageEndSectionPrefix = "E:",
-                },
-                new LogConsumerConfiguration(new NUnitTestContextLogConsumer(), LogLevel.Info, false),
-                new LogConsumerConfiguration(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, false),
-                new LogConsumerConfiguration(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
-            };
+                MessageNestingLevelIndent = "_ ",
+                MessageStartSectionPrefix = "S:",
+                MessageEndSectionPrefix = "E:",
+            },
+            new LogConsumerConfiguration(new NUnitTestContextLogConsumer(), LogLevel.Info, false),
+            new LogConsumerConfiguration(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, false),
+            new LogConsumerConfiguration(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
+        };
 
-            AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
+        AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
 
-            JsonConfig.Current.LogConsumers.Count.Should().Be(expected.Length);
-        }
+        JsonConfig.Current.LogConsumers.Count.Should().Be(expected.Length);
+    }
 
-        [Test]
-        public void Multiple_ViaMultipleConfigs()
+    [Test]
+    public void Multiple_ViaMultipleConfigs()
+    {
+        AtataContextBuilder builder = AtataContext.Configure()
+            .ApplyJsonConfig("Configs/DebugLogConsumers")
+            .ApplyJsonConfig("Configs/TraceLogConsumers");
+
+        LogConsumerConfiguration[] expected =
         {
-            AtataContextBuilder builder = AtataContext.Configure().
-                ApplyJsonConfig("Configs/DebugLogConsumers").
-                ApplyJsonConfig("Configs/TraceLogConsumers");
+            new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
+            new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace, true)
+        };
 
-            LogConsumerConfiguration[] expected =
+        AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
+
+        JsonConfig.Current.LogConsumers.Select(x => x.Type)
+            .Should().Equal(LogConsumerAliases.Debug, LogConsumerAliases.Trace);
+    }
+
+    private static void AssertLogConsumers(IEnumerable<LogConsumerConfiguration> expected, IEnumerable<LogConsumerConfiguration> actual) =>
+        actual.Should().BeEquivalentTo(
+            expected,
+            opt => opt.IncludingAllRuntimeProperties().Using<ILogConsumer>(ctx =>
             {
-                new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
-                new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace, true)
-            };
+                ctx.Subject.Should().BeOfType(ctx.Expectation.GetType());
+                ctx.Subject.Should().BeEquivalentTo(ctx.Expectation, opt2 => opt2.IncludingAllRuntimeProperties());
+            }).WhenTypeIs<ILogConsumer>());
 
-            AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
+    public class CustomLogConsumer : ILogConsumer
+    {
+        public int? IntProperty { get; set; }
 
-            JsonConfig.Current.LogConsumers.Select(x => x.Type)
-                .Should().Equal(LogConsumerAliases.Debug, LogConsumerAliases.Trace);
-        }
-
-        private static void AssertLogConsumers(IEnumerable<LogConsumerConfiguration> expected, IEnumerable<LogConsumerConfiguration> actual)
-        {
-            actual.Should().BeEquivalentTo(
-                expected,
-                opt => opt.IncludingAllRuntimeProperties().Using<ILogConsumer>(ctx =>
-                {
-                    ctx.Subject.Should().BeOfType(ctx.Expectation.GetType());
-                    ctx.Subject.Should().BeEquivalentTo(ctx.Expectation, opt2 => opt2.IncludingAllRuntimeProperties());
-                }).WhenTypeIs<ILogConsumer>());
-        }
-
-        public class CustomLogConsumer : ILogConsumer
-        {
-            public int? IntProperty { get; set; }
-
-            public void Log(LogEventInfo eventInfo)
-            {
-                throw new NotSupportedException();
-            }
-        }
+        public void Log(LogEventInfo eventInfo) =>
+            throw new NotSupportedException();
     }
 }

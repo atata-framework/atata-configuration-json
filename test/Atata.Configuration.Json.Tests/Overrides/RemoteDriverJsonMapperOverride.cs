@@ -1,10 +1,7 @@
-﻿namespace Atata.Configuration.Json.Tests
+﻿namespace Atata.Configuration.Json.Tests;
+
+public class RemoteDriverJsonMapperOverride : RemoteDriverJsonMapper
 {
-    public class RemoteDriverJsonMapperOverride : RemoteDriverJsonMapper
-    {
-        protected override RemoteDriverAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder)
-        {
-            return builder.UseDriver(new RemoteDriverAtataContextBuilderOverride(builder.BuildingContext));
-        }
-    }
+    protected override RemoteDriverAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+        builder.UseDriver(new RemoteDriverAtataContextBuilderOverride(builder.BuildingContext));
 }

@@ -16,10 +16,8 @@ namespace Atata
         /// <param name="filePath">The file path.</param>
         /// <param name="environmentAlias">The environment alias.</param>
         /// <returns>The <see cref="AtataContextBuilder"/> instance.</returns>
-        public static AtataContextBuilder ApplyJsonConfig(this AtataContextBuilder builder, string filePath = null, string environmentAlias = null)
-        {
-            return builder.ApplyJsonConfig<JsonConfig>(filePath, environmentAlias);
-        }
+        public static AtataContextBuilder ApplyJsonConfig(this AtataContextBuilder builder, string filePath = null, string environmentAlias = null) =>
+            builder.ApplyJsonConfig<JsonConfig>(filePath, environmentAlias);
 
         /// <summary>
         /// Applies JSON configuration from the file. By default reads "Atata.json" file.
@@ -66,10 +64,8 @@ namespace Atata
         /// <param name="config">The configuration.</param>
         /// <returns>The <see cref="AtataContextBuilder"/> instance.</returns>
         public static AtataContextBuilder ApplyJsonConfig<TConfig>(this AtataContextBuilder builder, JsonConfig<TConfig> config)
-            where TConfig : JsonConfig<TConfig>
-        {
-            return JsonConfigMapper.Map((TConfig)config, builder);
-        }
+            where TConfig : JsonConfig<TConfig> =>
+            JsonConfigMapper.Map((TConfig)config, builder);
 
         private static void EnsureInitConfigEventHandlerIsSubscribed<TConfig>(AtataContextBuilder builder)
             where TConfig : JsonConfig<TConfig>

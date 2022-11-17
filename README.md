@@ -12,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.1.0](https://atata.io/blog/2022/07/20/atata.configuration.json-2.1.0-released/)**
+**[What's new in v2.2.0](https://atata.io/blog/2022/11/17/atata.configuration.json-2.2.0-released/)**
 
 ## Table of Contents
 
@@ -422,6 +422,8 @@ with help of `{env:VarName}` template insertions.
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
+  "takePageSnapshotOnNUnitError": true,
+  "takePageSnapshotOnNUnitErrorTitle": "string",
   "onCleanUpAddArtifactsToNUnitTestContext": true,
   "onCleanUpAddDirectoryFilesToNUnitTestContext": "string",
   "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
@@ -448,6 +450,14 @@ with help of `{env:VarName}` template insertions.
       "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "directoryPath", "imageFormat".
     }
   ],
+
+  "pageSnapshots": { // Configures page snapshots functionality.
+    "fileNameTemplate": "string",
+    "strategy": {
+      "type": "cdpOrPageSource", // Supports: "cdpOrPageSource", "pageSource", "cdp", and name of custom type implementing "Atata.IPageSnapshotTakeStrategy".
+      "{{strategyValueName}}": "value" // Any property or constructor parameter of strategy.
+    }
+  },
 
   "eventSubscriptions": [
     {

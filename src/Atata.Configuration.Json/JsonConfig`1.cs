@@ -197,6 +197,10 @@ namespace Atata.Configuration.Json
 
         public string TakeScreenshotOnNUnitErrorTitle { get; set; }
 
+        public bool TakePageSnapshotOnNUnitError { get; set; }
+
+        public string TakePageSnapshotOnNUnitErrorTitle { get; set; }
+
         public bool OnCleanUpAddArtifactsToNUnitTestContext { get; set; }
 
         public string OnCleanUpAddDirectoryFilesToNUnitTestContext { get; set; }
@@ -250,5 +254,10 @@ namespace Atata.Configuration.Json
         /// Gets or sets the event subscriptions.
         /// </summary>
         public List<EventSubscriptionJsonSection> EventSubscriptions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the page snapshots configuration.
+        /// </summary>
+        public PageSnapshotsJsonSection PageSnapshots { get; set; }
     }
 }

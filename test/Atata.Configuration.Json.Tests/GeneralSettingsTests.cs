@@ -41,6 +41,9 @@ public class GeneralSettingsTests : TestFixture
             context.DefaultAssemblyNamePatternToFindTypes.Should().Be("def");
             context.AssemblyNamePatternToFindComponentTypes.Should().Be("comp");
             context.AssemblyNamePatternToFindAttributeTypes.Should().Be("attr");
+
+            context.PageSnapshots.FileNameTemplate.Should().Be("{snapshot-number:D2}!");
+            context.PageSnapshots.Strategy.Should().BeOfType<PageSourcePageSnapshotStrategy>();
         }
     }
 }

@@ -112,6 +112,14 @@ namespace Atata.Configuration.Json
                     builder.TakeScreenshotOnNUnitError();
             }
 
+            if (config.TakePageSnapshotOnNUnitError)
+            {
+                if (config.TakePageSnapshotOnNUnitErrorTitle != null)
+                    builder.TakePageSnapshotOnNUnitError(config.TakePageSnapshotOnNUnitErrorTitle);
+                else
+                    builder.TakePageSnapshotOnNUnitError();
+            }
+
             if (config.OnCleanUpAddArtifactsToNUnitTestContext)
                 builder.OnCleanUpAddArtifactsToNUnitTestContext();
 
@@ -150,6 +158,9 @@ namespace Atata.Configuration.Json
 
             if (config.EventSubscriptions != null)
                 MapEventSubscriptions(config.EventSubscriptions, builder);
+
+            if (config.PageSnapshots != null)
+                MapPageSnapshots(config.PageSnapshots, builder);
 
             return builder;
         }
@@ -274,6 +285,37 @@ namespace Atata.Configuration.Json
 
             builder.BuildingContext.EventSubscriptions.AddRange(
                 sections.Select(x => eventSubscriptionMapper.Map(x)));
+        }
+
+        private static void MapPageSnapshots(PageSnapshotsJsonSection section, AtataContextBuilder builder)
+        {
+            if (!string.IsNullOrEmpty(section.FileNameTemplate))
+                builder.PageSnapshots.UseFileNameTemplate(section.FileNameTemplate);
+
+            if (section?.Strategy?.Type != null)
+            {
+                if (!PageSnapshotStrategyAliases.TryResolve(section.Strategy.Type, out IPageSnapshotStrategy strategy))
+                    strategy = (IPageSnapshotStrategy)CreateObject(
+                        section.Strategy.Type,
+                        section.Strategy.ExtraPropertiesMap,
+                        builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes);
+
+                builder.PageSnapshots.UseStrategy(strategy);
+            }
+        }
+
+        private static object CreateObject(string typeName, Dictionary<string, object> valuesMap, string assemblyNamePatternToFindType)
+        {
+            IObjectConverter objectConverter = new ObjectConverter
+            {
+                AssemblyNamePatternToFindTypes = assemblyNamePatternToFindType
+            };
+            IObjectMapper objectMapper = new ObjectMapper(objectConverter);
+            IObjectCreator objectCreator = new ObjectCreator(objectConverter, objectMapper);
+
+            var assembliesToFindTypes = AssemblyFinder.FindAllByPattern(assemblyNamePatternToFindType);
+            Type strategyType = TypeFinder.FindInAssemblies(typeName, assembliesToFindTypes);
+            return objectCreator.Create(strategyType, valuesMap);
         }
     }
 }

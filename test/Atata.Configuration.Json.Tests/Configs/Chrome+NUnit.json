@@ -23,6 +23,12 @@
       "sectionFinish": true
     }
   ],
+  "pageSnapshots": {
+    "fileNameTemplate": "{snapshot-number:D2}!",
+    "strategy": {
+      "type": "pageSource"
+    }
+  },
   "assertionExceptionType": "NUnit.Framework.AssertionException, nunit.framework",
   "baseRetryTimeout": 7,
   "baseRetryInterval": 0.7,

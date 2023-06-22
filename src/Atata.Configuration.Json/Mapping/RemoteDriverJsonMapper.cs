@@ -36,25 +36,16 @@ namespace Atata.Configuration.Json
                 builder.WithOptions(() => CreateOptions(section.Options));
         }
 
-        private static IDriverJsonMapper GetOptionsMapper(string typeName)
-        {
-            switch (typeName?.ToLowerInvariant())
+        private static IDriverJsonMapper GetOptionsMapper(string typeName) =>
+            typeName?.ToLowerInvariant() switch
             {
-                case DriverAliases.Chrome:
-                    return new ChromeDriverJsonMapper();
-                case DriverAliases.Firefox:
-                    return new FirefoxDriverJsonMapper();
-                case DriverAliases.InternetExplorer:
-                    return new InternetExplorerDriverJsonMapper();
-                case DriverAliases.Safari:
-                    return new SafariDriverJsonMapper();
-                case DriverAliases.Edge:
-                    return new EdgeDriverJsonMapper();
-                case null:
-                    throw new ArgumentNullException(nameof(typeName), "Options type name is not defined.");
-                default:
-                    throw new ArgumentException($"Unsupported options type name: {typeName}.", nameof(typeName));
-            }
-        }
+                DriverAliases.Chrome => new ChromeDriverJsonMapper(),
+                DriverAliases.Firefox => new FirefoxDriverJsonMapper(),
+                DriverAliases.InternetExplorer => new InternetExplorerDriverJsonMapper(),
+                DriverAliases.Safari => new SafariDriverJsonMapper(),
+                DriverAliases.Edge => new EdgeDriverJsonMapper(),
+                null => throw new ArgumentNullException(nameof(typeName), "Options type name is not defined."),
+                _ => throw new ArgumentException($"Unsupported options type name: {typeName}.", nameof(typeName)),
+            };
     }
 }

@@ -57,7 +57,7 @@ namespace Atata.Configuration.Json
             {
                 if (value != null)
                 {
-                    Drivers = Drivers ?? new List<DriverJsonSection>();
+                    Drivers ??= new List<DriverJsonSection>();
                     Drivers.Add(value);
                 }
             }

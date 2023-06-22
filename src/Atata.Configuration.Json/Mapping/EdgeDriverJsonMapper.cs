@@ -1,21 +1,20 @@
 ﻿using OpenQA.Selenium.Edge;
 
-namespace Atata.Configuration.Json
+namespace Atata.Configuration.Json;
+
+public class EdgeDriverJsonMapper : ChromiumDriverJsonMapper<EdgeAtataContextBuilder, EdgeDriverService, EdgeOptions>
 {
-    public class EdgeDriverJsonMapper : ChromiumDriverJsonMapper<EdgeAtataContextBuilder, EdgeDriverService, EdgeOptions>
+    protected override EdgeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+        builder.UseEdge();
+
+    protected override void MapOptions(DriverOptionsJsonSection section, EdgeOptions options)
     {
-        protected override EdgeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
-            builder.UseEdge();
+        base.MapOptions(section, options);
 
-        protected override void MapOptions(DriverOptionsJsonSection section, EdgeOptions options)
+        if (section.AdditionalBrowserOptions != null)
         {
-            base.MapOptions(section, options);
-
-            if (section.AdditionalBrowserOptions != null)
-            {
-                foreach (var item in section.AdditionalBrowserOptions.ExtraPropertiesMap)
-                    options.AddAdditionalEdgeOption(item.Key, FillTemplateVariables(item.Value));
-            }
+            foreach (var item in section.AdditionalBrowserOptions.ExtraPropertiesMap)
+                options.AddAdditionalEdgeOption(item.Key, FillTemplateVariables(item.Value));
         }
     }
 }

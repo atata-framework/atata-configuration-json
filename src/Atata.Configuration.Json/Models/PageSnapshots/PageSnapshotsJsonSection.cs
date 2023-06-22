@@ -1,9 +1,8 @@
-﻿namespace Atata.Configuration.Json
-{
-    public sealed class PageSnapshotsJsonSection
-    {
-        public string FileNameTemplate { get; set; }
+﻿namespace Atata.Configuration.Json;
 
-        public PageSnapshotStrategyJsonSection Strategy { get; set; }
-    }
+public sealed class PageSnapshotsJsonSection
+{
+    public string FileNameTemplate { get; set; }
+
+    public PageSnapshotStrategyJsonSection Strategy { get; set; }
 }

@@ -1,25 +1,24 @@
-﻿namespace Atata.Configuration.Json
+﻿namespace Atata.Configuration.Json;
+
+public class DriverJsonSection : JsonSection
 {
-    public class DriverJsonSection : JsonSection
-    {
-        public string Alias { get; set; }
+    public string Alias { get; set; }
 
-        public string Type { get; set; }
+    public string Type { get; set; }
 
-        public string RemoteAddress { get; set; }
+    public string RemoteAddress { get; set; }
 
-        public DriverOptionsJsonSection Options { get; set; }
+    public DriverOptionsJsonSection Options { get; set; }
 
-        public DriverServiceJsonSection Service { get; set; }
+    public DriverServiceJsonSection Service { get; set; }
 
-        /// <summary>
-        /// Gets or sets the command timeout in seconds.
-        /// </summary>
-        public double? CommandTimeout { get; set; }
+    /// <summary>
+    /// Gets or sets the command timeout in seconds.
+    /// </summary>
+    public double? CommandTimeout { get; set; }
 
-        /// <summary>
-        /// Gets or sets the ports to ignore.
-        /// </summary>
-        public int[] PortsToIgnore { get; set; }
-    }
+    /// <summary>
+    /// Gets or sets the ports to ignore.
+    /// </summary>
+    public int[] PortsToIgnore { get; set; }
 }

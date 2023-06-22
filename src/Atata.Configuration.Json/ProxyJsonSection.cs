@@ -1,7 +1,6 @@
-﻿namespace Atata.Configuration.Json
+﻿namespace Atata.Configuration.Json;
+
+public class ProxyJsonSection : JsonSection
 {
-    public class ProxyJsonSection : JsonSection
-    {
-        public string[] BypassAddresses { get; set; }
-    }
+    public string[] BypassAddresses { get; set; }
 }

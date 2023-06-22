@@ -1,21 +1,20 @@
 ﻿using OpenQA.Selenium.Chrome;
 
-namespace Atata.Configuration.Json
+namespace Atata.Configuration.Json;
+
+public class ChromeDriverJsonMapper : ChromiumDriverJsonMapper<ChromeAtataContextBuilder, ChromeDriverService, ChromeOptions>
 {
-    public class ChromeDriverJsonMapper : ChromiumDriverJsonMapper<ChromeAtataContextBuilder, ChromeDriverService, ChromeOptions>
+    protected override ChromeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
+        builder.UseChrome();
+
+    protected override void MapOptions(DriverOptionsJsonSection section, ChromeOptions options)
     {
-        protected override ChromeAtataContextBuilder CreateDriverBuilder(AtataContextBuilder builder) =>
-            builder.UseChrome();
+        base.MapOptions(section, options);
 
-        protected override void MapOptions(DriverOptionsJsonSection section, ChromeOptions options)
+        if (section.AdditionalBrowserOptions != null)
         {
-            base.MapOptions(section, options);
-
-            if (section.AdditionalBrowserOptions != null)
-            {
-                foreach (var item in section.AdditionalBrowserOptions.ExtraPropertiesMap)
-                    options.AddAdditionalChromeOption(item.Key, FillTemplateVariables(item.Value));
-            }
+            foreach (var item in section.AdditionalBrowserOptions.ExtraPropertiesMap)
+                options.AddAdditionalChromeOption(item.Key, FillTemplateVariables(item.Value));
         }
     }
 }

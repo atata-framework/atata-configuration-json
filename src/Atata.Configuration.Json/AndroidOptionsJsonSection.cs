@@ -1,10 +1,9 @@
-﻿namespace Atata.Configuration.Json
-{
-    public class AndroidOptionsJsonSection : JsonSection
-    {
-        public string AndroidPackage { get; set; }
+﻿namespace Atata.Configuration.Json;
 
-        // Firefox specific.
-        public string[] AndroidIntentArguments { get; set; }
-    }
+public class AndroidOptionsJsonSection : JsonSection
+{
+    public string AndroidPackage { get; set; }
+
+    // Firefox specific.
+    public string[] AndroidIntentArguments { get; set; }
 }

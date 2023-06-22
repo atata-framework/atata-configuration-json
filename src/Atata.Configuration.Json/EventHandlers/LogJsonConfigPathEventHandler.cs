@@ -1,13 +1,12 @@
-﻿namespace Atata.Configuration.Json
+﻿namespace Atata.Configuration.Json;
+
+internal sealed class LogJsonConfigPathEventHandler : IEventHandler<AtataContextInitStartedEvent>
 {
-    internal sealed class LogJsonConfigPathEventHandler : IEventHandler<AtataContextInitStartedEvent>
-    {
-        private readonly string _configPath;
+    private readonly string _configPath;
 
-        internal LogJsonConfigPathEventHandler(string configPath) =>
-            _configPath = configPath;
+    internal LogJsonConfigPathEventHandler(string configPath) =>
+        _configPath = configPath;
 
-        public void Handle(AtataContextInitStartedEvent eventData, AtataContext context) =>
-            context.Log.Trace($"Use: \"{_configPath}\" config");
-    }
+    public void Handle(AtataContextInitStartedEvent eventData, AtataContext context) =>
+        context.Log.Trace($"Use: \"{_configPath}\" config");
 }

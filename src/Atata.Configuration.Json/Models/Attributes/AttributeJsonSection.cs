@@ -1,7 +1,6 @@
-﻿namespace Atata.Configuration.Json
+﻿namespace Atata.Configuration.Json;
+
+public class AttributeJsonSection : JsonSection
 {
-    public class AttributeJsonSection : JsonSection
-    {
-        public string Type { get; set; }
-    }
+    public string Type { get; set; }
 }

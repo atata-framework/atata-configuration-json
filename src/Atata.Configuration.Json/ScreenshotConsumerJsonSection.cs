@@ -1,7 +1,6 @@
-﻿namespace Atata.Configuration.Json
+﻿namespace Atata.Configuration.Json;
+
+public class ScreenshotConsumerJsonSection : JsonSection
 {
-    public class ScreenshotConsumerJsonSection : JsonSection
-    {
-        public string Type { get; set; }
-    }
+    public string Type { get; set; }
 }

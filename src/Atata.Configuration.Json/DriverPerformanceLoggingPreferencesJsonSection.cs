@@ -1,7 +1,6 @@
-﻿namespace Atata.Configuration.Json
+﻿namespace Atata.Configuration.Json;
+
+public class DriverPerformanceLoggingPreferencesJsonSection : JsonSection
 {
-    public class DriverPerformanceLoggingPreferencesJsonSection : JsonSection
-    {
-        public string[] TracingCategories { get; set; }
-    }
+    public string[] TracingCategories { get; set; }
 }

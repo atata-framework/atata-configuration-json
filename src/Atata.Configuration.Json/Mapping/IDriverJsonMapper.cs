@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
 
-namespace Atata.Configuration.Json
-{
-    public interface IDriverJsonMapper
-    {
-        void Map(DriverJsonSection section, AtataContextBuilder builder);
+namespace Atata.Configuration.Json;
 
-        DriverOptions CreateOptions(DriverOptionsJsonSection section);
-    }
+public interface IDriverJsonMapper
+{
+    void Map(DriverJsonSection section, AtataContextBuilder builder);
+
+    DriverOptions CreateOptions(DriverOptionsJsonSection section);
 }

@@ -17,29 +17,24 @@ namespace Atata.Configuration.Json
         [JsonIgnore]
         public Dictionary<string, object> ExtraPropertiesMap => AdditionalProperties?.ToDictionary(x => x.Key, x => ConvertJToken(x.Value));
 
-        private static object ConvertJToken(JToken token)
-        {
-            switch (token.Type)
+        private static object ConvertJToken(JToken token) =>
+            token.Type switch
             {
-                case JTokenType.None:
-                case JTokenType.Null:
-                case JTokenType.Undefined:
-                    return null;
-                case JTokenType.Integer:
-                    return (int)token;
-                case JTokenType.Float:
-                    return (double)token;
-                case JTokenType.Boolean:
-                    return (bool)token;
-                case JTokenType.TimeSpan:
-                    return (TimeSpan)token;
-                case JTokenType.Array:
-                    return ((JArray)token).Select(ConvertJToken).ToArray();
-                case JTokenType.Object:
-                    return ((IEnumerable<KeyValuePair<string, JToken>>)token).ToDictionary(x => x.Key, x => ConvertJToken(x.Value));
-                default:
-                    return (string)token;
-            }
-        }
+                JTokenType.None or JTokenType.Null or JTokenType.Undefined =>
+                    null,
+                JTokenType.Integer =>
+                    (int)token,
+                JTokenType.Float =>
+                    (double)token,
+                JTokenType.Boolean =>
+                    (bool)token,
+                JTokenType.TimeSpan =>
+                    (TimeSpan)token,
+                JTokenType.Array =>
+                    ((JArray)token).Select(ConvertJToken).ToArray(),
+                JTokenType.Object =>
+                    ((IEnumerable<KeyValuePair<string, JToken>>)token).ToDictionary(x => x.Key, x => ConvertJToken(x.Value)),
+                _ => (string)token,
+            };
     }
 }

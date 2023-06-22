@@ -7,7 +7,7 @@ namespace Atata.Configuration.Json
     internal static class JsonConfigManager<TConfig>
         where TConfig : JsonConfig<TConfig>
     {
-        private static readonly JsonSerializerSettings s_serializerSettings = new JsonSerializerSettings
+        private static readonly JsonSerializerSettings s_serializerSettings = new()
         {
             ContractResolver = JsonConfigContractResolver.Instance,
             NullValueHandling = NullValueHandling.Ignore

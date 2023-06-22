@@ -52,5 +52,6 @@
 [assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.AndroidOptionsJsonSection.AndroidIntentArguments")]
 [assembly: SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.Variables")]
 [assembly: SuppressMessage("Major Code Smell", "S4004:Collection properties should be readonly", Justification = "<Pending>", Scope = "member", Target = "~P:Atata.Configuration.Json.JsonConfig`1.Variables")]
+[assembly: SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.Configuration.Json.JsonSection.ConvertJToken(Newtonsoft.Json.Linq.JToken)~System.Object")]
 
 #pragma warning restore S103 // Lines should not be too long

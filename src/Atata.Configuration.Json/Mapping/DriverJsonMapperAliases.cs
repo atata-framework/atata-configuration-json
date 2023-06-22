@@ -5,7 +5,7 @@ namespace Atata.Configuration.Json
 {
     public static class DriverJsonMapperAliases
     {
-        private static readonly Dictionary<string, IDriverJsonMapper> s_aliasMapperMap = new Dictionary<string, IDriverJsonMapper>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, IDriverJsonMapper> s_aliasMapperMap = new(StringComparer.OrdinalIgnoreCase);
 
         static DriverJsonMapperAliases()
         {

@@ -13,7 +13,7 @@ namespace Atata.Configuration.Json
     public abstract class JsonConfig<TConfig> : JsonSection
         where TConfig : JsonConfig<TConfig>
     {
-        private static readonly AsyncLocal<TConfig> s_currentAsyncLocalConfig = new AsyncLocal<TConfig>();
+        private static readonly AsyncLocal<TConfig> s_currentAsyncLocalConfig = new();
 
         [ThreadStatic]
         private static TConfig s_currentThreadStaticConfig;

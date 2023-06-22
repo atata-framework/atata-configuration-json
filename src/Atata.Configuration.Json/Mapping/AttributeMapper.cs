@@ -7,7 +7,7 @@ namespace Atata.Configuration.Json
 {
     public class AttributeMapper
     {
-        private static readonly Dictionary<string, string> s_alternativeParameterNamesMap = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> s_alternativeParameterNamesMap = new()
         {
             ["value"] = "values",
             ["case"] = "termCase"

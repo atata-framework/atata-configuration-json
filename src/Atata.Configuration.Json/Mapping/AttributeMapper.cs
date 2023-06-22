@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 public class AttributeMapper
 {

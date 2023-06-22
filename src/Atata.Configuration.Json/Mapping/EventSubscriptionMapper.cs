@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 public sealed class EventSubscriptionMapper
 {

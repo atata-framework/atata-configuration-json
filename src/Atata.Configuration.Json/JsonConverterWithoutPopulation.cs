@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 public class JsonConverterWithoutPopulation : JsonConverter
 {

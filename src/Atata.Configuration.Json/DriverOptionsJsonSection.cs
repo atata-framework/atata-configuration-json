@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using OpenQA.Selenium.Chromium;
+﻿using OpenQA.Selenium.Chromium;
 
 namespace Atata.Configuration.Json;
 

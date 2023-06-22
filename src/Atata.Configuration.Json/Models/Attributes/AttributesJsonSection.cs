@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 public class AttributesJsonSection
 {

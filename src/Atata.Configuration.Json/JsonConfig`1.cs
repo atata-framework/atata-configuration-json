@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Newtonsoft.Json;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 /// <summary>
 /// Represents JSON configuration.

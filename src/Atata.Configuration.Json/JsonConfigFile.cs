@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 /// <summary>
 /// Provides static methods for loading of JSON configuration from file.

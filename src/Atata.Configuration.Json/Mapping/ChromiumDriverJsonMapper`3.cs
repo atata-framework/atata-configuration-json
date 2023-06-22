@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using OpenQA.Selenium.Chromium;
+﻿using OpenQA.Selenium.Chromium;
 
 namespace Atata.Configuration.Json;
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Atata.Configuration.Json;
 

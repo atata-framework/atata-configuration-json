@@ -1,8 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Newtonsoft.Json;
-
-namespace Atata.Configuration.Json;
+﻿namespace Atata.Configuration.Json;
 
 internal static class JsonConfigManager<TConfig>
     where TConfig : JsonConfig<TConfig>

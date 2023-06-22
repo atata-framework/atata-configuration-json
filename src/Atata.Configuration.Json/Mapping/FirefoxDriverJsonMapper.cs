@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using OpenQA.Selenium.Firefox;
+﻿using OpenQA.Selenium.Firefox;
 
 namespace Atata.Configuration.Json;
 

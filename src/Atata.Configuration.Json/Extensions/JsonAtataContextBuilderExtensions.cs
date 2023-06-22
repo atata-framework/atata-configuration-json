@@ -1,5 +1,4 @@
 ﻿using Atata.Configuration.Json;
-using Newtonsoft.Json;
 
 namespace Atata;
 

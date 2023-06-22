@@ -35,7 +35,7 @@ public class CustomJsonConfigTests : TestFixture
 
         config.BaseUrl.Should().Be("https://demo.atata.io/");
         config.IntProperty.Should().Be(5);
-        config.StringArrayValues.Should().Equal(new[] { "str1", "str2", "str3" });
+        config.StringArrayValues.Should().Equal("str1", "str2", "str3");
 
         builder.BuildingContext.DriverFactories.Should().HaveCount(1);
         builder.BuildingContext.BaseUrl.Should().Be("https://demo.atata.io/");

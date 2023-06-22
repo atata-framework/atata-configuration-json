@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Atata.Configuration.Json;
+﻿using Atata.Configuration.Json;
 using Newtonsoft.Json;
 
 namespace Atata
@@ -71,7 +70,7 @@ namespace Atata
             where TConfig : JsonConfig<TConfig>
         {
             bool isInitConfigSubscribed = builder.BuildingContext.EventSubscriptions
-                .Any(x => x.EventType == typeof(AtataContextInitStartedEvent) && x.EventHandler is InitCurrentJsonConfigEventHandler<TConfig>);
+                .Exists(x => x.EventType == typeof(AtataContextInitStartedEvent) && x.EventHandler is InitCurrentJsonConfigEventHandler<TConfig>);
 
             if (!isInitConfigSubscribed)
                 builder.EventSubscriptions.Add(new InitCurrentJsonConfigEventHandler<TConfig>());
@@ -81,7 +80,7 @@ namespace Atata
             where TConfig : JsonConfig<TConfig>
         {
             bool isResetConfigSubscribed = builder.BuildingContext.EventSubscriptions
-                .Any(x => x.EventType == typeof(AtataContextCleanUpEvent) && x.EventHandler is ResetCurrentJsonConfigEventHandler<TConfig>);
+                .Exists(x => x.EventType == typeof(AtataContextCleanUpEvent) && x.EventHandler is ResetCurrentJsonConfigEventHandler<TConfig>);
 
             if (!isResetConfigSubscribed)
                 builder.EventSubscriptions.Add(new ResetCurrentJsonConfigEventHandler<TConfig>());

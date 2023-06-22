@@ -14,8 +14,8 @@ public class CustomSettingsTests : TestFixture
         CustomJsonConfig.Current.StringProperty.Should().Be("str");
         CustomJsonConfig.Current.BoolProperty.Should().Be(true);
         CustomJsonConfig.Current.BoolProperty2.Should().Be(false);
-        CustomJsonConfig.Current.StringArrayValues.Should().Equal(new[] { "str1", "str2", "str3" });
-        CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
+        CustomJsonConfig.Current.StringArrayValues.Should().Equal("str1", "str2", "str3");
+        CustomJsonConfig.Current.StringListValues.Should().Equal("str1", "str2", "str3");
 
         CustomJsonConfig.Current.Section.StringProperty.Should().Be("section_str");
         CustomJsonConfig.Current.Section.BoolProperty.Should().Be(true);
@@ -47,8 +47,8 @@ public class CustomSettingsTests : TestFixture
         CustomJsonConfig.Current.StringProperty.Should().Be("str2");
         CustomJsonConfig.Current.BoolProperty.Should().Be(true);
         CustomJsonConfig.Current.BoolProperty2.Should().Be(false);
-        CustomJsonConfig.Current.StringArrayValues.Should().Equal(new[] { "str4" });
-        CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4" });
+        CustomJsonConfig.Current.StringArrayValues.Should().Equal("str4");
+        CustomJsonConfig.Current.StringListValues.Should().Equal("str1", "str2", "str3", "str4");
 
         CustomJsonConfig.Current.Section.StringProperty.Should().Be("section_str");
         CustomJsonConfig.Current.Section.BoolProperty.Should().Be(false);
@@ -92,8 +92,8 @@ public class CustomSettingsTests : TestFixture
         CustomJsonConfig.Global.StringProperty.Should().Be("str");
         CustomJsonConfig.Current.StringProperty.Should().Be("str2");
 
-        CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
-        CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4" });
+        CustomJsonConfig.Global.StringListValues.Should().Equal("str1", "str2", "str3");
+        CustomJsonConfig.Current.StringListValues.Should().Equal("str1", "str2", "str3", "str4");
 
         AtataContext secondaryAtataContext = null;
 
@@ -113,7 +113,7 @@ public class CustomSettingsTests : TestFixture
             CustomJsonConfig.Current.BaseUrl.Should().Be("https://demo.atata.io/override2");
             CustomJsonConfig.Current.StringProperty.Should().Be("str3");
 
-            CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str4", "str5" });
+            CustomJsonConfig.Current.StringListValues.Should().Equal("str1", "str2", "str3", "str4", "str5");
 
             // TODO: The above line should actually be:
             ////CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str5" });
@@ -124,7 +124,7 @@ public class CustomSettingsTests : TestFixture
 
             CustomJsonConfig.Global.BaseUrl.Should().Be("https://demo.atata.io/");
             CustomJsonConfig.Global.StringProperty.Should().Be("str");
-            CustomJsonConfig.Global.StringListValues.Should().Equal(new[] { "str1", "str2", "str3" });
+            CustomJsonConfig.Global.StringListValues.Should().Equal("str1", "str2", "str3");
         }
         finally
         {

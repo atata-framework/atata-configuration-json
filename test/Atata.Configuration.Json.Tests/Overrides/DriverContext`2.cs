@@ -26,7 +26,7 @@ public class DriverContext<TService, TOptions>
         return new DriverContextNullableSession(this);
     }
 
-    private class DriverContextNullableSession : IDisposable
+    private sealed class DriverContextNullableSession : IDisposable
     {
         private readonly DriverContext<TService, TOptions> _context;
 

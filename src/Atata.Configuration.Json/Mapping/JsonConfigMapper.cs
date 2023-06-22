@@ -5,84 +5,84 @@ public static class JsonConfigMapper
     public static AtataContextBuilder Map<TConfig>(TConfig config, AtataContextBuilder builder)
         where TConfig : JsonConfig<TConfig>
     {
-        if (config.DriverInitializationStage != null)
+        if (config.DriverInitializationStage is not null)
             builder.UseDriverInitializationStage(config.DriverInitializationStage.Value);
 
-        if (config.BaseUrl != null)
+        if (config.BaseUrl is not null)
             builder.UseBaseUrl(config.BaseUrl);
 
-        if (config.DefaultControlVisibility != null)
+        if (config.DefaultControlVisibility is not null)
             builder.UseDefaultControlVisibility(config.DefaultControlVisibility.Value);
 
-        if (config.Culture != null)
+        if (config.Culture is not null)
             builder.UseCulture(config.Culture);
 
-        if (config.TimeZone != null)
+        if (config.TimeZone is not null)
             builder.UseTimeZone(config.TimeZone);
 
-        if (config.ArtifactsPath != null)
+        if (config.ArtifactsPath is not null)
             builder.UseArtifactsPath(config.ArtifactsPath);
 
-        if (config.Variables != null)
+        if (config.Variables is not null)
             builder.AddVariables(config.Variables);
 
-        if (config.BaseRetryTimeout != null)
+        if (config.BaseRetryTimeout is not null)
             builder.UseBaseRetryTimeout(TimeSpan.FromSeconds(config.BaseRetryTimeout.Value));
 
-        if (config.BaseRetryInterval != null)
+        if (config.BaseRetryInterval is not null)
             builder.UseBaseRetryInterval(TimeSpan.FromSeconds(config.BaseRetryInterval.Value));
 
-        if (config.ElementFindTimeout != null)
+        if (config.ElementFindTimeout is not null)
             builder.UseElementFindTimeout(TimeSpan.FromSeconds(config.ElementFindTimeout.Value));
 
-        if (config.ElementFindRetryInterval != null)
+        if (config.ElementFindRetryInterval is not null)
             builder.UseElementFindRetryInterval(TimeSpan.FromSeconds(config.ElementFindRetryInterval.Value));
 
-        if (config.WaitingTimeout != null)
+        if (config.WaitingTimeout is not null)
             builder.UseWaitingTimeout(TimeSpan.FromSeconds(config.WaitingTimeout.Value));
 
-        if (config.WaitingRetryInterval != null)
+        if (config.WaitingRetryInterval is not null)
             builder.UseWaitingRetryInterval(TimeSpan.FromSeconds(config.WaitingRetryInterval.Value));
 
-        if (config.VerificationTimeout != null)
+        if (config.VerificationTimeout is not null)
             builder.UseVerificationTimeout(TimeSpan.FromSeconds(config.VerificationTimeout.Value));
 
-        if (config.VerificationRetryInterval != null)
+        if (config.VerificationRetryInterval is not null)
             builder.UseVerificationRetryInterval(TimeSpan.FromSeconds(config.VerificationRetryInterval.Value));
 
-        if (config.DefaultAssemblyNamePatternToFindTypes != null)
+        if (config.DefaultAssemblyNamePatternToFindTypes is not null)
             builder.UseDefaultAssemblyNamePatternToFindTypes(config.DefaultAssemblyNamePatternToFindTypes);
 
-        if (config.AssemblyNamePatternToFindComponentTypes != null)
+        if (config.AssemblyNamePatternToFindComponentTypes is not null)
             builder.UseAssemblyNamePatternToFindComponentTypes(config.AssemblyNamePatternToFindComponentTypes);
 
-        if (config.AssemblyNamePatternToFindAttributeTypes != null)
+        if (config.AssemblyNamePatternToFindAttributeTypes is not null)
             builder.UseAssemblyNamePatternToFindAttributeTypes(config.AssemblyNamePatternToFindAttributeTypes);
 
-        if (config.AssemblyNamePatternToFindEventTypes != null)
+        if (config.AssemblyNamePatternToFindEventTypes is not null)
             builder.UseAssemblyNamePatternToFindEventTypes(config.AssemblyNamePatternToFindEventTypes);
 
-        if (config.AssemblyNamePatternToFindEventHandlerTypes != null)
+        if (config.AssemblyNamePatternToFindEventHandlerTypes is not null)
             builder.UseAssemblyNamePatternToFindEventHandlerTypes(config.AssemblyNamePatternToFindEventHandlerTypes);
 
         Lazy<Assembly[]> lazyAssembliesToFindTypesIn = new Lazy<Assembly[]>(
             () => AssemblyFinder.FindAllByPattern(builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes),
             isThreadSafe: false);
 
-        if (config.AssertionExceptionType != null)
+        if (config.AssertionExceptionType is not null)
             builder.UseAssertionExceptionType(
                 TypeFinder.FindInAssemblies(config.AssertionExceptionType, lazyAssembliesToFindTypesIn.Value));
 
-        if (config.AggregateAssertionExceptionType != null)
+        if (config.AggregateAssertionExceptionType is not null)
             builder.UseAggregateAssertionExceptionType(
                 TypeFinder.FindInAssemblies(config.AggregateAssertionExceptionType, lazyAssembliesToFindTypesIn.Value));
 
-        if (config.AggregateAssertionStrategyType != null)
+        if (config.AggregateAssertionStrategyType is not null)
             builder.UseAggregateAssertionStrategy(
                 ActivatorEx.CreateInstance<IAggregateAssertionStrategy>(
                     TypeFinder.FindInAssemblies(config.AggregateAssertionStrategyType, lazyAssembliesToFindTypesIn.Value)));
 
-        if (config.WarningReportStrategyType != null)
+        if (config.WarningReportStrategyType is not null)
             builder.UseWarningReportStrategy(
                 ActivatorEx.CreateInstance<IWarningReportStrategy>(
                     TypeFinder.FindInAssemblies(config.WarningReportStrategyType, lazyAssembliesToFindTypesIn.Value)));
@@ -101,15 +101,17 @@ public static class JsonConfigMapper
 
         if (config.TakeScreenshotOnNUnitError)
         {
-            if (config.TakeScreenshotOnNUnitErrorTitle != null)
-                builder.TakeScreenshotOnNUnitError(config.TakeScreenshotOnNUnitErrorTitle);
+            ScreenshotKind screenshotKind = config.TakeScreenshotOnNUnitErrorKind ?? ScreenshotKind.Default;
+
+            if (config.TakeScreenshotOnNUnitErrorTitle is not null)
+                builder.TakeScreenshotOnNUnitError(screenshotKind, config.TakeScreenshotOnNUnitErrorTitle);
             else
-                builder.TakeScreenshotOnNUnitError();
+                builder.TakeScreenshotOnNUnitError(screenshotKind);
         }
 
         if (config.TakePageSnapshotOnNUnitError)
         {
-            if (config.TakePageSnapshotOnNUnitErrorTitle != null)
+            if (config.TakePageSnapshotOnNUnitErrorTitle is not null)
                 builder.TakePageSnapshotOnNUnitError(config.TakePageSnapshotOnNUnitErrorTitle);
             else
                 builder.TakePageSnapshotOnNUnitError();
@@ -118,7 +120,7 @@ public static class JsonConfigMapper
         if (config.OnCleanUpAddArtifactsToNUnitTestContext)
             builder.OnCleanUpAddArtifactsToNUnitTestContext();
 
-        if (config.OnCleanUpAddDirectoryFilesToNUnitTestContext != null)
+        if (config.OnCleanUpAddDirectoryFilesToNUnitTestContext is not null)
             builder.OnCleanUpAddDirectoryFilesToNUnitTestContext(config.OnCleanUpAddDirectoryFilesToNUnitTestContext);
 
         if (config.UseNUnitAggregateAssertionStrategy)
@@ -130,31 +132,34 @@ public static class JsonConfigMapper
         if (config.UseAllNUnitFeatures)
             builder.UseAllNUnitFeatures();
 
-        if (config.LogConsumers != null)
+        if (config.LogConsumers is not null)
         {
             foreach (var item in config.LogConsumers)
                 MapLogConsumer(item, builder);
         }
 
-        if (config.ScreenshotConsumers != null)
+        if (config.ScreenshotConsumers is not null)
         {
             foreach (var item in config.ScreenshotConsumers)
                 MapScreenshotConsumer(item, builder);
         }
 
-        if (config.Drivers != null)
+        if (config.Drivers is not null)
         {
             foreach (var item in config.Drivers)
                 MapDriver(item, builder);
         }
 
-        if (config.Attributes != null)
+        if (config.Attributes is not null)
             MapAttributes(config.Attributes, builder);
 
-        if (config.EventSubscriptions != null)
+        if (config.EventSubscriptions is not null)
             MapEventSubscriptions(config.EventSubscriptions, builder);
 
-        if (config.PageSnapshots != null)
+        if (config.Screenshots is not null)
+            MapScreenshots(config.Screenshots, builder);
+
+        if (config.PageSnapshots is not null)
             MapPageSnapshots(config.PageSnapshots, builder);
 
         return builder;
@@ -280,6 +285,20 @@ public static class JsonConfigMapper
 
         builder.BuildingContext.EventSubscriptions.AddRange(
             sections.Select(x => eventSubscriptionMapper.Map(x)));
+    }
+
+    private static void MapScreenshots(ScreenshotsJsonSection section, AtataContextBuilder builder)
+    {
+        if (section?.Strategy?.Type != null)
+        {
+            if (!ScreenshotStrategyAliases.TryResolve(section.Strategy.Type, out IScreenshotStrategy strategy))
+                strategy = (IScreenshotStrategy)CreateObject(
+                    section.Strategy.Type,
+                    section.Strategy.ExtraPropertiesMap,
+                    builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes);
+
+            builder.Screenshots.UseStrategy(strategy);
+        }
     }
 
     private static void MapPageSnapshots(PageSnapshotsJsonSection section, AtataContextBuilder builder)

@@ -17,12 +17,18 @@
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "Fail",
+  "takeScreenshotOnNUnitErrorKind": "FullPage",
   "logConsumers": [
     {
       "type": "Atata.NUnitTestContextLogConsumer, Atata",
       "sectionFinish": true
     }
   ],
+  "screenshots": {
+    "strategy": {
+      "type": "fullPageOrViewport"
+    }
+  },
   "pageSnapshots": {
     "fileNameTemplate": "{snapshot-number:D2}!",
     "strategy": {

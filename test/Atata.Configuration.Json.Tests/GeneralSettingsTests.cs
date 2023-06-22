@@ -42,6 +42,9 @@ public class GeneralSettingsTests : TestFixture
             context.AssemblyNamePatternToFindComponentTypes.Should().Be("comp");
             context.AssemblyNamePatternToFindAttributeTypes.Should().Be("attr");
 
+            context.EventSubscriptions.Should().Contain(x => x.EventHandler is TakeScreenshotOnNUnitErrorOnCleanUpEventHandler);
+            context.Screenshots.Strategy.Should().BeOfType<FullPageOrViewportScreenshotStrategy>();
+
             context.PageSnapshots.FileNameTemplate.Should().Be("{snapshot-number:D2}!");
             context.PageSnapshots.Strategy.Should().BeOfType<PageSourcePageSnapshotStrategy>();
         }

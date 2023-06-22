@@ -191,6 +191,8 @@ public abstract class JsonConfig<TConfig> : JsonSection
 
     public string TakeScreenshotOnNUnitErrorTitle { get; set; }
 
+    public ScreenshotKind? TakeScreenshotOnNUnitErrorKind { get; set; }
+
     public bool TakePageSnapshotOnNUnitError { get; set; }
 
     public string TakePageSnapshotOnNUnitErrorTitle { get; set; }
@@ -248,6 +250,11 @@ public abstract class JsonConfig<TConfig> : JsonSection
     /// Gets or sets the event subscriptions.
     /// </summary>
     public List<EventSubscriptionJsonSection> EventSubscriptions { get; set; }
+
+    /// <summary>
+    /// Gets or sets the screenshots configuration.
+    /// </summary>
+    public ScreenshotsJsonSection Screenshots { get; set; }
 
     /// <summary>
     /// Gets or sets the page snapshots configuration.

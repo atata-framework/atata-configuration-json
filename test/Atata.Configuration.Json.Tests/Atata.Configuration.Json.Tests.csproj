@@ -125,4 +125,6 @@
     </None>
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties configs_4attributes_4component_1json__JsonSchema="https://json.schemastore.org/datalogic-scan2deploy-ce.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

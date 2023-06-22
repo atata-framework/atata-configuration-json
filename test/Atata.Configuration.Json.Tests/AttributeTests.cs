@@ -67,7 +67,7 @@ public class AttributeTests : TestFixture
 
         result[typeof(OrdinaryPage)].Should().ContainSingle()
             .Which.Should().BeOfType<UrlAttribute>()
-            .Which.Url.Should().Be("/some-url");
+            .Which.Value.Should().Be("/some-url");
     }
 
     [Test]

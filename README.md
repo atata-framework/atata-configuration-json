@@ -12,7 +12,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.2.0](https://atata.io/blog/2022/11/17/atata.configuration.json-2.2.0-released/)**
+**[What's new in v2.3.0](https://atata.io/blog/2023/06/24/atata.configuration.json-2.3.0-released/)**
 
 ## Table of Contents
 
@@ -388,7 +388,7 @@ with help of `{env:VarName}` template insertions.
   "timeZone": "string", // For example: "UTC".
   "artifactsPath": "string",
 
-  "defaultControlVisibility": "string", // Supports: "Any" (default), "Visible" and "Invisible".
+  "defaultControlVisibility": "string", // Supports: "any" (default), "visible" and "invisible".
 
   "baseRetryTimeout": 5, // Sets the base retry timeout in seconds.
   "baseRetryInterval": 0.5, // Sets the base retry interval in seconds.
@@ -408,6 +408,9 @@ with help of `{env:VarName}` template insertions.
   "aggregateAssertionStrategyType": "string", // Sets the type name of the aggregate assertion strategy. The type should implement IAggregateAssertionStrategy.
   "warningReportStrategyType": "string", // Sets the type name of the strategy for warning assertion reporting. The type should implement IWarningReportStrategy.
 
+  "domTestIdAttributeName": "data-testid",
+  "domTestIdAttributeDefaultCase": "kebab",
+
   "defaultAssemblyNamePatternToFindTypes": "regex_string",
   "assemblyNamePatternToFindComponentTypes": "regex_string",
   "assemblyNamePatternToFindAttributeTypes": "regex_string",
@@ -422,6 +425,7 @@ with help of `{env:VarName}` template insertions.
   "logNUnitError": true,
   "takeScreenshotOnNUnitError": true,
   "takeScreenshotOnNUnitErrorTitle": "string",
+  "takeScreenshotOnNUnitErrorKind": "default", // Supports: "default", "viewport" and "fullPage".
   "takePageSnapshotOnNUnitError": true,
   "takePageSnapshotOnNUnitErrorTitle": "string",
   "onCleanUpAddArtifactsToNUnitTestContext": true,
@@ -434,7 +438,7 @@ with help of `{env:VarName}` template insertions.
       "type": "nunit", // Supports: "debug", "trace", "console", "nunit", "nlog", "nlog-file", "log4net"
                        // and custom consumers registered via LogConsumerAliases.Register method.
                        // Custom ILogConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
-      "minLevel": "Info", // Supports: Trace, Debug, Info, Warn, Error, Fatal.
+      "minLevel": "Info", // Supports: "trace", "debug", "info", "warn", "error", "fatal".
       "sectionFinish": true,
       "messageNestingLevelIndent": "- ",
       "messageStartSectionPrefix": "> ",
@@ -451,10 +455,19 @@ with help of `{env:VarName}` template insertions.
     }
   ],
 
+  "screenshots": { // Configures screenshots functionality.
+    "strategy": {
+      "type": "webDriverViewport", // Supports: "webDriverViewport", "webDriverFullPage", "cdpFullPage", "fullPageOrViewport",
+                                   // and name of custom type implementing "Atata.IScreenshotTakeStrategy".
+      "{{strategyValueName}}": "value" // Any property or constructor parameter of strategy.
+    }
+  },
+
   "pageSnapshots": { // Configures page snapshots functionality.
     "fileNameTemplate": "string",
     "strategy": {
-      "type": "cdpOrPageSource", // Supports: "cdpOrPageSource", "pageSource", "cdp", and name of custom type implementing "Atata.IPageSnapshotTakeStrategy".
+      "type": "cdpOrPageSource", // Supports: "cdpOrPageSource", "pageSource", "cdp",
+                                 // and name of custom type implementing "Atata.IPageSnapshotTakeStrategy".
       "{{strategyValueName}}": "value" // Any property or constructor parameter of strategy.
     }
   },

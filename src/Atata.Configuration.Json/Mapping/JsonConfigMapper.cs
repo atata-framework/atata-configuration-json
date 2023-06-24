@@ -87,6 +87,12 @@ public static class JsonConfigMapper
                 ActivatorEx.CreateInstance<IWarningReportStrategy>(
                     TypeFinder.FindInAssemblies(config.WarningReportStrategyType, lazyAssembliesToFindTypesIn.Value)));
 
+        if (config.DomTestIdAttributeName is not null)
+            builder.UseDomTestIdAttributeName(config.DomTestIdAttributeName);
+
+        if (config.DomTestIdAttributeDefaultCase is not null)
+            builder.UseDomTestIdAttributeDefaultCase(config.DomTestIdAttributeDefaultCase.Value);
+
         if (config.UseNUnitTestName)
             builder.UseNUnitTestName();
 

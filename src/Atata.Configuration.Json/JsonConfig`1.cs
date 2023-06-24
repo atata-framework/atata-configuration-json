@@ -171,6 +171,16 @@ public abstract class JsonConfig<TConfig> : JsonSection
     public string WarningReportStrategyType { get; set; }
 
     /// <summary>
+    /// Gets or sets the name of the DOM test identifier attribute.
+    /// </summary>
+    public string DomTestIdAttributeName { get; set; }
+
+    /// <summary>
+    /// Gets or sets the default case of the DOM test identifier attribute.
+    /// </summary>
+    public TermCase? DomTestIdAttributeDefaultCase { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether to use NUnit test name.
     /// </summary>
     public bool UseNUnitTestName { get; set; }

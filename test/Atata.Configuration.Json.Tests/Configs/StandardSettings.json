@@ -15,5 +15,8 @@
     "customStringVar": "strvar"
   },
 
+  "domTestIdAttributeName": "data-autoid",
+  "domTestIdAttributeDefaultCase": "midSentence",
+
   "useAllNUnitFeatures": true
 }

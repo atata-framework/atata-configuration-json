@@ -168,6 +168,9 @@ public static class JsonConfigMapper
         if (config.PageSnapshots is not null)
             MapPageSnapshots(config.PageSnapshots, builder);
 
+        if (config.BrowserLogs is not null)
+            MapBrowserLogs(config.BrowserLogs, builder);
+
         return builder;
     }
 
@@ -295,7 +298,7 @@ public static class JsonConfigMapper
 
     private static void MapScreenshots(ScreenshotsJsonSection section, AtataContextBuilder builder)
     {
-        if (section?.Strategy?.Type != null)
+        if (section.Strategy?.Type != null)
         {
             if (!ScreenshotStrategyAliases.TryResolve(section.Strategy.Type, out IScreenshotStrategy strategy))
                 strategy = (IScreenshotStrategy)CreateObject(
@@ -312,7 +315,7 @@ public static class JsonConfigMapper
         if (!string.IsNullOrEmpty(section.FileNameTemplate))
             builder.PageSnapshots.UseFileNameTemplate(section.FileNameTemplate);
 
-        if (section?.Strategy?.Type != null)
+        if (section.Strategy?.Type != null)
         {
             if (!PageSnapshotStrategyAliases.TryResolve(section.Strategy.Type, out IPageSnapshotStrategy strategy))
                 strategy = (IPageSnapshotStrategy)CreateObject(
@@ -322,6 +325,15 @@ public static class JsonConfigMapper
 
             builder.PageSnapshots.UseStrategy(strategy);
         }
+    }
+
+    private static void MapBrowserLogs(BrowserLogsJsonSection section, AtataContextBuilder builder)
+    {
+        if (section.Log)
+            builder.BrowserLogs.UseLog(section.Log);
+
+        if (section.MinLevelOfWarning is not null)
+            builder.BrowserLogs.UseMinLevelOfWarning(section.MinLevelOfWarning);
     }
 
     private static object CreateObject(string typeName, Dictionary<string, object> valuesMap, string assemblyNamePatternToFindType)

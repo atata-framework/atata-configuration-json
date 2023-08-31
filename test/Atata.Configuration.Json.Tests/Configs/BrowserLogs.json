@@ -1,0 +1,6 @@
+﻿{
+  "browserLogs": {
+    "log": true,
+    "minLevelOfWarning": "warn"
+  }
+}

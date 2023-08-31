@@ -270,4 +270,9 @@ public abstract class JsonConfig<TConfig> : JsonSection
     /// Gets or sets the page snapshots configuration.
     /// </summary>
     public PageSnapshotsJsonSection PageSnapshots { get; set; }
+
+    /// <summary>
+    /// Gets or sets the browser logs configuration.
+    /// </summary>
+    public BrowserLogsJsonSection BrowserLogs { get; set; }
 }

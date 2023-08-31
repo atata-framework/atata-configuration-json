@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Atata.Configuration.Json.Tests;
+﻿namespace Atata.Configuration.Json.Tests;
 
 using TOptions = OpenQA.Selenium.Firefox.FirefoxOptions;
 using TService = OpenQA.Selenium.Firefox.FirefoxDriverService;

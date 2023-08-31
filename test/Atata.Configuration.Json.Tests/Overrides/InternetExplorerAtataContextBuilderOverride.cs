@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Atata.Configuration.Json.Tests;
+﻿namespace Atata.Configuration.Json.Tests;
 
 using TOptions = OpenQA.Selenium.IE.InternetExplorerOptions;
 using TService = OpenQA.Selenium.IE.InternetExplorerDriverService;

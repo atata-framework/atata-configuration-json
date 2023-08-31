@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Atata.Configuration.Json.Tests;
+﻿namespace Atata.Configuration.Json.Tests;
 
 [TestFixture]
 public class CustomJsonConfigTests : TestFixture

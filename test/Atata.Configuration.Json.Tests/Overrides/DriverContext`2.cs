@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Atata.Configuration.Json.Tests;
+﻿namespace Atata.Configuration.Json.Tests;
 
 public class DriverContext<TService, TOptions>
     where TService : DriverService

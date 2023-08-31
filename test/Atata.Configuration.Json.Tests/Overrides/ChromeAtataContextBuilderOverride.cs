@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Atata.Configuration.Json.Tests;
+﻿namespace Atata.Configuration.Json.Tests;
 
 using TOptions = OpenQA.Selenium.Chrome.ChromeOptions;
 using TService = OpenQA.Selenium.Chrome.ChromeDriverService;

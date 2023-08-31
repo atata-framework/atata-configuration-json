@@ -3,7 +3,6 @@
 [![NuGet](http://img.shields.io/nuget/v/Atata.Configuration.Json.svg?style=flat)](https://www.nuget.org/packages/Atata.Configuration.Json/)
 [![GitHub release](https://img.shields.io/github/release/atata-framework/atata-configuration-json.svg)](https://github.com/atata-framework/atata-configuration-json/releases)
 [![Build status](https://dev.azure.com/atata-framework/atata-configuration-json/_apis/build/status/atata-configuration-json-ci?branchName=main)](https://dev.azure.com/atata-framework/atata-configuration-json/_build/latest?definitionId=33&branchName=main)
-[![Gitter](https://badges.gitter.im/atata-framework/atata-configuration-json.svg)](https://gitter.im/atata-framework/atata-configuration-json)
 [![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/zt-5j3lyln7-WD1ZtMDzXBhPm0yXLDBzbA)
 [![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)
 [![Twitter](https://img.shields.io/badge/follow-@AtataFramework-blue.svg)](https://twitter.com/AtataFramework)
@@ -12,7 +11,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.3.0](https://atata.io/blog/2023/06/24/atata.configuration.json-2.3.0-released/)**
+**[What's new in v2.4.0](https://atata.io/blog/2023/09/01/atata.configuration.json-2.4.0-released/)**
 
 ## Table of Contents
 
@@ -438,7 +437,7 @@ with help of `{env:VarName}` template insertions.
       "type": "nunit", // Supports: "debug", "trace", "console", "nunit", "nlog", "nlog-file", "log4net"
                        // and custom consumers registered via LogConsumerAliases.Register method.
                        // Custom ILogConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
-      "minLevel": "Info", // Supports: "trace", "debug", "info", "warn", "error", "fatal".
+      "minLevel": "info", // Supports: "trace", "debug", "info", "warn", "error", "fatal".
       "sectionFinish": true,
       "messageNestingLevelIndent": "- ",
       "messageStartSectionPrefix": "> ",
@@ -471,6 +470,11 @@ with help of `{env:VarName}` template insertions.
       "{{strategyValueName}}": "value" // Any property or constructor parameter of strategy.
     }
   },
+
+  "browserLogs": { // Configures browser logs monitoring, which isn't enabled by default.
+    "log": true,
+    "minLevelOfWarning": "warn" // Supports: "trace", "debug", "info", "warn", "error", "fatal".
+  }
 
   "eventSubscriptions": [
     {

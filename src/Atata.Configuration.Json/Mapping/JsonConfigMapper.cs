@@ -293,7 +293,7 @@ public static class JsonConfigMapper
             builder.BuildingContext.DefaultAssemblyNamePatternToFindTypes);
 
         builder.BuildingContext.EventSubscriptions.AddRange(
-            sections.Select(x => eventSubscriptionMapper.Map(x)));
+            sections.Select(eventSubscriptionMapper.Map));
     }
 
     private static void MapScreenshots(ScreenshotsJsonSection section, AtataContextBuilder builder)

@@ -11,7 +11,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.3.0](https://atata.io/blog/2023/06/24/atata.configuration.json-2.3.0-released/)**
+**[What's new in v2.4.0](https://atata.io/blog/2023/09/01/atata.configuration.json-2.4.0-released/)**
 
 ## Table of Contents
 
@@ -474,7 +474,7 @@ with help of `{env:VarName}` template insertions.
   "browserLogs": { // Configures browser logs monitoring, which isn't enabled by default.
     "log": true,
     "minLevelOfWarning": "warn" // Supports: "trace", "debug", "info", "warn", "error", "fatal".
-  }
+  },
 
   "eventSubscriptions": [
     {

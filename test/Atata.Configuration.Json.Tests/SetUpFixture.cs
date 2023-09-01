@@ -14,6 +14,6 @@ public class SetUpFixture
         DriverJsonMapperAliases.Register<InternetExplorerDriverJsonMapperOverride>(DriverAliases.InternetExplorer);
         DriverJsonMapperAliases.Register<EdgeDriverJsonMapperOverride>(DriverAliases.Edge);
 
-        DriverSetup.AutoSetUp(BrowserNames.Chrome, BrowserNames.Firefox, BrowserNames.Edge, BrowserNames.InternetExplorer);
+        DriverSetup.AutoSetUp(BrowserNames.Chrome, BrowserNames.Firefox, BrowserNames.Edge);
     }
 }

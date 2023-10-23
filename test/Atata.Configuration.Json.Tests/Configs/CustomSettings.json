@@ -2,7 +2,7 @@
   "driver": {
     "type": "Chrome",
     "options": {
-      "arguments": [ "disable-extensions", "start-maximized" ]
+      "arguments": [ "start-maximized" ]
     }
   },
   "baseUrl": "https://demo.atata.io/",

@@ -99,7 +99,7 @@ public class DriverTests : TestFixture
         options.Proxy.HttpProxy.Should().Be("http");
         options.Proxy.FtpProxy.Should().Be("ftp");
 
-        options.Arguments.Should().Equal("disable-extensions", "start-maximized");
+        options.Arguments.Should().Equal("headless=new");
 
         ((List<string>)browserCapabilities["excludeSwitches"]).Should().Equal("exc-arg");
 
@@ -153,6 +153,7 @@ public class DriverTests : TestFixture
 
         AtataContext.Configure()
             .UseChrome()
+                .WithArguments("headless=new")
             .Build();
 
         VerifyChromeJsonConfig(JsonConfig.Current);
@@ -202,7 +203,7 @@ public class DriverTests : TestFixture
                    ["ftpProxy"] = "ftp"
                });
 
-            config.Driver.Options.Arguments.Should().Equal("disable-extensions", "start-maximized");
+            config.Driver.Options.Arguments.Should().Equal("headless=new");
             config.Driver.Options.ExcludedArguments.Should().Equal("exc-arg");
 
             config.Driver.Options.EncodedExtensions.Should().Equal("ZW5jLWV4dDE=", "ZW5jLWV4dDI=");

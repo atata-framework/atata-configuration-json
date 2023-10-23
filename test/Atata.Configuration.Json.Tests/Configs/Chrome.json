@@ -27,7 +27,7 @@
         "httpProxy": "http",
         "ftpProxy": "ftp"
       },
-      "arguments": [ "disable-extensions", "start-maximized" ],
+      "arguments": [ "headless=new" ],
       "excludedArguments": [ "exc-arg" ],
       "encodedExtensions": [ "ZW5jLWV4dDE=", "ZW5jLWV4dDI=" ],
       "windowTypes": [ "win1", "win2" ],

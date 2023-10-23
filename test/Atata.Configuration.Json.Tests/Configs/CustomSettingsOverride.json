@@ -2,7 +2,7 @@
   "driver": {
     "type": "Chrome",
     "options": {
-      "arguments": [ "disable-extensions" ]
+      "arguments": [ "headless=new" ]
     }
   },
   "baseUrl": "https://demo.atata.io/override",

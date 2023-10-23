@@ -3,13 +3,13 @@
     {
       "type": "firefox",
       "options": {
-        "arguments": [ "--start-maximized" ]
+        "arguments": [ "--headless" ]
       }
     },
     {
       "type": "chrome",
       "options": {
-        "arguments": [ "start-maximized" ]
+        "arguments": [ "headless=new" ]
       }
     }
   ]

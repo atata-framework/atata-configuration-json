@@ -73,7 +73,7 @@ public class CustomSettingsTests : TestFixture
         });
 
         CustomJsonConfig.Current.Drivers.Should().HaveCount(2);
-        CustomJsonConfig.Current.Driver.Options.Arguments.Should().Equal("disable-extensions");
+        CustomJsonConfig.Current.Driver.Options.Arguments.Should().Equal("headless=new");
     }
 
     [Test]
@@ -84,7 +84,11 @@ public class CustomSettingsTests : TestFixture
 
         AtataContext primaryAtataContext = AtataContext.Configure()
             .ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettingsOverride.json")
+            .UseAllNUnitFeatures()
             .Build();
+
+        CustomJsonConfig.Global.Driver.Options.Arguments.Should().Equal("start-maximized");
+        CustomJsonConfig.Current.Driver.Options.Arguments.Should().Equal("headless=new");
 
         CustomJsonConfig.Global.BaseUrl.Should().Be("https://demo.atata.io/");
         CustomJsonConfig.Current.BaseUrl.Should().Be("https://demo.atata.io/override");

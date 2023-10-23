@@ -13,11 +13,10 @@
   "baseUrl": "https://demo.atata.io/",
   "defaultControlVisibility": "Visible",
   "culture": "en-US",
+
   "useNUnitTestName": true,
-  "logNUnitError": true,
-  "takeScreenshotOnNUnitError": true,
-  "takeScreenshotOnNUnitErrorTitle": "Fail",
-  "takeScreenshotOnNUnitErrorKind": "FullPage",
+  "useNUnitTestSuiteName": true,
+  "useNUnitTestSuiteType": true,
   "logConsumers": [
     {
       "type": "Atata.NUnitTestContextLogConsumer, Atata",
@@ -35,6 +34,21 @@
       "type": "pageSource"
     }
   },
+  "eventSubscriptions": [
+    {
+      "handlerType": "Atata.LogNUnitErrorEventHandler, Atata"
+    },
+    {
+      "handlerType": "Atata.TakeScreenshotOnNUnitErrorEventHandler, Atata"
+    },
+    {
+      "handlerType": "Atata.TakePageSnapshotOnNUnitErrorEventHandler, Atata"
+    },
+    {
+      "handlerType": "Atata.AddArtifactsToNUnitTestContextEventHandler, Atata"
+    }
+  ],
+
   "assertionExceptionType": "NUnit.Framework.AssertionException, nunit.framework",
   "baseRetryTimeout": 7,
   "baseRetryInterval": 0.7,

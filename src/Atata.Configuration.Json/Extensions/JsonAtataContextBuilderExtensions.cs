@@ -79,7 +79,7 @@ public static class JsonAtataContextBuilderExtensions
         where TConfig : JsonConfig<TConfig>
     {
         bool isResetConfigSubscribed = builder.BuildingContext.EventSubscriptions
-            .Exists(x => x.EventType == typeof(AtataContextCleanUpEvent) && x.EventHandler is ResetCurrentJsonConfigEventHandler<TConfig>);
+            .Exists(x => x.EventType == typeof(AtataContextDeInitCompletedEvent) && x.EventHandler is ResetCurrentJsonConfigEventHandler<TConfig>);
 
         if (!isResetConfigSubscribed)
             builder.EventSubscriptions.Add(new ResetCurrentJsonConfigEventHandler<TConfig>());

@@ -6,7 +6,7 @@ public class TestFixture
     [TearDown]
     public virtual void TearDown()
     {
-        AtataContext.Current?.CleanUp();
+        AtataContext.Current?.Dispose();
 
         JsonConfig.Current = null;
         JsonConfig.Global = null;

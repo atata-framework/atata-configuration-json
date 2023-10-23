@@ -2,8 +2,7 @@
   "screenshotConsumers": [
     {
       "type": "file",
-      "filePath": "/logs/{test-name}.txt",
-      "imageFormat": "png"
+      "filePath": "/logs/{test-name}.txt"
     },
     {
       "type": "Atata.Configuration.Json.Tests.ScreenshotConsumerTests+CustomScreenshotConsumer, Atata.Configuration.Json.Tests",
@@ -12,8 +11,7 @@
     {
       "type": "file",
       "directoryPath": "/logs",
-      "fileName": "{test-name}",
-      "imageFormat": "jpeg"
+      "fileName": "{test-name}"
     }
   ]
 }

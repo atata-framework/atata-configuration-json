@@ -1,0 +1,9 @@
+﻿{
+  "logNUnitError": true,
+  "takeScreenshotOnNUnitError": true,
+  "takeScreenshotOnNUnitErrorTitle": "Fail",
+  "takeScreenshotOnNUnitErrorKind": "FullPage",
+  "takePageSnapshotOnNUnitError": true,
+  "takePageSnapshotOnNUnitErrorTitle": "Fail",
+  "onCleanUpAddArtifactsToNUnitTestContext": true
+}

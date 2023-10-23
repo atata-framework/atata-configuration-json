@@ -11,9 +11,9 @@ public class ScreenshotConsumerTests : TestFixture
 
         IScreenshotConsumer[] expected =
         {
-            new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Png, FilePath = "/logs/{test-name}.txt" },
+            new FileScreenshotConsumer { FilePath = "/logs/{test-name}.txt" },
             new CustomScreenshotConsumer { IntProperty = 15 },
-            new FileScreenshotConsumer { ImageFormat = ScreenshotImageFormat.Jpeg, DirectoryPath = "/logs", FileName = "{test-name}" }
+            new FileScreenshotConsumer { DirectoryPath = "/logs", FileName = "{test-name}" }
         };
 
         builder.BuildingContext.ScreenshotConsumers.Select(x => x.GetType()).Should().BeEquivalentTo(expected.Select(x => x.GetType()));

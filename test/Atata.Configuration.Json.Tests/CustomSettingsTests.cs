@@ -118,7 +118,7 @@ public class CustomSettingsTests : TestFixture
             // TODO: The above line should actually be:
             ////CustomJsonConfig.Current.StringListValues.Should().Equal(new[] { "str1", "str2", "str3", "str5" });
 
-            AtataContext.Current.CleanUp();
+            AtataContext.Current.Dispose();
 
             CustomJsonConfig.Current.Should().BeNull();
 
@@ -128,8 +128,8 @@ public class CustomSettingsTests : TestFixture
         }
         finally
         {
-            primaryAtataContext?.CleanUp();
-            secondaryAtataContext?.CleanUp();
+            primaryAtataContext?.Dispose();
+            secondaryAtataContext?.Dispose();
         }
     }
 }

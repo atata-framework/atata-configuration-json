@@ -19,8 +19,14 @@ public class GeneralSettingsTests : TestFixture
 
             context.Culture.Name.Should().Be("en-US");
 
-            context.EventSubscriptions.Where(x => x.EventType == typeof(AtataContextCleanUpEvent))
+            context.EventSubscriptions.Where(x => x.EventType == typeof(AtataContextDeInitEvent))
                 .Should().HaveCount(3);
+            context.EventSubscriptions.Where(x => x.EventType == typeof(AtataContextDeInitCompletedEvent))
+                .Should().HaveCount(2);
+            context.EventSubscriptions.Should().Contain(x => x.EventHandler is LogNUnitErrorEventHandler);
+            context.EventSubscriptions.Should().Contain(x => x.EventHandler is TakeScreenshotOnNUnitErrorEventHandler);
+            context.EventSubscriptions.Should().Contain(x => x.EventHandler is TakePageSnapshotOnNUnitErrorEventHandler);
+            context.EventSubscriptions.Should().Contain(x => x.EventHandler is AddArtifactsToNUnitTestContextEventHandler);
 
             context.AssertionExceptionType.Should().Be(typeof(NUnit.Framework.AssertionException));
 
@@ -37,16 +43,36 @@ public class GeneralSettingsTests : TestFixture
             context.VerificationRetryInterval.Should().Be(TimeSpan.FromSeconds(1));
 
             context.TestNameFactory().Should().Be(nameof(GeneralAndNUnit));
+            context.TestSuiteNameFactory().Should().Be(nameof(GeneralSettingsTests));
+            context.TestSuiteTypeFactory().Should().Be(typeof(GeneralSettingsTests));
 
             context.DefaultAssemblyNamePatternToFindTypes.Should().Be("def");
             context.AssemblyNamePatternToFindComponentTypes.Should().Be("comp");
             context.AssemblyNamePatternToFindAttributeTypes.Should().Be("attr");
 
-            context.EventSubscriptions.Should().Contain(x => x.EventHandler is TakeScreenshotOnNUnitErrorOnCleanUpEventHandler);
             context.Screenshots.Strategy.Should().BeOfType<FullPageOrViewportScreenshotStrategy>();
 
             context.PageSnapshots.FileNameTemplate.Should().Be("{snapshot-number:D2}!");
             context.PageSnapshots.Strategy.Should().BeOfType<PageSourcePageSnapshotStrategy>();
         }
+    }
+
+    [Test]
+    public void ObsoleteNUnitProperties()
+    {
+        List<string> logEntries = new();
+
+        using var context = AtataContext.Configure()
+            .UseDriverInitializationStage(AtataContextDriverInitializationStage.None)
+            .ApplyJsonConfig("Configs/NUnitObsoleteProperties.json")
+            .LogConsumers.Add(new TextOutputLogConsumer(logEntries.Add))
+                .WithMinLevel(LogLevel.Warn)
+            .Build();
+
+        logEntries.Should().HaveCount(4);
+        logEntries[0].Should().Contain("\"logNUnitError\" configuration property is deprecated");
+        logEntries[1].Should().Contain("\"takeScreenshotOnNUnitError\", \"takeScreenshotOnNUnitErrorKind\" and \"takeScreenshotOnNUnitErrorTitle\" configuration properties are deprecated");
+        logEntries[2].Should().Contain("\"takePageSnapshotOnNUnitError\" and \"takePageSnapshotOnNUnitErrorTitle\" configuration properties are deprecated");
+        logEntries[3].Should().Contain("\"onCleanUpAddArtifactsToNUnitTestContext\" configuration property is deprecated");
     }
 }

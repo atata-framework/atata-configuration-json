@@ -195,20 +195,28 @@ public abstract class JsonConfig<TConfig> : JsonSection
     /// </summary>
     public bool UseNUnitTestSuiteType { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public bool LogNUnitError { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public bool TakeScreenshotOnNUnitError { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public string TakeScreenshotOnNUnitErrorTitle { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public ScreenshotKind? TakeScreenshotOnNUnitErrorKind { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public bool TakePageSnapshotOnNUnitError { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public string TakePageSnapshotOnNUnitErrorTitle { get; set; }
 
+    [Obsolete("Don't use the property as it will be removed in v3.")] // Obsolete since v2.5.0.
     public bool OnCleanUpAddArtifactsToNUnitTestContext { get; set; }
 
+    // TODO: Make obsolete in v2.6.0.
     public string OnCleanUpAddDirectoryFilesToNUnitTestContext { get; set; }
 
     /// <summary>

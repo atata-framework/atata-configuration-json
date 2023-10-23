@@ -6,16 +6,6 @@
     }
   },
   "baseUrl": "https://demo.atata.io/",
-  "useNUnitTestName": true,
-  "logNUnitError": true,
-  "takeScreenshotOnNUnitError": true,
-  "takeScreenshotOnNUnitErrorTitle": "Fail",
-  "logConsumers": [
-    {
-      "type": "nunit",
-      "sectionFinish": true
-    }
-  ],
 
   "intProperty": 5,
   "stringProperty": "str",

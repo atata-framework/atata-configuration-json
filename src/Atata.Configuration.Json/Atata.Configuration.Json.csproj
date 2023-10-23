@@ -26,7 +26,7 @@ Features:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Atata" Version="2.9.0" />
+    <PackageReference Include="Atata" Version="2.11.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   

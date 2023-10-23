@@ -102,32 +102,90 @@ public static class JsonConfigMapper
         if (config.UseNUnitTestSuiteType)
             builder.UseNUnitTestSuiteType();
 
+        List<string> warnings = new();
+
+        // TODO: v3. Remove all the code below related to NUnit event handlers.
+#pragma warning disable CS0618 // Type or member is obsolete
         if (config.LogNUnitError)
-            builder.LogNUnitError();
+        {
+            builder.EventSubscriptions.LogNUnitError();
+
+            warnings.Add("""
+                "logNUnitError" configuration property is deprecated. Use the following configuration instead:
+                {
+                  "eventSubscriptions": [
+                    {
+                      "handlerType": "Atata.LogNUnitErrorEventHandler, Atata"
+                    }
+                  ]
+                }
+                """);
+        }
 
         if (config.TakeScreenshotOnNUnitError)
         {
             ScreenshotKind screenshotKind = config.TakeScreenshotOnNUnitErrorKind ?? ScreenshotKind.Default;
 
             if (config.TakeScreenshotOnNUnitErrorTitle is not null)
-                builder.TakeScreenshotOnNUnitError(screenshotKind, config.TakeScreenshotOnNUnitErrorTitle);
+                builder.EventSubscriptions.TakeScreenshotOnNUnitError(screenshotKind, config.TakeScreenshotOnNUnitErrorTitle);
             else
-                builder.TakeScreenshotOnNUnitError(screenshotKind);
+                builder.EventSubscriptions.TakeScreenshotOnNUnitError(screenshotKind);
+
+            warnings.Add("""
+                "takeScreenshotOnNUnitError", "takeScreenshotOnNUnitErrorKind" and "takeScreenshotOnNUnitErrorTitle" configuration properties are deprecated. Use the following configuration instead:
+                {
+                  "eventSubscriptions": [
+                    {
+                      "handlerType": "Atata.TakeScreenshotOnNUnitErrorEventHandler, Atata",
+                      "screenshotKind": "default", // Optional. "default" by default. Can be "viewport" or "fullPage".
+                      "screenshotTitle": "Failed"  // Optional. "Failed" by default.
+                    }
+                  ]
+                }
+                """);
         }
 
         if (config.TakePageSnapshotOnNUnitError)
         {
             if (config.TakePageSnapshotOnNUnitErrorTitle is not null)
-                builder.TakePageSnapshotOnNUnitError(config.TakePageSnapshotOnNUnitErrorTitle);
+                builder.EventSubscriptions.TakePageSnapshotOnNUnitError(config.TakePageSnapshotOnNUnitErrorTitle);
             else
-                builder.TakePageSnapshotOnNUnitError();
+                builder.EventSubscriptions.TakePageSnapshotOnNUnitError();
+
+            warnings.Add("""
+                "takePageSnapshotOnNUnitError" and "takePageSnapshotOnNUnitErrorTitle" configuration properties are deprecated. Use the following configuration instead:
+                {
+                  "eventSubscriptions": [
+                    {
+                      "handlerType": "Atata.TakePageSnapshotOnNUnitErrorEventHandler, Atata",
+                      "snapshotTitle": "Failed" // Optional. "Failed" by default.
+                    }
+                  ]
+                }
+                """);
         }
 
         if (config.OnCleanUpAddArtifactsToNUnitTestContext)
-            builder.OnCleanUpAddArtifactsToNUnitTestContext();
+        {
+            builder.EventSubscriptions.AddArtifactsToNUnitTestContext();
+
+            warnings.Add("""
+                "onCleanUpAddArtifactsToNUnitTestContext" configuration property is deprecated. Use the following configuration instead:
+                {
+                  "eventSubscriptions": [
+                    {
+                      "handlerType": "Atata.AddArtifactsToNUnitTestContextEventHandler, Atata"
+                    }
+                  ]
+                }
+                """);
+        }
+#pragma warning restore CS0618 // Type or member is obsolete
 
         if (config.OnCleanUpAddDirectoryFilesToNUnitTestContext is not null)
-            builder.OnCleanUpAddDirectoryFilesToNUnitTestContext(config.OnCleanUpAddDirectoryFilesToNUnitTestContext);
+        {
+            builder.EventSubscriptions.AddDirectoryFilesToNUnitTestContext(config.OnCleanUpAddDirectoryFilesToNUnitTestContext);
+        }
 
         if (config.UseNUnitAggregateAssertionStrategy)
             builder.UseNUnitAggregateAssertionStrategy();
@@ -170,6 +228,9 @@ public static class JsonConfigMapper
 
         if (config.BrowserLogs is not null)
             MapBrowserLogs(config.BrowserLogs, builder);
+
+        if (warnings.Count > 0)
+            builder.EventSubscriptions.Add(new LogConfigurationWarningsEventHandler(warnings));
 
         return builder;
     }

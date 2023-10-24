@@ -11,7 +11,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.4.0](https://atata.io/blog/2023/09/01/atata.configuration.json-2.4.0-released/)**
+**[What's new in v2.5.0](https://atata.io/blog/2023/10/24/atata.configuration.json-2.5.0-released/)**
 
 ## Table of Contents
 
@@ -421,13 +421,6 @@ with help of `{env:VarName}` template insertions.
   "useNUnitTestName": true,
   "useNUnitTestSuiteName": true,
   "useNUnitTestSuiteType": true,
-  "logNUnitError": true,
-  "takeScreenshotOnNUnitError": true,
-  "takeScreenshotOnNUnitErrorTitle": "string",
-  "takeScreenshotOnNUnitErrorKind": "default", // Supports: "default", "viewport" and "fullPage".
-  "takePageSnapshotOnNUnitError": true,
-  "takePageSnapshotOnNUnitErrorTitle": "string",
-  "onCleanUpAddArtifactsToNUnitTestContext": true,
   "onCleanUpAddDirectoryFilesToNUnitTestContext": "string",
   "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
   "useNUnitWarningReportStrategy": true, // Indicates to use NUnitWarningReportStrategy as the strategy for warning assertion reporting.
@@ -450,7 +443,7 @@ with help of `{env:VarName}` template insertions.
     {
       "type": "file", // Supports: "file" and custom consumers registered via ScreenshotConsumerAliases.Register method.
                       // Custom IScreenshotConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
-      "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "directoryPath", "imageFormat".
+      "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "directoryPath".
     }
   ],
 

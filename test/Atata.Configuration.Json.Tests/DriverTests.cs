@@ -432,7 +432,7 @@ public class DriverTests : TestFixture
             AtataContextBuilder builder = AtataContext.Configure()
                 .ApplyJsonConfig(@"Configs/RemoteTypeless.json");
 
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.Throws<WebDriverInitializationException>(() =>
                 builder.BuildingContext.DriverFactoryToUse.Create());
         }
     }

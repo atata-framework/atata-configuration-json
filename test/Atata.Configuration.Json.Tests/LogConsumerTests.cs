@@ -12,14 +12,14 @@ public class LogConsumerTests : TestFixture
         LogConsumerConfiguration[] expected =
         {
             new(new DebugLogConsumer { Separator = " - " }),
-            new(new TraceLogConsumer(), LogLevel.Trace, true)
+            new(new TraceLogConsumer(), LogLevel.Trace)
             {
                 MessageNestingLevelIndent = "_ ",
                 MessageStartSectionPrefix = "S:",
                 MessageEndSectionPrefix = "E:",
             },
-            new(new NUnitTestContextLogConsumer(), LogLevel.Info, false),
-            new(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, false),
+            new(new NUnitTestContextLogConsumer(), LogLevel.Info, LogSectionEndOption.Exclude),
+            new(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, LogSectionEndOption.Exclude),
             new(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
         };
 
@@ -38,7 +38,7 @@ public class LogConsumerTests : TestFixture
         LogConsumerConfiguration[] expected =
         {
             new(new DebugLogConsumer { Separator = " - " }),
-            new(new TraceLogConsumer(), LogLevel.Trace, true)
+            new(new TraceLogConsumer(), LogLevel.Trace)
         };
 
         AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);

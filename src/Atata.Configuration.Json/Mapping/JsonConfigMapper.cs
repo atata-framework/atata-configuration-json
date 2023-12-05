@@ -242,8 +242,10 @@ public static class JsonConfigMapper
         if (section.MinLevel != null)
             consumerBuilder.WithMinLevel(section.MinLevel.Value);
 
+        if (section.SectionEnd != null)
+            consumerBuilder.WithSectionEnd(section.SectionEnd.Value);
 #pragma warning disable CS0618 // Type or member is obsolete
-        if (section.SectionFinish == false)
+        else if (section.SectionFinish == false)
             consumerBuilder.WithoutSectionFinish();
 #pragma warning restore CS0618 // Type or member is obsolete
 

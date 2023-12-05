@@ -6,7 +6,10 @@ public class LogConsumerJsonSection : JsonSection
 
     public LogLevel? MinLevel { get; set; }
 
+    [Obsolete($"Use {nameof(SectionEnd)} instead.")] // Obsolete since v2.6.0.
     public bool? SectionFinish { get; set; }
+
+    public LogSectionEndOption? SectionEnd { get; set; }
 
     public string MessageNestingLevelIndent { get; set; }
 

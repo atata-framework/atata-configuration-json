@@ -20,7 +20,7 @@
   "logConsumers": [
     {
       "type": "Atata.NUnitTestContextLogConsumer, Atata",
-      "sectionFinish": true
+      "sectionEnd": "include"
     }
   ],
   "screenshots": {

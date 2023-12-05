@@ -7,7 +7,7 @@
     {
       "type": "trace",
       "minLevel": "Trace",
-      "sectionFinish": true,
+      "sectionEnd": "include",
       "messageNestingLevelIndent": "_ ",
       "messageStartSectionPrefix": "S:",
       "messageEndSectionPrefix": "E:"
@@ -15,12 +15,12 @@
     {
       "type": "nunit",
       "minLevel": "info",
-      "sectionFinish": false
+      "sectionEnd": "exclude"
     },
     {
       "type": "nlog",
       "minLevel": "warn",
-      "sectionFinish": false,
+      "sectionEnd": "includeForBlocks",
       "loggerName": "somelogger"
     },
     {

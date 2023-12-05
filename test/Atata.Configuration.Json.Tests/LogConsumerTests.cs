@@ -19,7 +19,7 @@ public class LogConsumerTests : TestFixture
                 MessageEndSectionPrefix = "E:",
             },
             new(new NUnitTestContextLogConsumer(), LogLevel.Info, LogSectionEndOption.Exclude),
-            new(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, LogSectionEndOption.Exclude),
+            new(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, LogSectionEndOption.IncludeForBlocks),
             new(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
         };
 

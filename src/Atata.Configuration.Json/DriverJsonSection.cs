@@ -8,6 +8,8 @@ public class DriverJsonSection : JsonSection
 
     public int? CreateRetries { get; set; }
 
+    public bool? InitialHealthCheck { get; set; }
+
     public string RemoteAddress { get; set; }
 
     public DriverOptionsJsonSection Options { get; set; }

@@ -40,6 +40,9 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
         if (section.CreateRetries != null)
             builder.WithCreateRetries(section.CreateRetries.Value);
 
+        if (section.InitialHealthCheck != null)
+            builder.WithInitialHealthCheck(section.InitialHealthCheck.Value);
+
         if (section.CommandTimeout != null)
             builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 

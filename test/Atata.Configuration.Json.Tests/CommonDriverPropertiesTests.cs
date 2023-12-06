@@ -16,4 +16,8 @@ public class CommonDriverPropertiesTests : TestFixture
     [Test]
     public void CreateRetries() =>
         _sut.ValueOf(x => x.CreateRetries).Should.Be(7);
+
+    [Test]
+    public void InitialHealthCheck() =>
+        _sut.ValueOf(x => x.InitialHealthCheck).Should.BeTrue();
 }

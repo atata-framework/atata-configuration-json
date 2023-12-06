@@ -1,6 +1,7 @@
 ﻿{
   "driver": {
     "type": "chrome",
-    "createRetries": 7
+    "createRetries": 7,
+    "initialHealthCheck": true
   }
 }

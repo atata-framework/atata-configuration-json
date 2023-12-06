@@ -37,6 +37,9 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
         if (!string.IsNullOrWhiteSpace(section.Alias))
             builder.WithAlias(section.Alias);
 
+        if (section.CreateRetries != null)
+            builder.WithCreateRetries(section.CreateRetries.Value);
+
         if (section.CommandTimeout != null)
             builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 

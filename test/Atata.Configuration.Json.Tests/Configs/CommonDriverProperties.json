@@ -1,0 +1,6 @@
+﻿{
+  "driver": {
+    "type": "chrome",
+    "createRetries": 7
+  }
+}

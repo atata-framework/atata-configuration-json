@@ -6,6 +6,8 @@ public class DriverJsonSection : JsonSection
 
     public string Type { get; set; }
 
+    public int? CreateRetries { get; set; }
+
     public string RemoteAddress { get; set; }
 
     public DriverOptionsJsonSection Options { get; set; }

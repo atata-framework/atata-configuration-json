@@ -11,7 +11,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.5.0](https://atata.io/blog/2023/10/24/atata.configuration.json-2.5.0-released/)**
+**[What's new in v2.6.0](https://atata.io/blog/2023/12/06/atata.configuration.json-2.6.0-released/)**
 
 ## Table of Contents
 
@@ -276,6 +276,8 @@ with help of `{env:VarName}` template insertions.
     "type": "chrome", // Supports: "remote", "chrome", "firefox", "internetexplorer", "safari", "edge" and custom mappers registered via DriverJsonMapperAliases.Register method.
                       // Custom RemoteWebDriver type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
     "alias": "custom_alias", // Use aliases when you have several drivers of the same type.
+    "createRetries": 2, // Sets the count of possible driver creation retries in case exceptions occur during creation.
+    "initialHealthCheck": false, // Sets a value indicating whether to execute an initial health check. Defaults to false.
     "remoteAddress": "http://127.0.0.1:8888/wd/hub", // Remote driver specific.
     "options": { // Configures driver options.
       "type": "chrome", // Remote driver specific.
@@ -431,7 +433,7 @@ with help of `{env:VarName}` template insertions.
                        // and custom consumers registered via LogConsumerAliases.Register method.
                        // Custom ILogConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
       "minLevel": "info", // Supports: "trace", "debug", "info", "warn", "error", "fatal".
-      "sectionFinish": true,
+      "sectionEnd": "include", // Supports: "include", "includeForBlocks", "exclude".
       "messageNestingLevelIndent": "- ",
       "messageStartSectionPrefix": "> ",
       "messageEndSectionPrefix": "< ",

@@ -199,7 +199,7 @@ public static class JsonConfigMapper
         if (config.LogConsumers is not null)
         {
             foreach (var item in config.LogConsumers)
-                MapLogConsumer(item, builder);
+                MapLogConsumer(item, builder, warnings);
         }
 
         if (config.ScreenshotConsumers is not null)
@@ -235,7 +235,7 @@ public static class JsonConfigMapper
         return builder;
     }
 
-    private static void MapLogConsumer(LogConsumerJsonSection section, AtataContextBuilder builder)
+    private static void MapLogConsumer(LogConsumerJsonSection section, AtataContextBuilder builder, ICollection<string> warnings)
     {
         var consumerBuilder = builder.LogConsumers.Add(section.Type);
 
@@ -243,10 +243,18 @@ public static class JsonConfigMapper
             consumerBuilder.WithMinLevel(section.MinLevel.Value);
 
         if (section.SectionEnd != null)
+        {
             consumerBuilder.WithSectionEnd(section.SectionEnd.Value);
+        }
 #pragma warning disable CS0618 // Type or member is obsolete
         else if (section.SectionFinish == false)
+        {
             consumerBuilder.WithoutSectionFinish();
+
+            warnings.Add("""
+                "sectionFinish" log consumer configuration property is deprecated. Instead use "sectionEnd" with one of the values: "include", "includeForBlocks", "exclude".
+                """);
+        }
 #pragma warning restore CS0618 // Type or member is obsolete
 
         if (section.MessageNestingLevelIndent != null)

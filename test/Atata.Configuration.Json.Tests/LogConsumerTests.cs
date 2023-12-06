@@ -10,18 +10,18 @@ public class LogConsumerTests : TestFixture
             .ApplyJsonConfig("Configs/LogConsumers");
 
         LogConsumerConfiguration[] expected =
-        {
-            new(new DebugLogConsumer { Separator = " - " }),
-            new(new TraceLogConsumer(), LogLevel.Trace)
+        [
+            new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
+            new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace)
             {
                 MessageNestingLevelIndent = "_ ",
                 MessageStartSectionPrefix = "S:",
                 MessageEndSectionPrefix = "E:",
             },
-            new(new NUnitTestContextLogConsumer(), LogLevel.Info, LogSectionEndOption.Exclude),
-            new(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, LogSectionEndOption.IncludeForBlocks),
-            new(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
-        };
+            new LogConsumerConfiguration(new NUnitTestContextLogConsumer(), LogLevel.Info, LogSectionEndOption.Exclude),
+            new LogConsumerConfiguration(new NLogConsumer { LoggerName = "somelogger" }, LogLevel.Warn, LogSectionEndOption.IncludeForBlocks),
+            new LogConsumerConfiguration(new CustomLogConsumer { IntProperty = 15 }, LogLevel.Error)
+        ];
 
         AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
 
@@ -36,10 +36,10 @@ public class LogConsumerTests : TestFixture
             .ApplyJsonConfig("Configs/TraceLogConsumers");
 
         LogConsumerConfiguration[] expected =
-        {
-            new(new DebugLogConsumer { Separator = " - " }),
-            new(new TraceLogConsumer(), LogLevel.Trace)
-        };
+        [
+            new LogConsumerConfiguration(new DebugLogConsumer { Separator = " - " }),
+            new LogConsumerConfiguration(new TraceLogConsumer(), LogLevel.Trace)
+        ];
 
         AssertLogConsumers(expected, builder.BuildingContext.LogConsumerConfigurations);
 

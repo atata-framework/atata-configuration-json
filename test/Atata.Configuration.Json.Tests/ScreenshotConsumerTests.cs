@@ -10,11 +10,11 @@ public class ScreenshotConsumerTests : TestFixture
             .ApplyJsonConfig("ScreenshotConsumers");
 
         IScreenshotConsumer[] expected =
-        {
+        [
             new FileScreenshotConsumer { FilePath = "/logs/{test-name}.txt" },
             new CustomScreenshotConsumer { IntProperty = 15 },
             new FileScreenshotConsumer { DirectoryPath = "/logs", FileName = "{test-name}" }
-        };
+        ];
 
         builder.BuildingContext.ScreenshotConsumers.Select(x => x.GetType()).Should().BeEquivalentTo(expected.Select(x => x.GetType()));
 

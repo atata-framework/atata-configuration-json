@@ -12,11 +12,11 @@ public class CustomJsonConfig : JsonConfig<CustomJsonConfig>
 
     public string[] StringArrayValues { get; set; }
 
-    public List<string> StringListValues { get; } = new List<string>();
+    public List<string> StringListValues { get; } = [];
 
     public CustomSection Section { get; set; }
 
-    public List<CustomItemSection> Items { get; } = new List<CustomItemSection>();
+    public List<CustomItemSection> Items { get; } = [];
 
     public class CustomSection
     {

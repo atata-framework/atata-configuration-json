@@ -60,7 +60,7 @@ public class GeneralSettingsTests : TestFixture
     [Test]
     public void ObsoleteNUnitProperties()
     {
-        List<string> logEntries = new();
+        List<string> logEntries = [];
 
         using var context = AtataContext.Configure()
             .UseDriverInitializationStage(AtataContextDriverInitializationStage.None)

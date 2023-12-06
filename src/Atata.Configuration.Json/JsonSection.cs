@@ -8,7 +8,7 @@ namespace Atata.Configuration.Json;
 public class JsonSection
 {
     [JsonExtensionData]
-    public Dictionary<string, JToken> AdditionalProperties { get; } = new Dictionary<string, JToken>();
+    public Dictionary<string, JToken> AdditionalProperties { get; } = [];
 
     [JsonIgnore]
     public Dictionary<string, object> ExtraPropertiesMap => AdditionalProperties?.ToDictionary(x => x.Key, x => ConvertJToken(x.Value));

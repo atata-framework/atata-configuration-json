@@ -51,7 +51,7 @@ public abstract class JsonConfig<TConfig> : JsonSection
         {
             if (value != null)
             {
-                Drivers ??= new List<DriverJsonSection>();
+                Drivers ??= [];
                 Drivers.Add(value);
             }
         }

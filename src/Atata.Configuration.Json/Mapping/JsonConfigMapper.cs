@@ -102,7 +102,7 @@ public static class JsonConfigMapper
         if (config.UseNUnitTestSuiteType)
             builder.UseNUnitTestSuiteType();
 
-        List<string> warnings = new();
+        List<string> warnings = [];
 
         // TODO: v3. Remove all the code below related to NUnit event handlers.
 #pragma warning disable CS0618 // Type or member is obsolete

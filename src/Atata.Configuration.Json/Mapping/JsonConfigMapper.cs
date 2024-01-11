@@ -204,6 +204,9 @@ public static class JsonConfigMapper
         if (config.UseAllNUnitFeatures)
             builder.UseAllNUnitFeatures();
 
+        if (config.UseSpecFlowNUnitFeatures)
+            builder.UseSpecFlowNUnitFeatures();
+
         if (config.LogConsumers is not null)
         {
             foreach (var item in config.LogConsumers)

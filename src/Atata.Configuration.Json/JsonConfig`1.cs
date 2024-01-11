@@ -241,9 +241,14 @@ public abstract class JsonConfig<TConfig> : JsonSection
     public bool UseNUnitAssertionFailureReportStrategy { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether to enable all NUnit features for Atata.
+    /// Gets or sets a value indicating whether to enable all Atata features for NUnit.
     /// </summary>
     public bool UseAllNUnitFeatures { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to enable all Atata features for SpecFlow+NUnit.
+    /// </summary>
+    public bool UseSpecFlowNUnitFeatures { get; set; }
 
     /// <summary>
     /// Gets or sets the default assembly name pattern that is used to filter assemblies to find types in them.

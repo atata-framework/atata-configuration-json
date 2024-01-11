@@ -87,6 +87,11 @@ public static class JsonConfigMapper
                 ActivatorEx.CreateInstance<IWarningReportStrategy>(
                     TypeFinder.FindInAssemblies(config.WarningReportStrategyType, lazyAssembliesToFindTypesIn.Value)));
 
+        if (config.AssertionFailureReportStrategyType is not null)
+            builder.UseAssertionFailureReportStrategy(
+                ActivatorEx.CreateInstance<IAssertionFailureReportStrategy>(
+                    TypeFinder.FindInAssemblies(config.AssertionFailureReportStrategyType, lazyAssembliesToFindTypesIn.Value)));
+
         if (config.DomTestIdAttributeName is not null)
             builder.UseDomTestIdAttributeName(config.DomTestIdAttributeName);
 

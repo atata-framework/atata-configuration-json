@@ -1,0 +1,7 @@
+﻿{
+  "assertionExceptionType": "NUnit.Framework.AssertionException, nunit.framework",
+  "aggregateAssertionExceptionType": "NUnit.Framework.MultipleAssertException, nunit.framework",
+  "aggregateAssertionStrategyType": "Atata.NUnitAggregateAssertionStrategy, Atata",
+  "warningReportStrategyType": "Atata.NUnitWarningReportStrategy",
+  "assertionFailureReportStrategyType": "NUnitAssertionFailureReportStrategy"
+}

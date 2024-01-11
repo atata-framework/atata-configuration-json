@@ -28,8 +28,6 @@ public class GeneralSettingsTests : TestFixture
             context.EventSubscriptions.Should().Contain(x => x.EventHandler is TakePageSnapshotOnNUnitErrorEventHandler);
             context.EventSubscriptions.Should().Contain(x => x.EventHandler is AddArtifactsToNUnitTestContextEventHandler);
 
-            context.AssertionExceptionType.Should().Be(typeof(NUnit.Framework.AssertionException));
-
             context.BaseRetryTimeout.Should().Be(TimeSpan.FromSeconds(7));
             context.BaseRetryInterval.Should().Be(TimeSpan.FromSeconds(0.7));
 
@@ -74,5 +72,23 @@ public class GeneralSettingsTests : TestFixture
         logEntries[1].Should().Contain("\"takeScreenshotOnNUnitError\", \"takeScreenshotOnNUnitErrorKind\" and \"takeScreenshotOnNUnitErrorTitle\" configuration properties are deprecated");
         logEntries[2].Should().Contain("\"takePageSnapshotOnNUnitError\" and \"takePageSnapshotOnNUnitErrorTitle\" configuration properties are deprecated");
         logEntries[3].Should().Contain("\"onCleanUpAddArtifactsToNUnitTestContext\" configuration property is deprecated");
+    }
+
+    [Test]
+    public void VerificationProperties()
+    {
+        AtataContextBuilder builder = AtataContext.Configure()
+            .ApplyJsonConfig("Configs/VerificationProperties.json");
+
+        var context = builder.BuildingContext;
+
+        using (new AssertionScope())
+        {
+            context.AssertionExceptionType.Should().Be(typeof(NUnit.Framework.AssertionException));
+            context.AggregateAssertionExceptionType.Should().Be(typeof(MultipleAssertException));
+            context.AggregateAssertionStrategy.Should().BeOfType<NUnitAggregateAssertionStrategy>();
+            context.WarningReportStrategy.Should().BeOfType<NUnitWarningReportStrategy>();
+            context.AssertionFailureReportStrategy.Should().BeOfType<NUnitAssertionFailureReportStrategy>();
+        }
     }
 }

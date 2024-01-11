@@ -171,6 +171,12 @@ public abstract class JsonConfig<TConfig> : JsonSection
     public string WarningReportStrategyType { get; set; }
 
     /// <summary>
+    /// Gets or sets the type name of the strategy for assertion failure reporting.
+    /// The type should implement <see cref="IAssertionFailureReportStrategy"/>.
+    /// </summary>
+    public string AssertionFailureReportStrategyType { get; set; }
+
+    /// <summary>
     /// Gets or sets the name of the DOM test identifier attribute.
     /// </summary>
     public string DomTestIdAttributeName { get; set; }

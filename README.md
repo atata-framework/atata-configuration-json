@@ -11,7 +11,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.6.0](https://atata.io/blog/2023/12/06/atata.configuration.json-2.6.0-released/)**
+**[What's new in v2.7.0](https://atata.io/blog/2024/01/11/atata.configuration.json-2.7.0-released/)**
 
 ## Table of Contents
 
@@ -408,6 +408,7 @@ with help of `{env:VarName}` template insertions.
   "aggregateAssertionExceptionType": "string", // Replaces Atata.AggregateAssertionException type with custom type, e.g.: "MyApp.AggregateAssertionException, MyApp.Library".
   "aggregateAssertionStrategyType": "string", // Sets the type name of the aggregate assertion strategy. The type should implement IAggregateAssertionStrategy.
   "warningReportStrategyType": "string", // Sets the type name of the strategy for warning assertion reporting. The type should implement IWarningReportStrategy.
+  "assertionFailureReportStrategyType": "string", // Sets the type name of the strategy for assertion failure reporting. The type should implement IAssertionFailureReportStrategy.
 
   "domTestIdAttributeName": "data-testid",
   "domTestIdAttributeDefaultCase": "kebab",
@@ -418,7 +419,8 @@ with help of `{env:VarName}` template insertions.
   "assemblyNamePatternToFindEventTypes": "regex_string",
   "assemblyNamePatternToFindEventHandlerTypes": "regex_string",
 
-  "useAllNUnitFeatures": true, // Indicates to enable all NUnit features for Atata.
+  "useAllNUnitFeatures": true, // Indicates to enable all Atata features for NUnit.
+  "useSpecFlowNUnitFeatures": true, // Indicates to enable all Atata features for SpecFlow+NUnit.
   // Or enable particular NUnit configuration options:
   "useNUnitTestName": true,
   "useNUnitTestSuiteName": true,
@@ -426,6 +428,7 @@ with help of `{env:VarName}` template insertions.
   "onCleanUpAddDirectoryFilesToNUnitTestContext": "string",
   "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
   "useNUnitWarningReportStrategy": true, // Indicates to use NUnitWarningReportStrategy as the strategy for warning assertion reporting.
+  "useNUnitAssertionFailureReportStrategy": true, // Indicates to use NUnitAssertionFailureReportStrategy as the strategy for assertion failure reporting.
 
   "logConsumers": [ // Configures list of log consumers.
     {

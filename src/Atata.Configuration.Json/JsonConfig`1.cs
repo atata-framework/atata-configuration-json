@@ -236,6 +236,11 @@ public abstract class JsonConfig<TConfig> : JsonSection
     public bool UseNUnitWarningReportStrategy { get; set; }
 
     /// <summary>
+    /// Gets or sets a value indicating whether to use <see cref="NUnitAssertionFailureReportStrategy"/> as the strategy for assertion failure reporting.
+    /// </summary>
+    public bool UseNUnitAssertionFailureReportStrategy { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether to enable all NUnit features for Atata.
     /// </summary>
     public bool UseAllNUnitFeatures { get; set; }

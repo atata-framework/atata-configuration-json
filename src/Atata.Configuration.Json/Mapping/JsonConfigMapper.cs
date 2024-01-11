@@ -198,6 +198,9 @@ public static class JsonConfigMapper
         if (config.UseNUnitWarningReportStrategy)
             builder.UseNUnitWarningReportStrategy();
 
+        if (config.UseNUnitAssertionFailureReportStrategy)
+            builder.UseNUnitAssertionFailureReportStrategy();
+
         if (config.UseAllNUnitFeatures)
             builder.UseAllNUnitFeatures();
 

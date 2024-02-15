@@ -91,7 +91,7 @@ public static class JsonConfigFile
         Read<JsonConfig>(filePath, environmentAlias)
             .Drivers?.Select(x => x.Alias)
             .ToArray()
-            ?? new string[0];
+            ?? [];
 
     /// <summary>
     /// Returns the full/absolute path for the file using optionally <paramref name="filePath"/> and <paramref name="environmentAlias"/> arguments.

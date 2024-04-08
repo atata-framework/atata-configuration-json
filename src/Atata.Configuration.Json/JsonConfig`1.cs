@@ -83,26 +83,6 @@ public abstract class JsonConfig<TConfig> : JsonSection
     /// <summary>
     /// Gets or sets the base retry timeout in seconds.
     /// </summary>
-    [Obsolete("Use BaseRetryTimeout instead.")] // Obsolete since v0.17.0.
-    public double? RetryTimeout
-    {
-        get => BaseRetryTimeout;
-        set => BaseRetryTimeout = value;
-    }
-
-    /// <summary>
-    /// Gets or sets the base retry interval in seconds.
-    /// </summary>
-    [Obsolete("Use BaseRetryInterval instead.")] // Obsolete since v0.17.0.
-    public double? RetryInterval
-    {
-        get => BaseRetryInterval;
-        set => BaseRetryInterval = value;
-    }
-
-    /// <summary>
-    /// Gets or sets the base retry timeout in seconds.
-    /// </summary>
     public double? BaseRetryTimeout { get; set; }
 
     /// <summary>

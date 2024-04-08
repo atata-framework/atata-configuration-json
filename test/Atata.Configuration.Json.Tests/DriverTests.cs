@@ -142,7 +142,7 @@ public class DriverTests : TestFixture
     {
         service.Port.Should().Be(555);
         service.HostName.Should().Be("127.0.0.1");
-        service.WhitelistedIPAddresses.Should().Be("5.5.5.5,7.7.7.7");
+        service.AllowedIPAddresses.Should().Be("5.5.5.5,7.7.7.7");
     }
 
     [Test]
@@ -256,7 +256,7 @@ public class DriverTests : TestFixture
                 {
                     ["port"] = 555,
                     ["hostName"] = "127.0.0.1",
-                    ["whitelistedIPAddresses"] = "5.5.5.5,7.7.7.7"
+                    ["allowedIPAddresses"] = "5.5.5.5,7.7.7.7"
                 });
         }
     }
@@ -374,7 +374,7 @@ public class DriverTests : TestFixture
 
         context.Options.PageLoadStrategy.Should().Be(PageLoadStrategy.Eager);
 
-        context.Service.WhitelistedIPAddresses.Should().Be("ips");
+        context.Service.AllowedIPAddresses.Should().Be("ips");
     }
 
     [Test]

@@ -21,21 +21,21 @@ public abstract class JsonConfig<TConfig> : JsonSection
 
     /// <summary>
     /// Gets or sets the current <see cref="JsonConfig{TConfig}"/> instance.
-    /// Keeps in sync with <see cref="AtataContext.Current"/> relying on its <see cref="AtataContext.ModeOfCurrent"/> value.
+    /// Relies on <see cref="AtataContextGlobalProperties.ModeOfCurrent"/> value of <see cref="AtataContext.GlobalProperties"/>.
     /// </summary>
     public static TConfig Current
     {
-        get => AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
-            ? s_currentThreadStaticConfig
-            : AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
-                ? s_currentAsyncLocalConfig.Value
+        get => AtataContext.GlobalProperties.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal
+        ? s_currentAsyncLocalConfig.Value
+            : AtataContext.GlobalProperties.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic
+                ? s_currentThreadStaticConfig
                 : s_currentStaticConfig;
         set
         {
-            if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic)
-                s_currentThreadStaticConfig = value;
-            else if (AtataContext.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal)
+            if (AtataContext.GlobalProperties.ModeOfCurrent == AtataContextModeOfCurrent.AsyncLocal)
                 s_currentAsyncLocalConfig.Value = value;
+            else if (AtataContext.GlobalProperties.ModeOfCurrent == AtataContextModeOfCurrent.ThreadStatic)
+                s_currentThreadStaticConfig = value;
             else
                 s_currentStaticConfig = value;
         }
@@ -64,8 +64,6 @@ public abstract class JsonConfig<TConfig> : JsonSection
 
     public List<LogConsumerJsonSection> LogConsumers { get; set; }
 
-    public List<ScreenshotConsumerJsonSection> ScreenshotConsumers { get; set; }
-
     public string BaseUrl { get; set; }
 
     public Visibility? DefaultControlVisibility { get; set; }
@@ -73,14 +71,9 @@ public abstract class JsonConfig<TConfig> : JsonSection
     public string Culture { get; set; }
 
     /// <summary>
-    /// Gets or sets the time zone identifier.
+    /// Gets or sets the Artifacts directory path template.
     /// </summary>
-    public string TimeZone { get; set; }
-
-    /// <summary>
-    /// Gets or sets the Artifacts directory path.
-    /// </summary>
-    public string ArtifactsPath { get; set; }
+    public string ArtifactsPathTemplate { get; set; }
 
     /// <summary>
     /// Gets or sets the variables.

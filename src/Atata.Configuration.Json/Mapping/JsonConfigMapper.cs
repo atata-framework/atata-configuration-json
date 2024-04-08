@@ -17,11 +17,8 @@ public static class JsonConfigMapper
         if (config.Culture is not null)
             builder.UseCulture(config.Culture);
 
-        if (config.TimeZone is not null)
-            builder.UseTimeZone(config.TimeZone);
-
-        if (config.ArtifactsPath is not null)
-            builder.UseArtifactsPath(config.ArtifactsPath);
+        if (config.ArtifactsPathTemplate is not null)
+            builder.UseArtifactsPathTemplate(config.ArtifactsPathTemplate);
 
         if (config.Variables is not null)
             builder.AddVariables(config.Variables);
@@ -210,13 +207,7 @@ public static class JsonConfigMapper
         if (config.LogConsumers is not null)
         {
             foreach (var item in config.LogConsumers)
-                MapLogConsumer(item, builder, warnings);
-        }
-
-        if (config.ScreenshotConsumers is not null)
-        {
-            foreach (var item in config.ScreenshotConsumers)
-                MapScreenshotConsumer(item, builder);
+                MapLogConsumer(item, builder);
         }
 
         if (config.Drivers is not null)
@@ -246,7 +237,7 @@ public static class JsonConfigMapper
         return builder;
     }
 
-    private static void MapLogConsumer(LogConsumerJsonSection section, AtataContextBuilder builder, ICollection<string> warnings)
+    private static void MapLogConsumer(LogConsumerJsonSection section, AtataContextBuilder builder)
     {
         var consumerBuilder = builder.LogConsumers.Add(section.Type);
 
@@ -254,19 +245,7 @@ public static class JsonConfigMapper
             consumerBuilder.WithMinLevel(section.MinLevel.Value);
 
         if (section.SectionEnd != null)
-        {
             consumerBuilder.WithSectionEnd(section.SectionEnd.Value);
-        }
-#pragma warning disable CS0618 // Type or member is obsolete
-        else if (section.SectionFinish == false)
-        {
-            consumerBuilder.WithoutSectionFinish();
-
-            warnings.Add("""
-                "sectionFinish" log consumer configuration property is deprecated. Instead use "sectionEnd" with one of the values: "include", "includeForBlocks", "exclude".
-                """);
-        }
-#pragma warning restore CS0618 // Type or member is obsolete
 
         if (section.MessageNestingLevelIndent != null)
             consumerBuilder.WithMessageNestingLevelIndent(section.MessageNestingLevelIndent);
@@ -276,33 +255,6 @@ public static class JsonConfigMapper
 
         if (section.MessageEndSectionPrefix != null)
             consumerBuilder.WithMessageEndSectionPrefix(section.MessageEndSectionPrefix);
-
-        if (consumerBuilder.Context is NLogFileConsumer nLogFileConsumer)
-            ConfigureNLogFileConsumer(nLogFileConsumer, section.ExtraPropertiesMap);
-        else
-            consumerBuilder.WithProperties(section.ExtraPropertiesMap);
-    }
-
-    // TODO: Remove this method when NLogFileConsumer will get string path/name properties.
-    private static void ConfigureNLogFileConsumer(NLogFileConsumer consumer, Dictionary<string, object> propertiesMap)
-    {
-        foreach (var item in propertiesMap)
-        {
-            // TODO: v3. Remove first if block.
-            if (item.Key.Equals("FolderPath", StringComparison.OrdinalIgnoreCase))
-                consumer.DirectoryPathBuilder = _ => item.Value.ToString();
-            else if (item.Key.Equals("DirectoryPath", StringComparison.OrdinalIgnoreCase))
-                consumer.DirectoryPathBuilder = _ => item.Value.ToString();
-            else if (item.Key.Equals("FileName", StringComparison.OrdinalIgnoreCase))
-                consumer.FileNameBuilder = _ => item.Value.ToString();
-            else if (item.Key.Equals("FilePath", StringComparison.OrdinalIgnoreCase))
-                consumer.FilePathBuilder = _ => item.Value.ToString();
-        }
-    }
-
-    private static void MapScreenshotConsumer(ScreenshotConsumerJsonSection section, AtataContextBuilder builder)
-    {
-        var consumerBuilder = builder.ScreenshotConsumers.Add(section.Type);
 
         consumerBuilder.WithProperties(section.ExtraPropertiesMap);
     }
@@ -382,6 +334,9 @@ public static class JsonConfigMapper
 
     private static void MapScreenshots(ScreenshotsJsonSection section, AtataContextBuilder builder)
     {
+        if (!string.IsNullOrEmpty(section.FileNameTemplate))
+            builder.Screenshots.UseFileNameTemplate(section.FileNameTemplate);
+
         if (section.Strategy?.Type != null)
         {
             if (!ScreenshotStrategyAliases.TryResolve(section.Strategy.Type, out IScreenshotStrategy strategy))

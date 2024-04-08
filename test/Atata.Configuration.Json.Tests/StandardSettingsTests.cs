@@ -17,13 +17,9 @@ public class StandardSettingsTests : TestFixture
 
         result.ValueOf(x => x.Artifacts.FullName.Value).Should.Be(
             Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                "artifacts",
-                DateTime.Now.Year.ToString(),
+                AtataContext.GlobalProperties.ArtifactsRootPath,
                 nameof(StandardSettingsTests),
-                TestContext.CurrentContext.Test.Name));
-
-        result.ValueOf(x => x.TimeZone.Id).Should.Be("UTC");
+                $"prefix_{TestContext.CurrentContext.Test.Name}_postfix"));
 
         result.ValueOf(x => x.Variables["customIntVar"]).Should.Be(7L);
         result.ValueOf(x => x.Variables["customStringVar"]).Should.Be("strvar");

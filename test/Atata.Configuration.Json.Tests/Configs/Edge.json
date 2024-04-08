@@ -12,7 +12,7 @@
     "service": {
       "driverPath": "{env:EdgeDriver}",
       "driverExecutableFileName": "msedgedriver.exe",
-      "whitelistedIPAddresses": "ips"
+      "allowedIPAddresses": "ips"
     }
   }
 }

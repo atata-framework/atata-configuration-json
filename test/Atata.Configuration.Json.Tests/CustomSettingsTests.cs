@@ -108,7 +108,7 @@ public class CustomSettingsTests : TestFixture
             secondaryAtataContext = AtataContext.Configure()
                 .ApplyJsonConfig<CustomJsonConfig>(@"Configs/CustomSettingsOverride2.json")
                 .Build();
-        }).Wait();
+        }).GetAwaiter().GetResult();
 
         try
         {

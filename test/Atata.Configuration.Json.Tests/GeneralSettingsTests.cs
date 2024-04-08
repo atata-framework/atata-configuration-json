@@ -56,25 +56,6 @@ public class GeneralSettingsTests : TestFixture
     }
 
     [Test]
-    public void ObsoleteNUnitProperties()
-    {
-        List<string> logEntries = [];
-
-        using var context = AtataContext.Configure()
-            .UseDriverInitializationStage(AtataContextDriverInitializationStage.None)
-            .ApplyJsonConfig("Configs/NUnitObsoleteProperties.json")
-            .LogConsumers.Add(new TextOutputLogConsumer(logEntries.Add))
-                .WithMinLevel(LogLevel.Warn)
-            .Build();
-
-        logEntries.Should().HaveCount(4);
-        logEntries[0].Should().Contain("\"logNUnitError\" configuration property is deprecated");
-        logEntries[1].Should().Contain("\"takeScreenshotOnNUnitError\", \"takeScreenshotOnNUnitErrorKind\" and \"takeScreenshotOnNUnitErrorTitle\" configuration properties are deprecated");
-        logEntries[2].Should().Contain("\"takePageSnapshotOnNUnitError\" and \"takePageSnapshotOnNUnitErrorTitle\" configuration properties are deprecated");
-        logEntries[3].Should().Contain("\"onCleanUpAddArtifactsToNUnitTestContext\" configuration property is deprecated");
-    }
-
-    [Test]
     public void VerificationProperties()
     {
         AtataContextBuilder builder = AtataContext.Configure()

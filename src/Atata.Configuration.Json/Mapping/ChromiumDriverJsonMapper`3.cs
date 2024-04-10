@@ -11,19 +11,19 @@ public abstract class ChromiumDriverJsonMapper<TBuilder, TService, TOptions> : D
     {
         base.MapOptions(section, options);
 
-        if (section.Arguments?.Any() ?? false)
+        if (section.Arguments is { Length: > 0 })
             options.AddArguments(section.Arguments);
 
-        if (section.ExcludedArguments?.Any() ?? false)
+        if (section.ExcludedArguments is { Length: > 0 })
             options.AddExcludedArguments(section.ExcludedArguments);
 
-        if (section.Extensions?.Any() ?? false)
+        if (section.Extensions is { Length: > 0 })
             options.AddExtensions(section.Extensions);
 
-        if (section.EncodedExtensions?.Any() ?? false)
+        if (section.EncodedExtensions is { Length: > 0 })
             options.AddEncodedExtensions(section.EncodedExtensions);
 
-        if (section.WindowTypes?.Any() ?? false)
+        if (section.WindowTypes is { Length: > 0 })
             options.AddWindowTypes(section.WindowTypes);
 
         if (section.PerformanceLoggingPreferences != null)
@@ -58,7 +58,7 @@ public abstract class ChromiumDriverJsonMapper<TBuilder, TService, TOptions> : D
     {
         ObjectMapper.Map(section.ExtraPropertiesMap, preferences);
 
-        if (section.TracingCategories?.Any() ?? false)
+        if (section.TracingCategories is { Length: > 0 })
             preferences.AddTracingCategories(section.TracingCategories);
     }
 

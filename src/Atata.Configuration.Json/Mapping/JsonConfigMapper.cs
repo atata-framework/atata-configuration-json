@@ -294,12 +294,12 @@ public static class JsonConfigMapper
 
     private static object CreateObject(string typeName, Dictionary<string, object> valuesMap, string assemblyNamePatternToFindType)
     {
-        IObjectConverter objectConverter = new ObjectConverter
+        ObjectConverter objectConverter = new()
         {
             AssemblyNamePatternToFindTypes = assemblyNamePatternToFindType
         };
-        IObjectMapper objectMapper = new ObjectMapper(objectConverter);
-        IObjectCreator objectCreator = new ObjectCreator(objectConverter, objectMapper);
+        ObjectMapper objectMapper = new(objectConverter);
+        ObjectCreator objectCreator = new(objectConverter, objectMapper);
 
         var assembliesToFindTypes = AssemblyFinder.FindAllByPattern(assemblyNamePatternToFindType);
         Type strategyType = TypeFinder.FindInAssemblies(typeName, assembliesToFindTypes);

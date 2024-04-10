@@ -6,7 +6,7 @@ public sealed class EventSubscriptionMapper
 
     private readonly Assembly[] _assembliesToFindEventHandlerTypes;
 
-    private readonly IObjectCreator _objectCreator;
+    private readonly ObjectCreator _objectCreator;
 
     public EventSubscriptionMapper(
         string assemblyNamePatternToFindEventTypes,

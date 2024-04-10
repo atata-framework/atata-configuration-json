@@ -17,7 +17,7 @@ public class FirefoxDriverJsonMapper : DriverJsonMapper<FirefoxAtataContextBuild
                 options.AddAdditionalFirefoxOption(item.Key, FillTemplateVariables(item.Value));
         }
 
-        if (section.Arguments?.Any() ?? false)
+        if (section.Arguments is { Length: > 0 })
             options.AddArguments(section.Arguments);
 
         if (section.Profile != null)

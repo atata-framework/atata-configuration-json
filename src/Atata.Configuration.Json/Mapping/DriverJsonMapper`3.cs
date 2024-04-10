@@ -46,7 +46,7 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
         if (section.CommandTimeout != null)
             builder.WithCommandTimeout(TimeSpan.FromSeconds(section.CommandTimeout.Value));
 
-        if (section.PortsToIgnore?.Any() ?? false)
+        if (section.PortsToIgnore is { Length: > 0 })
             builder.WithPortsToIgnore(section.PortsToIgnore);
 
         if (!string.IsNullOrWhiteSpace(section.Service?.DriverPath))
@@ -66,7 +66,7 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
     {
         var properties = section.ExtraPropertiesMap;
 
-        if (properties?.Any() ?? false)
+        if (properties is { Count: > 0 })
             ObjectMapper.Map(properties, options);
 
         if (section.Proxy != null)
@@ -81,7 +81,7 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
                 options.AddAdditionalOption(item.Key, FillTemplateVariables(item.Value));
         }
 
-        if (section.LoggingPreferences?.Any() ?? false)
+        if (section.LoggingPreferences is { Count: > 0 })
         {
             foreach (var item in section.LoggingPreferences)
                 options.SetLoggingPreference(item.Key, item.Value);
@@ -92,7 +92,7 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
     {
         ObjectMapper.Map(section.ExtraPropertiesMap, proxy);
 
-        if (section.BypassAddresses?.Any() ?? false)
+        if (section.BypassAddresses is { Length: > 0 })
             proxy.AddBypassAddresses(section.BypassAddresses);
     }
 
@@ -100,7 +100,7 @@ public abstract class DriverJsonMapper<TBuilder, TService, TOptions> : IDriverJs
     {
         var properties = section.ExtraPropertiesMap;
 
-        if (properties?.Any() ?? false)
+        if (properties is { Count: > 0 })
             ObjectMapper.Map(properties, service);
     }
 

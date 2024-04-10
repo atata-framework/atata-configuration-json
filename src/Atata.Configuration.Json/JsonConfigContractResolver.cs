@@ -2,7 +2,7 @@
 
 namespace Atata.Configuration.Json;
 
-internal class JsonConfigContractResolver : DefaultContractResolver
+internal sealed class JsonConfigContractResolver : DefaultContractResolver
 {
     public static JsonConfigContractResolver Instance { get; } = new JsonConfigContractResolver();
 

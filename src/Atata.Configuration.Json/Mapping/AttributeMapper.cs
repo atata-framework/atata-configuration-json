@@ -10,18 +10,18 @@ public class AttributeMapper
 
     private readonly Assembly[] _assembliesToFindAttributeTypes;
 
-    private readonly IObjectCreator _objectCreator;
+    private readonly ObjectCreator _objectCreator;
 
     public AttributeMapper(string assemblyNamePatternToFindAttributeTypes, string defaultAssemblyNamePatternToFindTypes)
     {
         _assembliesToFindAttributeTypes = AssemblyFinder.FindAllByPattern(assemblyNamePatternToFindAttributeTypes);
 
-        IObjectConverter objectConverter = new ObjectConverter
+        ObjectConverter objectConverter = new()
         {
             AssemblyNamePatternToFindTypes = defaultAssemblyNamePatternToFindTypes
         };
-        IObjectMapper objectMapper = new ObjectMapper(objectConverter);
-        _objectCreator = new ObjectCreator(objectConverter, objectMapper);
+        ObjectMapper objectMapper = new(objectConverter);
+        _objectCreator = new(objectConverter, objectMapper);
     }
 
     public Attribute Map(AttributeJsonSection section)

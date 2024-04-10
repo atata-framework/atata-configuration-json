@@ -23,7 +23,7 @@ public class RemoteDriverContext
         return new DriverContextNullableSession(this);
     }
 
-    private class DriverContextNullableSession : IDisposable
+    private sealed class DriverContextNullableSession : IDisposable
     {
         private readonly RemoteDriverContext _context;
 

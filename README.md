@@ -11,7 +11,7 @@ C#/.NET package for [Atata](https://github.com/atata-framework/atata) configurat
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.7.0](https://atata.io/blog/2024/01/11/atata.configuration.json-2.7.0-released/)**
+**[What's new in v3.0.0](https://github.com/atata-framework/atata-configuration-json/releases/tag/v3.0.0)**
 
 ## Table of Contents
 
@@ -386,8 +386,7 @@ with help of `{env:VarName}` template insertions.
 
   "baseUrl": "string",
   "culture": "string", // For example: "en-US".
-  "timeZone": "string", // For example: "UTC".
-  "artifactsPath": "string",
+  "artifactsPathTemplate": "string",
 
   "defaultControlVisibility": "string", // Supports: "any" (default), "visible" and "invisible".
 
@@ -425,7 +424,6 @@ with help of `{env:VarName}` template insertions.
   "useNUnitTestName": true,
   "useNUnitTestSuiteName": true,
   "useNUnitTestSuiteType": true,
-  "onCleanUpAddDirectoryFilesToNUnitTestContext": "string",
   "useNUnitAggregateAssertionStrategy": true, // Indicates to use NUnitAggregateAssertionStrategy as the aggregate assertion strategy.
   "useNUnitWarningReportStrategy": true, // Indicates to use NUnitWarningReportStrategy as the strategy for warning assertion reporting.
   "useNUnitAssertionFailureReportStrategy": true, // Indicates to use NUnitAssertionFailureReportStrategy as the strategy for assertion failure reporting.
@@ -444,15 +442,8 @@ with help of `{env:VarName}` template insertions.
     }
   ],
 
-  "screenshotConsumers": [ // Configures list of screenshot consumers.
-    {
-      "type": "file", // Supports: "file" and custom consumers registered via ScreenshotConsumerAliases.Register method.
-                      // Custom IScreenshotConsumer type can also be passed as a full type name, e.g.: "Namespace.Class, MyAssembly".
-      "{{screenshotConsumerPropertyName}}": "value" // Any property of screenshot consumer, e.g.: "filePath", "fileName", "directoryPath".
-    }
-  ],
-
   "screenshots": { // Configures screenshots functionality.
+    "fileNameTemplate": "string",
     "strategy": {
       "type": "webDriverViewport", // Supports: "webDriverViewport", "webDriverFullPage", "cdpFullPage", "fullPageOrViewport",
                                    // and name of custom type implementing "Atata.IScreenshotTakeStrategy".

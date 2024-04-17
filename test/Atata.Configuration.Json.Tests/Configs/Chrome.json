@@ -53,7 +53,8 @@
       "androidOptions": {
         "androidPackage": "pack1",
         "androidActivity": "act1"
-      }
+      },
+      "pageLoadTimeout": "00:00:45"
     },
     "service": {
       "port": 555,

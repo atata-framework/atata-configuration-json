@@ -136,6 +136,8 @@ public class DriverTests : TestFixture
 
         options.LeaveBrowserRunning.Should().BeTrue();
         options.MinidumpPath.Should().Be("mdp");
+
+        options.PageLoadTimeout.Should().Be(TimeSpan.FromSeconds(45));
     }
 
     private static void VerifyChromeService(ChromeDriverService service)
@@ -241,7 +243,8 @@ public class DriverTests : TestFixture
                 new Dictionary<string, object>
                 {
                     ["LeaveBrowserRunning"] = true,
-                    ["minidumpPath"] = "mdp"
+                    ["minidumpPath"] = "mdp",
+                    ["pageLoadTimeout"] = "00:00:45"
                 });
 
             config.Driver.Options.AndroidOptions.AndroidPackage.Should().Be("pack1");

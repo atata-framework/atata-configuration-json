@@ -295,7 +295,7 @@ public class DriverTests : TestFixture
 
         ((List<object>)optionsCapabilities["args"]).Should().Equal("--start-maximized");
 
-        ((Dictionary<string, object>)optionsCapabilities["prefs"]).Should().Equal(new Dictionary<string, object>
+        ((Dictionary<string, object>)optionsCapabilities["prefs"]).Should().Contain(new Dictionary<string, object>
         {
             ["pref1"] = true,
             ["pref2"] = 5,

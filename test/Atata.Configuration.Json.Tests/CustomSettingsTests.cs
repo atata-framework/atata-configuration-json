@@ -20,8 +20,7 @@ public class CustomSettingsTests : TestFixture
         CustomJsonConfig.Current.Section.StringProperty.Should().Be("section_str");
         CustomJsonConfig.Current.Section.BoolProperty.Should().Be(true);
 
-        CustomJsonConfig.Current.Items.Should().BeEquivalentTo(new[]
-        {
+        CustomJsonConfig.Current.Items.Should().BeEquivalentTo([
             new CustomJsonConfig.CustomItemSection
             {
                 Name = "item1",
@@ -32,7 +31,7 @@ public class CustomSettingsTests : TestFixture
                 Name = "item2",
                 Value = 7
             }
-        });
+        ]);
     }
 
     [Test]
@@ -53,8 +52,7 @@ public class CustomSettingsTests : TestFixture
         CustomJsonConfig.Current.Section.StringProperty.Should().Be("section_str");
         CustomJsonConfig.Current.Section.BoolProperty.Should().Be(false);
 
-        CustomJsonConfig.Current.Items.Should().BeEquivalentTo(new[]
-        {
+        CustomJsonConfig.Current.Items.Should().BeEquivalentTo([
             new CustomJsonConfig.CustomItemSection
             {
                 Name = "item1",
@@ -70,7 +68,7 @@ public class CustomSettingsTests : TestFixture
                 Name = "item3",
                 Value = 9
             }
-        });
+        ]);
 
         CustomJsonConfig.Current.Drivers.Should().HaveCount(2);
         CustomJsonConfig.Current.Driver.Options.Arguments.Should().Equal("headless=new");

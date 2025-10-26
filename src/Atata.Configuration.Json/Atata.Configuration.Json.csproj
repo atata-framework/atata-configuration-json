@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
     <Nullable>disable</Nullable>
-    <Version>3.0.0</Version>
+    <Version>3.1.0</Version>
     <Description>C#/.NET package for Atata configuration through JSON files.
 
 The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.
@@ -21,7 +21,7 @@ Features:
     <RepositoryUrl>https://github.com/atata-framework/atata-configuration-json</RepositoryUrl>
     <PackageId>Atata.Configuration.Json</PackageId>
     <PackageTags>atata automation testing test selenium webdriver browser configuration</PackageTags>
-    <PackageReleaseNotes>https://github.com/atata-framework/atata-configuration-json/releases/tag/v3.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/atata-framework/atata-configuration-json/releases/tag/v3.1.0</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/atata-framework/atata-configuration-json</PackageProjectUrl>
   </PropertyGroup>
 

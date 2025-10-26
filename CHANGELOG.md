@@ -10,5 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Upgrade Newtonsoft.Json package reference to v13.0.4.
+- Upgrade Atata package reference to v3.7.0.
 
 [Unreleased]: https://github.com/atata-framework/atata-configuration-json/compare/v3.0.0...HEAD

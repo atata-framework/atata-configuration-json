@@ -301,7 +301,6 @@ with help of `{env:VarName}` template insertions.
       "proxy": { // Configures instance of OpenQA.Selenium.Proxy type.
         "kind": "Manual" // Supports values of OpenQA.Selenium.ProxyKind enum.
         "httpProxy": "string",
-        "ftpProxy": "string",
         "sslProxy": "string",
         "socksProxy": "string",
         "socksUserName": "string",

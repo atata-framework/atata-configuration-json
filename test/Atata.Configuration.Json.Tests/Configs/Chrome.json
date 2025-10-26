@@ -24,8 +24,7 @@
         }
       },
       "proxy": {
-        "httpProxy": "http",
-        "ftpProxy": "ftp"
+        "httpProxy": "http"
       },
       "arguments": [ "headless=new" ],
       "excludedArguments": [ "exc-arg" ],

@@ -97,7 +97,6 @@ public class DriverTests : TestFixture
 
         options.Proxy.Kind.Should().Be(ProxyKind.Manual);
         options.Proxy.HttpProxy.Should().Be("http");
-        options.Proxy.FtpProxy.Should().Be("ftp");
 
         options.Arguments.Should().Equal("headless=new");
 
@@ -201,8 +200,7 @@ public class DriverTests : TestFixture
             config.Driver.Options.Proxy.ExtraPropertiesMap.Should().Equal(
                new Dictionary<string, object>
                {
-                   ["httpProxy"] = "http",
-                   ["ftpProxy"] = "ftp"
+                   ["httpProxy"] = "http"
                });
 
             config.Driver.Options.Arguments.Should().Equal("headless=new");

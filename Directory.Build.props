@@ -1,6 +1,9 @@
 <Project>
 
   <PropertyGroup>
+    <LangVersion>13.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>Atata Framework</Product>
@@ -11,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Code analysis packages">
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.7.0.110445" PrivateAssets="All" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="All" />
   </ItemGroup>
 

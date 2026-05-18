@@ -92,8 +92,11 @@ public class ConfigFilePathTests : TestFixture
     {
         string filePath = AppDomain.CurrentDomain.BaseDirectory;
 
+        if (!filePath.EndsWith(Path.DirectorySeparatorChar) && !filePath.EndsWith(Path.AltDirectorySeparatorChar))
+            filePath += Path.DirectorySeparatorChar;
+
         AtataContextBuilder builder = AtataContext.Configure()
-            .ApplyJsonConfig(filePath);
+                .ApplyJsonConfig(filePath);
 
         builder.BuildingContext.BaseUrl.Should().EndWith("atata");
     }
@@ -102,6 +105,9 @@ public class ConfigFilePathTests : TestFixture
     public void DirectoryPath_WithAlias()
     {
         string filePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        if (!filePath.EndsWith(Path.DirectorySeparatorChar) && !filePath.EndsWith(Path.AltDirectorySeparatorChar))
+            filePath += Path.DirectorySeparatorChar;
 
         AtataContextBuilder builder = AtataContext.Configure()
             .ApplyJsonConfig(filePath, "QA");

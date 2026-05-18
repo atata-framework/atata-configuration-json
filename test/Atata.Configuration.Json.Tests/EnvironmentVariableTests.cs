@@ -27,9 +27,8 @@ public class EnvironmentVariableTests : TestFixture
     {
         AtataContextBuilder builder = AtataContext.Configure();
 
-        var exception = Assert.Throws<ConfigurationException>(() =>
-            builder.ApplyJsonConfig("Configs/EnvironmentVariables"));
-
-        exception.Message.Should().Contain(Variable1Name);
+        builder.Invoking(x => x.ApplyJsonConfig("Configs/EnvironmentVariables"))
+            .Should().ThrowExactly<ConfigurationException>()
+            .WithMessage($"*{Variable1Name}*");
     }
 }
